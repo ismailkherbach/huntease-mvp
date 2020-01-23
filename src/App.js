@@ -1,26 +1,53 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect
+} from "react-router-dom";
+import app from "./views/app";
+import main from "./views";
+import user from "./views/auth";
+import Error from "./views/error";
+import settings from "./views/app/settings";
+import { IntlProvider } from "react-intl";
+import AppLocale from "./lang";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    const { locale } = this.props;
+    const currentAppLocale = AppLocale[locale];
+    return (
+      <IntlProvider
+        locale={currentAppLocale.locale}
+        messages={currentAppLocale.messages}
+      >
+        <React.Fragment>
+          <Router>
+            <Switch>
+              <Route path="/app" component={app} />
+              <Route path="/" exact component={main} />
+              <Route path="/user" component={user} />
+              <Route path="/app/settings" component={settings} />
+
+              <Route path="/error" exact component={Error} />
+              <Redirect to="/error" />
+            </Switch>
+          </Router>
+        </React.Fragment>
+      </IntlProvider>
+    );
+  }
 }
 
-export default App;
+const mapStateToProps = ({ settings }) => {
+  const { locale } = settings;
+  return { locale };
+};
+const mapActionsToProps = {};
+
+export default connect(mapStateToProps, mapActionsToProps)(App);

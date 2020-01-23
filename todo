@@ -1,0 +1,21 @@
+Onboarding :
+
+    Joyride
+    IntroJs
+    Use-tour
+    React-Onboarding
+
+packages:
+
+    Luxon
+    Lodash
+    Formik
+    yarn add react-router-dom
+    yarn add axios
+    npm i -S reactstrap
+    npm i -D eslint prettier eslint-config-prettier eslint-plugin-prettier eslint-plugin-node eslint-config-node
+
+Style:
+
+    styled-component
+    react-awesome component
