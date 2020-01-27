@@ -1,5 +1,4 @@
-import React, { PureComponent, Fragment } from "react";
-import { Row, Col } from "reactstrap";
+import React, { Fragment } from "react";
 
 const Helps = ({ children }) => {
   return (

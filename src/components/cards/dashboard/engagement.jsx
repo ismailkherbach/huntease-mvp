@@ -1,4 +1,4 @@
-import React, { PureComponent, Fragment } from "react";
+import React, { Fragment } from "react";
 import IntlMessages from "../../../helpers/IntlMessages";
 
 const Engagement = ({ children }) => {

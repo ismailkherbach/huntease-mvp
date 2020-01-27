@@ -1,4 +1,4 @@
-import React, { PureComponent, Fragment } from "react";
+import React, { Fragment } from "react";
 import { Row, Col } from "reactstrap";
 import Terms from "./Terms";
 import Helps from "./Helps";

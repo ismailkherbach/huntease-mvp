@@ -44,16 +44,12 @@ $heading-size: 19px;
 
 $bg-img: url("../img/bgauth.svg");
 $bg-lvl2: url("../img/bgapp.svg");
-
+$backgrd: url("../img//back_app.svg");
 html {
-  background: $bg-img no-repeat fixed;
-
-  background-size: cover;
 }
 #logo {
   width: 44.1px;
   height: 39.3px;
-  left: 60px;
   margin: 30px auto;
 }
 
@@ -62,6 +58,8 @@ html {
 }
 
 #root {
+  background: $backgrd;
+  background-size: cover;
   height: 100vh;
   margin-right: 0;
   bottom: 0;
@@ -72,24 +70,23 @@ html {
   font-weight: $regular;
   box-sizing: border-box;
   color: $huntease-dark;
-
-  position: fixed;
   top: 0;
+  right: 0;
+  bottom: 0;
   left: 0;
-  width: 100%;
+  overflow-y: hidden;
 }
 
 .dashboard-page {
-  background: $huntease-light no-repeat center center fixed;
-  background-size: cover;
-  width: 100%;
-  height: 100%;
-  position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
   z-index: -1;
+}
+#lvl2bg {
+  background-size: cover;
+  border-radius: 0 0 $max-radius $max-radius;
 }
 
 .topnav {
@@ -155,58 +152,23 @@ span {
 #performance {
   margin-top: $topnav-height;
   background: $white;
-  width: 400px;
   right: auto;
   border-radius: $regular-radius;
   height: $top-component-height !important;
-  @include respond-below(sm) {
-    width: 350px;
-    margin-right: 3rem;
-  }
-  @include respond-below(md) {
-    width: 80%;
-    margin-right: 3rem;
-  }
-  @include respond-below(xl) {
-    width: 90%;
-    margin-right: 20px;
-    margin-left: 8rem;
-  }
-  @include respond-below(lg) {
-    width: 100%;
-  }
-}
 
-#performance-darkmode {
-  margin-top: $topnav-height;
-  background: $huntease-darkmode;
-  width: 400px;
-  right: auto;
-  border-radius: $regular-radius;
-  height: $top-component-height !important;
-  @include respond-below(sm) {
+  @include desktop-sm {
+    width: 340px;
+  }
+  @include desktop-md {
     width: 350px;
-    margin-right: 3rem;
   }
-  @include respond-below(md) {
-    width: 80%;
-    margin-right: 3rem;
+  @include desktop-xl {
+    width: 400px;
+    margin-left: 0px;
+    margin-right: 0px;
   }
-  @include respond-below(xl) {
-    width: 90%;
-    margin-right: 20px;
-    margin-left: 8rem;
-  }
-  @include respond-below(lg) {
+  @include desktop-lg {
     width: 100%;
-  }
-
-  #card-title {
-    padding: $spacing;
-    font-family: $font;
-    font-size: $txt-left;
-    color: $huntease-medium;
-    font-weight: $medium;
   }
 }
 
@@ -217,91 +179,47 @@ span {
   border-radius: $regular-radius;
   box-shadow: $shadow;
   height: $top-component-height !important;
-  @include respond-below(sm) {
+  margin-left: 0px;
+  margin-right: 0px;
+  @include desktop-sm {
     width: 330px;
-    margin-right: 3rem;
   }
-  @include respond-below(md) {
-    width: 80%;
-    margin-right: 3rem;
+  @include desktop-md {
+    width: 100%;
   }
-  @include respond-below(xl) {
-    width: 90%;
-    margin-left: 4.5rem;
+  @include desktop-xl {
+    width: 375px;
+    margin-left: 0px;
     margin-right: 0px;
   }
-  @include respond-below(lg) {
+  @include desktop-lg {
     width: 100%;
   }
 }
-
-#calls-darkmode {
-  width: 375px;
+#meetings {
+  background: $white;
   margin-top: $topnav-height;
-  background: $huntease-darkmode;
-  border-radius: $regular-radius;
   box-shadow: $shadow;
-  height: $top-component-height !important;
-  @include respond-below(sm) {
-    width: 330px;
-    margin-right: 3rem;
+  height: $top-component-height;
+  border-radius: $regular-radius;
+
+  @include desktop-sm {
+    width: 360px;
   }
-  @include respond-below(md) {
-    width: 80%;
-    margin-right: 3rem;
+  @include desktop-md {
+    width: 400px;
   }
-  @include respond-below(xl) {
-    width: 90%;
-    margin-left: 4.5rem;
+  @include desktop-xl {
+    width: 400px;
+    left: 0px;
     margin-right: 0px;
   }
-  @include respond-below(lg) {
-    width: 100%;
-  }
-
-  #card-title {
-    padding: $spacing;
-    font-family: $font;
-    font-size: $txt-left;
-    color: $huntease-medium;
-    font-weight: $medium;
-  }
-}
-
-#meetings-darkmode {
-  background: $huntease-darkmode;
-  margin-top: $topnav-height;
-  width: 400px;
-  border-radius: $regular-radius;
-  box-shadow: $shadow;
-  height: $top-component-height !important;
-  @include respond-below(sm) {
-    width: 350px;
-    margin-right: 3rem;
-  }
-  @include respond-below(md) {
-    width: 80%;
-    margin-right: 3rem;
-  }
-  @include respond-below(xl) {
-    width: 60%;
-    margin-right: 28rem;
-    margin-left: 2rem;
-  }
-  @include respond-below(lg) {
-    width: 100%;
-  }
-  #card-title {
-    padding: $spacing;
-    font-family: $font;
-    font-size: $txt-left;
-    color: $huntease-medium;
-    font-weight: $medium;
+  @include desktop-lg {
+    width: 400px;
   }
 }
 
 #engagement-rate {
-  width: 730px;
   height: 270px;
   margin-top: 20px;
   height: $bottom-component-height;
@@ -309,100 +227,46 @@ span {
   box-shadow: $shadow;
   border-radius: $regular-radius;
   margin-right: $side-margin;
-  @include respond-below(sm) {
-    width: 70%;
+  margin-left: 0px;
+  margin-right: 0px;
+  @include desktop-sm {
+    width: 670px;
   }
-  @include respond-below(xl) {
-    width: 90%;
-    margin-left: 8rem;
-    margin-right: 80px;
+  @include desktop-md {
+    width: 700px;
   }
-  @include respond-below(md) {
+  @include desktop-xl {
     width: 100%;
+    margin-left: 0px;
+    margin-right: 0px;
   }
-  @include respond-below(lg) {
-    width: 120%;
-  }
-}
-
-#engagement-rate-darkmode {
-  width: 730px;
-  height: 270px;
-  margin-top: 20px;
-  height: $bottom-component-height;
-  background: $huntease-darkmode;
-  box-shadow: $shadow;
-  border-radius: $regular-radius;
-  margin-right: $side-margin;
-  @include respond-below(sm) {
-    width: 70%;
-  }
-  @include respond-below(xl) {
-    width: 90%;
-    margin-left: 8rem;
-    margin-right: 80px;
-  }
-  @include respond-below(md) {
-    width: 100%;
-  }
-  @include respond-below(lg) {
-    width: 120%;
-  }
-  #card-title {
-    padding: $spacing;
-    font-family: $font;
-    font-size: $txt-left;
-    color: $huntease-medium;
-    font-weight: $medium;
-  }
-}
-
-#meetings {
-  background: $white;
-  margin-top: $topnav-height;
-  width: 400px;
-  border-radius: $regular-radius;
-  box-shadow: $shadow;
-  height: $top-component-height;
-  @include respond-below(sm) {
-    width: 350px;
-    margin-right: 3rem;
-  }
-  @include respond-below(md) {
-    width: 80%;
-    margin-right: 3rem;
-  }
-  @include respond-below(xl) {
-    width: 60%;
-    margin-right: 28rem;
-    margin-left: 2rem;
-  }
-  @include respond-below(lg) {
-    width: 100%;
+  @include desktop-lg {
+    width: 760px;
   }
 }
 
 #top-weekly-performers {
   background: $white;
-  width: 440px;
+  width: 416px;
   margin-top: 20px;
   box-shadow: $shadow;
   height: $bottom-component-height;
   border-radius: $regular-radius;
-  @include respond-below(sm) {
-    width: 70%;
+  margin-left: 0px;
+  margin-right: 0px;
+  @include desktop-sm {
+    width: 385px;
   }
-  @include respond-below(xl) {
-    width: 57%;
-    margin-left: 120px;
+  @include desktop-md {
+    width: 440px;
   }
-  @include respond-below(lg) {
-    width: 80%;
-    float: right;
+  @include desktop-xl {
+    width: 60%;
+    margin-left: 0px;
+    margin-right: 4rem;
   }
-  @include respond-below(md) {
-    width: 80%;
-    float: right;
+  @include desktop-lg {
+    width: 440px;
   }
   img {
     width: 42px;
@@ -451,6 +315,131 @@ span {
   }
 }
 
+#performance-darkmode {
+  margin-top: $topnav-height;
+  background: $huntease-darkmode;
+  width: 400px;
+  right: auto;
+  border-radius: $regular-radius;
+  height: $top-component-height !important;
+  @include desktop-sm {
+    width: 350px;
+    margin-right: 3rem;
+  }
+  @include desktop-md {
+    width: 80%;
+    margin-right: 3rem;
+  }
+  @include desktop-xl {
+    width: 90%;
+    margin-right: 20px;
+    margin-left: 8rem;
+  }
+  @include desktop-lg {
+    width: 100%;
+  }
+
+  #card-title {
+    padding: $spacing;
+    font-family: $font;
+    font-size: $txt-left;
+    color: $huntease-medium;
+    font-weight: $medium;
+  }
+}
+
+#calls-darkmode {
+  width: 375px;
+  margin-top: $topnav-height;
+  background: $huntease-darkmode;
+  border-radius: $regular-radius;
+  box-shadow: $shadow;
+  height: $top-component-height !important;
+  @include desktop-sm {
+    width: 300px;
+  }
+  @include desktop-md {
+    width: 80%;
+  }
+  @include desktop-xl {
+    width: 90%;
+  }
+  @include desktop-lg {
+    width: 80%;
+  }
+
+  #card-title {
+    padding: $spacing;
+    font-family: $font;
+    font-size: $txt-left;
+    color: $huntease-medium;
+    font-weight: $medium;
+  }
+}
+
+#meetings-darkmode {
+  background: $huntease-darkmode;
+  margin-top: $topnav-height;
+  width: 400px;
+  border-radius: $regular-radius;
+  box-shadow: $shadow;
+  height: $top-component-height !important;
+  @include desktop-sm {
+    width: 100%;
+  }
+  @include desktop-md {
+    width: 80%;
+    margin-right: 3rem;
+  }
+  @include desktop-xl {
+    width: 60%;
+    margin-right: 28rem;
+    margin-left: 2rem;
+  }
+  @include desktop-lg {
+    width: 80%;
+  }
+  #card-title {
+    padding: $spacing;
+    font-family: $font;
+    font-size: $txt-left;
+    color: $huntease-medium;
+    font-weight: $medium;
+  }
+}
+
+#engagement-rate-darkmode {
+  width: 730px;
+  height: 270px;
+  margin-top: 20px;
+  height: $bottom-component-height;
+  background: $huntease-darkmode;
+  box-shadow: $shadow;
+  border-radius: $regular-radius;
+  margin-right: $side-margin;
+  @include desktop-sm {
+    width: 70%;
+  }
+  @include desktop-xl {
+    width: 90%;
+    margin-left: 8rem;
+    margin-right: 80px;
+  }
+  @include desktop-md {
+    width: 100%;
+  }
+  @include desktop-lg {
+    width: 120%;
+  }
+  #card-title {
+    padding: $spacing;
+    font-family: $font;
+    font-size: $txt-left;
+    color: $huntease-medium;
+    font-weight: $medium;
+  }
+}
+
 #top-weekly-performers-darkmode {
   background: $huntease-darkmode;
   width: 440px;
@@ -460,18 +449,18 @@ span {
   height: $bottom-component-height;
 
   border-radius: $regular-radius;
-  @include respond-below(sm) {
+  @include desktop-sm {
     width: 70%;
   }
-  @include respond-below(xl) {
+  @include desktop-xl {
     width: 57%;
     margin-left: 120px;
   }
-  @include respond-below(lg) {
+  @include desktop-lg {
     width: 80%;
     float: right;
   }
-  @include respond-below(md) {
+  @include desktop-md {
     width: 80%;
     float: right;
   }
@@ -485,15 +474,6 @@ span {
   }
 }
 
-#lvl2bg {
-  position: fixed;
-  width: 100%;
-  height: 44vh;
-  max-height: 350px;
-  background: $bg-lvl2;
-  background-size: cover;
-  border-radius: 0 0 $max-radius $max-radius;
-}
 .login-logo {
   margin-top: 40px;
   left: 40px;
@@ -634,7 +614,9 @@ input {
   width: 11%;
   transform: translateZ(0);
   transition: transform 0.25s ease-out;
-
+  @include desktop-xl {
+    margin-left: 8%;
+  }
   ul li {
     color: $huntease-medium;
     font-weight: $medium;
@@ -652,9 +634,7 @@ input {
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    @include respond-below(xl) {
-      margin-left: 9rem;
-    }
+
     img {
       width: 24px;
       height: 24px;
@@ -702,8 +682,8 @@ input {
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    @include respond-below(xl) {
-      margin-left: 9rem;
+    @include desktop-xl {
+      margin-left: 20px;
     }
     img {
       width: 24px;
@@ -754,13 +734,14 @@ input {
   border-radius: $regular-radius;
   height: 625px !important;
 
-  @include respond-below(sm) {
+  @include desktop-sm {
+    width: 650px;
   }
-  @include respond-below(md) {
+  @include desktop-md {
   }
-  @include respond-below(xl) {
+  @include desktop-xl {
   }
-  @include respond-below(lg) {
+  @include desktop-lg {
   }
 }
 
@@ -776,13 +757,14 @@ input {
   width: 408px;
   border-radius: $regular-radius;
   height: 40px !important;
-  @include respond-below(sm) {
+  @include desktop-sm {
+    width: 400px;
   }
-  @include respond-below(md) {
+  @include desktop-md {
   }
-  @include respond-below(xl) {
+  @include desktop-xl {
   }
-  @include respond-below(lg) {
+  @include desktop-lg {
   }
   p {
     font-size: 17px;
@@ -801,19 +783,23 @@ input {
   background: $white;
   width: 408px;
   border-radius: $regular-radius;
-  height: 280px !important;
+  height: 580px !important;
   display: flex;
   justify-content: left;
   flex-direction: column;
   align-items: top;
   padding-left: 30px;
-  @include respond-below(sm) {
+  @include desktop-sm {
+    width: 400px;
   }
-  @include respond-below(md) {
+  @include desktop-md {
   }
-  @include respond-below(xl) {
+  @include desktop-xl {
   }
-  @include respond-below(lg) {
+  @include desktop-lg {
+  }
+  h5 {
+    padding: 15px;
   }
   #card-title {
     font-family: $font;
@@ -848,13 +834,13 @@ input {
   width: 700px;
   border-radius: $regular-radius;
   height: 625px !important;
-  @include respond-below(sm) {
+  @include desktop-sm {
   }
-  @include respond-below(md) {
+  @include desktop-md {
   }
-  @include respond-below(xl) {
+  @include desktop-xl {
   }
-  @include respond-below(lg) {
+  @include desktop-lg {
   }
 }
 
@@ -865,13 +851,13 @@ input {
   width: 408px;
   border-radius: $regular-radius;
   height: 625px !important;
-  @include respond-below(sm) {
+  @include desktop-sm {
   }
-  @include respond-below(md) {
+  @include desktop-md {
   }
-  @include respond-below(xl) {
+  @include desktop-xl {
   }
-  @include respond-below(lg) {
+  @include desktop-lg {
   }
 }
 
@@ -889,13 +875,13 @@ input {
   flex-direction: row;
   align-items: center;
 
-  @include respond-below(sm) {
+  @include desktop-sm {
   }
-  @include respond-below(md) {
+  @include desktop-md {
   }
-  @include respond-below(xl) {
+  @include desktop-xl {
   }
-  @include respond-below(lg) {
+  @include desktop-lg {
   }
   h1 {
     padding-right: $spacing;
@@ -912,13 +898,13 @@ input {
   border-radius: $regular-radius;
   height: 344px !important;
 
-  @include respond-below(sm) {
+  @include desktop-sm {
   }
-  @include respond-below(md) {
+  @include desktop-md {
   }
-  @include respond-below(xl) {
+  @include desktop-xl {
   }
-  @include respond-below(lg) {
+  @include desktop-lg {
   }
 
   #field-top {
@@ -997,13 +983,13 @@ input {
   border-radius: $regular-radius;
   height: 200px !important;
   margin-top: 20px;
-  @include respond-below(sm) {
+  @include desktop-sm {
   }
-  @include respond-below(md) {
+  @include desktop-md {
   }
-  @include respond-below(xl) {
+  @include desktop-xl {
   }
-  @include respond-below(lg) {
+  @include desktop-lg {
   }
 
   #field-top {
@@ -1081,13 +1067,13 @@ input {
   border-radius: $regular-radius;
   height: 554px !important;
 
-  @include respond-below(sm) {
+  @include desktop-sm {
   }
-  @include respond-below(md) {
+  @include desktop-md {
   }
-  @include respond-below(xl) {
+  @include desktop-xl {
   }
-  @include respond-below(lg) {
+  @include desktop-lg {
   }
 
   #field-top {
@@ -1169,13 +1155,13 @@ input {
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  @include respond-below(sm) {
+  @include desktop-sm {
   }
-  @include respond-below(md) {
+  @include desktop-md {
   }
-  @include respond-below(xl) {
+  @include desktop-xl {
   }
-  @include respond-below(lg) {
+  @include desktop-lg {
   }
   h3 {
     font-family: $font;
@@ -1203,14 +1189,14 @@ input {
   flex-direction: row;
   align-items: center;
 
-  @include respond-below(sm) {
+  @include desktop-sm {
     width: 90%;
   }
-  @include respond-below(md) {
+  @include desktop-md {
   }
-  @include respond-below(xl) {
+  @include desktop-xl {
   }
-  @include respond-below(lg) {
+  @include desktop-lg {
   }
 }
 
@@ -1227,14 +1213,14 @@ input {
   flex-direction: row;
   align-items: center;
 
-  @include respond-below(sm) {
+  @include desktop-sm {
     width: 90%;
   }
-  @include respond-below(md) {
+  @include desktop-md {
   }
-  @include respond-below(xl) {
+  @include desktop-xl {
   }
-  @include respond-below(lg) {
+  @include desktop-lg {
   }
 
   h3 {
@@ -1257,14 +1243,14 @@ input {
   flex-direction: row;
   align-items: center;
 
-  @include respond-below(sm) {
+  @include desktop-sm {
     width: 90%;
   }
-  @include respond-below(md) {
+  @include desktop-md {
   }
-  @include respond-below(xl) {
+  @include desktop-xl {
   }
-  @include respond-below(lg) {
+  @include desktop-lg {
   }
 
   h3 {
@@ -1288,13 +1274,13 @@ input {
   flex-direction: column;
   align-items: center;
 
-  @include respond-below(sm) {
+  @include desktop-sm {
   }
-  @include respond-below(md) {
+  @include desktop-md {
   }
-  @include respond-below(xl) {
+  @include desktop-xl {
   }
-  @include respond-below(lg) {
+  @include desktop-lg {
   }
 
   img {
@@ -1443,7 +1429,7 @@ input {
         }
         p {
           color: $huntease-medium;
-          font-weight: $medium;
+          font-weight: $custom;
           font-size: 15px;
           text-align: left;
           padding-bottom: 15px;
@@ -1454,7 +1440,7 @@ input {
           flex-direction: column;
           align-items: left;
           color: $huntease-medium;
-          font-weight: $medium;
+          font-weight: $custom;
           font-size: 15px;
           text-align: left;
 
@@ -1522,8 +1508,8 @@ input {
 
 .disable-select {
   user-select: none; /* supported by Chrome and Opera */
- -webkit-user-select: none; /* Safari */
- -khtml-user-select: none; /* Konqueror HTML */
- -moz-user-select: none; /* Firefox */
- -ms-user-select: none; /* Internet Explorer/Edge */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
 }

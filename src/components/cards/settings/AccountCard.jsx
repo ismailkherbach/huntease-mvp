@@ -1,4 +1,4 @@
-import React, { PureComponent, Fragment } from "react";
+import React, { Fragment } from "react";
 import { connect } from "react-redux";
 import { injectIntl } from "react-intl";
 

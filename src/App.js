@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import {
   BrowserRouter as Router,
@@ -15,9 +15,6 @@ import { IntlProvider } from "react-intl";
 import AppLocale from "./lang";
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     const { locale } = this.props;
     const currentAppLocale = AppLocale[locale];

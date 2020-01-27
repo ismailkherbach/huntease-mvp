@@ -14,6 +14,7 @@ export default class TopNavUser extends React.Component {
         <Col>
           <Link to={"/user/login"}>
             <img
+              alt={"logo"}
               className="login-logo"
               src={require("../../assets/img/huntease_logo_line_white.png")}
             />

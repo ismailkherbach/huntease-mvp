@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1366" height="768" viewBox="0 0 1366 768">
+  <defs>
+    <filter id="Rectangle_4" x="470" y="35" width="608" height="443" filterUnits="userSpaceOnUse">
+      <feOffset dy="2" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="24" result="blur"/>
+      <feFlood flood-color="#b0c0ed" flood-opacity="0.42"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <clipPath id="clip-path">
+      <path id="Tracé_116" data-name="Tracé 116" d="M0,0H1366V300.234A39.884,39.884,0,0,1,1326,340H40A39.884,39.884,0,0,1,0,300.234Z" transform="translate(4429 -7889)" fill="#254ebe"/>
+    </clipPath>
+    <clipPath id="clip-MVP1:_GUIDE_EMPTY_GUIDE_2">
+      <rect width="1366" height="768"/>
+    </clipPath>
+  </defs>
+  <g id="MVP1:_GUIDE_EMPTY_GUIDE_2" data-name="MVP1: GUIDE — EMPTY GUIDE – 2" clip-path="url(#clip-MVP1:_GUIDE_EMPTY_GUIDE_2)">
+    <rect width="1366" height="768" fill="#e9effb"/>
+    <path id="Tracé_72" data-name="Tracé 72" d="M0,0H1366V300.22a39.883,39.883,0,0,1-40,39.764H40A39.883,39.883,0,0,1,0,300.22Z" fill="#254ebe"/>
+    <g id="Groupe_de_masques_7" data-name="Groupe de masques 7" transform="translate(-4429 7889)" clip-path="url(#clip-path)">
+      <g id="Groupe_578" data-name="Groupe 578" transform="translate(4315.57 -7953.482)">
+        <circle id="Ellipse_112" data-name="Ellipse 112" cx="164.5" cy="164.5" r="164.5" transform="translate(0.43 0.482)" opacity="0.07"/>
+        <ellipse id="Ellipse_113" data-name="Ellipse 113" cx="109.5" cy="108.5" rx="109.5" ry="108.5" transform="translate(256.43 -39.518)" fill="#e9effb" opacity="0.09"/>
+        <ellipse id="Ellipse_114" data-name="Ellipse 114" cx="85" cy="85.5" rx="85" ry="85.5" transform="translate(150.43 287.482)" fill="#fff" opacity="0.05"/>
+      </g>
+    </g>
+  </g>
+</svg>

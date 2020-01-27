@@ -5,6 +5,9 @@ export default class BarChart extends React.Component {
   constructor(props) {
     super(props);
     this.myRef = React.createRef();
+    this.state = {
+      labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+    };
   }
   handleClick(evt) {
     var activePoints = this.myRef(evt, "point", this.myRef.options);
@@ -17,26 +20,18 @@ export default class BarChart extends React.Component {
   }
 
   componentDidMount() {
-    const datacolor = canvas => {
-      const ctx = canvas.getContext("2d");
-      const gradient = ctx.createLinearGradient(0, 0, 170, 0);
-      gradient.addColorStop(0, "rgba(250,174,50,1)");
-      gradient.addColorStop(1, "rgba(250,174,50,0)");
-      console.log(gradient);
-    };
+    Chart.defaults.global.datasets.bar.barPercentage = 0.79;
+
     Chart.elements.Rectangle.prototype.draw = function() {
       var ctx = this._chart.ctx;
       var vm = this._view;
-      var left, right, top, bottom, signX, signY, borderSkipped, radius;
+      var left, right, top, bottom, signX, signY, borderSkipped;
       var borderWidth = vm.borderWidth;
-      var cornerRadius = 10;
       var nextCornerId;
-      var nextCorner;
       var x;
       var y;
       var height;
       var width;
-      var x_bl;
       var y_tl;
       var x_tl;
       var y_tr, y_bl, y_br;
@@ -48,7 +43,7 @@ export default class BarChart extends React.Component {
       if (cornerRadius < 0) {
         cornerRadius = 0;
       }
-      if (typeof cornerRadius == "undefined") {
+      if (typeof cornerRadius === "undefined") {
         cornerRadius = 0;
       }
 
@@ -133,11 +128,9 @@ export default class BarChart extends React.Component {
       for (var i = 1; i < 4; i++) {
         corner = cornerAt(i);
         nextCornerId = i + 1;
-        if (nextCornerId == 4) {
+        if (nextCornerId === 4) {
           nextCornerId = 0;
         }
-
-        nextCorner = cornerAt(nextCornerId);
 
         width = corners[2][0] - corners[1][0];
         height = corners[0][1] - corners[1][1];
@@ -248,7 +241,6 @@ var data = {
       ],
       pointRadius: 4,
       barPercentage: 0.79,
-      categoryPercentage: 0.79,
       pointHoverRadius: 5,
       borderTopLeftRadius: 10,
       borderTopRightRadius: 10,

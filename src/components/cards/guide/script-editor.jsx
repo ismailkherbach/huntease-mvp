@@ -1,4 +1,4 @@
-import React, { PureComponent, Fragment } from "react";
+import React, { Fragment } from "react";
 import Editor from "react-medium-editor";
 
 // load theme styles with webpack
@@ -22,7 +22,6 @@ export default class ScriptEditor extends React.Component {
     this.setState({ contenu: contenu });
   }
   render() {
-    const { title, contenu } = this.state;
     return (
       <Fragment>
         <div id="guide-conv-card">

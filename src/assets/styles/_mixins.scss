@@ -59,27 +59,39 @@
 //Responsive Breakpoints
 
 $breakpoints: (
-  //sm: 1281px,
-    //md: 1366px,
-    lg: 1440px,
-  // xl: 1920px
+  sm: 1281px,
+  md: 1366px,
+  lg: 1441px,
+  xl: 1920px
 );
 
-@mixin respond-below($breakpoint) {
-  // If the breakpoint exists in the map.
-  @if map-has-key($breakpoints, $breakpoint) {
-    // Get the breakpoint value.
-    $breakpoint-value: map-get(
-      $breakpoints,
-      $breakpoint
-    ); // Write the media query.
-    @media (max-width: ($breakpoint-value - 1)) {
-      @content;
-    }
-    // If the breakpoint doesn't exist in the map.
-  } @else {
-    // Log a warning.
-    @warn "Invalid breakpoint: #{$breakpoint}.";
+@mixin desktop-xs {
+  @media (min-width: 1024px) and (max-width: 1279px) {
+    @content;
+  }
+}
+
+@mixin desktop-sm {
+  @media (min-width: 1280px) and (max-width: 1365px) {
+    @content;
+  }
+}
+
+@mixin desktop-md {
+  @media (min-width: 1356px) and (max-width: 1439px) {
+    @content;
+  }
+}
+
+@mixin desktop-lg {
+  @media (min-width: 1440px) and (max-width: 1919px) {
+    @content;
+  }
+}
+
+@mixin desktop-xl {
+  @media (min-width: 1920px) {
+    @content;
   }
 }
 

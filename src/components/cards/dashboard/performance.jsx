@@ -1,7 +1,8 @@
-import React, { PureComponent, Fragment } from "react";
+import React, { Fragment } from "react";
 import PerformanceGraph from "../../chart/Line";
 import IntlMessages from "../../../helpers/IntlMessages";
-import { Button } from "reactstrap";
+import ButtonDate from "../../small.componenets/Btn";
+import { unclickedDate, clickedDate } from "../../../constants/buttonStatus";
 
 const Performance = ({ children }) => {
   return (
@@ -13,8 +14,8 @@ const Performance = ({ children }) => {
           <IntlMessages id="performance" />
         </h1>
         <div className="inlineBtn-left">
-          <div className="date-filter">Weekly</div>
-          <div className="date-filter">Monthly</div>
+          <ButtonDate class={unclickedDate}>Weekly</ButtonDate>
+          <ButtonDate class={unclickedDate}>Monthly</ButtonDate>
         </div>
         <PerformanceGraph />
       </div>

@@ -1,4 +1,4 @@
-import React, { PureComponent, Fragment } from "react";
+import React, { Fragment } from "react";
 import IntlMessages from "../../../helpers/IntlMessages";
 const AddTeam = ({ children }) => {
   return (
@@ -10,6 +10,7 @@ const AddTeam = ({ children }) => {
         </h1>
         <div className="inlineBtn-col-center">
           <img
+            alt={"shape"}
             className="shape"
             src={require("../../../assets/img/shapeteam.svg")}
           />

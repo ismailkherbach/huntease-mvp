@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
+
 import SettingsNav from "../containers/navs/SettingsNav";
-class SettingsLayout extends Component {
+export default class SettingsLayout extends Component {
   render() {
     return (
       <div>
@@ -14,11 +13,3 @@ class SettingsLayout extends Component {
     );
   }
 }
-const mapStateToProps = ({}) => {
-  return {};
-};
-const mapActionToProps = {};
-
-export default withRouter(
-  connect(mapStateToProps, mapActionToProps)(SettingsLayout)
-);

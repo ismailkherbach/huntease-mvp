@@ -1,4 +1,4 @@
-import React, { PureComponent, Fragment } from "react";
+import React, { Fragment } from "react";
 import { Row, Col } from "reactstrap";
 import SearchBar from "../../../components/cards/guide/searchBar";
 import GuideHistory from "../../../components/cards/guide/guideHistory";
@@ -19,9 +19,6 @@ export default class Guide extends React.Component {
             <Row>
               <Row>
                 <GuideHistory />
-              </Row>
-              <Row>
-                <TagPicker />
               </Row>
             </Row>
           </Col>

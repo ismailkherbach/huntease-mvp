@@ -32,10 +32,9 @@ export default class PerformanceGraph extends Component {
     gradient.addColorStop(0.5, "#FFF8EF");
     gradient.addColorStop(1, "#FFEED8");
 
-    console.log(gradient);
-    this.setState(
-      { colorBack: gradient },
-      () => console.log(this.state.colorBack),
+    // console.log(gradient);
+    this.setState({ colorBack: gradient }, () =>
+      //console.log(this.state.colorBack),
       this.setState({ colorBack: "white" })
     );
 

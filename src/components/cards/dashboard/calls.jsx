@@ -1,7 +1,6 @@
-import React, { PureComponent, Fragment } from "react";
+import React, { Fragment } from "react";
 import BarChart from "../../chart/Bar";
 import IntlMessages from "../../../helpers/IntlMessages";
-import { Button } from "reactstrap";
 
 const Calls = ({ children }) => {
   return (

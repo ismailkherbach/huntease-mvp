@@ -1,6 +1,5 @@
-import React, { PureComponent, Fragment } from "react";
-import { Route, withRouter, Switch, Redirect } from "react-router-dom";
-import { connect } from "react-redux";
+import React from "react";
+import { Route, Switch, Redirect } from "react-router-dom";
 import Dashboard from "./dashboard/dashboard";
 import Call from "./call/call";
 import Guide from "./guide/guide";
@@ -8,7 +7,7 @@ import Settings from "./settings";
 import AppLayout from "../../layout/AppLayout";
 import Fullscreen from "react-full-screen";
 
-class App extends React.Component {
+export default class App extends React.Component {
   constructor(props) {
     super();
 
@@ -51,8 +50,3 @@ class App extends React.Component {
     );
   }
 }
-const mapStateToProps = ({}) => {
-  return {};
-};
-
-export default withRouter(connect(mapStateToProps, {})(App));

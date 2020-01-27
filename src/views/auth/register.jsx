@@ -82,7 +82,10 @@ export default class Register extends React.Component {
             >
               <div className="linkedinbtn">
                 {" "}
-                <img src={require("../../assets/img/linkedinbtn.svg")} />
+                <img
+                  alt={"linkedin"}
+                  src={require("../../assets/img/linkedinbtn.svg")}
+                />
                 <h3>Sign in with Linkedin</h3>
               </div>
             </Button>

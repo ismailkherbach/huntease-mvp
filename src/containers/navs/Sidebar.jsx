@@ -16,9 +16,13 @@ export default class Sidebar extends React.Component {
         <ul>
           {this.state.menuItems.map(item => {
             return (
-              <Link to={item.to} style={{ textDecoration: "none" }}>
+              <Link
+                key={item.id}
+                to={item.to}
+                style={{ textDecoration: "none" }}
+              >
                 <li key={item.id}>
-                  <img src={item.icon} />
+                  <img alt={"icon"} src={item.icon} />
                   <IntlMessages id={item.id} />
                 </li>
               </Link>
