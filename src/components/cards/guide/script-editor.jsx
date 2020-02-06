@@ -35,13 +35,15 @@ export default class ScriptEditor extends React.Component {
             }}
           />
           <Editor
-            id="prompt"
-            style={{ paddingLeft: "18px" }}
-            spellCheck={false}
-            contenu={this.state.contenu}
-            onChange={this.handleChangeContenu}
+            id="card-title"
+            tag="pre"
+            text={"Inter a prompt or a question"}
+            onChange={this.handleChangeTitle}
+            options={{
+              toolbar: { buttons: ["bold", "italic", "underline"] }
+            }}
           />
-        </div>{" "}
+        </div>
       </Fragment>
     );
   }

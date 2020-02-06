@@ -6,7 +6,7 @@ import PerfectScrollbar from "react-perfect-scrollbar";
 const Meetings = ({ children }) => {
   return (
     <Fragment>
-      <div id="meetings">
+      <div id="meetings" className="no-gutters mx-0">
         <h1 id="card-title">
           {" "}
           <IntlMessages id="meeting" />
@@ -16,7 +16,12 @@ const Meetings = ({ children }) => {
           <div className="date-filter">Weekly</div>
           <div className="date-filter">Monthly</div>
         </div>
-        <PerfectScrollbar>
+      </div>
+    </Fragment>
+  );
+};
+export default Meetings;
+/*      <PerfectScrollbar>
           {" "}
           <div className="scroll-meeting disable-select">
             <div className="meeting-list">
@@ -53,8 +58,4 @@ const Meetings = ({ children }) => {
             </div>
           </div>
         </PerfectScrollbar>
-      </div>
-    </Fragment>
-  );
-};
-export default Meetings;
+     */

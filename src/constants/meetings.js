@@ -1,6 +1,7 @@
 export const meetings = [
   {
     id: "1",
+    date: "",
     meetingsNumber: "10",
     meetingsInfo: [
       { time: "9:30", name: "Ismail kherbach", title: "CEO At Huntease" },
@@ -8,8 +9,10 @@ export const meetings = [
       { time: "9:30", name: "Mustapha amine mansour", title: "Designer" }
     ]
   },
+
   {
     id: "2",
+    date: "",
     meetingsNumber: "57",
     meetingsInfo: [
       { time: "9:30", name: "Ismail kherbach", title: "CEO At Huntease" },
@@ -17,8 +20,10 @@ export const meetings = [
       { time: "9:30", name: "Mustapha amine mansour", title: "Designer" }
     ]
   },
+
   {
     id: "3",
+    date: "",
     meetingsNumber: "34",
     meetingsInfo: [
       { time: "9:30", name: "Ismail kherbach", title: "CEO At Huntease" },
@@ -28,6 +33,7 @@ export const meetings = [
   },
   {
     id: "4",
+    date: "",
     meetingsNumber: "34",
     meetingsInfo: [
       { time: "9:30", name: "Ismail kherbach", title: "CEO At Huntease" },
@@ -37,6 +43,7 @@ export const meetings = [
   },
   {
     id: "5",
+    date: "",
     meetingsNumber: "34",
     meetingsInfo: [
       { time: "9:30", name: "Ismail kherbach", title: "CEO At Huntease" },

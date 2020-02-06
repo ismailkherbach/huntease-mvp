@@ -20,7 +20,7 @@ export default class BarChart extends React.Component {
   }
 
   componentDidMount() {
-    Chart.defaults.global.datasets.bar.barPercentage = 0.79;
+    Chart.defaults.global.datasets.bar.barPercentage = 0.5;
 
     Chart.elements.Rectangle.prototype.draw = function() {
       var ctx = this._chart.ctx;
@@ -195,15 +195,15 @@ export default class BarChart extends React.Component {
           ctx.moveTo(x + radius, y);
           ctx.lineTo(x + width - radius, y);
           ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
-          ctx.lineTo(x + width, y + height - radius);
+          ctx.lineTo(x + width, y + height);
           ctx.quadraticCurveTo(
             x + width,
             y + height,
             x + width - radius,
             y + height
           );
-          ctx.lineTo(x + radius, y + height);
-          ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+          ctx.lineTo(x, y + height);
+          ctx.quadraticCurveTo(x, y + height, x, y + height);
           ctx.lineTo(x, y + radius);
           ctx.quadraticCurveTo(x, y, x + radius, y);
         }
@@ -230,21 +230,13 @@ var data = {
 
   datasets: [
     {
-      backgroundColor: [
-        "#254ebe",
-        "#ffc371",
-        "#254ebe",
-        "#254ebe",
-        "#4a90e2",
-        "#c4cfef",
-        "#c4cfef"
-      ],
+      backgroundColor: "#FFB58D",
+
       pointRadius: 4,
-      barPercentage: 0.79,
+      barPercentage: 0.45,
       pointHoverRadius: 5,
-      borderTopLeftRadius: 10,
-      borderTopRightRadius: 10,
-      borderRadius: 5,
+      borderTopLeftRadius: 50,
+      borderTopRightRadius: 50,
       fill: false,
       data: [65, 110, 85, 100, 95, 85, 110],
       datalabels: {
@@ -256,7 +248,8 @@ var data = {
 const options = {
   maintainAspectRatio: false,
   responsive: true,
-  cornerRadius: 4,
+  cornerRadius: 20,
+
   barRoundness: 1,
   legend: { labels: { fontColor: "white", fontSize: 12 }, display: false },
 
@@ -277,7 +270,7 @@ const options = {
           fontSize: 12,
           margin: 3,
 
-          fontStyle: "bold"
+          fontStyle: "regular"
         }
       }
     ],
@@ -297,7 +290,7 @@ const options = {
           fontColor: "#c4cfef",
           fontSize: 12,
 
-          fontStyle: "bold"
+          fontStyle: "regular"
         }
       }
     ]

@@ -1,0 +1,1412 @@
+@import "./_mixins.scss";
+$topnav-height: 0px;
+$navbar-height: 60px;
+$navbar-height-xs: 70px;
+$navbar-height-md: 80px;
+$navbar-height-lg: 90px;
+
+// --------- Importing Rubik as main font
+@import url("https://fonts.googleapis.com/css?family=Rubik:300,300i,400,400i,500,500i,700,700i,900,900i&display=swap");
+
+// --------- Importing FontAwesome for Icons
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0/css/font-awesome.min.css");
+
+// --------- VARIABLES
+$top-component-height: 345px;
+$bottom-component-height: 300px;
+$huntease-main: #254ebe;
+$huntease-light: #e9effb;
+$huntease-medium: #a8c4ff;
+$huntease-dark: #052375;
+$huntease-accent: #ffc371;
+$huntease-green: #18f5a2;
+$huntease-red: #ff8565;
+$huntease-darkmode: #001134;
+$white: #ffffff;
+$gray: #eeeeee;
+$regular-radius: 15px;
+$max-radius: 50px;
+$font: Rubik;
+$regular: 300;
+$custom: 400;
+$medium: 500;
+$bold: 700;
+$shadow: 0px 1px 10px rgba(0, 0, 0, 0.08);
+$side-margin: 1.5rem;
+$spacing: 1.3rem;
+$menu-space: 180px;
+$nav-box: 80px;
+$txt-top: 20px;
+$txt-left: 23px;
+$heading-size: 19px;
+
+// --------- GENERAL STYLES
+
+$bg-img: url("../img/bgauth.svg");
+$bg-lvl2: url("../img/bgapp.svg");
+$backgrd: url("../img//back_app.svg");
+html {
+}
+#logo {
+  width: 44.1px;
+  height: 39.3px;
+  margin: 30px auto;
+}
+
+.auth-page {
+  background-size: 100%;
+}
+
+#root {
+  background: $bg-img;
+  background-size: cover;
+  height: 100vh;
+  margin-right: 0;
+  bottom: 0;
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  font-family: $font;
+  font-weight: $regular;
+  box-sizing: border-box;
+  color: $huntease-dark;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow-y: hidden;
+}
+
+.dashboard-page {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+}
+#lvl2bg {
+  background-size: cover;
+  border-radius: 0 0 $max-radius $max-radius;
+}
+
+.topnav {
+  margin-left: 3.3rem;
+}
+
+.toprofil {
+  margin-left: 20px;
+}
+
+#top-bar {
+  width: 100%;
+  height: 4.7rem;
+  display: flex;
+  align-items: center;
+}
+
+.hamburger {
+  margin-left: 2.1rem;
+  margin-right: 0.6rem;
+  font-size: 1.6rem;
+  padding-bottom: 0;
+}
+.greeting {
+  color: $white;
+  font-size: 1.8rem;
+  opacity: 0.7;
+}
+.avatar {
+  display: flex;
+  align-items: center;
+  position: relative;
+  left: 47%;
+}
+span {
+  color: $white;
+  padding-left: 0.5rem;
+}
+.avatar img {
+  width: 2rem;
+  height: 2rem;
+  border-radius: $max-radius;
+}
+
+// --------- Auth pages
+
+#card-title {
+  padding-top: $spacing;
+  padding-left: $spacing;
+  font-family: $font;
+  font-size: $txt-left;
+  color: $huntease-main;
+  font-weight: $medium;
+}
+#prompt {
+  padding: $spacing;
+  font-family: $font;
+  font-size: $txt-left;
+  color: $huntease-medium;
+  font-weight: $medium;
+}
+
+#performance {
+  margin-top: $topnav-height;
+  background: $huntease-darkmode;
+  width: 400px;
+  right: auto;
+  border-radius: $regular-radius;
+  height: $top-component-height !important;
+  @include desktop-sm {
+    width: 340px;
+  }
+  @include desktop-md {
+    width: 350px;
+  }
+  @include desktop-xl {
+    width: 400px;
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+  @include desktop-lg {
+    width: 100%;
+  }
+
+  #card-title {
+    padding: $spacing;
+    font-family: $font;
+    font-size: $txt-left;
+    color: $huntease-medium;
+    font-weight: $medium;
+  }
+}
+
+#calls {
+  width: 375px;
+  margin-top: $topnav-height;
+  background: $huntease-darkmode;
+  border-radius: $regular-radius;
+  box-shadow: $shadow;
+  height: $top-component-height !important;
+  margin-left: 0px;
+  margin-right: 0px;
+  @include desktop-sm {
+    width: 330px;
+  }
+  @include desktop-md {
+    width: 100%;
+  }
+  @include desktop-xl {
+    width: 375px;
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+  @include desktop-lg {
+    width: 100%;
+  }
+
+  #card-title {
+    padding: $spacing;
+    font-family: $font;
+    font-size: $txt-left;
+    color: $huntease-medium;
+    font-weight: $medium;
+  }
+}
+
+#meetings {
+  background: $huntease-darkmode;
+  margin-top: $topnav-height;
+  box-shadow: $shadow;
+  height: $top-component-height;
+  border-radius: $regular-radius;
+
+  @include desktop-sm {
+    width: 360px;
+  }
+  @include desktop-md {
+    width: 400px;
+  }
+  @include desktop-xl {
+    width: 400px;
+    left: 0px;
+    margin-right: 0px;
+  }
+  @include desktop-lg {
+    width: 400px;
+  }
+  #card-title {
+    font-family: $font;
+    font-size: $txt-left;
+    color: $huntease-medium;
+    font-weight: $medium;
+  }
+}
+
+#engagement-rate {
+  height: 270px;
+  margin-top: 20px;
+  height: $bottom-component-height;
+  background: $huntease-darkmode;
+  box-shadow: $shadow;
+  border-radius: $regular-radius;
+  margin-right: $side-margin;
+  margin-left: 0px;
+  margin-right: 0px;
+  @include desktop-sm {
+    width: 670px;
+  }
+  @include desktop-md {
+    width: 700px;
+  }
+  @include desktop-xl {
+    width: 100%;
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+  @include desktop-lg {
+    width: 760px;
+  }
+  #card-title {
+    padding: $spacing;
+    font-family: $font;
+    font-size: $txt-left;
+    color: $huntease-medium;
+    font-weight: $medium;
+  }
+}
+
+#top-weekly-performers {
+  background: $huntease-darkmode;
+  width: 416px;
+  margin-top: 20px;
+  box-shadow: $shadow;
+  height: $bottom-component-height;
+  border-radius: $regular-radius;
+  margin-left: 0px;
+  margin-right: 0px;
+  @include desktop-sm {
+    width: 385px;
+  }
+  @include desktop-md {
+    width: 440px;
+  }
+  @include desktop-xl {
+    width: 60%;
+    margin-left: 0px;
+    margin-right: 4rem;
+  }
+  @include desktop-lg {
+    width: 440px;
+  }
+  img {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+  }
+  div {
+    img {
+      margin: 10px;
+      width: 42px;
+      height: 42px;
+      border-radius: 0%;
+    }
+    .shape {
+      width: 73px;
+      height: 73px;
+    }
+
+    h3 {
+      font-size: 16px;
+      font-weight: $regular;
+      color: $huntease-medium;
+      padding: 15px;
+    }
+    h4 {
+      font-size: 16px;
+      font-weight: $medium;
+      color: $huntease-dark;
+    }
+    p {
+      font-size: 14px;
+      font-weight: $regular;
+      color: white;
+    }
+  }
+
+  h4 {
+    font-size: 16px;
+    font-weight: $medium;
+    color: $huntease-dark;
+  }
+  p {
+    font-size: 14px;
+    font-weight: $regular;
+    color: $huntease-medium;
+  }
+  #card-title {
+    padding: $spacing;
+    font-family: $font;
+    font-size: $txt-left;
+    color: $huntease-medium;
+    font-weight: $medium;
+  }
+}
+
+.login-logo {
+  margin-top: 40px;
+  left: 40px;
+  width: 16%;
+}
+
+.login-signup-input {
+  width: 126px;
+  height: 55px;
+  background: white;
+  top: 40px;
+  text-align: center;
+  right: 40px;
+  border-radius: 20px;
+  position: fixed;
+  font-size: 18px;
+  font-weight: 500;
+  font-family: Rubik;
+  color: #254ebe;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.authback {
+  background: $bg-img;
+  background-size: cover;
+  height: 100vh;
+  margin-right: 0;
+  bottom: 0;
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  font-family: $font;
+  font-weight: $regular;
+  box-sizing: border-box;
+  color: $huntease-dark;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow-y: hidden;
+}
+.auth-container {
+  text-align: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: $navbar-height;
+
+  h4 {
+    font-size: 16px;
+    font-weight: $regular;
+    font-family: Rubik;
+    color: white;
+    margin: $spacing;
+  }
+}
+
+.linkedinbtn {
+  height: 49px;
+  width: 278px;
+  border-radius: $regular-radius;
+  background-color: #0177b5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  h3 {
+    color: white;
+    font-size: 16px;
+    font-weight: 400;
+    font-family: Rubik;
+    margin: 12px;
+  }
+}
+
+.signin-text {
+  color: white;
+  font-size: 28px;
+  font-weight: 400;
+  font-family: Rubik;
+  margin: 15px;
+}
+
+.auth-input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  height: 55px;
+  width: 325px;
+  background-color: white;
+  border-radius: 15px;
+  border-color: none;
+  padding: 10px;
+  margin: 4px;
+  bottom: 0px;
+}
+
+.btn-get-started {
+  height: 55px;
+  width: 325px;
+  background: #ffc371;
+  border-radius: 15px;
+
+  margin: 20px;
+}
+
+.btn-get-started-text {
+  text-align: center;
+  font-size: 18px;
+  font-weight: $medium;
+  font-family: $font;
+  color: white;
+  margin: 7px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: none;
+}
+
+input {
+  border-radius: 0;
+  -webkit-appearance: none;
+  background: none;
+  border: 0;
+  outline: 0;
+  padding: 0;
+  height: 1.8em;
+  color: #c4cfef;
+}
+
+.condition-term {
+  text-align: center;
+  font-size: 14px;
+  font-weight: 300;
+  font-family: Rubik;
+  color: #c4cfef;
+  margin: 0px;
+}
+
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #c4cfef;
+  opacity: 1; /* Firefox */
+}
+
+.sidenav {
+  top: 0px;
+  position: relative;
+  float: left;
+  height: 90vh;
+  width: 11%;
+  transform: translateZ(0);
+  transition: transform 0.25s ease-out;
+  @include desktop-xl {
+    margin-left: 8%;
+  }
+  ul li {
+    color: $huntease-medium;
+    font-weight: $medium;
+    list-style-type: none;
+    text-align: center;
+    background: $huntease-darkmode;
+    height: $nav-box;
+    width: $nav-box;
+    box-shadow: $shadow;
+    margin-bottom: $side-margin;
+    border-radius: $regular-radius;
+    transform: translateZ(0);
+    transition: transform 0.25s ease-out;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+    img {
+      width: 24px;
+      height: 24px;
+      margin-bottom: 0.2rem;
+    }
+    svg {
+      color: $huntease-medium;
+    }
+  }
+
+  li:hover {
+    color: $huntease-accent;
+    transform: scale(1.05);
+  }
+
+  svg:hover {
+    color: $huntease-accent;
+  }
+}
+
+.sidenav-darkmode {
+  top: 0px;
+  position: relative;
+  float: left;
+  height: 90vh;
+  width: 11%;
+  transform: translateZ(0);
+  transition: transform 0.25s ease-out;
+
+  ul li {
+    color: $huntease-medium;
+    font-weight: $medium;
+    list-style-type: none;
+    text-align: center;
+    background: $huntease-darkmode;
+    height: $nav-box;
+    width: $nav-box;
+    box-shadow: $shadow;
+    margin-bottom: $side-margin;
+    margin-left: 0.6rem;
+    border-radius: $regular-radius;
+    transform: translateZ(0);
+    transition: transform 0.25s ease-out;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    @include desktop-xl {
+      margin-left: 20px;
+    }
+    img {
+      width: 24px;
+      height: 24px;
+      margin-bottom: 0.2rem;
+    }
+    svg {
+      color: $huntease-medium;
+    }
+  }
+
+  li:hover {
+    color: $huntease-accent;
+    transform: scale(1.05);
+  }
+
+  svg:hover {
+    color: $huntease-accent;
+  }
+}
+
+::-webkit-scrollbar {
+  background: $huntease-light;
+  border-radius: 2px;
+  height: 8px;
+  width: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $huntease-medium;
+  border-radius: 2px;
+  background-clip: content-box;
+  border: 5px solid transparent;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: $huntease-medium;
+}
+::-webkit-scrollbar-button {
+  display: none;
+}
+
+// --------- Guide page
+
+#guide-conv-card {
+  margin-top: $topnav-height;
+  background: $white;
+  width: 700px;
+  border-radius: $regular-radius;
+  height: 625px !important;
+
+  @include desktop-sm {
+    width: 650px;
+  }
+  @include desktop-md {
+  }
+  @include desktop-xl {
+  }
+  @include desktop-lg {
+  }
+}
+
+#search-bar-guide {
+  margin: 7px;
+  display: flex;
+  justify-content: left;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 20px;
+  margin-top: $topnav-height;
+  background: $huntease-medium;
+  width: 408px;
+  border-radius: $regular-radius;
+  height: 40px !important;
+  @include desktop-sm {
+    width: 400px;
+  }
+  @include desktop-md {
+  }
+  @include desktop-xl {
+  }
+  @include desktop-lg {
+  }
+  p {
+    font-size: 17px;
+    margin-top: 14px;
+    margin-left: 5px;
+  }
+  img {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+#guide-history-card {
+  margin: $spacing;
+  margin-top: $topnav-height;
+  background: $white;
+  width: 408px;
+  border-radius: $regular-radius;
+  height: 580px !important;
+  display: flex;
+  justify-content: left;
+  flex-direction: column;
+  align-items: top;
+  padding-left: 30px;
+  @include desktop-sm {
+    width: 400px;
+  }
+  @include desktop-md {
+  }
+  @include desktop-xl {
+  }
+  @include desktop-lg {
+  }
+  h5 {
+    padding: 15px;
+  }
+  #card-title {
+    font-family: $font;
+    font-size: 20px;
+    color: $huntease-medium;
+    font-weight: $regular;
+  }
+  .historyCard {
+    display: flex;
+    justify-content: left;
+    flex-direction: row;
+    align-items: top;
+
+    p {
+      font-size: 18px;
+      font-weight: $regular;
+      padding-left: 20px;
+      color: $huntease-darkmode;
+    }
+    img {
+      width: 25px;
+      height: 25px;
+    }
+  }
+}
+
+// --------- Calls page
+
+#calls-card {
+  margin-top: $topnav-height;
+  background: $white;
+  width: 700px;
+  border-radius: $regular-radius;
+  height: 625px !important;
+  @include desktop-sm {
+  }
+  @include desktop-md {
+  }
+  @include desktop-xl {
+  }
+  @include desktop-lg {
+  }
+}
+
+#calls-list-card {
+  margin: 7px;
+  margin-top: $topnav-height;
+  background: $white;
+  width: 408px;
+  border-radius: $regular-radius;
+  height: 625px !important;
+  @include desktop-sm {
+  }
+  @include desktop-md {
+  }
+  @include desktop-xl {
+  }
+  @include desktop-lg {
+  }
+}
+
+// --------- Settings page
+
+#settings-navigation-card {
+  background: $white;
+  width: 816px;
+  border-radius: $regular-radius;
+  height: 59px !important;
+  padding-top: 7px;
+  margin-bottom: 18px;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+
+  @include desktop-sm {
+  }
+  @include desktop-md {
+  }
+  @include desktop-xl {
+  }
+  @include desktop-lg {
+  }
+  h1 {
+    padding-right: $spacing;
+    font-family: $font;
+    font-size: 20px;
+    font-weight: $custom;
+    color: $huntease-medium;
+  }
+}
+#privacy-card {
+  margin-top: $topnav-height;
+  background: $white;
+  width: 816px;
+  border-radius: $regular-radius;
+  height: 344px !important;
+
+  @include desktop-sm {
+  }
+  @include desktop-md {
+  }
+  @include desktop-xl {
+  }
+  @include desktop-lg {
+  }
+
+  #field-top {
+    display: flex;
+    margin-left: $spacing;
+    margin-top: $spacing;
+    margin-bottom: 4px;
+    font-family: $font;
+    font-size: 16px;
+    font-weight: $regular;
+    color: $huntease-medium;
+  }
+
+  #field-bottom {
+    display: flex;
+    margin-left: $spacing;
+    margin-top: $spacing;
+    margin-bottom: 4px;
+    font-family: $font;
+    font-size: 16px;
+    font-weight: $medium;
+    color: $huntease-medium;
+  }
+
+  #field {
+    height: 46px;
+    width: 325px;
+    border-radius: $regular-radius;
+    background-color: white;
+    border: 1px solid $huntease-light;
+    padding-left: $spacing;
+    margin-left: $spacing;
+
+    display: flex;
+    justify-content: left;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  #field-button {
+    height: 46px;
+    width: 325px;
+    border-radius: $regular-radius;
+    background-color: white;
+    border: 1px solid $huntease-light;
+    padding-left: $spacing;
+    margin-left: $spacing;
+    color: $huntease-main;
+    font-weight: $medium;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  #field-bottom-input {
+    height: 46px;
+    width: 490px;
+    border-radius: $regular-radius;
+    background-color: white;
+    border: 1px solid $huntease-light;
+    padding-left: $spacing;
+    margin-left: $spacing;
+    margin-top: $spacing;
+    display: flex;
+    justify-content: left;
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+#twofactor-card {
+  margin-top: $topnav-height;
+  background: $white;
+  width: 816px;
+  border-radius: $regular-radius;
+  height: 200px !important;
+  margin-top: 20px;
+  @include desktop-sm {
+  }
+  @include desktop-md {
+  }
+  @include desktop-xl {
+  }
+  @include desktop-lg {
+  }
+
+  #field-top {
+    display: flex;
+    margin-left: $spacing;
+    margin-top: $spacing;
+    margin-bottom: 4px;
+    font-family: $font;
+    font-size: 16px;
+    font-weight: $regular;
+    color: $huntease-medium;
+  }
+
+  #field-bottom {
+    display: flex;
+    margin-left: $spacing;
+    margin-top: $spacing;
+    margin-bottom: 4px;
+    font-family: $font;
+    font-size: 16px;
+    font-weight: $medium;
+    color: $huntease-medium;
+  }
+
+  #field {
+    height: 46px;
+    width: 325px;
+    border-radius: $regular-radius;
+    background-color: white;
+    border: 1px solid $huntease-light;
+    padding-left: $spacing;
+    margin-left: $spacing;
+    display: flex;
+    justify-content: left;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  #field-button {
+    height: 46px;
+    width: 325px;
+    border-radius: $regular-radius;
+    background-color: white;
+    border: 1px solid $huntease-light;
+    padding-left: $spacing;
+    margin-left: $spacing;
+    color: $huntease-main;
+    font-weight: $medium;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  #field-bottom-input {
+    height: 46px;
+    width: 490px;
+    border-radius: $regular-radius;
+    background-color: white;
+    border: 1px solid $huntease-light;
+    padding-left: $spacing;
+    margin-left: $spacing;
+    margin-top: $spacing;
+
+    display: flex;
+    justify-content: left;
+    flex-direction: row;
+    align-items: center;
+  }
+}
+#settings-card {
+  margin-top: $topnav-height;
+  background: $white;
+  width: 816px;
+  border-radius: $regular-radius;
+  height: 554px !important;
+
+  @include desktop-sm {
+  }
+  @include desktop-md {
+  }
+  @include desktop-xl {
+  }
+  @include desktop-lg {
+  }
+
+  #field-top {
+    display: flex;
+    margin-left: $spacing;
+    margin-top: $spacing;
+    margin-bottom: 4px;
+    font-family: $font;
+    font-size: 16px;
+    font-weight: $regular;
+    color: $huntease-medium;
+  }
+
+  #field-bottom {
+    display: flex;
+    margin-left: $spacing;
+    margin-top: $spacing;
+    margin-bottom: 4px;
+    font-family: $font;
+    font-size: 16px;
+    font-weight: $medium;
+    color: $huntease-medium;
+  }
+
+  #field {
+    height: 46px;
+    width: 325px;
+    border-radius: $regular-radius;
+    background-color: white;
+    border: 1px solid $huntease-light;
+    padding-left: $spacing;
+    margin-left: $spacing;
+
+    display: flex;
+    justify-content: left;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  #field-button {
+    height: 46px;
+    width: 325px;
+    border-radius: $regular-radius;
+    background-color: white;
+    border: 1px solid $huntease-light;
+    padding-left: $spacing;
+    margin-left: $spacing;
+    color: $huntease-dark;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  #field-bottom-input {
+    height: 46px;
+    width: 490px;
+    border-radius: $regular-radius;
+    background-color: white;
+    border: 1px solid $huntease-light;
+    padding-left: $spacing;
+    margin-left: $spacing;
+    margin-top: $spacing;
+    display: flex;
+    justify-content: left;
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+#subscription-card {
+  margin-top: $topnav-height;
+  background: $white;
+  width: 816px;
+  border-radius: $regular-radius;
+  height: 554px !important;
+  padding: $spacing;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  @include desktop-sm {
+  }
+  @include desktop-md {
+  }
+  @include desktop-xl {
+  }
+  @include desktop-lg {
+  }
+  h3 {
+    font-family: $font;
+    font-size: $medium;
+    font-weight: $medium;
+    color: $huntease-main;
+  }
+  p {
+    font-family: $font;
+    font-size: $txt-top;
+    font-weight: $regular;
+    color: $huntease-main;
+  }
+}
+
+#profil-card {
+  background: $white;
+  width: 300px;
+  margin-left: 1.4rem;
+
+  border-radius: $regular-radius;
+  height: 316px !important;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+
+  @include desktop-sm {
+    width: 90%;
+  }
+  @include desktop-md {
+  }
+  @include desktop-xl {
+  }
+  @include desktop-lg {
+  }
+}
+
+#term-settings {
+  margin-top: 1rem;
+  margin-left: 1.4rem;
+  margin-bottom: 0.5rem;
+  background: $white;
+  width: 300px;
+  border-radius: $regular-radius;
+  height: 47px !important;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+
+  @include desktop-sm {
+    width: 90%;
+  }
+  @include desktop-md {
+  }
+  @include desktop-xl {
+  }
+  @include desktop-lg {
+  }
+
+  h3 {
+    font-family: $font;
+    font-size: 16px;
+    font-weight: $regular;
+    color: $huntease-medium;
+  }
+}
+
+#help-settings {
+  margin-left: 1.4rem;
+  background: $white;
+
+  width: 300px;
+  border-radius: $regular-radius;
+  height: 47px !important;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+
+  @include desktop-sm {
+    width: 90%;
+  }
+  @include desktop-md {
+  }
+  @include desktop-xl {
+  }
+  @include desktop-lg {
+  }
+
+  h3 {
+    font-family: $font;
+    font-size: 16px;
+    font-weight: $regular;
+    color: $huntease-medium;
+  }
+}
+
+#application-card {
+  background: $white;
+  width: 255px;
+  margin-right: 23px;
+  margin-bottom: 23px;
+  margin-left: 0px;
+  border-radius: $regular-radius;
+  height: 270px !important;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+
+  @include desktop-sm {
+  }
+  @include desktop-md {
+  }
+  @include desktop-xl {
+  }
+  @include desktop-lg {
+  }
+
+  img {
+    width: 90px;
+    height: 90px;
+  }
+
+  h2 {
+    font-family: $font;
+    font-size: 16px;
+    font-weight: $regular;
+    color: $huntease-dark;
+  }
+
+  p {
+    font-family: $font;
+    font-size: 12px;
+    font-weight: $regular;
+    color: $huntease-medium;
+  }
+
+  #btn {
+    width: 160px;
+    height: 40px;
+    border-radius: $regular-radius;
+    border: 2px solid $huntease-dark;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.inlineBtn-right {
+  display: flex;
+  justify-content: right;
+  float: right;
+  flex-direction: row;
+  align-items: center;
+}
+
+.inlineBtn-left {
+  display: flex;
+  justify-content: left;
+  flex-direction: row;
+  align-items: left;
+}
+
+.inlineBtn-center {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+}
+.inlineBtn-col {
+  display: flex;
+  justify-content: left;
+  flex-direction: column;
+  align-items: left;
+}
+.inlineBtn-col-center {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.inlineBtn-date {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  p {
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+    padding: 0px;
+    margin: 0px;
+    color: $huntease-main;
+    font-weight: $regular;
+    font-size: 16px;
+  }
+}
+.date-filter {
+  width: 84px;
+  height: 31px;
+  margin: 8px;
+  font-size: 12px;
+  font-weight: $medium;
+  color: #d4d4d4;
+  background-color: rgba(212, 212, 212, 0.2);
+  border-radius: 16px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.meeting-list {
+  ul {
+    color: $huntease-dark;
+    font-weight: $regular;
+    list-style-type: none;
+    text-align: center;
+    margin-left: 0px;
+    padding-left: 25px;
+    display: flex;
+    justify-content: left;
+    flex-direction: column;
+    align-items: left;
+    div {
+      h4 {
+        color: $huntease-accent;
+        font-weight: $medium;
+        font-size: 20px;
+      }
+      h4:hover {
+        cursor: grab;
+      }
+      div {
+        p {
+          font-size: 15px;
+          font-weight: $medium;
+        }
+      }
+    }
+    li {
+      margin-right: 0px;
+      margin-left: 0px;
+      padding: 0px;
+      text-align: left;
+
+      li {
+        display: flex;
+        justify-content: left;
+        flex-direction: row;
+        align-items: left;
+        padding-left: 2px;
+        text-align: left;
+        h5 {
+          display: flex;
+          justify-content: left;
+          flex-direction: column;
+          align-items: left;
+        }
+        p {
+          color: $huntease-medium;
+          font-weight: $custom;
+          font-size: 15px;
+          text-align: left;
+          padding-bottom: 15px;
+        }
+        li {
+          display: flex;
+          justify-content: left;
+          flex-direction: column;
+          align-items: left;
+          color: $huntease-medium;
+          font-weight: $custom;
+          font-size: 15px;
+          text-align: left;
+
+          #title {
+            color: $huntease-medium;
+            font-weight: $medium;
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.scroll-topweekly {
+  padding-right: unset;
+  margin-right: unset;
+  height: 81%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.scroll-meeting {
+  padding-right: unset;
+  margin-right: unset;
+  height: 70%;
+  overflow-y: scroll;
+}
+
+#btn {
+  width: 160px;
+  height: 40px;
+  border-radius: $regular-radius;
+  border: 2px solid $huntease-dark;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+#btn-dark {
+  width: 130px;
+  height: 32px;
+  border-radius: $regular-radius;
+  background-color: $huntease-darkmode;
+  color: white;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+#btn-dark:hover {
+  width: 130px;
+  height: 32px;
+  border-radius: $regular-radius;
+  background-color: $huntease-darkmode;
+  color: white;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
+
+.disable-select {
+  user-select: none; /* supported by Chrome and Opera */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+}

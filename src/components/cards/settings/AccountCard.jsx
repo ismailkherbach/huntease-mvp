@@ -13,13 +13,18 @@ import {
 } from "reactstrap";
 import Terms from "./Terms";
 import Helps from "./Helps";
-import { changeLocale } from "../../../redux/actions";
+import { changeLocale, darkMode } from "../../../redux/actions";
 import { localeOptions } from "../../../constants/defaultValues";
 
 class AccountCall extends React.Component {
   handleChangeLocale = locale => {
     this.props.changeLocale(locale);
   };
+
+  handleDarkMode = color => {
+    this.props.darkMode(color);
+  };
+
   render() {
     return (
       <Fragment>
@@ -57,7 +62,12 @@ class AccountCall extends React.Component {
                     </Col>
 
                     <Col>
-                      <div id="field-top">Role</div>
+                      <div
+                        onClick={() => this.handleDarkMode("dark")}
+                        id="field-top"
+                      >
+                        Role
+                      </div>
                       <Input id="field" />
                     </Col>
                   </Row>
@@ -121,6 +131,7 @@ const mapStateToProps = ({ settings }) => {
 };
 export default injectIntl(
   connect(mapStateToProps, {
-    changeLocale
+    changeLocale,
+    darkMode
   })(AccountCall)
 );

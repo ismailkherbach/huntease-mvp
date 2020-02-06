@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Line } from "react-chartjs-2";
+import { Chart, Line } from "react-chartjs-2";
 
 export default class PerformanceGraph extends Component {
   constructor(props) {
@@ -23,8 +23,145 @@ export default class PerformanceGraph extends Component {
     this.setState({ colorBack: "red" });
   }
 
+  DrawShadow() {
+    let draw = Chart.controllers.line.prototype.draw;
+
+    Chart.controllers.line = Chart.controllers.line.extend({
+      draw: function() {
+        draw.apply(this, arguments);
+        let ctx = this.chart.chart.ctx;
+        let _stroke = ctx.stroke;
+        ctx.stroke = function() {
+          ctx.save();
+          ctx.shadowColor = "#ffc371";
+          ctx.shadowBlur = 10;
+          ctx.shadowOffsetX = 0;
+          ctx.shadowOffsetY = 4;
+          _stroke.apply(this, arguments);
+          ctx.restore();
+        };
+      }
+    });
+
+    Chart.pluginService.register({
+      beforeRender: function(chart) {
+        if (chart.config.options.showAllTooltips) {
+          // create an array of tooltips
+          // we can't use the chart tooltip because there is only one tooltip per chart
+          chart.pluginTooltips = [];
+          chart.config.data.datasets.forEach(function(dataset, i) {
+            chart.getDatasetMeta(i).data.forEach(function(sector, j) {
+              chart.pluginTooltips.push(
+                new Chart.Tooltip(
+                  {
+                    _chart: chart.chart,
+                    _chartInstance: chart,
+                    _data: chart.data,
+                    _options: chart.options.tooltips,
+                    _active: [sector]
+                  },
+                  chart
+                )
+              );
+            });
+          });
+
+          // turn off normal tooltips
+          chart.options.tooltips.enabled = false;
+        }
+      },
+      afterDraw: function(chart, easing) {
+        if (chart.config.options.showAllTooltips) {
+          // we don't want the permanent tooltips to animate, so don't do anything till the animation runs atleast once
+          if (!chart.allTooltipsOnce) {
+            if (easing !== 1) return;
+            chart.allTooltipsOnce = true;
+          }
+
+          // turn on tooltips
+          chart.options.tooltips.enabled = true;
+          Chart.helpers.each(chart.pluginTooltips, function(tooltip) {
+            tooltip.initialize();
+            tooltip.update();
+            // we don't actually need this since we are not animating tooltips
+            tooltip.pivot();
+            tooltip.transition(easing).draw();
+          });
+          chart.options.tooltips.enabled = false;
+        }
+      }
+    });
+
+    Chart.defaults.lineWithLine = Chart.defaults.line;
+    Chart.controllers.lineWithLine = Chart.controllers.line.extend({
+      draw: function(ease) {
+        Chart.controllers.line.prototype.draw.call(this, ease);
+
+        if (this.chart.tooltip._active && this.chart.tooltip._active.length) {
+          var activePoint = this.chart.tooltip._active[0];
+          var ctx = this.chart.ctx;
+          var x = activePoint.tooltipPosition().x;
+          var topY = this.chart.scales["y-axis-0"].top;
+          var bottomY = this.chart.scales["y-axis-0"].bottom;
+
+          ctx.save();
+          ctx.beginPath();
+          ctx.moveTo(x, topY);
+          ctx.lineTo(x, bottomY);
+          ctx.lineWidth = 1;
+          ctx.strokeStyle = "rgba(0,0,0,0.1)";
+          ctx.stroke();
+          ctx.restore();
+        }
+      }
+    });
+
+    Chart.helpers.extend(Chart.controllers.line.prototype, {
+      fireSliderEvent: function(point, canvas, boundingRect) {
+        var mouseX = Math.round(
+          (((boundingRect.left + point._view.x) /
+            (boundingRect.right - boundingRect.left)) *
+            canvas.width) /
+            this.chart.chart.currentDevicePixelRatio
+        );
+        var mouseY = Math.round(
+          (((boundingRect.top + point._view.y) /
+            (boundingRect.bottom - boundingRect.top)) *
+            canvas.height) /
+            this.chart.chart.currentDevicePixelRatio
+        );
+        var oEvent = document.createEvent("MouseEvents");
+        oEvent.initMouseEvent(
+          "click",
+          true,
+          true,
+          document.defaultView,
+          0,
+          mouseX,
+          mouseY,
+          mouseX,
+          mouseY,
+          false,
+          false,
+          false,
+          false,
+          0,
+          canvas
+        );
+        canvas.dispatchEvent(oEvent);
+      },
+      highlightPoints: function(point) {
+        var canvas = this.chart.chart.canvas;
+        var boundingRect = canvas.getBoundingClientRect();
+        var points = this.getDataset().metaData;
+        this.fireSliderEvent(points[point], canvas, boundingRect);
+      }
+    });
+  }
+
   componentDidMount() {
     //your code
+    this.DrawShadow();
     var ctx = document.getElementById("canvas").getContext("2d");
     var gradient = ctx.createLinearGradient(0, 0, 0, 70);
 
@@ -43,17 +180,17 @@ export default class PerformanceGraph extends Component {
       datasets: [
         {
           type: "line",
-          backgroundColor: "#ffc371",
+          backgroundColor: "#FFB58D",
           pointRadius: 0,
           pointHoverBorderWidth: 10,
           pointHoverRadius: 5,
           borderTopLeftRadius: 10,
           borderTopRightRadius: 10,
           borderWidth: 5,
-          borderColor: "#ffc371",
+          borderColor: "#FFB58D",
           fill: false,
           pointBackgroundColor: "white",
-          pointBorderColor: "#ffc371",
+          pointBorderColor: "white",
           data: [50, 30, 70, 40, 60, 30, 90],
 
           datalabels: {
@@ -65,15 +202,7 @@ export default class PerformanceGraph extends Component {
         {
           type: "bar",
 
-          backgroundColor: [
-            "white",
-            "white",
-            "white",
-            "white",
-            "white",
-            "white",
-            "white"
-          ],
+          backgroundColor: "white",
 
           pointRadius: 4,
           hoverBackgroundColor: gradient,

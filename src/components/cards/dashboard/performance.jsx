@@ -7,7 +7,7 @@ import { unclickedDate, clickedDate } from "../../../constants/buttonStatus";
 const Performance = ({ children }) => {
   return (
     <Fragment>
-      <div id="performance">
+      <div id="performance" className="no-gutters mx-0">
         {" "}
         <h1 id="card-title">
           {" "}

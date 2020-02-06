@@ -45,8 +45,7 @@ $heading-size: 19px;
 $bg-img: url("../img/bgauth.svg");
 $bg-lvl2: url("../img/bgapp.svg");
 $backgrd: url("../img//back_app.svg");
-html {
-}
+
 #logo {
   width: 44.1px;
   height: 39.3px;
@@ -60,7 +59,6 @@ html {
 #root {
   background: $backgrd;
   background-size: cover;
-  height: 100vh;
   margin-right: 0;
   bottom: 0;
   margin: 0;
@@ -75,6 +73,7 @@ html {
   bottom: 0;
   left: 0;
   overflow-y: hidden;
+  overflow-x: hidden;
 }
 
 .dashboard-page {
@@ -152,7 +151,7 @@ span {
 #performance {
   margin-top: $topnav-height;
   background: $white;
-  right: auto;
+
   border-radius: $regular-radius;
   height: $top-component-height !important;
 
@@ -164,8 +163,8 @@ span {
   }
   @include desktop-xl {
     width: 400px;
-    margin-left: 0px;
-    margin-right: 0px;
+    right: 0;
+    left: 0;
   }
   @include desktop-lg {
     width: 100%;
@@ -189,8 +188,8 @@ span {
   }
   @include desktop-xl {
     width: 375px;
-    margin-left: 0px;
-    margin-right: 0px;
+    right: 0;
+    left: 0;
   }
   @include desktop-lg {
     width: 100%;
@@ -211,11 +210,31 @@ span {
   }
   @include desktop-xl {
     width: 400px;
-    left: 0px;
-    margin-right: 0px;
+    right: 0;
+    left: 0;
   }
   @include desktop-lg {
     width: 400px;
+  }
+
+  ::-webkit-scrollbar {
+    background: $huntease-light;
+    border-radius: 2px;
+    height: 8px;
+    width: 7px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: $huntease-medium;
+    border-radius: 2px;
+    background-clip: content-box;
+    border: 5px solid transparent;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: $huntease-medium;
+  }
+  ::-webkit-scrollbar-button {
+    display: none;
   }
 }
 
@@ -498,6 +517,25 @@ span {
   flex-direction: column;
 }
 
+.authback {
+  background: $bg-img;
+  background-size: cover;
+  height: 100vh;
+  margin-right: 0;
+  bottom: 0;
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  font-family: $font;
+  font-weight: $regular;
+  box-sizing: border-box;
+  color: $huntease-dark;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow-y: hidden;
+}
 .auth-container {
   text-align: center;
   justify-content: center;
@@ -620,6 +658,7 @@ input {
   ul li {
     color: $huntease-medium;
     font-weight: $medium;
+    font-size: 15px;
     list-style-type: none;
     text-align: center;
     background: $white;
@@ -703,26 +742,6 @@ input {
   svg:hover {
     color: $huntease-accent;
   }
-}
-
-::-webkit-scrollbar {
-  background: $huntease-light;
-  border-radius: 2px;
-  height: 8px;
-  width: 7px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: $huntease-medium;
-  border-radius: 2px;
-  background-clip: content-box;
-  border: 5px solid transparent;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: $huntease-medium;
-}
-::-webkit-scrollbar-button {
-  display: none;
 }
 
 // --------- Guide page
@@ -845,7 +864,7 @@ input {
 }
 
 #calls-list-card {
-  margin: $spacing;
+  margin-left: 15px;
   margin-top: $topnav-height;
   background: $white;
   width: 408px;
@@ -858,6 +877,65 @@ input {
   @include desktop-xl {
   }
   @include desktop-lg {
+  }
+  .leadInfos {
+    h4 {
+      margin: 10px;
+      font-size: 16px;
+      font-family: $font;
+      font-weight: $regular;
+      color: $huntease-medium;
+    }
+    h5 {
+      margin: 10px;
+      font-size: 25px;
+      font-family: $font;
+      font-weight: $regular;
+      color: $huntease-darkmode;
+    }
+    h3 {
+      margin: 10px;
+      font-size: 14px;
+      font-family: $font;
+      font-weight: $custom;
+      color: $huntease-main;
+    }
+    p {
+      margin: 10px;
+      font-size: 14px;
+      font-family: $font;
+      font-weight: $regular;
+      color: $huntease-darkmode;
+    }
+    img {
+      margin: 5px;
+      margin-left: 20px;
+      width: 87px;
+      height: 87px;
+      border-radius: $max-radius;
+    }
+  }
+  h5 {
+    margin: 6px;
+    font-size: 16px;
+    font-family: $font;
+    font-weight: $custom;
+    color: $huntease-darkmode;
+  }
+  p {
+    margin: 6px;
+    padding-bottom: 4px;
+    font-size: 16px;
+    font-family: $font;
+    font-weight: $custom;
+    color: $huntease-medium;
+  }
+  img {
+    margin: 5px;
+    margin-left: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: $max-radius;
   }
 }
 
@@ -1379,6 +1457,29 @@ input {
   flex-direction: column;
   align-items: center;
 }
+.date-filter:hover {
+  width: 84px;
+  height: 31px;
+  margin: 8px;
+  background-color: rgba(212, 212, 212, 0.2);
+  border-radius: 16px;
+  cursor: pointer;
+}
+
+.date-filter-clicked {
+  width: 84px;
+  height: 31px;
+  margin: 8px;
+  font-size: 12px;
+  font-weight: $medium;
+  color: $huntease-main;
+  border-radius: 16px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  background-color: #e9effb;
+}
 
 .meeting-list {
   ul {
@@ -1468,6 +1569,13 @@ input {
   margin-right: unset;
   height: 70%;
   overflow-y: scroll;
+}
+.scroll-leads {
+  padding-right: unset;
+  margin-right: unset;
+  height: 91%;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 #btn {
