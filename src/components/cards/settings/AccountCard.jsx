@@ -17,6 +17,12 @@ import { changeLocale, darkMode } from "../../../redux/actions";
 import { localeOptions } from "../../../constants/defaultValues";
 
 class AccountCall extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      userInfo: JSON.parse(localStorage.getItem("user_id"))
+    };
+  }
   handleChangeLocale = locale => {
     this.props.changeLocale(locale);
   };
@@ -36,12 +42,22 @@ class AccountCall extends React.Component {
                   <Row>
                     <Col>
                       <div id="field-top">First name</div>
-                      <Input id="field" />
+                      <div id="field">
+                        {" "}
+                        {localStorage.getItem("user_id")
+                          ? this.state.userInfo.firstname
+                          : ""}
+                      </div>
                     </Col>
 
                     <Col>
                       <div id="field-top">Last name</div>
-                      <Input id="field" />
+                      <div id="field">
+                        {" "}
+                        {localStorage.getItem("user_id")
+                          ? this.state.userInfo.lastname
+                          : ""}
+                      </div>
                     </Col>
                   </Row>
                   <Row>

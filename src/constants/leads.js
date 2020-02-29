@@ -9,31 +9,31 @@ export const leads = [
       email: "gi_kherbach@esi.dz",
       phoneNumber: "+213 54 217 918",
       socialMedia: [],
-      leadStatus: "Open"
+      leadStatus: ["New", "Open", "In progress"]
     }
   },
   {
     id: "2",
     avatar: require("../assets/img/nazim.png"),
-    name: "Lamine",
+    name: "Nazim Zidi",
     role: "CTO At Huntease",
     leadInfos: {
       email: "nazim@gmail.com",
       phoneNumber: "+213 54 217 918",
       socialMedia: [],
-      leadStatus: "Closed"
+      leadStatus: ["New", "Open", "In progress"]
     }
   },
   {
     id: "3",
     avatar: require("../assets/img/hafsa.png"),
-    name: "Hawji ",
+    name: "Hafsa Nefouci ",
     role: "CTO At Huntease",
     leadInfos: {
       email: "hafsa@live.fr",
       phoneNumber: "+213 54 217 918",
       socialMedia: [],
-      leadStatus: "Open"
+      leadStatus: ["New", "Open", "In progress"]
     }
   },
   {
@@ -45,7 +45,7 @@ export const leads = [
       email: "mustapha@baghrir.dz",
       phoneNumber: "+213 54 217 918",
       socialMedia: [],
-      leadStatus: "Open"
+      leadStatus: ["New", "Open", "In progress"]
     }
   },
   {
@@ -57,7 +57,7 @@ export const leads = [
       email: "gi_kherbach@esi.dz",
       phoneNumber: "+213 54 217 918",
       socialMedia: [],
-      leadStatus: "Open"
+      leadStatus: ["New", "Open", "In progress"]
     }
   },
   {
@@ -69,7 +69,7 @@ export const leads = [
       email: "gi_kherbach@esi.dz",
       phoneNumber: "+213 54 217 918",
       socialMedia: [],
-      leadStatus: "Open"
+      leadStatus: ["New", "Open", "In progress"]
     }
   }
 ];

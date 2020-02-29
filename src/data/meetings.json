@@ -1,0 +1,64 @@
+{
+  "data": [
+    {
+      "17/02/2020": {
+        "meetingsNumber": 1,
+        "meetingWith": {
+          "datetime": "20/02/2020 11:00",
+          "name": "Steve Jobs",
+          "title": "CEO"
+        }
+      }
+    },
+    {
+      "18/02/2020": {
+        "meetingsNumber": 1,
+        "meetingWith": {
+          "datetime": "25/02/2020 10:00",
+          "name": "Bill Gates",
+          "title": "CEO"
+        }
+      }
+    },
+    {
+      "19/02/2020": {
+        "meetingsNumber": 1,
+        "meetingWith": {
+          "datetime": "20/02/2020 11:00",
+          "name": "Steve Jobs",
+          "title": "CEO"
+        }
+      }
+    },
+    {
+      "20/02/2020": {
+        "meetingsNumber": 1,
+        "meetingWith": {
+          "datetime": "25/02/2020 10:00",
+          "name": "Bill Gates",
+          "title": "CEO"
+        }
+      }
+    },
+    {
+      "21/02/2020": {
+        "meetingsNumber": 1,
+        "meetingWith": {
+          "datetime": "20/02/2020 11:00",
+          "name": "Steve Jobs",
+          "title": "CEO"
+        }
+      }
+    },
+    {
+      "22/02/2020": {
+        "meetingsNumber": 1,
+        "meetingWith": {
+          "datetime": "25/02/2020 10:00",
+          "name": "Bill Gates",
+          "title": "CEO"
+        }
+      }
+    }
+  ]
+}

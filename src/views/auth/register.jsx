@@ -1,23 +1,60 @@
 import React, { Fragment } from "react";
 import { Col, Button } from "reactstrap";
-export default class Register extends React.Component {
+import { connect } from "react-redux";
+import { registerUser } from "../../redux/actions";
+import axios from "axios";
+class Register extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      loginButton: true,
       firstname: "",
       lastname: "",
       email: "",
       password: ""
     };
 
-    this.handleChange = this.handleChange.bind(this);
+    this.handleChangeFirst = this.handleChangeFirst.bind(this);
+    this.handleChangeLast = this.handleChangeLast.bind(this);
+    this.handleChangeEmail = this.handleChangeEmail.bind(this);
+    this.handleChangePassword = this.handleChangePassword.bind(this);
   }
 
-  handleChange(e) {
-    this.setState({ value: e.target.value });
-    console.log(e.target.value);
+  handleChangeFirst(e) {
+    this.setState({ firstname: e.target.value });
   }
+  handleChangeLast(e) {
+    this.setState({ lastname: e.target.value });
+  }
+  handleChangeEmail(e) {
+    this.setState({ email: e.target.value });
+  }
+  handleChangePassword(e) {
+    this.setState({ password: e.target.value });
+  }
+
+  onUserRegister = () => {
+    this.props.registerUser(this.state, this.props.history);
+  };
+
+  /*handleSubmit = () => {
+    axios({
+      method: "post",
+      url: "http://localhost:5000/api/v1/auth/register",
+      data: {
+        firstname: this.state.firstname,
+        lastname: this.state.lastname,
+        email: this.state.email,
+        password: this.state.password
+      }
+    }).then(
+      response => {
+        console.log(response);
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  };*/
 
   render() {
     return (
@@ -31,15 +68,15 @@ export default class Register extends React.Component {
                 className="auth-input"
                 placeholder="Nom"
                 type="text"
-                onChange={this.handleChange}
+                onChange={this.handleChangeFirst}
               />
             </Col>{" "}
             <Col>
               <input
                 className="auth-input"
-                placeholder="Prénom"
+                placeholder="Prenom"
                 type="text"
-                onChange={this.handleChange}
+                onChange={this.handleChangeLast}
               />
             </Col>{" "}
             <Col>
@@ -47,15 +84,15 @@ export default class Register extends React.Component {
                 className="auth-input"
                 placeholder="Work Email"
                 type="text"
-                onChange={this.handleChange}
+                onChange={this.handleChangeEmail}
               />
             </Col>{" "}
             <Col>
               <input
                 className="auth-input"
                 placeholder="Paasword"
-                type="text"
-                onChange={this.handleChange}
+                type="password"
+                onChange={this.handleChangePassword}
               />
             </Col>
             <Button
@@ -65,8 +102,14 @@ export default class Register extends React.Component {
                 border: "none",
                 borderRadius: "15px"
               }}
+              onClick={this.onUserRegister}
             >
-              <div className="btn-get-started-text">Get started</div>
+              <div
+                className="btn-get-started-text"
+                onClick={this.onUserRegister}
+              >
+                Get started
+              </div>
             </Button>
             <div className="condition-term">
               <p>By creating an account, you agree to our Terms of</p>
@@ -79,6 +122,7 @@ export default class Register extends React.Component {
                 border: "none",
                 borderRadius: "15px"
               }}
+              onClick={this.handleSubmit}
             >
               <div className="linkedinbtn">
                 {" "}
@@ -95,3 +139,12 @@ export default class Register extends React.Component {
     );
   }
 }
+
+const mapStateToProps = ({ authUser }) => {
+  const { user, loading } = authUser;
+  return { user, loading };
+};
+
+export default connect(mapStateToProps, {
+  registerUser
+})(Register);

@@ -14,9 +14,28 @@ import settings from "./views/app/settings";
 import { IntlProvider } from "react-intl";
 import AppLocale from "./lang";
 
+const AuthRoute = ({ component: Component, authUser, ...rest }) => (
+  <Route
+    {...rest}
+    render={props =>
+      authUser ? (
+        <Component {...props} />
+      ) : (
+        <Redirect
+          to={{
+            pathname: "/user/login",
+            state: { from: props.location }
+          }}
+        />
+      )
+    }
+  />
+);
+
 class App extends React.Component {
   render() {
-    const { locale } = this.props;
+    const { locale, loginUser } = this.props;
+
     const currentAppLocale = AppLocale[locale];
     return (
       <IntlProvider
@@ -26,7 +45,7 @@ class App extends React.Component {
         <React.Fragment>
           <Router>
             <Switch>
-              <Route path="/app" component={app} />
+              <AuthRoute path="/app" authUser={loginUser} component={app} />
               <Route path="/" exact component={main} />
               <Route path="/user" component={user} />
               <Route path="/app/settings" component={settings} />
@@ -41,9 +60,10 @@ class App extends React.Component {
   }
 }
 
-const mapStateToProps = ({ settings }) => {
+const mapStateToProps = ({ authUser, settings }) => {
+  const { user: loginUser } = authUser;
   const { locale } = settings;
-  return { locale };
+  return { loginUser, locale };
 };
 const mapActionsToProps = {};
 

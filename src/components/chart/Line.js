@@ -1,16 +1,21 @@
 import React, { Component } from "react";
 import { Chart, Line } from "react-chartjs-2";
-
-export default class PerformanceGraph extends Component {
+import { connect } from "react-redux";
+import { getPerformance } from "../../redux/actions";
+import { lineOptions } from "./chartConfig/config";
+class PerformanceGraph extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       chartData: {},
+      chartOption: {},
       colorBack: "red",
       cack: {},
       compareArray: [],
-      compare: null
+      compare: null,
+      lineLabels: [],
+      lineData: []
     };
     this.handleClickColor = this.handleClickColor.bind(this);
     this.updateChart = this.updateChart.bind(this);
@@ -161,14 +166,14 @@ export default class PerformanceGraph extends Component {
 
   componentDidMount() {
     //your code
+    // console.log(this.props.dashboard.lineLabels);
+    //console.log(this.props.dashboard.lineData);
     this.DrawShadow();
     var ctx = document.getElementById("canvas").getContext("2d");
     var gradient = ctx.createLinearGradient(0, 0, 0, 70);
-
     gradient.addColorStop(0, "white");
     gradient.addColorStop(0.5, "#FFF8EF");
     gradient.addColorStop(1, "#FFEED8");
-
     // console.log(gradient);
     this.setState({ colorBack: gradient }, () =>
       //console.log(this.state.colorBack),
@@ -176,7 +181,7 @@ export default class PerformanceGraph extends Component {
     );
 
     const newData = {
-      labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+      labels: this.props.lineLabels,
       datasets: [
         {
           type: "line",
@@ -191,8 +196,7 @@ export default class PerformanceGraph extends Component {
           fill: false,
           pointBackgroundColor: "white",
           pointBorderColor: "white",
-          data: [50, 30, 70, 40, 60, 30, 90],
-
+          data: this.props.lineData,
           datalabels: {
             align: "end",
             anchor: "end",
@@ -218,95 +222,136 @@ export default class PerformanceGraph extends Component {
         }
       ]
     };
-    this.setState({ chartData: newData });
+
+    var newOptions = {
+      responsive: true,
+      tooltips: {
+        enabled: false,
+        display: false,
+        backgroundColor: "none",
+        labelTextColor: "black",
+        titleFontSize: 14,
+        callbacks: {
+          label: function(tooltipItem, data) {
+            var label = data.datasets[tooltipItem.datasetIndex].label || "";
+
+            if (label) {
+              label += ": ";
+            }
+            label += Math.round(tooltipItem.yLabel * 100) / 100;
+            return "Conversion rate " + label + " %";
+          },
+          labelColor: function(tooltipItem, chart) {
+            return {
+              labelTextColor: "#254ebe",
+              backgroundColor: "#254ebe"
+            };
+          },
+          labelTextColor: function(tooltipItem, chart) {
+            return "#254ebe";
+          }
+        }
+      },
+      maintainAspectRatio: false,
+      legend: { display: false },
+
+      scales: {
+        xAxes: [
+          {
+            barPercentage: 1,
+            categoryPercentage: 1,
+            gridLines: {
+              offsetGridLines: true,
+              color: "rgba(0, 0, 0, 0)"
+            },
+            ticks: {
+              beginAtZero: true,
+              fontFamily: "Rubik",
+              fontColor: "#c4cfef",
+              fontSize: 12,
+              fontStyle: "bold"
+            }
+          }
+        ],
+        yAxes: [
+          {
+            display: false,
+
+            gridLines: {
+              offsetGridLines: true,
+              display: false,
+              color: "rgba(0, 0, 0, 0)"
+            },
+            ticks: {
+              stepSize: 40,
+              beginAtZero: true,
+              fontFamily: "Rubik",
+              fontColor: "#c4cfef",
+              fontSize: 12
+            }
+          }
+        ]
+      },
+      title: {
+        display: false,
+        text: ""
+      }
+    };
+    this.setState({ chartData: newData, chartOption: newOptions });
     this.setState({ colorBack: gradient });
   }
-
-  //more of your code
 
   render() {
     return (
       <div>
         <div className="mx-0 mt-0">
           <Line
-            height={210}
+            height={220}
             id="canvas"
-            data={this.state.chartData}
-            options={{
-              responsive: true,
-              tooltips: {
-                enabled: false,
-                display: false,
-                backgroundColor: "none",
-                labelTextColor: "black",
-                titleFontSize: 14,
-                callbacks: {
-                  label: function(tooltipItem, data) {
-                    var label =
-                      data.datasets[tooltipItem.datasetIndex].label || "";
+            data={{
+              labels: this.props.lineLabels,
+              datasets: [
+                {
+                  type: "line",
+                  backgroundColor: "#FFB58D",
+                  pointRadius: 0,
+                  pointHoverBorderWidth: 10,
+                  pointHoverRadius: 5,
+                  borderTopLeftRadius: 10,
+                  borderTopRightRadius: 10,
+                  borderWidth: 5,
+                  borderColor: "#FFB58D",
+                  fill: false,
+                  pointBackgroundColor: "white",
+                  pointBorderColor: "white",
+                  data: this.props.lineData,
+                  datalabels: {
+                    align: "end",
+                    anchor: "end",
+                    fontStyle: "bold"
+                  }
+                },
+                {
+                  type: "bar",
 
-                    if (label) {
-                      label += ": ";
-                    }
-                    label += Math.round(tooltipItem.yLabel * 100) / 100;
-                    return "Conversion rate " + label + " %";
-                  },
-                  labelColor: function(tooltipItem, chart) {
-                    return {
-                      labelTextColor: "#254ebe",
-                      backgroundColor: "#254ebe"
-                    };
-                  },
-                  labelTextColor: function(tooltipItem, chart) {
-                    return "#254ebe";
+                  backgroundColor: "white",
+
+                  pointRadius: 4,
+                  //   hoverBackgroundColor: gradient,
+                  hoverBackgroundColor: "white",
+                  pointHoverRadius: 5,
+                  borderTopLeftRadius: 10,
+                  borderTopRightRadius: 10,
+                  borderRadius: 5,
+                  fill: false,
+                  data: [200, 200, 200, 200, 200, 200, 200],
+                  datalabels: {
+                    fontStyle: "bold"
                   }
                 }
-              },
-              maintainAspectRatio: false,
-              legend: { display: false },
-
-              scales: {
-                xAxes: [
-                  {
-                    barPercentage: 1,
-                    categoryPercentage: 1,
-                    gridLines: {
-                      offsetGridLines: true,
-                      color: "rgba(0, 0, 0, 0)"
-                    },
-                    ticks: {
-                      beginAtZero: true,
-                      fontFamily: "Rubik",
-                      fontColor: "#c4cfef",
-                      fontSize: 12,
-                      fontStyle: "bold"
-                    }
-                  }
-                ],
-                yAxes: [
-                  {
-                    display: false,
-
-                    gridLines: {
-                      offsetGridLines: true,
-                      display: false,
-                      color: "rgba(0, 0, 0, 0)"
-                    },
-                    ticks: {
-                      stepSize: 40,
-                      beginAtZero: true,
-                      fontFamily: "Rubik",
-                      fontColor: "#c4cfef",
-                      fontSize: 12
-                    }
-                  }
-                ]
-              },
-              title: {
-                display: false,
-                text: ""
-              }
+              ]
             }}
+            options={{ ...lineOptions }}
             getDatasetAtEvent={dataset => console.log(dataset[0])}
             onElementsClick={async elems => {
               var activePoint = elems[0];
@@ -328,3 +373,12 @@ export default class PerformanceGraph extends Component {
     );
   }
 }
+
+const mapStateToProps = ({ dashboard }) => {
+  return {
+    dashboard
+  };
+};
+export default connect(mapStateToProps, {
+  getPerformance
+})(PerformanceGraph);

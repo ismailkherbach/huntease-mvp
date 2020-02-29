@@ -4,13 +4,8 @@ import UserLayout from "../../layout/UserLayout";
 import login from "./login";
 import register from "./register";
 import forgotPassword from "./forgotpassword";
-import { render } from "@testing-library/react";
 
 class User extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
     document.body.classList.add("background");
   }

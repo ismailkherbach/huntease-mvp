@@ -1,22 +1,80 @@
 import React, { Fragment } from "react";
 import IntlMessages from "../../../helpers/IntlMessages";
+import CircleChart from "../../chart/Circle";
+import ButtonDate from "../../small.componenets/Btn";
+import { unclickedDate } from "../../../constants/buttonStatus";
 
-const Engagement = ({ children }) => {
-  return (
-    <Fragment>
+import { Row, Col } from "reactstrap";
+import { connect } from "react-redux";
+import { getEngagement } from "../../../redux/actions";
+
+class Engagement extends React.Component {
+  getEngagementFilter(critaria) {
+    this.props.getEngagementFilter(critaria);
+  }
+  componentDidMount() {
+    this.props.getEngagement();
+  }
+  render() {
+    const {
+      answeredCalls,
+      talkDuration,
+      callsPastTwo,
+      conversionRate
+    } = this.props.dashboard;
+    return (
       <div id="engagement-rate">
         {" "}
-        <h1 id="card-title">
-          {" "}
-          <IntlMessages id="engagementRate" />
-        </h1>
-        <div className="inlineBtn-right">
-          <div className="date-filter">Daily</div>
-          <div className="date-filter">Weekly</div>
-          <div className="date-filter">Monthly</div>
-        </div>
+        <Row>
+          <Col>
+            <h1 id="card-title">
+              {" "}
+              <IntlMessages id="engagementRate" />
+            </h1>
+          </Col>
+          <Col>
+            <div className="inlineBtn-right mt-2">
+              <ButtonDate class={unclickedDate}>Daily</ButtonDate>
+              <ButtonDate class={unclickedDate}>Weekly</ButtonDate>
+              <ButtonDate class={unclickedDate}>Monthly</ButtonDate>
+            </div>
+          </Col>
+        </Row>
+        <Row className="mt-4 ml-3">
+          <Col>
+            <CircleChart />
+          </Col>
+          <Col className="no-gutters mx-0 col-3">
+            <div className="stats">
+              <p>Answered calls</p>
+              <h3>{answeredCalls}</h3>
+            </div>
+            <div className="stats pt-4">
+              <p>Talk duration</p>
+              <h3>{talkDuration}</h3>
+            </div>
+          </Col>
+          <Col className="no-gutters mx-0">
+            <div className="stats">
+              <p>Calls past 2 minutes</p>
+              <h3>{callsPastTwo}</h3>
+            </div>
+            <div className="stats pt-4">
+              <p>Conversion Rate</p>
+              <h3>{conversionRate}</h3>
+            </div>
+          </Col>
+        </Row>
       </div>
-    </Fragment>
-  );
+    );
+  }
+}
+
+const mapStateToProps = ({ dashboard }) => {
+  return {
+    dashboard
+  };
 };
-export default Engagement;
+export default connect(mapStateToProps, {
+  getEngagement
+})(Engagement);

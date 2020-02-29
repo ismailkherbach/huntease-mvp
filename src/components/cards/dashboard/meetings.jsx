@@ -16,12 +16,7 @@ const Meetings = ({ children }) => {
           <div className="date-filter">Weekly</div>
           <div className="date-filter">Monthly</div>
         </div>
-      </div>
-    </Fragment>
-  );
-};
-export default Meetings;
-/*      <PerfectScrollbar>
+        <PerfectScrollbar>
           {" "}
           <div className="scroll-meeting disable-select">
             <div className="meeting-list">
@@ -58,4 +53,8 @@ export default Meetings;
             </div>
           </div>
         </PerfectScrollbar>
-     */
+      </div>
+    </Fragment>
+  );
+};
+export default Meetings;

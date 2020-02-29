@@ -1,13 +1,58 @@
 import React, { Fragment } from "react";
 import { Col, Button } from "reactstrap";
 import { Link } from "react-router-dom";
-export default class Login extends React.Component {
+import { connect } from "react-redux";
+import { loginUser } from "../../redux/actions";
+import axios from "axios";
+
+class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      loginButton: true
+      email: "",
+      password: ""
     };
+
+    this.handleChangeEmail = this.handleChangeEmail.bind(this);
+    this.handleChangePassword = this.handleChangePassword.bind(this);
   }
+
+  handleChangeEmail(e) {
+    this.setState({ email: e.target.value });
+  }
+  handleChangePassword(e) {
+    this.setState({ password: e.target.value });
+  }
+
+  /*handleSubmit = () => {
+    axios({
+      method: "post",
+      url: "/api/v1/auth/login",
+      data: {
+        email: this.state.email,
+        password: this.state.password
+      }
+    }).then(
+      response => {
+        console.log(response);
+        localStorage.setItem("token", response.data.success[0].token);
+        localStorage.setItem(
+          "user",
+          JSON.stringify(response.data.success[0].user)
+        );
+
+        this.props.history.push("/app");
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  };*/
+
+  onUserLogin = () => {
+    this.props.loginUser(this.state, this.props.history);
+  };
+
   render() {
     return (
       <Fragment>
@@ -20,13 +65,15 @@ export default class Login extends React.Component {
                 className="auth-input"
                 placeholder="Work Email"
                 type="text"
+                onChange={this.handleChangeEmail}
               />
             </Col>{" "}
             <Col>
               <input
                 className="auth-input"
                 placeholder="Paasword"
-                type="text"
+                type="password"
+                onChange={this.handleChangePassword}
               />
             </Col>
             <Button
@@ -36,6 +83,7 @@ export default class Login extends React.Component {
                 border: "none",
                 borderRadius: "15px"
               }}
+              onClick={this.onUserLogin}
             >
               <div className="btn-get-started-text">Sign in</div>
             </Button>
@@ -55,3 +103,15 @@ export default class Login extends React.Component {
     );
   }
 }
+
+const mapStateToProps = ({ authUser }) => {
+  const { user, loading } = authUser;
+  return { user, loading };
+};
+
+export default connect(mapStateToProps, {
+  loginUser
+})(Login);
+
+import { connect } from "react-redux";
+import { loginUser } from "../../redux/actions";

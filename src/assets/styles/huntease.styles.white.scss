@@ -262,6 +262,20 @@ span {
   @include desktop-lg {
     width: 760px;
   }
+  .stats {
+    h3 {
+      font-size: 28px;
+      font-family: "Rubik";
+      font-weight: $regular;
+      color: $huntease-medium;
+    }
+    p {
+      font-size: 14px;
+      font-family: "Rubik";
+      font-weight: $custom;
+      color: $huntease-main;
+    }
+  }
 }
 
 #top-weekly-performers {
@@ -331,6 +345,37 @@ span {
     font-size: 14px;
     font-weight: $regular;
     color: $huntease-medium;
+  }
+
+  #field {
+    height: 46px;
+    width: 325px;
+    border-radius: $regular-radius;
+    background-color: white;
+    border: 1px solid $huntease-light;
+    padding-bottom: $spacing;
+    margin-bottom: 5px;
+
+    display: flex;
+    justify-content: left;
+    flex-direction: row;
+    align-items: center;
+  }
+  #send_team {
+    height: 46px;
+    width: 46px;
+    border-radius: $regular-radius;
+    background-color: white;
+    border: 1px solid $huntease-light;
+    display: flex;
+    justify-content: left;
+    flex-direction: row;
+    align-items: center;
+    img {
+      width: 17px;
+      height: 17px;
+      border-radius: 0%;
+    }
   }
 }
 
@@ -652,6 +697,9 @@ input {
   width: 11%;
   transform: translateZ(0);
   transition: transform 0.25s ease-out;
+  #logout {
+    margin-top: 10rem;
+  }
   @include desktop-xl {
     margin-left: 8%;
   }
@@ -850,7 +898,7 @@ input {
 #calls-card {
   margin-top: $topnav-height;
   background: $white;
-  width: 700px;
+  width: 622px;
   border-radius: $regular-radius;
   height: 625px !important;
   @include desktop-sm {
@@ -867,9 +915,10 @@ input {
   margin-left: 15px;
   margin-top: $topnav-height;
   background: $white;
-  width: 408px;
+  width: 450px;
   border-radius: $regular-radius;
   height: 625px !important;
+
   @include desktop-sm {
   }
   @include desktop-md {
@@ -880,62 +929,163 @@ input {
   }
   .leadInfos {
     h4 {
-      margin: 10px;
+      margin-left: 25px;
+
       font-size: 16px;
       font-family: $font;
       font-weight: $regular;
       color: $huntease-medium;
     }
     h5 {
-      margin: 10px;
+      margin-left: 25px;
       font-size: 25px;
       font-family: $font;
       font-weight: $regular;
       color: $huntease-darkmode;
     }
     h3 {
-      margin: 10px;
+      margin-left: 25px;
+      font-size: 14px;
+      font-family: $font;
+      font-weight: $custom;
+      color: $huntease-dark;
+    }
+    p {
+      margin-left: 25px;
       font-size: 14px;
       font-family: $font;
       font-weight: $custom;
       color: $huntease-main;
     }
-    p {
-      margin: 10px;
-      font-size: 14px;
-      font-family: $font;
-      font-weight: $regular;
-      color: $huntease-darkmode;
+    .callSection {
+      img {
+        margin-left: 25px;
+        width: 87px;
+        height: 87px;
+        border-radius: $max-radius;
+      }
+      #callButton {
+        width: 37px;
+        height: 37px;
+        float: right;
+        margin: 3rem;
+      }
     }
-    img {
-      margin: 5px;
+
+    #icon {
+      height: 25px;
+      width: 25px;
+      border-radius: 0%;
+    }
+    #social {
+      height: 19.5px;
+      width: 19.5px;
+      border-radius: 0%;
+    }
+    .lead-status {
       margin-left: 20px;
-      width: 87px;
-      height: 87px;
-      border-radius: $max-radius;
+
+      height: 31px;
+      width: 100px;
+      font-size: 12px;
+      font-weight: $medium;
+      color: $huntease-main;
+      background-color: white;
+      border-radius: 16px;
+      border: 2px solid $huntease-light;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
   }
   h5 {
-    margin: 6px;
+    margin-left: 25px;
     font-size: 16px;
     font-family: $font;
     font-weight: $custom;
     color: $huntease-darkmode;
   }
   p {
-    margin: 6px;
-    padding-bottom: 4px;
+    margin-left: 25px;
+    padding-bottom: 10px;
     font-size: 16px;
     font-family: $font;
     font-weight: $custom;
-    color: $huntease-medium;
+    color: $huntease-main;
   }
   img {
-    margin: 5px;
-    margin-left: 20px;
+    margin-left: 25px;
     width: 50px;
     height: 50px;
     border-radius: $max-radius;
+  }
+  #field-button {
+    height: 50px;
+    width: 383px;
+    border-radius: $regular-radius;
+    background-color: white;
+    border: 1px solid $huntease-light;
+    color: $huntease-main;
+    font-weight: $medium;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    p {
+      font-size: 16px;
+      font-family: $font;
+      font-weight: $custom;
+      color: $huntease-medium;
+    }
+  }
+  .callProcess {
+    img {
+      margin-left: 0px;
+
+      width: 87px;
+      height: 87px;
+      border-radius: $max-radius;
+    }
+    #callButton {
+      width: 37px;
+      height: 37px;
+      float: right;
+      margin: 3rem;
+    }
+    .icon {
+      margin: 4px;
+      height: 51px;
+      width: 51px;
+      border-radius: 35%;
+      background-color: #e9effb;
+      display: flex;
+      justify-content: center;
+      flex-direction: row;
+      align-items: center;
+      img {
+        height: unset;
+        width: unset;
+        border-radius: 0%;
+      }
+    }
+
+    h4 {
+      margin-left: 0px;
+      text-align: center;
+      font-size: 16px;
+      font-family: $font;
+      font-weight: $regular;
+      color: $huntease-medium;
+    }
+    h5 {
+      margin-left: 0px;
+
+      text-align: center;
+      font-size: 25px;
+      font-family: $font;
+      font-weight: $regular;
+      color: $huntease-darkmode;
+    }
   }
 }
 
@@ -1443,6 +1593,20 @@ input {
     font-size: 16px;
   }
 }
+
+.lead-status {
+  height: 31px;
+  margin: 8px;
+  font-size: 12px;
+  font-weight: $medium;
+  color: $huntease-main;
+  background-color: white;
+  border-radius: 16px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
 .date-filter {
   width: 84px;
   height: 31px;
@@ -1612,6 +1776,29 @@ input {
   flex-direction: column;
   align-items: center;
   cursor: pointer;
+}
+
+.popup-profile {
+  position: fixed;
+  width: 430px;
+  height: 684px;
+  top: 4rem;
+  right: 4rem;
+  bottom: 0;
+  background-color: white;
+  border-radius: $regular-radius;
+  box-shadow: $shadow;
+
+  z-index: 44;
+}
+.popup\_inner-profile {
+  position: absolute;
+
+  right: 25%;
+  top: 5%;
+  margin: auto;
+  border-radius: 20px;
+  background: white;
 }
 
 .disable-select {

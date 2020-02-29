@@ -1,12 +1,16 @@
 import React from "react";
 import { Chart, Bar } from "react-chartjs-2";
+import { connect } from "react-redux";
+import { getCalls } from "../../redux/actions";
+import { barOptions } from "./chartConfig/config";
 
-export default class BarChart extends React.Component {
+class BarChart extends React.Component {
   constructor(props) {
     super(props);
     this.myRef = React.createRef();
     this.state = {
-      labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+      chartData: {},
+      chartOption: {}
     };
   }
   handleClick(evt) {
@@ -18,8 +22,89 @@ export default class BarChart extends React.Component {
     ];
     alert(label + ": " + value);
   }
+  /*async getData() {
+    await this.props.getCalls();
+    //console.log(this.props.dashboard.callsLables);
+    // console.log(this.props.dashboard.callsData);
+    var data = {
+      labels: this.props.dashboard.callsLables,
 
+      datasets: [
+        {
+          backgroundColor: "#FFB58D",
+
+          pointRadius: 4,
+          barPercentage: 0.45,
+          pointHoverRadius: 5,
+          borderTopLeftRadius: 50,
+          borderTopRightRadius: 50,
+          fill: false,
+          data: this.props.dashboard.callsData,
+          datalabels: {
+            fontStyle: "bold"
+          }
+        }
+      ]
+    };
+    const options = {
+      maintainAspectRatio: false,
+      responsive: true,
+      cornerRadius: 20,
+
+      barRoundness: 1,
+      legend: { labels: { fontColor: "white", fontSize: 12 }, display: false },
+
+      scales: {
+        offset: true,
+        xAxes: [
+          {
+            gridLines: {
+              offsetGridLines: false,
+              drawBorder: false,
+              color: "rgba(0, 0, 0, 0)",
+              margin: 3
+            },
+            ticks: {
+              beginAtZero: true,
+              fontFamily: "Rubik",
+              fontColor: "#c4cfef",
+              fontSize: 12,
+              margin: 3,
+
+              fontStyle: "regular"
+            }
+          }
+        ],
+        yAxes: [
+          {
+            gridLines: {
+              offsetGridLines: true,
+              color: "#e9effb",
+              drawBorder: false
+            },
+            ticks: {
+              stepSize: 30,
+              max: 120,
+              min: 0,
+              beginAtZero: true,
+              fontFamily: "Rubik",
+              fontColor: "#c4cfef",
+              fontSize: 12,
+
+              fontStyle: "regular"
+            }
+          }
+        ]
+      },
+      title: {
+        display: false,
+        text: ""
+      }
+    };
+    this.setState({ chartData: data, chartOption: options });
+  }*/
   componentDidMount() {
+    //  this.getData();
     Chart.defaults.global.datasets.bar.barPercentage = 0.5;
 
     Chart.elements.Rectangle.prototype.draw = function() {
@@ -219,84 +304,40 @@ export default class BarChart extends React.Component {
   render() {
     return (
       <div>
-        <Bar height={210} data={data} options={options} />
+        <Bar
+          height={220}
+          data={{
+            labels: this.props.barLabels,
+
+            datasets: [
+              {
+                backgroundColor: "#FFB58D",
+
+                pointRadius: 4,
+                barPercentage: 0.45,
+                pointHoverRadius: 5,
+                borderTopLeftRadius: 50,
+                borderTopRightRadius: 50,
+                fill: false,
+                data: this.props.barData,
+                datalabels: {
+                  fontStyle: "bold"
+                }
+              }
+            ]
+          }}
+          options={{ ...barOptions }}
+        />
       </div>
     );
   }
 }
 
-var data = {
-  labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
-
-  datasets: [
-    {
-      backgroundColor: "#FFB58D",
-
-      pointRadius: 4,
-      barPercentage: 0.45,
-      pointHoverRadius: 5,
-      borderTopLeftRadius: 50,
-      borderTopRightRadius: 50,
-      fill: false,
-      data: [65, 110, 85, 100, 95, 85, 110],
-      datalabels: {
-        fontStyle: "bold"
-      }
-    }
-  ]
+const mapStateToProps = ({ dashboard }) => {
+  return {
+    dashboard
+  };
 };
-const options = {
-  maintainAspectRatio: false,
-  responsive: true,
-  cornerRadius: 20,
-
-  barRoundness: 1,
-  legend: { labels: { fontColor: "white", fontSize: 12 }, display: false },
-
-  scales: {
-    offset: true,
-    xAxes: [
-      {
-        gridLines: {
-          offsetGridLines: false,
-          drawBorder: false,
-          color: "rgba(0, 0, 0, 0)",
-          margin: 3
-        },
-        ticks: {
-          beginAtZero: true,
-          fontFamily: "Rubik",
-          fontColor: "#c4cfef",
-          fontSize: 12,
-          margin: 3,
-
-          fontStyle: "regular"
-        }
-      }
-    ],
-    yAxes: [
-      {
-        gridLines: {
-          offsetGridLines: true,
-          color: "#e9effb",
-          drawBorder: false
-        },
-        ticks: {
-          stepSize: 30,
-          max: 120,
-          min: 0,
-          beginAtZero: true,
-          fontFamily: "Rubik",
-          fontColor: "#c4cfef",
-          fontSize: 12,
-
-          fontStyle: "regular"
-        }
-      }
-    ]
-  },
-  title: {
-    display: false,
-    text: ""
-  }
-};
+export default connect(mapStateToProps, {
+  getCalls
+})(BarChart);

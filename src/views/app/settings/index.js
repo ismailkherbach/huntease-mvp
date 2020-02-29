@@ -4,7 +4,7 @@ import Account from "./Account";
 import Application from "./Application";
 import Privacy from "./Privacy";
 import Subscription from "./Subscription";
-import AppLayout from "../../../layout/AppLayout";
+// import AppLayout from "../../../layout/AppLayout";
 import SettingsLayout from "../../../layout/SettingsLayout";
 export default class Settings extends React.Component {
   render() {

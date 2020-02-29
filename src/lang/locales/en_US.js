@@ -18,6 +18,7 @@ module.exports = {
   guide: "Guide",
   call: "Calls",
   setting: "Settings",
+  logout: "Logout",
 
   // 3 - Dashboard
   performance: "Performance",
