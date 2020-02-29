@@ -112,6 +112,3 @@ const mapStateToProps = ({ authUser }) => {
 export default connect(mapStateToProps, {
   loginUser
 })(Login);
-
-import { connect } from "react-redux";
-import { loginUser } from "../../redux/actions";
