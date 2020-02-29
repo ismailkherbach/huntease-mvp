@@ -90,6 +90,12 @@ $backgrd: url("../img//back_app.svg");
 
 .topnav {
   margin-left: 3.3rem;
+  p {
+    color: white;
+  }
+  p:hover {
+    cursor: pointer;
+  }
 }
 
 .toprofil {
@@ -1782,8 +1788,8 @@ input {
   position: fixed;
   width: 430px;
   height: 684px;
-  top: 4rem;
-  right: 4rem;
+  top: 4.8rem;
+  right: 1.9rem;
   bottom: 0;
   background-color: white;
   border-radius: $regular-radius;
@@ -1791,14 +1797,63 @@ input {
 
   z-index: 44;
 }
-.popup\_inner-profile {
-  position: absolute;
+.popup_inner-profile {
+  h4 {
+    color: $huntease-medium;
+    font-weight: $regular;
+    font-size: 16px;
+  }
+  h2 {
+    color: $huntease-red;
+    font-weight: $regular;
+    font-size: 25px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
 
-  right: 25%;
-  top: 5%;
-  margin: auto;
+  .top-profile {
+    padding: $spacing;
+    padding-left: 3rem;
+
+    img {
+      width: 121px;
+      height: 121px;
+      border-radius: 20%;
+    }
+    h3 {
+      padding-top: $spacing;
+
+      color: $huntease-dark;
+      font-weight: $medium;
+      font-size: 20px;
+    }
+  }
+
+  .middle-profile {
+    margin-top: $spacing;
+    padding: $spacing;
+    padding-left: 3rem;
+
+    #icon {
+      height: 20px;
+      width: 20px;
+      border-radius: 0%;
+      margin-right: 8px;
+    }
+    img {
+      width: 74px;
+      height: 74px;
+      border-radius: 0%;
+    }
+  }
+
+  position: absolute;
+  width: 430px;
+  height: 234px;
+  background-color: white;
+  box-shadow: $shadow;
+  border-radius: $regular-radius;
   border-radius: 20px;
-  background: white;
 }
 
 .disable-select {

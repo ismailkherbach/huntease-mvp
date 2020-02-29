@@ -54,7 +54,7 @@ class Topnav extends React.Component {
           <Col className="inlineBtn-col col-3">
             {" "}
             <p
-              className="d-inline-block ml-4"
+              className="d-inline-block ml-4 disable-select"
               onClick={this.togglePopup.bind(this)}
             >
               {" "}
