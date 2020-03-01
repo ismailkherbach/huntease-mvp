@@ -152,6 +152,7 @@ span {
   font-size: $txt-left;
   color: $huntease-medium;
   font-weight: $medium;
+  width: 570px;
 }
 
 #performance {
@@ -1547,6 +1548,20 @@ input {
     flex-direction: column;
     align-items: center;
   }
+}
+
+#btn-add {
+  margin: 15px;
+
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  box-shadow: $shadow;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 .inlineBtn-right {
