@@ -79,7 +79,6 @@ export default class ScriptEditor extends React.Component {
             tag="pre"
             text={this.state.text}
             onChange={this.handleChangeTitle}
-            onClick={this.handleClick}
             options={{
               toolbar: { buttons: ["bold", "italic", "underline"] }
             }}
