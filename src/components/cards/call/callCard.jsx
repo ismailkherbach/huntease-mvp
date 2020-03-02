@@ -25,8 +25,21 @@ class CallCard extends React.Component {
   render() {
     return (
       <Fragment>
-        <div id="calls-list-card">
-          {!this.state.shownLead && (
+        <div id="calls-list-card"></div>
+      </Fragment>
+    );
+  }
+}
+export default CallCard;
+
+/*
+  {this.state.shownLead && (
+            <div className="callProcess inlineBtn-col">
+              <CallProcess />
+            </div>
+          )}
+
+              {!this.state.shownLead && (
             <div>
               <h1 id="card-title">Leads</h1>
               <PerfectScrollbar>
@@ -59,19 +72,6 @@ class CallCard extends React.Component {
                 visibleLeadId={this.state.visibleLeadId}
                 visibleLeadInfos={this.state.visibleLeadInfos}
               />
-            </div>
-          )}
-        </div>
-      </Fragment>
-    );
-  }
-}
-export default CallCard;
-
-/*
-  {this.state.shownLead && (
-            <div className="callProcess inlineBtn-col">
-              <CallProcess />
             </div>
           )}
            */

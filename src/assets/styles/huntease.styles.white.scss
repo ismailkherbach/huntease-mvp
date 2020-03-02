@@ -313,6 +313,23 @@ span {
     height: 42px;
     border-radius: 50%;
   }
+  .topsale {
+    img {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+    }
+    h4 {
+      font-size: 16px;
+      font-weight: $medium;
+      color: $huntease-dark;
+    }
+    p {
+      font-size: 14px;
+      font-weight: $regular;
+      color: $huntease-medium;
+    }
+  }
   div {
     img {
       margin: 10px;

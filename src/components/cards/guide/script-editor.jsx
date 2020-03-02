@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import Editor from "react-medium-editor";
 import { Input } from "reactstrap";
+import Draggable from "react-draggable";
 
 // load theme styles with webpack
 require("medium-editor/dist/css/medium-editor.css");
@@ -37,6 +38,9 @@ export default class ScriptEditor extends React.Component {
       questions: [...prevState.questions, { question: "" }]
     }));
     console.log(this.state.questions);
+  }
+  handleClick() {
+    this.setState({ text: "" });
   }
   createUI() {
     return this.state.questions.map((el, i) => (
@@ -75,10 +79,12 @@ export default class ScriptEditor extends React.Component {
             tag="pre"
             text={this.state.text}
             onChange={this.handleChangeTitle}
+            onClick={this.handleClick}
             options={{
               toolbar: { buttons: ["bold", "italic", "underline"] }
             }}
           />
+
           {this.createUI()}
         </div>
       </Fragment>

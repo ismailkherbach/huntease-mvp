@@ -12,7 +12,7 @@ const TopSales = ({ children }) => {
           <IntlMessages id="topweeklyperformers" />
         </h1>
         <PerfectScrollbar>
-          <div className="scroll-topweekly">
+          <div className="scroll-topweekly topsale">
             {topSalers.map(topSaler => {
               return (
                 <Row className="no-gutters mx-0">
@@ -24,7 +24,7 @@ const TopSales = ({ children }) => {
                     <img src={topSaler.picture} alt={topSaler.id} />
                   </Col>
                   <Col className="ml-4">
-                    <Row>
+                    <Row className="mt-2">
                       <h4>{topSaler.name}</h4>
                     </Row>
                     <Row>

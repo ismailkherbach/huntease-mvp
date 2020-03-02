@@ -10,7 +10,8 @@ class CircleChart extends React.Component {
     this.myRef = React.createRef();
     this.state = {
       chartData: {},
-      chartOption: {}
+      chartOption: {},
+      circleData: {}
     };
   }
 
@@ -80,24 +81,31 @@ class CircleChart extends React.Component {
         }
       }
     });
+
+    var ctx = document.getElementById("canvas").getContext("2d");
+    var gradient = ctx.createLinearGradient(0, 0, 0, 70);
+    gradient.addColorStop(0, "#FFCF9F");
+    gradient.addColorStop(0.5, "#FFB089");
+    gradient.addColorStop(1, "#FF9A7A");
+
+    const circleData = {
+      labels: ["Red", "Blue", "Yellow"],
+      datasets: [
+        {
+          data: [80, 150, 100],
+          backgroundColor: [gradient, "#254EBE", "#F0F0F0"],
+          hoverBackgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"]
+        }
+      ]
+    };
+
+    this.setState({ circleData: circleData });
   }
 
   render() {
     return (
       <div style={{ height: "150px", width: "180px", margin: "0" }}>
-        <Doughnut
-          data={{
-            labels: ["Red", "Blue", "Yellow"],
-            datasets: [
-              {
-                data: [70, 200, 100],
-                backgroundColor: ["#ffc371", "#254ebe", "#f0f0f0"],
-                hoverBackgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"]
-              }
-            ]
-          }}
-          options={{ ...circleOptions }}
-        />
+        <Doughnut data={this.state.circleData} options={{ ...circleOptions }} />
       </div>
     );
   }

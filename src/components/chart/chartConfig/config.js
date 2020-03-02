@@ -130,7 +130,14 @@ export const barOptions = {
 };
 
 export const circleOptions = {
-  cutoutPercentage: 70,
+  /*tooltips: {
+    callbacks: {
+      title: (items, data) =>
+        data.datasets[items[0].datasetIndex].data[items[0].index],
+      label: (item, data) => data.datasets[item.datasetIndex].data[item.index]
+    }
+  },*/
+  cutoutPercentage: 65,
   elements: {
     center: {
       text: `${"Total"}\ 416`,
@@ -138,8 +145,8 @@ export const circleOptions = {
       fontFamily: "Rubik",
       fontStyle: "normal",
       padding: "4px",
-      minFontSize: 25,
-      maxFontSize: 25
+      minFontSize: 22,
+      maxFontSize: 22
     }
   },
   maintainAspectRatio: false,

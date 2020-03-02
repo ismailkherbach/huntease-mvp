@@ -11,7 +11,6 @@ const SubscriptionContent = ({ children }) => {
           <Row>
             <div id="subscription-card">
               <h3>Hello mister ismail your are in a free trial</h3>
-              <p>but once you like the product ghadi nederbok leljib</p>
             </div>
           </Row>
         </Col>
