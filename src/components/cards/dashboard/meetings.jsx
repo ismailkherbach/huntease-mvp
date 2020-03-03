@@ -8,7 +8,7 @@ const Meetings = ({ children }) => {
     <Fragment>
       <div id="meetings">
         <h1 id="card-title-right" className="float-right">
-          Total: 400
+          Total: 20
         </h1>
 
         <h1 id="card-title">
@@ -29,8 +29,8 @@ const Meetings = ({ children }) => {
                   <ul>
                     <div className="inlineBtn-left">
                       <div className="inlineBtn-date">
-                        <p className="mr-3 pb-0"> 19</p>
                         <p className="mr-3 pb-0"> Juin</p>
+                        <p className="mr-3 pb-0"> 19</p>
                       </div>
                       <h4 id={"toggler" + meetingList.id}>
                         {meetingList.meetingsNumber + " Meeting"}

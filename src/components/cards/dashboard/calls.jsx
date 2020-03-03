@@ -15,7 +15,7 @@ class Calls extends React.Component {
         <div id="calls">
           {" "}
           <h1 id="card-title-right" className="float-right">
-            Total: 400
+            Total: 605
           </h1>{" "}
           <h1 id="card-title">
             {" "}
