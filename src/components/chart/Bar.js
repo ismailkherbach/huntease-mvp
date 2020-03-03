@@ -314,7 +314,7 @@ class BarChart extends React.Component {
                 backgroundColor: "#FFB58D",
 
                 pointRadius: 4,
-                barPercentage: 0.45,
+                barPercentage: 0.5,
                 pointHoverRadius: 5,
                 borderTopLeftRadius: 50,
                 borderTopRightRadius: 50,

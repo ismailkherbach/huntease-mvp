@@ -2,11 +2,11 @@
 $topnav-height: 0px;
 $navbar-height: 60px;
 $navbar-height-xs: 70px;
-$navbar-height-md: 80px;
+$navbar-height-md: 100px;
 $navbar-height-lg: 90px;
 
 // --------- Importing Rubik as main font
-@import url("https://fonts.googleapis.com/css?family=Rubik:300,300i,400,400i,500,500i,700,700i,900,900i&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Rubik:200,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap");
 
 // --------- Importing FontAwesome for Icons
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0/css/font-awesome.min.css");
@@ -27,7 +27,7 @@ $gray: #eeeeee;
 $regular-radius: 15px;
 $max-radius: 50px;
 $font: Rubik;
-$regular: 300;
+$regular: 200;
 $custom: 400;
 $medium: 500;
 $bold: 700;
@@ -35,9 +35,10 @@ $shadow: 0px 1px 10px rgba(0, 0, 0, 0.08);
 $side-margin: 1.5rem;
 $spacing: 1.3rem;
 $menu-space: 180px;
-$nav-box: 80px;
+$nav-box: 81px;
 $txt-top: 20px;
 $txt-left: 23px;
+$card-title: 21px;
 $heading-size: 19px;
 
 // --------- GENERAL STYLES
@@ -59,7 +60,8 @@ $backgrd: url("../img//back_app.svg");
 #root {
   background: $backgrd;
   background-size: cover;
-  margin-right: 0;
+
+  position: fixed;
   bottom: 0;
   margin: 0;
   padding: 0;
@@ -89,12 +91,27 @@ $backgrd: url("../img//back_app.svg");
 }
 
 .topnav {
-  margin-left: 3.3rem;
+  margin-left: 4rem;
   p {
     color: white;
   }
   p:hover {
     cursor: pointer;
+  }
+  .hamburger {
+    img {
+      width: 171px;
+      height: 35px;
+    }
+    margin-left: 2.5rem;
+    margin-right: 0.6rem;
+    font-size: 1.6rem;
+    padding-bottom: 0;
+  }
+  .greeting {
+    color: $white;
+    font-size: 1.8rem;
+    opacity: 0.7;
   }
 }
 
@@ -110,7 +127,11 @@ $backgrd: url("../img//back_app.svg");
 }
 
 .hamburger {
-  margin-left: 2.1rem;
+  img {
+    width: 171px;
+    height: 35px;
+  }
+  margin-left: 2.5rem;
   margin-right: 0.6rem;
   font-size: 1.6rem;
   padding-bottom: 0;
@@ -142,9 +163,25 @@ span {
   padding-top: $spacing;
   padding-left: $spacing;
   font-family: $font;
-  font-size: $txt-left;
+  font-size: $card-title;
   color: $huntease-main;
-  font-weight: $medium;
+  font-weight: $bold;
+}
+#card-title-right {
+  padding-top: $spacing;
+  padding-right: $spacing;
+  font-family: $font;
+  font-size: $card-title;
+  color: $huntease-medium;
+  font-weight: $bold;
+}
+#card-title-performance {
+  padding-top: $spacing;
+  padding-right: $spacing;
+  font-family: $font;
+  font-size: $card-title;
+  color: #18f5a2;
+  font-weight: $bold;
 }
 #prompt {
   padding: $spacing;
@@ -156,72 +193,84 @@ span {
 }
 
 #performance {
+  width: 391, 5px;
+  height: 310px;
   margin-top: $topnav-height;
   background: $white;
-
   border-radius: $regular-radius;
+  box-shadow: $shadow;
   height: $top-component-height !important;
 
   @include desktop-sm {
-    width: 340px;
+    width: 391, 5px;
+    height: 310px;
   }
   @include desktop-md {
-    width: 350px;
+    width: 391, 5px;
+    height: 310px;
   }
   @include desktop-xl {
-    width: 400px;
-    right: 0;
-    left: 0;
+    width: 391, 5px;
+    height: 310px;
   }
   @include desktop-lg {
-    width: 100%;
+    width: 391, 5px;
+    height: 310px;
   }
 }
 
 #calls {
-  width: 375px;
+  width: 340px;
+  height: 310px;
   margin-top: $topnav-height;
   background: $white;
   border-radius: $regular-radius;
   box-shadow: $shadow;
   height: $top-component-height !important;
-  margin-left: 0px;
-  margin-right: 0px;
+
   @include desktop-sm {
-    width: 330px;
+    width: 340px;
+    height: 310px;
   }
   @include desktop-md {
-    width: 100%;
+    width: 340px;
+    height: 310px;
   }
   @include desktop-xl {
-    width: 375px;
-    right: 0;
-    left: 0;
+    width: 340px;
+    height: 310px;
   }
   @include desktop-lg {
-    width: 100%;
+    width: 340px;
+    height: 310px;
   }
 }
 #meetings {
-  background: $white;
+  width: 385px;
+  height: 310px;
   margin-top: $topnav-height;
-  box-shadow: $shadow;
-  height: $top-component-height;
+  background: $white;
   border-radius: $regular-radius;
+  box-shadow: $shadow;
+  height: $top-component-height !important;
 
   @include desktop-sm {
     width: 360px;
   }
   @include desktop-md {
-    width: 400px;
+    width: 385px;
+    height: 310px;
+    margin-left: 50px;
   }
   @include desktop-xl {
-    width: 400px;
-    right: 0;
-    left: 0;
+    width: 385px;
+    height: 310px;
+    margin-left: 50px;
   }
   @include desktop-lg {
-    width: 400px;
+    width: 385px;
+    height: 310px;
+    margin-left: 58px;
   }
 
   ::-webkit-scrollbar {
@@ -246,8 +295,9 @@ span {
 }
 
 #engagement-rate {
-  height: 270px;
-  margin-top: 20px;
+  height: 280px;
+  width: 715px;
+  margin-top: 35px;
   height: $bottom-component-height;
   background: $white;
   box-shadow: $shadow;
@@ -267,7 +317,8 @@ span {
     margin-right: 0px;
   }
   @include desktop-lg {
-    width: 760px;
+    height: 280px;
+    width: 715px;
   }
   .stats {
     h3 {
@@ -281,6 +332,7 @@ span {
       font-family: "Rubik";
       font-weight: $custom;
       color: $huntease-main;
+      margin-bottom: 5px;
     }
   }
 }
@@ -288,7 +340,8 @@ span {
 #top-weekly-performers {
   background: $white;
   width: 416px;
-  margin-top: 20px;
+  height: 280px;
+  margin-top: 35px;
   box-shadow: $shadow;
   height: $bottom-component-height;
   border-radius: $regular-radius;
@@ -306,7 +359,8 @@ span {
     margin-right: 4rem;
   }
   @include desktop-lg {
-    width: 440px;
+    width: 416px;
+    height: 280px;
   }
   img {
     width: 42px;
@@ -432,7 +486,7 @@ span {
     font-family: $font;
     font-size: $txt-left;
     color: $huntease-medium;
-    font-weight: $medium;
+    font-weight: $bold;
   }
 }
 
@@ -714,15 +768,16 @@ input {
 }
 
 .sidenav {
-  top: 0px;
+  top: 14px;
   position: relative;
   float: left;
   height: 90vh;
   width: 11%;
+  margin-right: 20px;
   transform: translateZ(0);
   transition: transform 0.25s ease-out;
   #logout {
-    margin-top: 10rem;
+    margin-top: 185px;
   }
   @include desktop-xl {
     margin-left: 8%;
@@ -737,7 +792,7 @@ input {
     height: $nav-box;
     width: $nav-box;
     box-shadow: $shadow;
-    margin-bottom: $side-margin;
+    margin-bottom: 12px;
     border-radius: $regular-radius;
     transform: translateZ(0);
     transition: transform 0.25s ease-out;
@@ -1646,10 +1701,10 @@ input {
   align-items: center;
 }
 .date-filter {
-  width: 84px;
+  width: 79px;
   height: 31px;
   margin: 8px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: $medium;
   color: #d4d4d4;
   background-color: rgba(212, 212, 212, 0.2);
@@ -1660,7 +1715,7 @@ input {
   align-items: center;
 }
 .date-filter:hover {
-  width: 84px;
+  width: 79px;
   height: 31px;
   margin: 8px;
   background-color: rgba(212, 212, 212, 0.2);
@@ -1669,10 +1724,10 @@ input {
 }
 
 .date-filter-clicked {
-  width: 84px;
+  width: 79px;
   height: 31px;
   margin: 8px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: $medium;
   color: $huntease-main;
   border-radius: 16px;
@@ -1681,6 +1736,23 @@ input {
   flex-direction: column;
   align-items: center;
   background-color: #e9effb;
+}
+
+.compare-performance {
+  width: 79px;
+  height: 31px;
+  margin: 8px;
+  font-size: 14px;
+  font-weight: $medium;
+  color: #d4d4d4;
+  border: 2px solid #d4d4d4;
+  background-color: white;
+  border-radius: 16px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 95px;
 }
 
 .meeting-list {
@@ -1708,6 +1780,7 @@ input {
         p {
           font-size: 15px;
           font-weight: $medium;
+          color: #254ebe;
         }
       }
     }
@@ -1731,7 +1804,7 @@ input {
           align-items: left;
         }
         p {
-          color: $huntease-medium;
+          color: #c4cfef;
           font-weight: $custom;
           font-size: 15px;
           text-align: left;
@@ -1742,13 +1815,13 @@ input {
           justify-content: left;
           flex-direction: column;
           align-items: left;
-          color: $huntease-medium;
+          color: #c4cfef;
           font-weight: $custom;
           font-size: 15px;
           text-align: left;
 
           #title {
-            color: $huntease-dark;
+            color: #052375;
             font-weight: $medium;
             font-size: 16px;
           }

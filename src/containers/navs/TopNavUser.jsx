@@ -10,7 +10,7 @@ export default class TopNavUser extends React.Component {
   }
   render() {
     return (
-      <div>
+      <div className="topnav">
         <Col>
           <Link to={"/user/login"}>
             <img

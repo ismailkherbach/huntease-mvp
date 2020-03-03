@@ -33,14 +33,14 @@ class Engagement extends React.Component {
             </h1>
           </Col>
           <Col>
-            <div className="inlineBtn-right mt-2">
+            <div className="inlineBtn-right mt-2 mr-4">
               <ButtonDate class={unclickedDate}>Daily</ButtonDate>
               <ButtonDate class={unclickedDate}>Weekly</ButtonDate>
               <ButtonDate class={unclickedDate}>Monthly</ButtonDate>
             </div>
           </Col>
         </Row>
-        <Row className="mt-4 ml-3">
+        <Row className="mt-4 ml-4">
           <Col>
             <CircleChart />
           </Col>

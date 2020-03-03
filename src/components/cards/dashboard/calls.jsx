@@ -12,8 +12,11 @@ class Calls extends React.Component {
     const { barData, barLabels } = this.props.dashboard;
     return (
       <Fragment>
-        <div id="calls" className="no-gutters mx-0">
+        <div id="calls">
           {" "}
+          <h1 id="card-title-right" className="float-right">
+            Total: 400
+          </h1>{" "}
           <h1 id="card-title">
             {" "}
             <IntlMessages id="calls" />

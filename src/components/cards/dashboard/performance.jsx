@@ -18,6 +18,9 @@ class Performance extends React.Component {
       <Fragment>
         <div id="performance" className="no-gutters mx-0">
           {" "}
+          <h1 id="card-title-performance" className="float-right">
+            44,5%
+          </h1>
           <h1 id="card-title">
             {" "}
             <IntlMessages id="performance" />
@@ -25,6 +28,7 @@ class Performance extends React.Component {
           <div className="inlineBtn-left">
             <ButtonDate class={unclickedDate}>Weekly</ButtonDate>
             <ButtonDate class={unclickedDate}>Monthly</ButtonDate>
+            <ButtonDate class={"compare-performance"}>Compare</ButtonDate>
           </div>
           <PerformanceGraph lineData={lineData} lineLabels={lineLabels} />
         </div>

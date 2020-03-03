@@ -6,7 +6,11 @@ import PerfectScrollbar from "react-perfect-scrollbar";
 const Meetings = ({ children }) => {
   return (
     <Fragment>
-      <div id="meetings" className="no-gutters mx-0">
+      <div id="meetings">
+        <h1 id="card-title-right" className="float-right">
+          Total: 400
+        </h1>
+
         <h1 id="card-title">
           {" "}
           <IntlMessages id="meeting" />

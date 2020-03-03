@@ -17,10 +17,10 @@ export default class Dashboard extends React.Component {
     return (
       <Fragment>
         <Row>
-          <Col>
+          <Col className="col-4">
             <Performance />
           </Col>
-          <Col>
+          <Col className="col-3">
             <Calls />
           </Col>
           <Col>
@@ -32,7 +32,7 @@ export default class Dashboard extends React.Component {
             <Engagement />
           </Col>
           <Col>
-            <TopSales />
+            <AddTeam />
           </Col>
         </Row>
       </Fragment>
