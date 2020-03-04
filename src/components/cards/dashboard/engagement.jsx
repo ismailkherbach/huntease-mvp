@@ -2,8 +2,7 @@ import React, { Fragment } from "react";
 import IntlMessages from "../../../helpers/IntlMessages";
 import CircleChart from "../../chart/Circle";
 import ButtonDate from "../../small.componenets/Btn";
-import { unclickedDate } from "../../../constants/buttonStatus";
-
+import { unclickedDate, clickedDate } from "../../../constants/buttonStatus";
 import { Row, Col } from "reactstrap";
 import { connect } from "react-redux";
 import { getEngagement } from "../../../redux/actions";
@@ -35,7 +34,7 @@ class Engagement extends React.Component {
           <Col>
             <div className="inlineBtn-right mt-2 mr-4">
               <ButtonDate class={unclickedDate}>Daily</ButtonDate>
-              <ButtonDate class={unclickedDate}>Weekly</ButtonDate>
+              <ButtonDate class={clickedDate}>Weekly</ButtonDate>
               <ButtonDate class={unclickedDate}>Monthly</ButtonDate>
             </div>
           </Col>
@@ -46,7 +45,13 @@ class Engagement extends React.Component {
           </Col>
           <Col className="no-gutters mx-0 col-3">
             <div className="stats">
-              <p>Answered calls</p>
+              <div className="inlineBtn-left">
+                <img
+                  alt="pt"
+                  src={require("../../../assets/img/blue_pt.png")}
+                />
+                <p>Answered calls</p>
+              </div>
               <h3>{answeredCalls}</h3>
             </div>
             <div className="stats pt-4">
@@ -56,7 +61,13 @@ class Engagement extends React.Component {
           </Col>
           <Col className="no-gutters mx-0">
             <div className="stats">
-              <p>Calls past 2 minutes</p>
+              <div className="inlineBtn-left">
+                <img
+                  alt="pt"
+                  src={require("../../../assets/img/orange_pt.png")}
+                />
+                <p>Calls past 2 minutes</p>
+              </div>
               <h3>{callsPastTwo}</h3>
             </div>
             <div className="stats pt-4">

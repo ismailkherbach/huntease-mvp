@@ -3,6 +3,8 @@ import IntlMessages from "../../../helpers/IntlMessages";
 import { UncontrolledCollapse } from "reactstrap";
 import { meetings } from "../../../constants/meetings";
 import PerfectScrollbar from "react-perfect-scrollbar";
+import { unclickedDate, clickedDate } from "../../../constants/buttonStatus";
+
 const Meetings = ({ children }) => {
   return (
     <Fragment>
@@ -16,9 +18,9 @@ const Meetings = ({ children }) => {
           <IntlMessages id="meeting" />
         </h1>
         <div className="inlineBtn-center">
-          <div className="date-filter">Daily</div>
-          <div className="date-filter">Weekly</div>
-          <div className="date-filter">Monthly</div>
+          <div class={unclickedDate}>Daily</div>
+          <div class={clickedDate}>Weekly</div>
+          <div class={unclickedDate}>Monthly</div>
         </div>
         <PerfectScrollbar>
           {" "}
@@ -29,11 +31,11 @@ const Meetings = ({ children }) => {
                   <ul>
                     <div className="inlineBtn-left">
                       <div className="inlineBtn-date">
-                        <p className="mr-3 pb-0"> Juin</p>
+                        <h4 className="mr-3 pb-0"> Juin</h4>
                         <p className="mr-3 pb-0"> 19</p>
                       </div>
                       <h4 id={"toggler" + meetingList.id}>
-                        {meetingList.meetingsNumber + " Meeting"}
+                        {meetingList.meetingsNumber + " MEETINGS"}
                       </h4>
                     </div>
                     <UncontrolledCollapse toggler={"toggler" + meetingList.id}>

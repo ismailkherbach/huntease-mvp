@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import PerformanceGraph from "../../chart/Line";
 import IntlMessages from "../../../helpers/IntlMessages";
 import ButtonDate from "../../small.componenets/Btn";
-import { unclickedDate } from "../../../constants/buttonStatus";
+import { unclickedDate, clickedDate } from "../../../constants/buttonStatus";
 import { connect } from "react-redux";
 import { getPerformance } from "../../../redux/actions";
 class Performance extends React.Component {

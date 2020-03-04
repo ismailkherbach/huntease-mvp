@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import BarChart from "../../chart/Bar";
 import Btn from "./../../small.componenets/Btn";
+import { unclickedDate, clickedDate } from "../../../constants/buttonStatus";
 import IntlMessages from "../../../helpers/IntlMessages";
 import { connect } from "react-redux";
 import { getCalls } from "../../../redux/actions";
@@ -22,8 +23,8 @@ class Calls extends React.Component {
             <IntlMessages id="calls" />
           </h1>
           <div className="inlineBtn-center">
-            <Btn class={"date-filter-clicked"}>Weekly</Btn>
-            <Btn class={"date-filter"}>Monthly</Btn>
+            <Btn class={clickedDate}>Weekly</Btn>
+            <Btn class={unclickedDate}>Monthly</Btn>
           </div>
           <BarChart barData={barData} barLabels={barLabels} />
         </div>

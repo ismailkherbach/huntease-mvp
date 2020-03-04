@@ -326,6 +326,15 @@ span {
     width: 715px;
   }
   .stats {
+    div {
+      img {
+        margin-top: 6px;
+        margin-right: 6px;
+
+        height: 9px;
+        width: 9px;
+      }
+    }
     h3 {
       font-size: 28px;
       font-family: "Rubik";
@@ -1774,18 +1783,26 @@ input {
     align-items: left;
     div {
       h4 {
-        color: $huntease-accent;
-        font-weight: $medium;
-        font-size: 20px;
+        color: #ffb58d;
+        font-weight: $bold;
+        font-size: 16px;
       }
       h4:hover {
         cursor: grab;
       }
       div {
         p {
-          font-size: 15px;
+          font-family: "Rubik";
+          font-size: 16px;
           font-weight: $medium;
-          color: $huntease-main;
+          color: #254ebe;
+        }
+        h4 {
+          font-family: "Rubik";
+
+          font-size: 12px;
+          font-weight: $custom;
+          color: #254ebe;
         }
       }
     }
@@ -1809,7 +1826,7 @@ input {
           align-items: left;
         }
         p {
-          color: #c4cfef;
+          color: #a8c4ff;
           font-weight: $custom;
           font-size: 15px;
           text-align: left;
@@ -1820,7 +1837,7 @@ input {
           justify-content: left;
           flex-direction: column;
           align-items: left;
-          color: #c4cfef;
+          color: #a8c4ff;
           font-weight: $custom;
           font-size: 15px;
           text-align: left;
