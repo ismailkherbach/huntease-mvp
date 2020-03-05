@@ -137,18 +137,25 @@ export const circleOptions = {
       label: (item, data) => data.datasets[item.datasetIndex].data[item.index]
     }
   },*/
-  cutoutPercentage: 65,
+  segmentShowStroke: false,
+  elements: {
+    arc: {
+      borderWidth: 0
+    }
+  },
+  cutoutPercentage: 50,
   elements: {
     center: {
       text: `${"Total"}\ 416`,
       fontColor: "#c4cfef",
       fontFamily: "Rubik",
       fontStyle: "normal",
-      padding: "4px",
-      minFontSize: 22,
-      maxFontSize: 22
+      padding: "2px",
+      minFontSize: 21,
+      maxFontSize: 21
     }
   },
+
   maintainAspectRatio: false,
 
   legend: {

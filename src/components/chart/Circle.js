@@ -89,12 +89,38 @@ class CircleChart extends React.Component {
     gradient.addColorStop(1, "#FF9A7A");
 
     const circleData = {
-      labels: ["Red", "Blue", "Yellow"],
+      labels: ["Calls past 2 minutes", "Answered calls", "All calls"],
       datasets: [
         {
           data: [80, 150, 100],
+          backgroundColor: [gradient, "white", "white"],
+          hoverBackgroundColor: [gradient, "white", "white"],
+          borderWidth: 0,
+          label: "Doughnut 2"
+        },
+        {
+          data: [80, 150, 100],
           backgroundColor: [gradient, "#254EBE", "#F0F0F0"],
-          hoverBackgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"]
+          hoverBackgroundColor: [gradient, "#254EBE", "#F0F0F0"],
+          borderWidth: 1,
+          borderColor: [gradient, "#254EBE", "#F0F0F0"],
+          label: "Doughnut 3"
+        },
+        {
+          data: [80, 150, 100],
+          backgroundColor: [gradient, "#254EBE", "white"],
+          hoverBackgroundColor: [gradient, "#254EBE", "white"],
+          borderWidth: 0,
+
+          label: "Doughnut 4"
+        },
+        {
+          data: [80, 150, 100],
+          backgroundColor: [gradient, "white", "white"],
+          hoverBackgroundColor: [gradient, "white", "white"],
+          borderWidth: 1,
+          borderColor: [gradient, "white", "white"],
+          label: "Doughnut 5"
         }
       ]
     };
