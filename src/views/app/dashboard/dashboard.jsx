@@ -32,7 +32,7 @@ export default class Dashboard extends React.Component {
             <Engagement />
           </Col>
           <Col>
-            <AddTeam />
+            <TopSales />
           </Col>
         </Row>
       </Fragment>

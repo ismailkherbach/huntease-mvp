@@ -13,7 +13,10 @@ import {
   ENGAGEMENT_RATE_ERROR,
   TEAM_LIST_ADD_MEMBER_ERROR,
   TEAM_LIST_ADD_MEMBER_SUCCESS,
-  TEAM_LIST_ADD_MEMBER
+  TEAM_LIST_ADD_MEMBER,
+  TEAM_LIST_GET_MEMBER,
+  TEAM_LIST_GET_MEMBER_SUCCESS,
+  TEAM_LIST_GET_MEMBER_ERROR
 } from "../../actions";
 
 export const getPerformance = () => ({
@@ -49,7 +52,14 @@ export const getEngagementSuccess = item => ({
   type: ENGAGEMENT_RATE_SUCCESS,
   payload: item
 });
+export const getTeamSuccess = item => ({
+  type: TEAM_LIST_GET_MEMBER_SUCCESS,
+  payload: item
+});
 
+export const getTeam = () => ({
+  type: TEAM_LIST_GET_MEMBER
+});
 export const getPerformanceError = error => ({
   type: PERFORMANCE_LIST_GET_ERROR,
   payload: error
@@ -67,6 +77,11 @@ export const getMeetingsError = error => ({
 
 export const getEngagementError = error => ({
   type: ENGAGEMENT_RATE_ERROR,
+  payload: error
+});
+
+export const getTeamError = error => ({
+  type: TEAM_LIST_GET_MEMBER_ERROR,
   payload: error
 });
 
