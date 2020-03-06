@@ -87,7 +87,13 @@ export default (state = INIT_STATE, action) => {
 
     case TEAM_LIST_ADD_MEMBER_ERROR:
       return { ...state, loading: true, error: action.payload };
+    case TEAM_LIST_GET_MEMBER:
+      return { ...state, loading: false };
+    case TEAM_LIST_GET_MEMBER_SUCCESS:
+      return { ...state, loading: true, topSales: action.payload };
 
+    case TEAM_LIST_GET_MEMBER_ERROR:
+      return { ...state, loading: true, error: action.payload };
     default:
       return { ...state };
   }

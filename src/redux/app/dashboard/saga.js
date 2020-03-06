@@ -5,7 +5,8 @@ import {
   PERFORMANCE_LIST_GET,
   CALLS_LIST_GET,
   ENGAGEMENT_RATE,
-  TEAM_LIST_ADD_MEMBER
+  TEAM_LIST_ADD_MEMBER,
+  TEAM_LIST_GET_MEMBER
 } from "../../actions";
 
 import {
@@ -16,13 +17,16 @@ import {
   getEngagementSuccess,
   getEngagementError,
   addTeamMemberSuccess,
-  addTeamMemberError
+  addTeamMemberError,
+  getTeamSuccess,
+  getTeamError
 } from "./actions";
 
 import performanceList from "../../../data/performance";
 import calls from "../../../data/calls";
 import engagement from "../../../data/engagements";
 import team from "../../../data/team";
+import topsales from "../../../data/topsales";
 
 const getPerformanceListRequest = async () => {
   return await new Promise((success, fail) => {
@@ -81,6 +85,25 @@ function* getEngagement() {
   }
 }
 
+const getTopsalesRequest = async () => {
+  return await new Promise((success, fail) => {
+    setTimeout(() => {
+      success(topsales);
+    }, 1000);
+  })
+    .then(response => response.topSalers)
+    .catch(error => error);
+};
+
+function* getTopsales() {
+  try {
+    const response = yield call(getTopsalesRequest);
+    yield put(getTeamSuccess(response));
+  } catch (error) {
+    yield put(getTeamError(error));
+  }
+}
+
 const addTeamMemberRequest = async item => {
   let items = team.team;
   item.id = items.length + 1;
@@ -118,11 +141,15 @@ export function* watchGetEngagement() {
 export function* watchAddTeam() {
   yield takeEvery(TEAM_LIST_ADD_MEMBER, addTeamMember);
 }
+export function* watchGetTeam() {
+  yield takeEvery(TEAM_LIST_GET_MEMBER, getTopsales);
+}
 export default function* rootSaga() {
   yield all([
     fork(watchGetPerformance),
     fork(watchGetCalls),
     fork(watchGetEngagement),
-    fork(watchAddTeam)
+    fork(watchAddTeam),
+    fork(watchGetTeam)
   ]);
 }

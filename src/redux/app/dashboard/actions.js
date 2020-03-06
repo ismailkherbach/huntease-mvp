@@ -32,6 +32,9 @@ export const getMeetings = () => ({
 export const getEngagement = () => ({
   type: ENGAGEMENT_RATE
 });
+export const getTeam = () => ({
+  type: TEAM_LIST_GET_MEMBER
+});
 
 export const getPerformanceSuccess = item => ({
   type: PERFORMANCE_LIST_GET_SUCCESS,
@@ -57,9 +60,6 @@ export const getTeamSuccess = item => ({
   payload: item
 });
 
-export const getTeam = () => ({
-  type: TEAM_LIST_GET_MEMBER
-});
 export const getPerformanceError = error => ({
   type: PERFORMANCE_LIST_GET_ERROR,
   payload: error
