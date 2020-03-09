@@ -26,8 +26,8 @@ $white: #ffffff;
 $gray: #eeeeee;
 $regular-radius: 15px;
 $max-radius: 50px;
-$font: Rubik;
-$regular: 200;
+$font: "IBM Plex Sans";
+$regular: 400;
 $custom: 400;
 $medium: 500;
 $bold: 700;
@@ -45,7 +45,7 @@ $heading-size: 19px;
 
 $bg-img: url("../img/bgauth.svg");
 $bg-lvl2: url("../img/bgapp.svg");
-$backgrd: url("../img//back_app.svg");
+$backgrd: url("../img//back_blue_air.svg");
 
 #logo {
   width: 44.1px;
@@ -59,8 +59,7 @@ $backgrd: url("../img//back_app.svg");
 }
 
 #root {
-  background: $backgrd;
-  background-size: cover;
+  background: $backgrd no-repeat;
 
   position: fixed;
   top: 0;
@@ -74,6 +73,7 @@ $backgrd: url("../img//back_app.svg");
   font-weight: $regular;
   box-sizing: border-box;
   color: $huntease-dark;
+  background-color: $huntease-light;
   top: 0;
   right: 0;
   bottom: 0;
@@ -115,7 +115,9 @@ $backgrd: url("../img//back_app.svg");
   }
   .greeting {
     color: $white;
-    font-size: 1.8rem;
+    font-size: 28px;
+    font-family: "IBM Plex Sans";
+    font-weight: 400;
     opacity: 0.7;
   }
 }
@@ -144,6 +146,8 @@ $backgrd: url("../img//back_app.svg");
 .greeting {
   color: $white;
   font-size: 1.8rem;
+  font-family: "IBM Plex Sans";
+
   opacity: 0.7;
 }
 .avatar {
@@ -170,7 +174,7 @@ span {
   font-family: $font;
   font-size: $card-title;
   color: $huntease-main;
-  font-weight: $bold;
+  font-weight: $regular;
 }
 #card-title-right {
   padding-top: $spacing;
@@ -178,7 +182,7 @@ span {
   font-family: $font;
   font-size: $card-title;
   color: $huntease-medium;
-  font-weight: $bold;
+  font-weight: $regular;
 }
 #card-title-performance {
   padding-top: $spacing;
@@ -217,6 +221,7 @@ span {
   @include desktop-xl {
     width: 391, 5px;
     height: 310px;
+    margin-left: 0px;
   }
   @include desktop-lg {
     width: 391, 5px;
@@ -260,12 +265,14 @@ span {
   height: $top-component-height !important;
 
   @include desktop-sm {
-    width: 360px;
+    width: 385px;
+    height: 310px;
+    margin-left: 50px;
   }
   @include desktop-md {
     width: 385px;
     height: 310px;
-    margin-left: 50px;
+    margin-left: 70px;
   }
   @include desktop-xl {
     width: 385px;
@@ -317,7 +324,8 @@ span {
     width: 700px;
   }
   @include desktop-xl {
-    width: 100%;
+    height: 280px;
+    width: 715px;
     margin-left: 0px;
     margin-right: 0px;
   }
@@ -336,15 +344,15 @@ span {
       }
     }
     h3 {
-      font-size: 28px;
-      font-family: "Rubik";
+      font-size: 26px;
+      font-family: "IBM Plex Sans";
       font-weight: $regular;
       color: $huntease-medium;
     }
     p {
       font-size: 14px;
-      font-family: "Rubik";
-      font-weight: $custom;
+      font-family: "IBM Plex Sans";
+      font-weight: $regular;
       color: $huntease-main;
       margin-bottom: 5px;
     }
@@ -365,12 +373,12 @@ span {
     width: 385px;
   }
   @include desktop-md {
-    width: 440px;
+    width: 420px;
   }
   @include desktop-xl {
-    width: 60%;
+    width: 416px;
+    height: 280px;
     margin-left: 0px;
-    margin-right: 4rem;
   }
   @include desktop-lg {
     width: 416px;
@@ -647,7 +655,7 @@ span {
   position: fixed;
   font-size: 18px;
   font-weight: 500;
-  font-family: Rubik;
+  font-family: IBM Plex Sans;
   color: #254ebe;
   display: flex;
   justify-content: center;
@@ -682,7 +690,7 @@ span {
   h4 {
     font-size: 16px;
     font-weight: $regular;
-    font-family: Rubik;
+    font-family: IBM Plex Sans;
     color: white;
     margin: $spacing;
   }
@@ -700,7 +708,7 @@ span {
     color: white;
     font-size: 16px;
     font-weight: 400;
-    font-family: Rubik;
+    font-family: IBM Plex Sans;
     margin: 12px;
   }
 }
@@ -709,7 +717,7 @@ span {
   color: white;
   font-size: 28px;
   font-weight: 400;
-  font-family: Rubik;
+  font-family: IBM Plex Sans;
   margin: 15px;
 }
 
@@ -770,7 +778,7 @@ input {
   text-align: center;
   font-size: 14px;
   font-weight: 300;
-  font-family: Rubik;
+  font-family: IBM Plex Sans;
   color: #c4cfef;
   margin: 0px;
 }
@@ -788,13 +796,14 @@ input {
   height: 90vh;
   width: 11%;
   margin-right: 20px;
+  margin-left: 0px;
   transform: translateZ(0);
   transition: transform 0.25s ease-out;
   #logout {
     margin-top: 195px;
   }
   @include desktop-xl {
-    margin-left: 8%;
+    margin-right: 0px;
   }
   ul li {
     color: $huntease-medium;
@@ -1758,8 +1767,8 @@ input {
   margin: 8px;
   font-size: 14px;
   font-weight: $medium;
-  color: #d4d4d4;
-  border: 2px solid #d4d4d4;
+  color: $huntease-red;
+  border: 2px solid $huntease-red;
   background-color: white;
   border-radius: 16px;
   display: flex;
@@ -1792,13 +1801,13 @@ input {
       }
       div {
         p {
-          font-family: "Rubik";
+          font-family: "IBM Plex Sans";
           font-size: 16px;
           font-weight: $medium;
           color: #254ebe;
         }
         h4 {
-          font-family: "Rubik";
+          font-family: "IBM Plex Sans";
 
           font-size: 12px;
           font-weight: $custom;

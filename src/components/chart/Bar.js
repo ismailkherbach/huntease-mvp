@@ -299,6 +299,34 @@ class BarChart extends React.Component {
         ctx.stroke();
       }
     };
+
+    var ctx = document.getElementById("canvas").getContext("2d");
+    var gradient = ctx.createLinearGradient(0, 0, 0, 70);
+    gradient.addColorStop(0, "#FFD4A2");
+    gradient.addColorStop(0.5, "#FFD4A2");
+    gradient.addColorStop(1, "#FF8565");
+
+    const newChartData = {
+      labels: this.props.barLabels,
+
+      datasets: [
+        {
+          backgroundColor: gradient,
+
+          pointRadius: 4,
+          barPercentage: 0.3,
+          pointHoverRadius: 5,
+          borderTopLeftRadius: 50,
+          borderTopRightRadius: 50,
+          fill: false,
+          data: this.props.barData,
+          datalabels: {
+            fontStyle: "bold"
+          }
+        }
+      ]
+    };
+    this.setState({ chartData: newChartData });
   }
 
   render() {
@@ -306,26 +334,7 @@ class BarChart extends React.Component {
       <div>
         <Bar
           height={220}
-          data={{
-            labels: this.props.barLabels,
-
-            datasets: [
-              {
-                backgroundColor: "#FFB58D",
-
-                pointRadius: 4,
-                barPercentage: 0.5,
-                pointHoverRadius: 5,
-                borderTopLeftRadius: 50,
-                borderTopRightRadius: 50,
-                fill: false,
-                data: this.props.barData,
-                datalabels: {
-                  fontStyle: "bold"
-                }
-              }
-            ]
-          }}
+          data={this.state.chartData}
           options={{ ...barOptions }}
         />
       </div>

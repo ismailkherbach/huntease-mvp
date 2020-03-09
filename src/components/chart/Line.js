@@ -38,10 +38,10 @@ class PerformanceGraph extends Component {
         let _stroke = ctx.stroke;
         ctx.stroke = function() {
           ctx.save();
-          ctx.shadowColor = "#ffc371";
-          ctx.shadowBlur = 10;
+          ctx.shadowColor = "#FFF0E8";
+          ctx.shadowBlur = 4;
           ctx.shadowOffsetX = 0;
-          ctx.shadowOffsetY = 4;
+          ctx.shadowOffsetY = 10;
           _stroke.apply(this, arguments);
           ctx.restore();
         };
