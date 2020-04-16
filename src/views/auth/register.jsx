@@ -1,8 +1,163 @@
 import React, { Fragment } from "react";
-import { Col, Button } from "reactstrap";
+import ReactDOM from "react-dom";
+
+import {
+  Col,
+  Button,
+  Input,
+  Label,
+  FormGroup,
+  DropdownMenu,
+  DropdownToggle,
+  DropdownItem,
+  Dropdown
+} from "reactstrap";
 import { connect } from "react-redux";
 import { registerUser } from "../../redux/actions";
+import Btn from "../../components/small.componenets/Btn";
 import axios from "axios";
+
+export const secondStepView = props => {
+  return (
+    <Fragment>
+      <main className="auth-container-align">
+        <div className="inlineBtn-col-center">
+          <Button className="auth-button" onClick={this.onUserLogin}>
+            <div className="btn-get-started-text">Add a company</div>
+          </Button>
+
+          <Button className="auth-button" onClick={this.onUserLogin}>
+            <div className="btn-get-started-text">Join a company</div>
+          </Button>
+        </div>
+        <div className="auth-container">
+          {" "}
+          <div className="inlineBtn-center">
+            <Btn class={"btn-get-started"} onClick={this.onUserLogin}>
+              <div className="btn-get-started-text">1</div>
+            </Btn>
+          </div>
+          <div className="inlineBtn-center">
+            <input
+              className="auth-input"
+              placeholder="Work Email"
+              type="text"
+              onChange={this.handleChangeEmail}
+            />
+
+            <input
+              className="auth-input"
+              placeholder="Paasword"
+              type="password"
+              onChange={this.handleChangePassword}
+            />
+          </div>
+          <input
+            className="auth-input-large"
+            placeholder="Work Email"
+            type="text"
+            onChange={this.handleChangeEmail}
+          />
+          <input
+            className="auth-input-large"
+            placeholder="Paasword"
+            type="password"
+            onChange={this.handleChangePassword}
+          />
+          <div className="condition-term">
+            <FormGroup check>
+              <Label check>
+                <Input type="radio" name="radio1" /> I agree to Huntease Terms
+                and Privacy Policy.
+              </Label>
+            </FormGroup>
+          </div>
+          <Btn class={"btn-get-started"} onClick={this.onUserLogin}>
+            <div className="btn-get-started-text">
+              Create your company account
+            </div>
+          </Btn>
+        </div>
+      </main>
+    </Fragment>
+  );
+};
+
+export const firstStepView = props => {
+  return (
+    <Fragment>
+      <main className="auth-container-align">
+        <div className="inlineBtn-col-center">
+          <Button className="auth-button" onClick={this.onUserLogin}>
+            <div className="btn-get-started-text">Add a company</div>
+          </Button>
+
+          <Button className="auth-button" onClick={this.onUserLogin}>
+            <div className="btn-get-started-text">Join a company</div>
+          </Button>
+        </div>
+        <div className="auth-container">
+          {" "}
+          <div className="inlineBtn-center">
+            <input
+              className="auth-input"
+              placeholder="Work Email"
+              type="text"
+              onChange={this.handleChangeEmail}
+            />
+
+            <input
+              className="auth-input"
+              placeholder="Paasword"
+              type="password"
+              onChange={this.handleChangePassword}
+            />
+          </div>
+          <div className="inlineBtn-center">
+            <input
+              className="auth-input"
+              placeholder="Work Email"
+              type="text"
+              onChange={this.handleChangeEmail}
+            />
+
+            <input
+              className="auth-input"
+              placeholder="Paasword"
+              type="password"
+              onChange={this.handleChangePassword}
+            />
+          </div>
+          <input
+            className="auth-input-large"
+            placeholder="Work Email"
+            type="text"
+            onChange={this.handleChangeEmail}
+          />
+          <input
+            className="auth-input-large"
+            placeholder="Paasword"
+            type="password"
+            onChange={this.handleChangePassword}
+          />
+          <div className="condition-term">
+            <FormGroup check>
+              <Label check>
+                <Input type="radio" name="radio1" /> I agree to Huntease Terms
+                and Privacy Policy.
+              </Label>
+            </FormGroup>
+          </div>
+          <Btn class={"btn-get-started"} onClick={this.onUserLogin}>
+            <div className="btn-get-started-text">
+              Create your company account
+            </div>
+          </Btn>
+        </div>
+      </main>
+    </Fragment>
+  );
+};
 class Register extends React.Component {
   constructor(props) {
     super(props);
@@ -10,7 +165,8 @@ class Register extends React.Component {
       firstname: "",
       lastname: "",
       email: "",
-      password: ""
+      password: "",
+      secondStepStatus: true
     };
 
     this.handleChangeFirst = this.handleChangeFirst.bind(this);
@@ -35,6 +191,9 @@ class Register extends React.Component {
   onUserRegister = () => {
     this.props.registerUser(this.state, this.props.history);
   };
+  secondStep = () => {
+    this.setState({ secondStepStatus: true });
+  };
 
   /*handleSubmit = () => {
     axios({
@@ -58,84 +217,56 @@ class Register extends React.Component {
 
   render() {
     return (
-      <Fragment>
-        <main>
-          <div className="auth-container">
-            {" "}
-            <h3 className="signin-text">Creat your account</h3>
-            <Col>
+      <div>
+        <Fragment>
+          <main className="auth-container-align">
+            <div className="inlineBtn-col-center">
+              <Button className="auth-button" onClick={this.onUserLogin}>
+                <div className="btn-get-started-text">Add a company</div>
+              </Button>
+
+              <Button className="auth-button" onClick={this.onUserLogin}>
+                <div className="btn-get-started-text">Join a company</div>
+              </Button>
+            </div>
+            <div className="auth-container">
+              {" "}
+              <div className="inlineBtn-center">
+                <Btn class={"btn-choice-company"} onClick={this.onUserLogin}>
+                  <h3>1</h3>
+                </Btn>
+                <Btn class={"btn-choice-company"} onClick={this.onUserLogin}>
+                  <h3>5 - 10</h3>
+                </Btn>
+                <Btn class={"btn-choice-company"} onClick={this.onUserLogin}>
+                  <h3>2 - 6</h3>
+                </Btn>
+                <Btn class={"btn-choice-company"} onClick={this.onUserLogin}>
+                  <h3>10 - 50</h3>
+                </Btn>
+                <Btn class={"btn-choice-company"} onClick={this.onUserLogin}>
+                  <h3>+50</h3>
+                </Btn>
+              </div>
               <input
-                className="auth-input"
-                placeholder="Nom"
-                type="text"
-                onChange={this.handleChangeFirst}
-              />
-            </Col>{" "}
-            <Col>
-              <input
-                className="auth-input"
-                placeholder="Prenom"
-                type="text"
-                onChange={this.handleChangeLast}
-              />
-            </Col>{" "}
-            <Col>
-              <input
-                className="auth-input"
+                className="auth-input-large"
                 placeholder="Work Email"
                 type="text"
                 onChange={this.handleChangeEmail}
               />
-            </Col>{" "}
-            <Col>
               <input
-                className="auth-input"
+                className="auth-input-large"
                 placeholder="Paasword"
                 type="password"
                 onChange={this.handleChangePassword}
               />
-            </Col>
-            <Button
-              className="btn-get-started"
-              style={{
-                backgroundColor: "#ffc371",
-                border: "none",
-                borderRadius: "15px"
-              }}
-              onClick={this.onUserRegister}
-            >
-              <div
-                className="btn-get-started-text"
-                onClick={this.onUserRegister}
-              >
-                Get started
-              </div>
-            </Button>
-            <div className="condition-term">
-              <p>By creating an account, you agree to our Terms of</p>
-              <p>Service and Privacy Policy</p>
-              <p> Or continue with: </p>
+              <Btn class={"btn-get-started"} onClick={this.onUserLogin}>
+                <div className="btn-get-started-text">Access my account</div>
+              </Btn>
             </div>
-            <Button
-              style={{
-                backgroundColor: "#0177b5",
-                border: "none",
-                borderRadius: "15px"
-              }}
-              onClick={this.handleSubmit}
-            >
-              <div className="linkedinbtn">
-                {" "}
-                <img
-                  alt={"linkedin"}
-                  src={require("../../assets/img/linkedinbtn.svg")}
-                />
-                <h3>Sign in with Linkedin</h3>
-              </div>
-            </Button>
-          </div>
-        </main>
-      </Fragment>
+          </main>
+        </Fragment>
+      </div>
     );
   }
 }

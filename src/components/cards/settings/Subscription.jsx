@@ -16,7 +16,7 @@ const SubscriptionContent = ({ children }) => {
         </Col>
         <Col>
           <Row>
-            <div id="profil-card"></div>
+            <div className="profil-card"></div>
           </Row>
           <Row className="pt-0">
             <Terms />

@@ -1,9 +1,9 @@
 @import "./_mixins.scss";
 $topnav-height: 0px;
-$navbar-height: 60px;
-$navbar-height-xs: 70px;
-$navbar-height-md: 100px;
-$navbar-height-lg: 90px;
+$navbar-height: 30px;
+$navbar-height-xs: 30px;
+$navbar-height-md: 30px;
+$navbar-height-lg: 30px;
 
 // --------- Importing Rubik as main font
 @import url("https://fonts.googleapis.com/css?family=Rubik:200,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap");
@@ -32,7 +32,7 @@ $custom: 400;
 $medium: 500;
 $bold: 700;
 $shadow: 0px 1px 10px rgba(0, 0, 0, 0.08);
-$side-margin: 1.5rem;
+$side-margin: 1rem;
 $spacing: 1.3rem;
 $menu-space: 180px;
 $nav-box: 81px;
@@ -46,6 +46,8 @@ $heading-size: 19px;
 $bg-img: url("../img/bgauth.svg");
 $bg-lvl2: url("../img/bgapp.svg");
 $backgrd: url("../img//back_blue_air.svg");
+$login_page: url("../img//login_page.svg");
+$mainback: url("../img/mainback.svg");
 
 #logo {
   width: 44.1px;
@@ -59,7 +61,7 @@ $backgrd: url("../img//back_blue_air.svg");
 }
 
 #root {
-  background: $backgrd no-repeat;
+  background: $mainback repeat;
 
   position: fixed;
   top: 0;
@@ -97,28 +99,22 @@ $backgrd: url("../img//back_blue_air.svg");
 .topnav {
   height: 100px;
   margin-left: 4rem;
+  margin-bottom: 0px;
+
   p {
     color: white;
   }
   p:hover {
     cursor: pointer;
   }
-  .hamburger {
-    img {
-      width: 171px;
-      height: 35px;
-    }
-    margin-left: 5px;
-    margin-right: 0.6rem;
-    font-size: 1.6rem;
-    padding-bottom: 0;
-  }
+
   .greeting {
     color: $white;
     font-size: 28px;
     font-family: "IBM Plex Sans";
     font-weight: 400;
     opacity: 0.7;
+    margin-bottom: 0px;
   }
 }
 
@@ -202,8 +198,10 @@ span {
 }
 
 #performance {
-  width: 391, 5px;
-  height: 310px;
+  max-width: 375px;
+  max-height: 315px;
+  min-width: 375px;
+  min-height: 315px;
   margin-top: $topnav-height;
   background: $white;
   border-radius: $regular-radius;
@@ -211,27 +209,29 @@ span {
   height: $top-component-height !important;
 
   @include desktop-sm {
-    width: 391, 5px;
-    height: 310px;
+    width: 375px;
+    height: 315px;
   }
   @include desktop-md {
-    width: 391, 5px;
-    height: 310px;
+    width: 375px;
+    height: 315px;
   }
   @include desktop-xl {
-    width: 391, 5px;
-    height: 310px;
+    width: 375px;
+    height: 315px;
     margin-left: 0px;
   }
   @include desktop-lg {
-    width: 391, 5px;
-    height: 310px;
+    width: 375px;
+    height: 315px;
   }
 }
 
 #calls {
-  width: 340px;
-  height: 310px;
+  max-width: 360px;
+  max-height: 315px;
+  min-width: 360px;
+  min-height: 315px;
   margin-top: $topnav-height;
   background: $white;
   border-radius: $regular-radius;
@@ -239,25 +239,27 @@ span {
   height: $top-component-height !important;
 
   @include desktop-sm {
-    width: 340px;
-    height: 310px;
+    width: 360px;
+    height: 315px;
   }
   @include desktop-md {
-    width: 340px;
-    height: 310px;
+    width: 360px;
+    height: 315px;
   }
   @include desktop-xl {
-    width: 340px;
-    height: 310px;
+    width: 360px;
+    height: 315px;
   }
   @include desktop-lg {
-    width: 340px;
-    height: 310px;
+    width: 360px;
+    height: 315px;
   }
 }
 #meetings {
-  width: 385px;
-  height: 310px;
+  max-width: 375px;
+  max-height: 315px;
+  min-width: 375px;
+  min-height: 315px;
   margin-top: $topnav-height;
   background: $white;
   border-radius: $regular-radius;
@@ -265,24 +267,24 @@ span {
   height: $top-component-height !important;
 
   @include desktop-sm {
-    width: 385px;
-    height: 310px;
+    width: 375px;
+    height: 315px;
     margin-left: 50px;
   }
   @include desktop-md {
-    width: 385px;
-    height: 310px;
-    margin-left: 70px;
+    width: 375px;
+    height: 315px;
+    margin-left: 80px;
   }
   @include desktop-xl {
-    width: 385px;
-    height: 310px;
-    margin-left: 50px;
+    width: 375px;
+    height: 315px;
+    margin-left: 70px;
   }
   @include desktop-lg {
-    width: 385px;
-    height: 310px;
-    margin-left: 58px;
+    width: 375px;
+    height: 315px;
+    margin-left: 70px;
   }
 
   ::-webkit-scrollbar {
@@ -307,9 +309,11 @@ span {
 }
 
 #engagement-rate {
-  height: 280px;
-  width: 715px;
-  margin-top: 35px;
+  max-height: 280px;
+  max-width: 686px;
+  min-height: 280px;
+  min-width: 686px;
+  margin-top: 34px;
   height: $bottom-component-height;
   background: $white;
   box-shadow: $shadow;
@@ -361,14 +365,14 @@ span {
 
 #top-weekly-performers {
   background: $white;
-  width: 416px;
-  height: 280px;
-  margin-top: 35px;
+  max-width: 456px;
+  max-height: 280px;
+
+  margin-top: 34px;
   box-shadow: $shadow;
   height: $bottom-component-height;
   border-radius: $regular-radius;
-  margin-left: 0px;
-  margin-right: 0px;
+
   @include desktop-sm {
     width: 385px;
   }
@@ -477,6 +481,25 @@ span {
       border-radius: 0%;
     }
   }
+  ::-webkit-scrollbar {
+    background: $huntease-light;
+    border-radius: 2px;
+    height: 8px;
+    width: 7px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: $huntease-medium;
+    border-radius: 2px;
+    background-clip: content-box;
+    border: 5px solid transparent;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: $huntease-medium;
+  }
+  ::-webkit-scrollbar-button {
+    display: none;
+  }
 }
 
 #performance-darkmode {
@@ -575,7 +598,7 @@ span {
 #engagement-rate-darkmode {
   width: 730px;
   height: 270px;
-  margin-top: 20px;
+  margin-top: 34px;
   height: $bottom-component-height;
   background: $huntease-darkmode;
   box-shadow: $shadow;
@@ -663,7 +686,7 @@ span {
 }
 
 .authback {
-  background: $bg-img;
+  background: $login_page;
   background-size: cover;
   height: 100vh;
   margin-right: 0;
@@ -680,12 +703,48 @@ span {
   bottom: 0;
   left: 0;
   overflow-y: hidden;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.auth-container-align {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  .auth-button {
+    height: 61px;
+    width: 178px;
+    background-color: $huntease-dark;
+    color: white;
+    border-radius: 18px;
+    margin: 15px;
+    border: none;
+  }
+  .auth-button:hover {
+    height: 61px;
+    width: 178px;
+    background-color: white;
+    color: $huntease-dark;
+  }
+  .auth-button-clicked {
+    height: 61px;
+    width: 178px;
+    background-color: white;
+    color: $huntease-dark;
+  }
 }
 .auth-container {
-  text-align: center;
+  display: flex;
   justify-content: center;
   flex-direction: column;
+  align-items: center;
   margin-top: $navbar-height;
+  height: 409px;
+  width: 621px;
+  background-color: white;
+  border-radius: 18px;
 
   h4 {
     font-size: 16px;
@@ -725,31 +784,67 @@ span {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  height: 55px;
-  width: 325px;
-  background-color: white;
+  height: 43px;
+  width: 250px;
+  background-color: #e8edff;
+  color: #8ba3ff;
+
   border-radius: 15px;
   border-color: none;
-  padding: 10px;
-  margin: 4px;
+  padding: 20px;
+  margin: 10px;
   bottom: 0px;
+}
+.auth-input-large {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  height: 43px;
+  width: 513px;
+  background-color: #e8edff;
+  color: #8ba3ff;
+
+  border-radius: 15px;
+  border-color: none;
+  padding: 20px;
+  margin: 10px;
+  bottom: 0px;
+}
+.btn-choice-company {
+  border-radius: 5px;
+  margin: 10px;
+  background-color: #e8edff;
+  width: 100px;
+  height: 52px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  border-radius: $regular-radius;
+  h3 {
+    text-align: center;
+    font-size: 14px;
+    font-weight: $bold;
+    font-family: $font;
+    color: $huntease-main;
+  }
 }
 
 .btn-get-started {
-  height: 55px;
-  width: 325px;
-  background: #ffc371;
+  height: 43px;
+  width: 237px;
   border-radius: 15px;
-
   margin: 20px;
+  color: #001134;
+  border: 2px solid $huntease-main;
 }
 
 .btn-get-started-text {
   text-align: center;
-  font-size: 18px;
-  font-weight: $medium;
+  font-size: 14px;
+  font-weight: $bold;
   font-family: $font;
-  color: white;
+  color: $huntease-main;
   margin: 7px;
   display: flex;
   justify-content: center;
@@ -766,12 +861,11 @@ button:focus {
 input {
   border-radius: 0;
   -webkit-appearance: none;
-  background: none;
   border: 0;
   outline: 0;
   padding: 0;
   height: 1.8em;
-  color: #c4cfef;
+  color: #8ba3ff;
 }
 
 .condition-term {
@@ -790,17 +884,17 @@ input {
 }
 
 .sidenav {
-  top: 14px;
-  position: relative;
+  top: 0px;
   float: left;
   height: 90vh;
   width: 11%;
   margin-right: 20px;
   margin-left: 0px;
+  left: 0px;
   transform: translateZ(0);
   transition: transform 0.25s ease-out;
   #logout {
-    margin-top: 195px;
+    margin-top: 100px;
   }
   @include desktop-xl {
     margin-right: 0px;
@@ -1194,17 +1288,27 @@ input {
 // --------- Settings page
 
 #settings-navigation-card {
-  background: $white;
+  background: none;
   width: 816px;
   border-radius: $regular-radius;
   height: 59px !important;
   padding-top: 7px;
-  margin-bottom: 18px;
   display: flex;
   justify-content: center;
   flex-direction: row;
   align-items: center;
-
+  .setting-items {
+    background-color: white;
+    width: 170px;
+    height: 51px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin: 5px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+  }
   @include desktop-sm {
   }
   @include desktop-md {
@@ -1214,10 +1318,9 @@ input {
   @include desktop-lg {
   }
   h1 {
-    padding-right: $spacing;
     font-family: $font;
-    font-size: 20px;
-    font-weight: $custom;
+    font-size: 14px;
+    font-weight: $regular;
     color: $huntease-medium;
   }
 }
@@ -1260,8 +1363,8 @@ input {
   }
 
   #field {
-    height: 46px;
-    width: 325px;
+    height: 43px;
+    width: 300px;
     border-radius: $regular-radius;
     background-color: white;
     border: 1px solid $huntease-light;
@@ -1391,11 +1494,10 @@ input {
   }
 }
 #settings-card {
-  margin-top: $topnav-height;
   background: $white;
-  width: 816px;
+  width: 1143px;
   border-radius: $regular-radius;
-  height: 554px !important;
+  height: 623px !important;
 
   @include desktop-sm {
   }
@@ -1405,16 +1507,43 @@ input {
   }
   @include desktop-lg {
   }
+  .profile-input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    height: 43px;
+    width: 250px;
+    background-color: #e8edff;
+    color: #8ba3ff;
 
+    border-radius: 15px;
+    border-color: none;
+    padding-left: 20px;
+    margin-left: 30px;
+  }
+  .profile-input-large {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    height: 43px;
+    width: 513px;
+    background-color: #e8edff;
+    color: #8ba3ff;
+    border-radius: 15px;
+    border-color: none;
+    padding: 20px;
+    margin-left: 30px;
+    bottom: 0px;
+  }
   #field-top {
     display: flex;
-    margin-left: $spacing;
+    margin-left: 30px;
     margin-top: $spacing;
     margin-bottom: 4px;
     font-family: $font;
     font-size: 16px;
     font-weight: $regular;
-    color: $huntease-medium;
+    color: #8ba3ff;
   }
 
   #field-bottom {
@@ -1434,8 +1563,8 @@ input {
     border-radius: $regular-radius;
     background-color: white;
     border: 1px solid $huntease-light;
-    padding-left: $spacing;
-    margin-left: $spacing;
+    padding-left: 30px;
+    margin-left: 30px;
 
     display: flex;
     justify-content: left;
@@ -1472,6 +1601,25 @@ input {
     flex-direction: row;
     align-items: center;
   }
+  .profile-img {
+    width: 100px;
+    height: 100px;
+    border-radius: 10%;
+    margin: 10px;
+  }
+  h3 {
+    font-family: $font;
+    font-size: 20px;
+    font-weight: $bold;
+    color: $huntease-main;
+  }
+  p {
+    text-align: center;
+    font-family: $font;
+    font-size: 14px;
+    font-weight: $regular;
+    color: $huntease-main;
+  }
 }
 
 #subscription-card {
@@ -1507,16 +1655,19 @@ input {
   }
 }
 
-#profil-card {
-  background: $white;
-  width: 300px;
-  margin-left: 1.4rem;
+.profil-card {
+  background: white;
+  max-width: 300px;
+  max-height: 250px;
+  margin-left: auto;
+  margin-right: 50px;
+  margin-top: 50px;
 
   border-radius: $regular-radius;
-  height: 316px !important;
+  box-shadow: $shadow;
   display: flex;
   justify-content: center;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
 
   @include desktop-sm {
@@ -1527,6 +1678,17 @@ input {
   @include desktop-xl {
   }
   @include desktop-lg {
+  }
+  .change-button {
+    height: 37px;
+    width: 70px;
+    background-color: white;
+    color: $huntease-main;
+    border-radius: 10px;
+    margin: 15px;
+    border: none;
+    font-size: 14px;
+    box-shadow: $shadow;
   }
 }
 
@@ -1592,13 +1754,11 @@ input {
 }
 
 #application-card {
-  background: $white;
-  width: 255px;
+  width: 233px;
   margin-right: 23px;
   margin-bottom: 23px;
   margin-left: 0px;
-  border-radius: $regular-radius;
-  height: 270px !important;
+  height: 233px !important;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -1873,7 +2033,7 @@ input {
 .scroll-meeting {
   padding-right: unset;
   margin-right: unset;
-  height: 70%;
+  height: 67%;
   overflow-y: scroll;
 }
 .scroll-leads {

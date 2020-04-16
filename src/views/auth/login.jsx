@@ -1,8 +1,10 @@
 import React, { Fragment } from "react";
-import { Col, Button } from "reactstrap";
+import { Col, Row, Button } from "reactstrap";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { loginUser } from "../../redux/actions";
+import Btn from "../../components/small.componenets/Btn";
+
 import axios from "axios";
 
 class Login extends React.Component {
@@ -56,37 +58,27 @@ class Login extends React.Component {
   render() {
     return (
       <Fragment>
-        <main>
+        <main className="auth-container-align">
           <div className="auth-container">
             {" "}
-            <h3 className="signin-text">Welcome Back!</h3>
-            <Col>
-              <input
-                className="auth-input"
-                placeholder="Work Email"
-                type="text"
-                onChange={this.handleChangeEmail}
-              />
-            </Col>{" "}
-            <Col>
-              <input
-                className="auth-input"
-                placeholder="Paasword"
-                type="password"
-                onChange={this.handleChangePassword}
-              />
-            </Col>
-            <Button
-              className="btn-get-started"
-              style={{
-                backgroundColor: "#ffc371",
-                border: "none",
-                borderRadius: "15px"
-              }}
-              onClick={this.onUserLogin}
-            >
-              <div className="btn-get-started-text">Sign in</div>
-            </Button>
+            <h3 className="btn-get-started-textt">Welcome Back!</h3>
+            <input
+              className="auth-input-large"
+              placeholder="Work Email"
+              type="text"
+              onChange={this.handleChangeEmail}
+            />
+            <input
+              className="auth-input-large"
+              placeholder="Paasword"
+              type="password"
+              onChange={this.handleChangePassword}
+            />
+            <Btn class={"btn-get-started"} onClick={this.onUserLogin}>
+              <div className="btn-get-started-text" onClick={this.onUserLogin}>
+                Login
+              </div>
+            </Btn>
             <div className="condition-term">
               <Link
                 style={{ textDecoration: "none", color: "white" }}
@@ -94,8 +86,6 @@ class Login extends React.Component {
               >
                 <p>Forgot your password ?</p>
               </Link>
-
-              <p> Or continue with: </p>
             </div>
           </div>
         </main>

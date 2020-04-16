@@ -6,7 +6,7 @@ import { loginUserSuccess, registerUserSuccess } from "./actions";
 const loginWithEmailPasswordAsync = async (email, password) =>
   await axios({
     method: "post",
-    url: "http://localhost:5000/api/v1/auth/login",
+    url: "https://huntease-mvp.herokuapp.com/v1/account/login",
     data: {
       email,
       password
@@ -21,11 +21,8 @@ function* loginWithEmailPassword({ payload }) {
   try {
     const loginUser = yield call(loginWithEmailPasswordAsync, email, password);
     if (loginUser.status == 200) {
-      localStorage.setItem("token", loginUser.data.success[0].token);
-      localStorage.setItem(
-        "user_id",
-        JSON.stringify(loginUser.data.success[0].user)
-      );
+      localStorage.setItem("token", loginUser.data.token);
+
       yield put(loginUserSuccess(loginUser));
       history.push("/");
     } else {

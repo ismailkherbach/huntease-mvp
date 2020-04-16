@@ -9,7 +9,8 @@ import {
   UncontrolledDropdown,
   DropdownItem,
   DropdownToggle,
-  DropdownMenu
+  DropdownMenu,
+  Button
 } from "reactstrap";
 import Terms from "./Terms";
 import Helps from "./Helps";
@@ -36,102 +37,118 @@ class AccountCall extends React.Component {
       <Fragment>
         <Row>
           <Col>
-            <Row>
-              <div id="settings-card">
+            <div id="settings-card" className="no-gutters mx-0">
+              <Row>
                 <Col>
-                  <Row>
-                    <Col>
+                  <div className="inlineBtn-left mt-3">
+                    <div className="inlinBtn-col-center">
                       <div id="field-top">First name</div>
-                      <div id="field">
-                        {" "}
-                        {localStorage.getItem("user_id")
-                          ? this.state.userInfo.firstname
-                          : ""}
-                      </div>
-                    </Col>
 
-                    <Col>
-                      <div id="field-top">Last name</div>
-                      <div id="field">
-                        {" "}
-                        {localStorage.getItem("user_id")
-                          ? this.state.userInfo.lastname
-                          : ""}
-                      </div>
-                    </Col>
-                  </Row>
+                      <input
+                        className="profile-input"
+                        placeholder=""
+                        type="text"
+                        onChange={this.handleChangeEmail}
+                      />
+                    </div>
+                    <div className="inlinBtn-col-center">
+                      <div id="field-top">First name</div>
+
+                      <input
+                        className="profile-input"
+                        placeholder=""
+                        type="text"
+                        onChange={this.handleChangeEmail}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="inlineBtn-left">
+                    <div className="inlinBtn-col-center">
+                      <div id="field-top">First name</div>
+
+                      <input
+                        className="profile-input"
+                        placeholder=""
+                        type="text"
+                        onChange={this.handleChangeEmail}
+                      />
+                    </div>
+                    <div className="inlinBtn-col-center">
+                      <div id="field-top">First name</div>
+
+                      <input
+                        className="profile-input"
+                        placeholder=""
+                        type="text"
+                        onChange={this.handleChangeEmail}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="inlineBtn-left">
+                    <div className="inlinBtn-col-center">
+                      <div id="field-top">First name</div>
+
+                      <input
+                        className="profile-input"
+                        placeholder=""
+                        type="text"
+                        onChange={this.handleChangeEmail}
+                      />
+                    </div>
+                    <div className="inlinBtn-col-center">
+                      <div id="field-top">First name</div>
+
+                      <input
+                        className="profile-input"
+                        placeholder=""
+                        type="text"
+                        onChange={this.handleChangeEmail}
+                      />
+                    </div>
+                  </div>
                   <Row>
                     <Col>
-                      <div id="field-top">Company</div>
-                      <Input id="field" />
+                      {" "}
+                      <h3 id="field-top">Time Zone</h3>
                     </Col>
 
                     <Col>
-                      <div id="field-top">Industry</div>
-                      <Input id="field" />
+                      {" "}
+                      <input
+                        className="profile-input-large"
+                        placeholder=""
+                        type="text"
+                        onChange={this.handleChangeEmail}
+                      />
                     </Col>
                   </Row>
-                  <Row>
-                    <Col>
-                      <div id="field-top">Location</div>
-                      <Input id="field" />
-                    </Col>
-
-                    <Col>
-                      <div
-                        onClick={() => this.handleDarkMode("dark")}
-                        id="field-top"
-                      >
-                        Role
-                      </div>
-                      <Input id="field" />
-                    </Col>
-                  </Row>
-                  <div id="field-bottom">General settings</div>
-                  <Col>
-                    <div className="inlineBtn-left">
-                      <h3 id="field-top" className="mr-4">
-                        Langue
-                      </h3>
-                      <UncontrolledDropdown
-                        value={"langue"}
-                        className="d-inline-block mt-4"
-                      >
-                        <DropdownToggle id="field"></DropdownToggle>
-                        <DropdownMenu className="field">
-                          {localeOptions.map(l => {
-                            return (
-                              <DropdownItem
-                                onClick={() => this.handleChangeLocale(l.id)}
-                                key={l.id}
-                              >
-                                {l.name}
-                              </DropdownItem>
-                            );
-                          })}
-                        </DropdownMenu>
-                      </UncontrolledDropdown>{" "}
-                    </div>
-
-                    <div className="inlineBtn-left">
-                      <h3 id="field-top">Time zone</h3>
-                      <div id="field-bottom-input"></div>
-                    </div>
-                  </Col>
                 </Col>
-              </div>
-            </Row>
-          </Col>
-          <Col>
-            <Row>
-              <div id="profil-card"></div>
-            </Row>
-            <Row className="pt-0">
-              <Terms />
-            </Row>
-            <Row>
-              <Helps />
-            </Row>
+                <Col>
+                  <div className="profil-card">
+                    <img
+                      src={require("../../../assets/img/0.jpeg")}
+                      alt={"profile"}
+                      className="profile-img"
+                    />
+                    <h3>Lori Powell</h3>
+                    <p>Sales Development Representative</p>
+                    <p>Amazon</p>
+                  </div>
+
+                  <div className="profil-card inlineBtn-center">
+                    <input
+                      className="profile-input"
+                      placeholder="+213 541 1379"
+                      type="text"
+                      onChange={this.handleChangeEmail}
+                    />
+                    <Button className="change-button">Change</Button>
+                  </div>
+                </Col>
+              </Row>
+            </div>
           </Col>
         </Row>
       </Fragment>
