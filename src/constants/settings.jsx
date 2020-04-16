@@ -8,8 +8,8 @@ const data = [
     to: "/app/settings/application"
   },
   {
-    id: "privacy",
-    to: "/app/settings/privacy"
+    id: "Team",
+    to: "/app/settings/team"
   },
   {
     id: "subscription",

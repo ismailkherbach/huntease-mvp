@@ -1633,6 +1633,207 @@ input {
   }
 }
 
+#settings-card {
+  background: $white;
+  width: 1143px;
+  border-radius: $regular-radius;
+  height: 623px !important;
+  margin-top: -18px;
+  padding: 30px;
+  @include desktop-sm {
+  }
+  @include desktop-md {
+  }
+  @include desktop-xl {
+  }
+  @include desktop-lg {
+  }
+
+  .add-member-container {
+    height: 153px;
+    width: 1086px;
+    background-color: #0026bc;
+    border-radius: 15px;
+    padding: 15px;
+    h3 {
+      font-family: $font;
+      font-size: 21px;
+      font-weight: $bold;
+      color: white;
+    }
+    p {
+      text-align: left;
+      font-family: $font;
+      font-size: 14px;
+      font-weight: $regular;
+      color: #8ba3ff;
+    }
+    .member-input {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      height: 43px;
+      width: 250px;
+      background-color: #0e33c3;
+      border-radius: 10px;
+      border-color: none;
+      margin-right: 10px;
+      padding-left: 10px;
+      text-align: left;
+      font-family: $font;
+      font-size: 14px;
+      font-weight: $regular;
+      color: #8ba3ff;
+    }
+    .email-input {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      height: 43px;
+      width: 144px;
+      background-color: #0e33c3;
+      border-radius: 10px;
+      border-color: none;
+      margin-right: 10px;
+      padding-left: 10px;
+      text-align: left;
+      font-family: $font;
+      font-size: 14px;
+      font-weight: $regular;
+      color: #8ba3ff;
+    }
+
+    .send-invite {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      height: 43px;
+      width: 189px;
+      background-color: #8ba3ff;
+      color: $huntease-dark;
+      border-radius: 10px;
+      border-color: none;
+
+      text-align: center;
+      font-family: $font;
+      font-size: 14px;
+      font-weight: $bold;
+    }
+  }
+  .profile-input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    height: 43px;
+    width: 250px;
+    background-color: #e8edff;
+    color: #8ba3ff;
+
+    border-radius: 15px;
+    border-color: none;
+    padding-left: 20px;
+    margin-left: 30px;
+  }
+  .profile-input-large {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    height: 43px;
+    width: 513px;
+    background-color: #e8edff;
+    color: #8ba3ff;
+    border-radius: 15px;
+    border-color: none;
+    padding: 20px;
+    margin-left: 30px;
+    bottom: 0px;
+  }
+  #field-top {
+    display: flex;
+    margin-left: 30px;
+    margin-top: $spacing;
+    margin-bottom: 4px;
+    font-family: $font;
+    font-size: 16px;
+    font-weight: $regular;
+    color: #8ba3ff;
+  }
+
+  #field-bottom {
+    display: flex;
+    margin-left: $spacing;
+    margin-top: $spacing;
+    margin-bottom: 4px;
+    font-family: $font;
+    font-size: 16px;
+    font-weight: $medium;
+    color: $huntease-medium;
+  }
+
+  #field {
+    height: 46px;
+    width: 325px;
+    border-radius: $regular-radius;
+    background-color: white;
+    border: 1px solid $huntease-light;
+    padding-left: 30px;
+    margin-left: 30px;
+
+    display: flex;
+    justify-content: left;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  #field-button {
+    height: 46px;
+    width: 325px;
+    border-radius: $regular-radius;
+    background-color: white;
+    border: 1px solid $huntease-light;
+    padding-left: $spacing;
+    margin-left: $spacing;
+    color: $huntease-dark;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  #field-bottom-input {
+    height: 46px;
+    width: 490px;
+    border-radius: $regular-radius;
+    background-color: white;
+    border: 1px solid $huntease-light;
+    padding-left: $spacing;
+    margin-left: $spacing;
+    margin-top: $spacing;
+    display: flex;
+    justify-content: left;
+    flex-direction: row;
+    align-items: center;
+  }
+  .profile-img {
+    width: 100px;
+    height: 100px;
+    border-radius: 10%;
+    margin: 10px;
+  }
+  h3 {
+    font-family: $font;
+    font-size: 20px;
+    font-weight: $bold;
+    color: $huntease-main;
+  }
+  p {
+    text-align: center;
+    font-family: $font;
+    font-size: 14px;
+    font-weight: $regular;
+    color: $huntease-main;
+  }
+}
 #subscription-card {
   margin-top: $topnav-height;
   background: $white;

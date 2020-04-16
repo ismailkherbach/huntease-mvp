@@ -6,6 +6,7 @@ import Privacy from "./Privacy";
 import Subscription from "./Subscription";
 // import AppLayout from "../../../layout/AppLayout";
 import SettingsLayout from "../../../layout/SettingsLayout";
+import Team from "./Team";
 export default class Settings extends React.Component {
   render() {
     const { match } = this.props;
@@ -17,6 +18,7 @@ export default class Settings extends React.Component {
           <Route path={`${match.url}/account`} component={Account} />
           <Route path={`${match.url}/application`} component={Application} />
           <Route path={`${match.url}/privacy`} component={Privacy} />
+          <Route path={`${match.url}/team`} component={Team} />
           <Route path={`${match.url}/subscription`} component={Subscription} />
           <Redirect to="/error" />
         </Switch>
