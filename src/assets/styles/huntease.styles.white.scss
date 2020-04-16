@@ -668,8 +668,8 @@ span {
 
 .login-logo {
   margin-top: 40px;
-  left: 40px;
-  width: 16%;
+  width: 13%;
+
 }
 
 .login-signup-input {
@@ -708,9 +708,7 @@ span {
   bottom: 0;
   left: 0;
   overflow-y: hidden;
-  display: flex;
-  justify-content: center;
-  flex-direction: row;
+
 }
 
 .auth-container-align {
@@ -1375,7 +1373,7 @@ input {
   #field {
     height: 43px;
     width: 300px;
-    border-radius: $regular-radius;
+    border-radius: 10px;
     background-color: white;
     border: 1px solid $huntease-light;
     padding-left: $spacing;
@@ -1406,7 +1404,7 @@ input {
   #field-bottom-input {
     height: 46px;
     width: 490px;
-    border-radius: $regular-radius;
+    border-radius: 10px;
     background-color: white;
     border: 1px solid $huntease-light;
     padding-left: $spacing;
@@ -1526,11 +1524,10 @@ input {
     width: 250px;
     background-color: #e8edff;
     color: #8ba3ff;
-
-    border-radius: 15px;
+    border-radius: 10px;
     border-color: none;
-    padding-left: 20px;
-    margin-left: 30px;
+    padding-left: 5px;
+    margin-left: 5px;
   }
   .profile-input-large {
     -webkit-appearance: none;
@@ -1540,7 +1537,7 @@ input {
     width: 513px;
     background-color: #e8edff;
     color: #8ba3ff;
-    border-radius: 15px;
+    border-radius: 10px;
     border-color: none;
     padding: 20px;
     margin-left: 30px;
@@ -1548,7 +1545,7 @@ input {
   }
   #field-top {
     display: flex;
-    margin-left: 30px;
+    margin-left: 5px;
     margin-top: $spacing;
     margin-bottom: 4px;
     font-family: $font;
@@ -1615,7 +1612,7 @@ input {
   .profile-img {
     width: 100px;
     height: 100px;
-    border-radius: 10%;
+    border-radius: 50px;
     margin: 10px;
   }
   h3 {
@@ -1732,7 +1729,8 @@ input {
     border-radius: 15px;
     border-color: none;
     padding-left: 20px;
-    margin-left: 30px;
+    margin-left: 5px;
+    margin-right: 20px;
   }
   .profile-input-large {
     -webkit-appearance: none;
@@ -1745,16 +1743,15 @@ input {
     border-radius: 15px;
     border-color: none;
     padding: 20px;
-    margin-left: 30px;
+    margin-left: 5px;
     bottom: 0px;
   }
   #field-top {
     display: flex;
-    margin-left: 30px;
-    margin-top: $spacing;
+    margin-left: 5px;
     margin-bottom: 4px;
     font-family: $font;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: $regular;
     color: #8ba3ff;
   }
@@ -1817,7 +1814,7 @@ input {
   .profile-img {
     width: 100px;
     height: 100px;
-    border-radius: 10%;
+    border-radius: 20%;
     margin: 10px;
   }
   h3 {
@@ -1867,10 +1864,35 @@ input {
   }
 }
 
+.change-profil-card {
+  background: white;
+  width: 300px;
+  height: 43;
+  margin-left: auto;
+  margin-right: 30px;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  .change-button {
+    height: 37px;
+    width: 70px;
+    background-color: white;
+    color: $huntease-main;
+    border-radius: 10px;
+    margin-left: 15px;
+    margin-right: 25px;
+
+    border: none;
+    font-size: 14px;
+    box-shadow: $shadow;
+  }
+}
 .profil-card {
   background: white;
-  max-width: 300px;
-  max-height: 250px;
+  width: 300px;
+  height: 250px;
   margin-left: auto;
   margin-right: 30px;
   margin-top: 30px;

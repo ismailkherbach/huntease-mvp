@@ -12,17 +12,13 @@ import {
   DropdownItem,
   Dropdown
 } from "reactstrap";
-import { connect } from "react-redux";
-import { registerUser } from "../../redux/actions";
-import Btn from "../../components/small.componenets/Btn";
+import Btn from "../../../components/small.componenets/Btn";
 import axios from "axios";
-import AddCompanyFirstStep from "./steps/addCompanyFirst";
-import JoinCompanyFirstStep from "./steps/joinCompanyFirst";
+import JoinCompanySecondStep from "./joinCompanySecond"
 
 
 
-
-class Register extends React.Component {
+class JoinCompanyFirstStep extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -30,8 +26,7 @@ class Register extends React.Component {
       lastname: "",
       email: "",
       password: "",
-      joinCompany: false,
-      addCompany:true
+      secondStepStatus: false
     };
 
     this.handleChangeFirst = this.handleChangeFirst.bind(this);
@@ -56,8 +51,8 @@ class Register extends React.Component {
   onUserRegister = () => {
     this.props.registerUser(this.state, this.props.history);
   };
-  registerStatus = () => {
-    this.setState({ addCompany: !this.state.addCompany,joinCompany:!this.state.joinCompany });
+  secondStep = () => {
+    this.setState({ secondStepStatus: true });
   };
 
   /*handleSubmit = () => {
@@ -83,32 +78,35 @@ class Register extends React.Component {
   render() {
     return (
       <div>
-      <main className="auth-container-align">
-        <div className="inlineBtn-col-center">
-          <Button className="auth-button" onClick={this.registerStatus}>
-            <div className="btn-get-started-text">Add a company</div>
-          </Button>
-
-          <Button className="auth-button" onClick={this.registerStatus}>
-            <div className="btn-get-started-text">Join a company</div>
-          </Button>
+{!this.state.secondStepStatus ? <Fragment>
+  
+        <div className="auth-container">
+          {" "}
+          <div className="inlineBtn-center">
+      
+          </div>
+          <input
+            className="auth-input-large"
+            placeholder="Code"
+            type="text"
+            onChange={this.handleChangeEmail}
+          />
+      
+         
+          <Btn class={"btn-get-started"} onClick={this.secondStep}>
+            <div className="btn-get-started-text" onClick={this.secondStep} >
+              Join this company
+            </div>
+          </Btn>
         </div>
-    {this.state.addCompany && <AddCompanyFirstStep/>  }
-    {this.state.joinCompany && <JoinCompanyFirstStep/>}
-
-           </main>  
-
- </div>
+    </Fragment>:
+       <JoinCompanySecondStep/>
+ }   </div>
     );
   }
 }
 
-const mapStateToProps = ({ authUser }) => {
-  const { user, loading } = authUser;
-  return { user, loading };
-};
 
-export default connect(mapStateToProps, {
-  registerUser
-})(Register);
+
+export default JoinCompanyFirstStep
 

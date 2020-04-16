@@ -81,7 +81,7 @@ class Login extends React.Component {
             </Btn>
             <div className="condition-term">
               <Link
-                style={{ textDecoration: "none", color: "white" }}
+               
                 to={"/user/forgot-password"}
               >
                 <p>Forgot your password ?</p>

@@ -23,8 +23,8 @@ class Calls extends React.Component {
             <IntlMessages id="calls" />
           </h1>
           <div className="inlineBtn-center">
-            <Btn class={clickedDate}>Weekly</Btn>
-            <Btn class={unclickedDate}>Monthly</Btn>
+            <Btn class={clickedDate}>This week</Btn>
+            <Btn class={unclickedDate}>This month</Btn>
           </div>
           <BarChart barData={barData} barLabels={barLabels} />
         </div>

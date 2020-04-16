@@ -40,29 +40,6 @@ class AccountCall extends React.Component {
             <div id="settings-card" className="no-gutters mx-0">
               <Row>
                 <Col>
-                  <div className="inlineBtn-left mt-3">
-                    <div className="inlinBtn-col-center">
-                      <div id="field-top">First name</div>
-
-                      <input
-                        className="profile-input"
-                        placeholder=""
-                        type="text"
-                        onChange={this.handleChangeEmail}
-                      />
-                    </div>
-                    <div className="inlinBtn-col-center">
-                      <div id="field-top">First name</div>
-
-                      <input
-                        className="profile-input"
-                        placeholder=""
-                        type="text"
-                        onChange={this.handleChangeEmail}
-                      />
-                    </div>
-                  </div>
-
                   <div className="inlineBtn-left">
                     <div className="inlinBtn-col-center">
                       <div id="field-top">First name</div>
@@ -75,7 +52,7 @@ class AccountCall extends React.Component {
                       />
                     </div>
                     <div className="inlinBtn-col-center">
-                      <div id="field-top">First name</div>
+                      <div id="field-top">Last name</div>
 
                       <input
                         className="profile-input"
@@ -88,7 +65,7 @@ class AccountCall extends React.Component {
 
                   <div className="inlineBtn-left">
                     <div className="inlinBtn-col-center">
-                      <div id="field-top">First name</div>
+                      <div id="field-top">Company</div>
 
                       <input
                         className="profile-input"
@@ -98,7 +75,7 @@ class AccountCall extends React.Component {
                       />
                     </div>
                     <div className="inlinBtn-col-center">
-                      <div id="field-top">First name</div>
+                      <div id="field-top">Role</div>
 
                       <input
                         className="profile-input"
@@ -108,6 +85,32 @@ class AccountCall extends React.Component {
                       />
                     </div>
                   </div>
+
+                  <div className="inlineBtn-left">
+                    <div className="inlinBtn-col-center">
+                      <div id="field-top">Work email</div>
+
+                      <input
+                        className="profile-input"
+                        placeholder=""
+                        type="text"
+                        onChange={this.handleChangeEmail}
+                      />
+                    </div>
+                    <div className="inlinBtn-col-center">
+                      <div id="field-top">Current password</div>
+
+                      <input
+                        className="profile-input"
+                        placeholder=""
+                        type="text"
+                        onChange={this.handleChangeEmail}
+                      />
+
+                    </div>
+                  </div>
+                  <h3 id="field-top">General settings</h3>
+
                   <Row>
                     <Col>
                       {" "}
@@ -137,7 +140,7 @@ class AccountCall extends React.Component {
                     <p>Amazon</p>
                   </div>
 
-                  <div className="profil-card inlineBtn-center">
+                  <div className="change-profil-card inlineBtn-center">
                     <input
                       className="profile-input"
                       placeholder="+213 541 1379"

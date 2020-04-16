@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Col } from "reactstrap";
+import { Col,Row } from "reactstrap";
 export default class TopNavUser extends React.Component {
   constructor() {
     super();
@@ -11,7 +11,8 @@ export default class TopNavUser extends React.Component {
   render() {
     return (
       <div className="topnav">
-        <Col>
+          <Row className="inlineBtn-left">
+          <Col>
           <Link to={"/user/login"}>
             <img
               alt={"logo"}
@@ -20,7 +21,9 @@ export default class TopNavUser extends React.Component {
             />
             <div className="login-signup-input">{this.state.buttonText}</div>
           </Link>
-        </Col>
+          </Col>
+        </Row>
+
       </div>
     );
   }

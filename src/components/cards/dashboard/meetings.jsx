@@ -18,9 +18,8 @@ const Meetings = ({ children }) => {
           <IntlMessages id="meeting" />
         </h1>
         <div className="inlineBtn-center">
-          <div class={unclickedDate}>Daily</div>
-          <div class={clickedDate}>Weekly</div>
-          <div class={unclickedDate}>Monthly</div>
+          <div class={unclickedDate}>This week</div>
+          <div class={clickedDate}>This month</div>
         </div>
         <PerfectScrollbar>
           {" "}
