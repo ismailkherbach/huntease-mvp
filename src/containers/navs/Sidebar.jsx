@@ -20,7 +20,7 @@ class Sidebar extends React.Component {
   };
   render() {
     return (
-      <div className="sidenav disable-select">
+      <div className="sidenav no-gutters disable-select">
         <ul>
           {this.state.menuItems.map(item => {
             return (

@@ -29,7 +29,7 @@ class Topnav extends React.Component {
 
     return (
       <div className="topnav">
-        <Row className="inlineBtn-center">
+        <Row className="inlineBtn-left">
           <Col>
             {" "}
             <img
@@ -37,22 +37,8 @@ class Topnav extends React.Component {
               id="logo"
               src={require("../../assets/img/huntease_logo_icon_white.png")}
             />
-            <p className="d-inline-block ml-4 greeting">
+            <p className="d-inline-block greeting">
               <IntlMessages id="gretting" />{" "}
-              {localStorage.getItem("user_id")
-                ? this.state.greetingTo.firstname +
-                  " " +
-                  this.state.greetingTo.lastname
-                : ""}
-            </p>
-          </Col>
-          <Col className="inlineBtn-col col-3">
-            {" "}
-            <p
-              className="d-inline-block ml-4 disable-select"
-              onClick={this.togglePopup.bind(this)}
-            >
-              {" "}
               {localStorage.getItem("user_id")
                 ? this.state.greetingTo.firstname +
                   " " +

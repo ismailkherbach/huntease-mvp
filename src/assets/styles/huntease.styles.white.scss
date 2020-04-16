@@ -10,13 +10,13 @@ $navbar-height-lg: 30px;
 @import url("https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,700&display=swap");
 // --------- Importing FontAwesome for Icons
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0/css/font-awesome.min.css");
-
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap");
 // --------- VARIABLES
 $top-component-height: 345px;
 $bottom-component-height: 300px;
 $huntease-main: #254ebe;
 $huntease-light: #e9effb;
-$huntease-medium: #a8c4ff;
+$huntease-medium: #8ba3ff;
 $huntease-dark: #052375;
 $huntease-accent: #ffc371;
 $huntease-green: #18f5a2;
@@ -26,7 +26,7 @@ $white: #ffffff;
 $gray: #eeeeee;
 $regular-radius: 15px;
 $max-radius: 50px;
-$font: "IBM Plex Sans";
+$font: "Roboto";
 $regular: 400;
 $custom: 400;
 $medium: 500;
@@ -49,11 +49,16 @@ $backgrd: url("../img//back_blue_air.svg");
 $login_page: url("../img//login_page.svg");
 $mainback: url("../img/mainback.svg");
 
+html,
+body {
+  margin: 0px;
+  padding: 0px;
+}
 #logo {
   width: 44.1px;
   height: 39.3px;
-  margin: 30px auto;
-  margin-left: 0px;
+  margin: 25px auto;
+  margin-left: -27px;
 }
 
 .auth-page {
@@ -97,7 +102,7 @@ $mainback: url("../img/mainback.svg");
 }
 
 .topnav {
-  height: 100px;
+  height: 96px;
   margin-left: 4rem;
   margin-bottom: 0px;
 
@@ -115,6 +120,7 @@ $mainback: url("../img/mainback.svg");
     font-weight: 400;
     opacity: 0.7;
     margin-bottom: 0px;
+    margin-left: 58px;
   }
 }
 
@@ -143,6 +149,7 @@ $mainback: url("../img/mainback.svg");
   color: $white;
   font-size: 1.8rem;
   font-family: "IBM Plex Sans";
+  margin-left: 58px;
 
   opacity: 0.7;
 }
@@ -206,7 +213,6 @@ span {
   background: $white;
   border-radius: $regular-radius;
   box-shadow: $shadow;
-  height: $top-component-height !important;
 
   @include desktop-sm {
     width: 375px;
@@ -236,7 +242,6 @@ span {
   background: $white;
   border-radius: $regular-radius;
   box-shadow: $shadow;
-  height: $top-component-height !important;
 
   @include desktop-sm {
     width: 360px;
@@ -314,7 +319,6 @@ span {
   min-height: 280px;
   min-width: 686px;
   margin-top: 34px;
-  height: $bottom-component-height;
   background: $white;
   box-shadow: $shadow;
   border-radius: $regular-radius;
@@ -367,7 +371,8 @@ span {
   background: $white;
   max-width: 456px;
   max-height: 280px;
-
+  min-width: 456px;
+  min-height: 280px;
   margin-top: 34px;
   box-shadow: $shadow;
   height: $bottom-component-height;
@@ -884,13 +889,11 @@ input {
 }
 
 .sidenav {
-  top: 0px;
+  margin-top: 21px;
   float: left;
-  height: 90vh;
-  width: 11%;
-  margin-right: 20px;
-  margin-left: 0px;
-  left: 0px;
+  height: 100%;
+  width: 160px;
+  margin-left: -20px;
   transform: translateZ(0);
   transition: transform 0.25s ease-out;
   #logout {
@@ -906,10 +909,12 @@ input {
     list-style-type: none;
     text-align: center;
     background: $white;
-    height: $nav-box;
-    width: $nav-box;
+    height: 80px;
+    width: 80px;
+    margin: 0px;
+    padding: 0px;
     box-shadow: $shadow;
-    margin-bottom: 13px;
+    margin-bottom: 10px;
     border-radius: $regular-radius;
     transform: translateZ(0);
     transition: transform 0.25s ease-out;
@@ -944,6 +949,8 @@ input {
   float: left;
   height: 90vh;
   width: 11%;
+  margin: 0;
+  padding: 0;
   transform: translateZ(0);
   transition: transform 0.25s ease-out;
 
@@ -1297,6 +1304,9 @@ input {
   justify-content: center;
   flex-direction: row;
   align-items: center;
+  margin: 0px;
+  padding: 0px;
+
   .setting-items {
     background-color: white;
     width: 170px;
@@ -1305,7 +1315,7 @@ input {
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    margin: 5px;
+    margin: 3px;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
   }
@@ -1498,6 +1508,7 @@ input {
   width: 1143px;
   border-radius: $regular-radius;
   height: 623px !important;
+  margin-top: -18px;
 
   @include desktop-sm {
   }
@@ -1660,8 +1671,8 @@ input {
   max-width: 300px;
   max-height: 250px;
   margin-left: auto;
-  margin-right: 50px;
-  margin-top: 50px;
+  margin-right: 30px;
+  margin-top: 30px;
 
   border-radius: $regular-radius;
   box-shadow: $shadow;

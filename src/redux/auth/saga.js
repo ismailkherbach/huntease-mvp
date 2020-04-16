@@ -22,6 +22,7 @@ function* loginWithEmailPassword({ payload }) {
     const loginUser = yield call(loginWithEmailPasswordAsync, email, password);
     if (loginUser.status == 200) {
       localStorage.setItem("token", loginUser.data.token);
+      //  localStorage.setItem("user_id", loginUser.data.token);
 
       yield put(loginUserSuccess(loginUser));
       history.push("/");
