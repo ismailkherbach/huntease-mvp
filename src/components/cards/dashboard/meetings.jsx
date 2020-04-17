@@ -3,7 +3,13 @@ import IntlMessages from "../../../helpers/IntlMessages";
 import { UncontrolledCollapse } from "reactstrap";
 import { meetings } from "../../../constants/meetings";
 import PerfectScrollbar from "react-perfect-scrollbar";
-import { unclickedDate, clickedDate } from "../../../constants/buttonStatus";
+import {
+  unclickedDate,
+  clickedDate,
+  unclickedDateLarge,
+  clickedDateLarge,
+} from "../../../constants/buttonStatus";
+import Btn from "./../../small.componenets/Btn";
 
 const Meetings = ({ children }) => {
   return (
@@ -18,14 +24,14 @@ const Meetings = ({ children }) => {
           <IntlMessages id="meeting" />
         </h1>
         <div className="inlineBtn-center">
-          <div class={unclickedDate}>This week</div>
-          <div class={clickedDate}>This month</div>
+          <Btn class={clickedDateLarge}>This week</Btn>
+          <Btn class={unclickedDateLarge}>This month</Btn>
         </div>
         <PerfectScrollbar>
           {" "}
           <div className="scroll-meeting disable-select">
             <div className="meeting-list">
-              {meetings.map(meetingList => {
+              {meetings.map((meetingList) => {
                 return (
                   <ul>
                     <div className="inlineBtn-left">
@@ -39,7 +45,7 @@ const Meetings = ({ children }) => {
                     </div>
                     <UncontrolledCollapse toggler={"toggler" + meetingList.id}>
                       <li className="ml-5">
-                        {meetingList.meetingsInfo.map(info => {
+                        {meetingList.meetingsInfo.map((info) => {
                           return (
                             <li>
                               <p className="mr-4">{info.time + " AM"}</p>

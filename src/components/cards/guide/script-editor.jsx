@@ -13,7 +13,7 @@ export default class ScriptEditor extends React.Component {
       text: "Give this guide a title",
       contenu: "Enter a question or a prompt",
       values: [],
-      questions: [{ question: "" }]
+      questions: [{ question: "" }],
     };
     this.handleChangeTitle = this.handleChangeTitle.bind(this);
     this.handleChangeContenu = this.handleChangeContenu.bind(this);
@@ -34,8 +34,8 @@ export default class ScriptEditor extends React.Component {
   }
 
   addClick() {
-    this.setState(prevState => ({
-      questions: [...prevState.questions, { question: "" }]
+    this.setState((prevState) => ({
+      questions: [...prevState.questions, { question: "" }],
     }));
     console.log(this.state.questions);
   }
@@ -44,7 +44,7 @@ export default class ScriptEditor extends React.Component {
   }
   createUI() {
     return this.state.questions.map((el, i) => (
-      <div className="inlineBtn-left">
+      <div className="inlineBtn-left mb-3">
         <div id="btn-add" onClick={this.addClick.bind(this)}>
           +
         </div>
@@ -57,7 +57,7 @@ export default class ScriptEditor extends React.Component {
           name="question"
           onChange={this.handleChange.bind(this, i)}
           options={{
-            toolbar: { buttons: ["bold", "italic", "underline"] }
+            toolbar: { buttons: ["bold", "italic", "underline"] },
           }}
         />
       </div>
@@ -80,7 +80,7 @@ export default class ScriptEditor extends React.Component {
             text={this.state.text}
             onChange={this.handleChangeTitle}
             options={{
-              toolbar: { buttons: ["bold", "italic", "underline"] }
+              toolbar: { buttons: ["bold", "italic", "underline"] },
             }}
           />
 

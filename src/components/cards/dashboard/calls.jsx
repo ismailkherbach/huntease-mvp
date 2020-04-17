@@ -1,7 +1,12 @@
 import React, { Fragment } from "react";
 import BarChart from "../../chart/Bar";
 import Btn from "./../../small.componenets/Btn";
-import { unclickedDate, clickedDate } from "../../../constants/buttonStatus";
+import {
+  unclickedDate,
+  clickedDate,
+  unclickedDateLarge,
+  clickedDateLarge,
+} from "../../../constants/buttonStatus";
 import IntlMessages from "../../../helpers/IntlMessages";
 import { connect } from "react-redux";
 import { getCalls } from "../../../redux/actions";
@@ -23,8 +28,8 @@ class Calls extends React.Component {
             <IntlMessages id="calls" />
           </h1>
           <div className="inlineBtn-center">
-            <Btn class={clickedDate}>This week</Btn>
-            <Btn class={unclickedDate}>This month</Btn>
+            <Btn class={clickedDateLarge}>This week</Btn>
+            <Btn class={unclickedDateLarge}>This month</Btn>
           </div>
           <BarChart barData={barData} barLabels={barLabels} />
         </div>
@@ -34,11 +39,11 @@ class Calls extends React.Component {
 }
 const mapStateToProps = ({ dashboard }) => {
   return {
-    dashboard
+    dashboard,
   };
 };
 export default connect(mapStateToProps, {
-  getCalls
+  getCalls,
 })(Calls);
 
 //         <BarChart />

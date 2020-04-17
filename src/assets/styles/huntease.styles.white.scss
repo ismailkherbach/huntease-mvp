@@ -38,7 +38,7 @@ $menu-space: 180px;
 $nav-box: 81px;
 $txt-top: 20px;
 $txt-left: 23px;
-$card-title: 21px;
+$card-title: 18px;
 $heading-size: 19px;
 
 // --------- GENERAL STYLES
@@ -171,8 +171,8 @@ span {
   padding-left: $spacing;
   font-family: $font;
   font-size: $card-title;
-  color: $huntease-main;
-  font-weight: $regular;
+  color: #001c56;
+  font-weight: $bold;
 }
 #card-title-right {
   padding-top: $spacing;
@@ -192,6 +192,7 @@ span {
 }
 #prompt {
   margin: auto;
+  margin-left: 20px;
   font-family: $font;
   font-size: 17px;
   color: #8ba3ff;
@@ -1005,11 +1006,12 @@ input {
   margin-top: $topnav-height;
   background: $white;
   width: 760px;
+
   border-radius: $regular-radius;
   height: 440px !important;
 
   @include desktop-sm {
-    width: 650px;
+    width: 720px;
   }
   @include desktop-md {
   }
@@ -1035,6 +1037,7 @@ input {
   height: 161px !important;
 
   @include desktop-sm {
+    width: 720px;
   }
   @include desktop-md {
   }
@@ -1087,14 +1090,17 @@ input {
   flex-direction: row;
   align-items: center;
   padding-left: 20px;
+  max-width: 380px;
+  min-width: 380px;
   margin-left: 30px;
-  width: 380px;
+
   height: 37px;
   background: #8ba3ff 0% 0% no-repeat padding-box;
   border-radius: 10px;
   opacity: 0.2;
   @include desktop-sm {
-    width: 400px;
+    width: 380px;
+    margin-left: 25px;
   }
   @include desktop-md {
   }
@@ -1129,7 +1135,8 @@ input {
   align-items: top;
   padding-left: 30px;
   @include desktop-sm {
-    width: 400px;
+    width: 380px;
+    margin-left: 25px;
   }
   @include desktop-md {
   }
@@ -1876,7 +1883,7 @@ input {
       background-color: #8ba3ff;
       color: $huntease-dark;
       border-radius: 10px;
-      border-color: none;
+      border-color: #0e33c3;
 
       text-align: center;
       font-family: $font;
@@ -2290,58 +2297,98 @@ input {
   align-items: center;
 }
 .date-filter {
-  width: 79px;
-  height: 31px;
-  margin: 8px;
-  font-size: 14px;
-  font-weight: $medium;
-  color: #d4d4d4;
-  background-color: rgba(212, 212, 212, 0.2);
-  border-radius: 16px;
+  width: 58px;
+  height: 26px;
+  background: #b6c4ff60 0% 0% no-repeat padding-box;
+  border-radius: 9px;
+  margin: 10px;
+  font-size: 11px;
+  font-weight: $bold;
+  color: #3855cc;
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
 }
 .date-filter:hover {
-  width: 79px;
-  height: 31px;
+  width: 58px;
+  height: 26px;
   margin: 8px;
-  background-color: rgba(212, 212, 212, 0.2);
-  border-radius: 16px;
+  background-color: #3855cc;
+  color: #8ba2ff60;
+  border-radius: 9;
   cursor: pointer;
 }
 
 .date-filter-clicked {
-  width: 79px;
-  height: 31px;
+  width: 58px;
+  height: 26px;
+  background: #8ba2ff96 0% 0% no-repeat padding-box;
+  border-radius: 9px;
   margin: 8px;
-  font-size: 14px;
-  font-weight: $medium;
-  color: $huntease-main;
-  border-radius: 16px;
+  font-size: 11px;
+  font-weight: $bold;
+  color: #0c2eb6;
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  background-color: #e9effb;
+}
+
+.date-filter-large {
+  width: 114px;
+  height: 26px;
+  background: #b6c4ff60 0% 0% no-repeat padding-box;
+  border-radius: 9px;
+  margin: 10px;
+  font-size: 11px;
+  font-weight: $bold;
+  color: #3855cc;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.date-filter-large:hover {
+  width: 114px;
+  height: 26px;
+  margin: 8px;
+  background-color: #3855cc;
+  color: #8ba2ff60;
+  border-radius: 9;
+  cursor: pointer;
+}
+
+.date-filter-large-clicked {
+  width: 114px;
+  height: 26px;
+  background: #8ba2ff96 0% 0% no-repeat padding-box;
+  border-radius: 9px;
+  margin: 8px;
+  font-size: 11px;
+  font-weight: $bold;
+  color: #0c2eb6;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 .compare-performance {
-  width: 79px;
-  height: 31px;
+  width: 69px;
+  height: 26px;
+  background: #ffb58d69 0% 0% no-repeat padding-box;
+  border-radius: 9px;
   margin: 8px;
-  font-size: 14px;
-  font-weight: $medium;
-  color: $huntease-red;
-  border: 2px solid $huntease-red;
-  background-color: white;
+  font-size: 12px;
+  font-weight: $regular;
+  color: #ffb58d;
   border-radius: 16px;
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  margin-left: 95px;
+  margin-left: 120px;
 }
 
 .meeting-list {
@@ -2452,7 +2499,7 @@ input {
 .scroll-team {
   padding-right: unset;
   margin-right: unset;
-  height: 60%;
+  height: 78%;
   overflow-y: scroll;
   overflow-x: hidden;
 }
