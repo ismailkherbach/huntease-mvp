@@ -1004,7 +1004,7 @@ input {
 #guide-conv-card {
   margin-top: $topnav-height;
   background: $white;
-  width: 670px;
+  width: 760px;
   border-radius: $regular-radius;
   height: 440px !important;
 
@@ -1030,7 +1030,7 @@ input {
 #tags-card {
   margin-top: 30px;
   background: $white;
-  width: 670px;
+  width: 760px;
   border-radius: $regular-radius;
   height: 161px !important;
 
@@ -1041,6 +1041,43 @@ input {
   @include desktop-xl {
   }
   @include desktop-lg {
+  }
+
+  #card-title {
+    text-align: left;
+    font-family: $font;
+    font-size: 14px;
+    color: #8ba3ff;
+    font-weight: $bold;
+  }
+
+  .tag-input-large {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    height: 40px;
+    width: 710px;
+    background: #8ba3ff 0% 0% no-repeat padding-box;
+    border-radius: 15px;
+    opacity: 0.1;
+    border-radius: 10px;
+    border-color: white;
+    margin-top: 10px;
+    margin-bottom: 18px;
+  }
+  .save-changes {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 159px;
+    height: 36px;
+    background: #ffb58d 0% 0% no-repeat padding-box;
+    border-radius: 10px;
+    border-color: white;
+    text-align: center;
+    font-family: $font;
+    font-size: 12px;
+    font-weight: $regular;
   }
 }
 
