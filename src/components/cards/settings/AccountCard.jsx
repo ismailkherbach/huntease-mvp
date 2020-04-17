@@ -126,6 +126,18 @@ class AccountCall extends React.Component {
                         onChange={this.handleChangeEmail}
                       />
                     </Col>
+                    <Col>
+                      {" "}
+                      <h3 id="field-top">Theme</h3>
+                    </Col>
+
+                    <Col>
+                      {" "}
+                      <div className="change-profil-card inlineBtn-left">
+
+                      <Button className="change-button">Light</Button>
+</div>
+                    </Col>
                   </Row>
                 </Col>
                 <Col>

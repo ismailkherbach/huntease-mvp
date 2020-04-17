@@ -56,25 +56,6 @@ class AddCompanyFirstStep extends React.Component {
     this.setState({ secondStepStatus: true });
   };
 
-  /*handleSubmit = () => {
-    axios({
-      method: "post",
-      url: "http://localhost:5000/api/v1/auth/register",
-      data: {
-        firstname: this.state.firstname,
-        lastname: this.state.lastname,
-        email: this.state.email,
-        password: this.state.password
-      }
-    }).then(
-      response => {
-        console.log(response);
-      },
-      error => {
-        console.log(error);
-      }
-    );
-  };*/
 
   render() {
     return (
@@ -82,7 +63,7 @@ class AddCompanyFirstStep extends React.Component {
 {!this.state.secondStepStatus ? <Fragment>
   
         <div className="auth-container">
-          {" "}
+          {" "}              <h4>ALL INPUTS ARE REQUIREDS</h4>
           <div className="inlineBtn-center">
             <input
               className="auth-input"

@@ -57,7 +57,6 @@ body {
 #logo {
   width: 44.1px;
   height: 39.3px;
-  margin: 25px auto;
   margin-left: -27px;
 }
 
@@ -102,10 +101,13 @@ body {
 }
 
 .topnav {
-  height: 96px;
+  height: 70px;
   margin-left: 4rem;
   margin-bottom: 0px;
-
+  display: flex;
+  justify-content: left;
+  flex-direction: row;
+  align-items: center;
   p {
     color: white;
   }
@@ -116,11 +118,11 @@ body {
   .greeting {
     color: $white;
     font-size: 28px;
-    font-family: "IBM Plex Sans";
-    font-weight: 400;
+    font-family: $font;
+    font-weight: $regular;
     opacity: 0.7;
     margin-bottom: 0px;
-    margin-left: 58px;
+    margin-left: 65px;
   }
 }
 
@@ -669,7 +671,6 @@ span {
 .login-logo {
   margin-top: 40px;
   width: 13%;
-
 }
 
 .login-signup-input {
@@ -708,7 +709,6 @@ span {
   bottom: 0;
   left: 0;
   overflow-y: hidden;
-
 }
 
 .auth-container-align {
@@ -750,10 +750,17 @@ span {
   border-radius: 18px;
 
   h4 {
-    font-size: 16px;
+    font-size: 12px;
     font-weight: $regular;
-    font-family: IBM Plex Sans;
-    color: white;
+    font-family: $font;
+    color: #8ba3ff;
+    margin: $spacing;
+  }
+  h3 {
+    font-size: 12px;
+    font-weight: $bold;
+    font-family: $font;
+    color: #0026bc;
     margin: $spacing;
   }
 }
@@ -840,6 +847,10 @@ span {
   margin: 20px;
   color: #001134;
   border: 2px solid $huntease-main;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .btn-get-started-text {
@@ -848,10 +859,6 @@ span {
   font-weight: $bold;
   font-family: $font;
   color: $huntease-main;
-  margin: 7px;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
 }
 
 input:focus,
@@ -883,6 +890,10 @@ input {
 ::placeholder {
   /* Chrome, Firefox, Opera, Safari 10.1+ */
   color: #c4cfef;
+  text-align: left;
+  font: Bold 14px $font;
+  letter-spacing: 0px;
+  color: #8ba3ff;
   opacity: 1; /* Firefox */
 }
 
@@ -1631,6 +1642,25 @@ input {
 }
 
 #settings-card {
+  ::-webkit-scrollbar {
+    background: $huntease-light;
+    border-radius: 2px;
+    height: 8px;
+    width: 7px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: $huntease-medium;
+    border-radius: 2px;
+    background-clip: content-box;
+    border: 5px solid transparent;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: $huntease-medium;
+  }
+  ::-webkit-scrollbar-button {
+    display: none;
+  }
   background: $white;
   width: 1143px;
   border-radius: $regular-radius;
@@ -1645,7 +1675,72 @@ input {
   }
   @include desktop-lg {
   }
+  .team-listing {
+    h4 {
+      font-family: $font;
+      font-size: 14px;
+      font-weight: $bold;
+      color: #8ba3ff;
+      padding-block-start: 20px;
+    }
+    p {
+      text-align: left;
+      margin-top: 12px;
+      font-family: $font;
+      font-size: 14px;
+      font-weight: $bold;
+      color: $huntease-main;
+      padding: 5px;
+    }
+    #invitation-sent {
+      text-align: left;
+      margin-top: auto;
+      font-family: $font;
+      font-size: 14px;
+      font-weight: $regular;
+      color: $huntease-red;
+      padding: 5px;
+    }
+    #decline {
+      width: 80px;
+      height: 37px;
 
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+
+      background-color: #ff57732c;
+      color: #ff5773;
+      border-radius: 10px;
+      border-color: white;
+      text-align: center;
+      font-family: $font;
+      font-size: 14px;
+      font-weight: $bold;
+    }
+    #accept {
+      width: 80px;
+      height: 37px;
+
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+
+      background-color: #26ec8241;
+      color: #26ec82;
+      border-radius: 10px;
+      border-color: white;
+      text-align: center;
+      font-family: $font;
+      font-size: 14px;
+      font-weight: $bold;
+    }
+    img {
+      width: 40px;
+      height: 40px;
+      border-radius: 15px;
+    }
+  }
   .add-member-container {
     height: 153px;
     width: 1086px;
@@ -2067,6 +2162,12 @@ input {
   flex-direction: row;
   align-items: left;
 }
+.inlineBtn-left-center {
+  display: flex;
+  justify-content: left;
+  flex-direction: row;
+  align-items: center;
+}
 
 .inlineBtn-center {
   display: flex;
@@ -2277,7 +2378,13 @@ input {
   overflow-y: scroll;
   overflow-x: hidden;
 }
-
+.scroll-team {
+  padding-right: unset;
+  margin-right: unset;
+  height: 60%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
 #btn {
   width: 160px;
   height: 40px;

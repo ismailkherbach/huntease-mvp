@@ -82,6 +82,7 @@ class AddCompanySecondStep extends React.Component {
        
             <div className="auth-container">
               {" "}
+              <h3>How many people are in your team?</h3>
               <div className="inlineBtn-center">
                 <Btn class={"btn-choice-company"} onClick={this.onUserLogin}>
                   <h3>1</h3>

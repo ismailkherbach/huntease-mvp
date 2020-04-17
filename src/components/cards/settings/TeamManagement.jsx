@@ -1,7 +1,6 @@
 import React, { Fragment } from "react";
-import { Row, Col, Input, Button } from "reactstrap";
-import Terms from "./Terms";
-import Helps from "./Helps";
+import { Row, Col, Input, Button, Table } from "reactstrap";
+import PerfectScrollbar from "react-perfect-scrollbar";
 
 class TeamManagement extends React.Component {
   constructor(props) {
@@ -41,6 +40,183 @@ class TeamManagement extends React.Component {
               />{" "}
               <Button className="send-invite">Send this invite</Button>
             </div>
+            <PerfectScrollbar>
+              <div className="scroll-team">
+                <div className="team-listing ">
+                  <Row>
+                    <Col>
+                      <h4>MEMBER</h4>
+                    </Col>
+                    <Col>
+                      <h4>PLAN</h4>
+                    </Col>
+                    <Col>
+                      <h4>STATUS</h4>
+                    </Col>
+                    <Col>
+                      <h4>EDIT</h4>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col>
+                      <div className="inlineBtn-left-center">
+                        <img
+                          alt={"avatar"}
+                          src={require("../../../assets/img/0.jpeg")}
+                        />
+                        <p>Ismail kherbach</p>
+                      </div>{" "}
+                    </Col>
+                    <Col>
+                      <h4>Pro</h4>
+                    </Col>
+                    <Col>
+                      <h4>Active</h4>
+                    </Col>
+                    <Col>
+                      <img
+                        alt={"avatar"}
+                        src={require("../../../assets/img/0.jpeg")}
+                      />{" "}
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col>
+                      <div className="inlineBtn-left-center">
+                        <img
+                          alt={"avatar"}
+                          src={require("../../../assets/img/0.jpeg")}
+                        />
+                        <p>Ismail kherbach</p>
+                      </div>{" "}
+                    </Col>
+                    <Col>
+                      <h4>Pro</h4>
+                    </Col>
+                    <Col>
+                      <h4>Active</h4>
+                    </Col>
+                    <Col>
+                      <img
+                        alt={"avatar"}
+                        src={require("../../../assets/img/0.jpeg")}
+                      />{" "}
+                    </Col>
+                  </Row>
+
+                  <Row>
+                    <Col>
+                      <div className="inlineBtn-left-center">
+                        <img
+                          alt={"avatar"}
+                          src={require("../../../assets/img/0.jpeg")}
+                        />
+                        <p>Ismail kherbach</p>
+                      </div>{" "}
+                    </Col>
+                    <Col>
+                      <h4>Pro</h4>
+                    </Col>
+                    <Col>
+                      <h4>Active</h4>
+                    </Col>
+                    <Col>
+                      <img
+                        alt={"avatar"}
+                        src={require("../../../assets/img/0.jpeg")}
+                      />{" "}
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col>
+                      <div className="inlineBtn-left-center">
+                        <img
+                          alt={"avatar"}
+                          src={require("../../../assets/img/0.jpeg")}
+                        />
+                        <p>Ismail kherbach</p>
+                      </div>{" "}
+                    </Col>
+                    <Col>
+                      <h4>Pro</h4>
+                    </Col>
+                    <Col>
+                      <h4>Active</h4>
+                    </Col>
+                    <Col>
+                      <img
+                        alt={"avatar"}
+                        src={require("../../../assets/img/0.jpeg")}
+                      />{" "}
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col>
+                      <div className="inlineBtn-left-center">
+                        <img
+                          alt={"avatar"}
+                          src={require("../../../assets/img/0.jpeg")}
+                        />
+                        <p>Ismail kherbach</p>
+                      </div>{" "}
+                    </Col>
+                    <Col>
+                      <h4>Pro</h4>
+                    </Col>
+                    <Col>
+                      <h4>Active</h4>
+                    </Col>
+                    <Col>
+                      <img
+                        alt={"avatar"}
+                        src={require("../../../assets/img/0.jpeg")}
+                      />{" "}
+                    </Col>
+                  </Row>
+
+                  <Row>
+                    <Col>
+                      <div className="inlineBtn-left-center">
+                        <img
+                          alt={"avatar"}
+                          src={require("../../../assets/img/0.jpeg")}
+                        />
+                        <p>Ismail kherbach</p>
+                      </div>{" "}
+                    </Col>
+                    <Col>
+                      <h4>Pro</h4>
+                    </Col>
+                    <Col>
+                      <p id="invitation-sent">Invitation sent</p>
+                    </Col>
+                    <Col>
+                      <img
+                        alt={"avatar"}
+                        src={require("../../../assets/img/0.jpeg")}
+                      />{" "}
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col>
+                      <div className="inlineBtn-left-center">
+                        <img
+                          alt={"avatar"}
+                          src={require("../../../assets/img/0.jpeg")}
+                        />
+                        <p>Ismail kherbach previously kherbach haja</p>
+                      </div>
+                    </Col>
+                    <Col></Col>
+                    <Col></Col>
+                    <Col>
+                      <Button id="accept">Approuve</Button>
+                      <Button id="decline">Decline</Button>
+                    </Col>
+                  </Row>
+                </div>
+              </div>
+            </PerfectScrollbar>
           </div>
         </Row>
       </Fragment>

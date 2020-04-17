@@ -56,8 +56,11 @@ class Register extends React.Component {
   onUserRegister = () => {
     this.props.registerUser(this.state, this.props.history);
   };
-  registerStatus = () => {
-    this.setState({ addCompany: !this.state.addCompany,joinCompany:!this.state.joinCompany });
+  addCompanyStatus = () => {
+    this.setState({ addCompany: true,joinCompany:false });
+  };
+    joinCompanyStatus = () => {
+    this.setState({ addCompany: false,joinCompany:true });
   };
 
   /*handleSubmit = () => {
@@ -85,11 +88,11 @@ class Register extends React.Component {
       <div>
       <main className="auth-container-align">
         <div className="inlineBtn-col-center">
-          <Button className="auth-button" onClick={this.registerStatus}>
+          <Button className="auth-button" onClick={this.addCompanyStatus}>
             <div className="btn-get-started-text">Add a company</div>
           </Button>
 
-          <Button className="auth-button" onClick={this.registerStatus}>
+          <Button className="auth-button" onClick={this.joinCompanyStatus}>
             <div className="btn-get-started-text">Join a company</div>
           </Button>
         </div>

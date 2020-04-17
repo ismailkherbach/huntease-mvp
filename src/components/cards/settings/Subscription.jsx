@@ -1,32 +1,41 @@
 import React, { Fragment } from "react";
-import { Row, Col } from "reactstrap";
-import Terms from "./Terms";
-import Helps from "./Helps";
+import { connect } from "react-redux";
+import { injectIntl } from "react-intl";
 
-const SubscriptionContent = ({ children }) => {
-  return (
-    <Fragment>
-      <Row>
-        <Col>
-          <Row>
-            <div id="subscription-card">
-              <h3>Hello mister ismail your are in a free trial</h3>
-            </div>
-          </Row>
-        </Col>
-        <Col>
-          <Row>
-            <div className="profil-card"></div>
-          </Row>
-          <Row className="pt-0">
-            <Terms />
-          </Row>
-          <Row>
-            <Helps />
-          </Row>
-        </Col>
-      </Row>
-    </Fragment>
-  );
-};
-export default SubscriptionContent;
+import {
+  Row,
+  Col,
+  Input,
+  UncontrolledDropdown,
+  DropdownItem,
+  DropdownToggle,
+  DropdownMenu,
+  Button
+} from "reactstrap";
+
+
+class SubscriptionContent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      userInfo: JSON.parse(localStorage.getItem("user_id"))
+    };
+  }
+
+
+  render() {
+    return (
+      <Fragment>
+        <Row>
+          <Col>
+            <div id="settings-card" className="no-gutters mx-0">
+        </div>
+          </Col>
+        </Row>
+      </Fragment>
+    );
+  }
+}
+
+
+export default SubscriptionContent
