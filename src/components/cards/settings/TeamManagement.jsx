@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import { Row, Col, Input, Button, Table } from "reactstrap";
 import PerfectScrollbar from "react-perfect-scrollbar";
+import "boxicons";
 
 class TeamManagement extends React.Component {
   constructor(props) {
@@ -74,10 +75,9 @@ class TeamManagement extends React.Component {
                       <h4>Active</h4>
                     </Col>
                     <Col>
-                      <img
-                        alt={"avatar"}
-                        src={require("../../../assets/img/0.jpeg")}
-                      />{" "}
+                      <div id="edit" className="inlineBtn-center">
+                        <box-icon name="pencil" color="#0026bc"></box-icon>
+                      </div>
                     </Col>
                   </Row>
                   <Row>
@@ -97,10 +97,9 @@ class TeamManagement extends React.Component {
                       <h4>Active</h4>
                     </Col>
                     <Col>
-                      <img
-                        alt={"avatar"}
-                        src={require("../../../assets/img/0.jpeg")}
-                      />{" "}
+                      <div id="edit" className="inlineBtn-center">
+                        <box-icon name="pencil" color="#0026bc"></box-icon>
+                      </div>
                     </Col>
                   </Row>
 
@@ -121,10 +120,71 @@ class TeamManagement extends React.Component {
                       <h4>Active</h4>
                     </Col>
                     <Col>
-                      <img
-                        alt={"avatar"}
-                        src={require("../../../assets/img/0.jpeg")}
-                      />{" "}
+                      <div id="edit" className="inlineBtn-center">
+                        <box-icon name="pencil" color="#0026bc"></box-icon>
+                      </div>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col>
+                      <div className="inlineBtn-left-center">
+                        <img
+                          alt={"avatar"}
+                          src={require("../../../assets/img/0.jpeg")}
+                        />
+                        <p>Ismail kherbach</p>
+                      </div>{" "}
+                    </Col>
+                    <Col>
+                      <h4>Pro</h4>
+                    </Col>
+                    <Col>
+                      <p id="invitation-sent">Invitation sent</p>
+                    </Col>
+                    <Col>
+                      <div id="edit" className="inlineBtn-center">
+                        <box-icon name="pencil" color="#0026bc"></box-icon>
+                      </div>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col>
+                      <div className="inlineBtn-left-center">
+                        <img
+                          alt={"avatar"}
+                          src={require("../../../assets/img/0.jpeg")}
+                        />
+                        <p>Ismail kherbach previously kherbach haja</p>
+                      </div>
+                    </Col>
+                    <Col></Col>
+                    <Col></Col>
+                    <Col>
+                      <Button id="accept">Approuve</Button>
+                      <Button id="decline">Decline</Button>
+                    </Col>
+                  </Row>
+
+                  <Row>
+                    <Col>
+                      <div className="inlineBtn-left-center">
+                        <img
+                          alt={"avatar"}
+                          src={require("../../../assets/img/0.jpeg")}
+                        />
+                        <p>Ismail kherbach</p>
+                      </div>{" "}
+                    </Col>
+                    <Col>
+                      <h4>Pro</h4>
+                    </Col>
+                    <Col>
+                      <h4>Active</h4>
+                    </Col>
+                    <Col>
+                      <div id="edit" className="inlineBtn-center">
+                        <box-icon name="pencil" color="#0026bc"></box-icon>
+                      </div>
                     </Col>
                   </Row>
                   <Row>
@@ -144,33 +204,9 @@ class TeamManagement extends React.Component {
                       <h4>Active</h4>
                     </Col>
                     <Col>
-                      <img
-                        alt={"avatar"}
-                        src={require("../../../assets/img/0.jpeg")}
-                      />{" "}
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col>
-                      <div className="inlineBtn-left-center">
-                        <img
-                          alt={"avatar"}
-                          src={require("../../../assets/img/0.jpeg")}
-                        />
-                        <p>Ismail kherbach</p>
-                      </div>{" "}
-                    </Col>
-                    <Col>
-                      <h4>Pro</h4>
-                    </Col>
-                    <Col>
-                      <h4>Active</h4>
-                    </Col>
-                    <Col>
-                      <img
-                        alt={"avatar"}
-                        src={require("../../../assets/img/0.jpeg")}
-                      />{" "}
+                      <div id="edit" className="inlineBtn-center">
+                        <box-icon name="pencil" color="#0026bc"></box-icon>
+                      </div>
                     </Col>
                   </Row>
 
@@ -191,10 +227,9 @@ class TeamManagement extends React.Component {
                       <p id="invitation-sent">Invitation sent</p>
                     </Col>
                     <Col>
-                      <img
-                        alt={"avatar"}
-                        src={require("../../../assets/img/0.jpeg")}
-                      />{" "}
+                      <div id="edit" className="inlineBtn-center">
+                        <box-icon name="pencil" color="#0026bc"></box-icon>
+                      </div>
                     </Col>
                   </Row>
                   <Row>

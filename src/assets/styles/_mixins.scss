@@ -62,7 +62,7 @@ $breakpoints: (
   sm: 1281px,
   md: 1366px,
   lg: 1441px,
-  xl: 1920px
+  xl: 1920px,
 );
 
 @mixin desktop-xs {
@@ -78,7 +78,7 @@ $breakpoints: (
 }
 
 @mixin desktop-md {
-  @media (min-width: 1356px) and (max-width: 1439px) {
+  @media (min-width: 1366px) and (max-width: 1439px) {
     @content;
   }
 }

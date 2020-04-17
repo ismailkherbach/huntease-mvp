@@ -49,11 +49,6 @@ $backgrd: url("../img//back_blue_air.svg");
 $login_page: url("../img//login_page.svg");
 $mainback: url("../img/mainback.svg");
 
-html,
-body {
-  margin: 0px;
-  padding: 0px;
-}
 #logo {
   width: 44.1px;
   height: 39.3px;
@@ -65,25 +60,20 @@ body {
 }
 
 #root {
-  background: $mainback repeat;
-
-  position: fixed;
+  background: $mainback no-repeat;
+  background-size: cover;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  margin: 0;
-  padding: 0;
+  height: 786px;
   font-size: 16px;
   font-family: $font;
   font-weight: $regular;
   box-sizing: border-box;
   color: $huntease-dark;
   background-color: $huntease-light;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+
   overflow-y: hidden;
   overflow-x: hidden;
 }
@@ -93,11 +83,14 @@ body {
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: -1;
 }
 #lvl2bg {
   background-size: cover;
   border-radius: 0 0 $max-radius $max-radius;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 }
 
 .topnav {
@@ -198,11 +191,12 @@ span {
   font-weight: $bold;
 }
 #prompt {
-  padding: $spacing;
+  margin: auto;
   font-family: $font;
-  font-size: $txt-left;
-  color: $huntease-medium;
-  font-weight: $medium;
+  font-size: 17px;
+  color: #8ba3ff;
+  opacity: 0.5;
+  font-weight: $regular;
   width: 570px;
 }
 
@@ -324,14 +318,18 @@ span {
   background: $white;
   box-shadow: $shadow;
   border-radius: $regular-radius;
-  margin-right: $side-margin;
   margin-left: 0px;
   margin-right: 0px;
   @include desktop-sm {
     width: 670px;
   }
   @include desktop-md {
-    width: 700px;
+    max-height: 280px;
+    max-width: 686px;
+    min-height: 280px;
+    min-width: 686px;
+    margin-left: 0px;
+    margin-right: 0px;
   }
   @include desktop-xl {
     height: 280px;
@@ -371,9 +369,9 @@ span {
 
 #top-weekly-performers {
   background: $white;
-  max-width: 456px;
+  max-width: 440px;
   max-height: 280px;
-  min-width: 456px;
+  min-width: 440px;
   min-height: 280px;
   margin-top: 34px;
   box-shadow: $shadow;
@@ -384,11 +382,8 @@ span {
     width: 385px;
   }
   @include desktop-md {
-    width: 420px;
   }
   @include desktop-xl {
-    width: 416px;
-    height: 280px;
     margin-left: 0px;
   }
   @include desktop-lg {
@@ -912,9 +907,9 @@ input {
     margin-right: 0px;
   }
   ul li {
-    color: $huntease-medium;
+    color: #8ba3ff;
     font-weight: $medium;
-    font-size: 15px;
+    font-size: 14px;
     list-style-type: none;
     text-align: center;
     background: $white;
@@ -933,12 +928,12 @@ input {
     align-items: center;
 
     img {
-      width: 24px;
-      height: 24px;
+      width: 20px;
+      height: 20px;
       margin-bottom: 0.2rem;
     }
     svg {
-      color: $huntease-medium;
+      color: #8ba3ff;
     }
   }
 
@@ -1009,9 +1004,9 @@ input {
 #guide-conv-card {
   margin-top: $topnav-height;
   background: $white;
-  width: 700px;
+  width: 670px;
   border-radius: $regular-radius;
-  height: 625px !important;
+  height: 440px !important;
 
   @include desktop-sm {
     width: 650px;
@@ -1022,20 +1017,45 @@ input {
   }
   @include desktop-lg {
   }
+  #card-title {
+    text-align: left;
+    font-family: $font;
+    font-size: 21px;
+    color: #8ba3ff;
+    opacity: 0.5;
+    font-weight: $bold;
+  }
+}
+
+#tags-card {
+  margin-top: 30px;
+  background: $white;
+  width: 670px;
+  border-radius: $regular-radius;
+  height: 161px !important;
+
+  @include desktop-sm {
+  }
+  @include desktop-md {
+  }
+  @include desktop-xl {
+  }
+  @include desktop-lg {
+  }
 }
 
 #search-bar-guide {
-  margin: 7px;
   display: flex;
   justify-content: left;
   flex-direction: row;
   align-items: center;
   padding-left: 20px;
-  margin-top: $topnav-height;
-  background: $huntease-medium;
-  width: 408px;
-  border-radius: $regular-radius;
-  height: 40px !important;
+  margin-left: 30px;
+  width: 380px;
+  height: 37px;
+  background: #8ba3ff 0% 0% no-repeat padding-box;
+  border-radius: 10px;
+  opacity: 0.2;
   @include desktop-sm {
     width: 400px;
   }
@@ -1046,23 +1066,26 @@ input {
   @include desktop-lg {
   }
   p {
-    font-size: 17px;
-    margin-top: 14px;
-    margin-left: 5px;
+    text-align: left;
+    font: Regular 14px Roboto;
+    letter-spacing: 0px;
+    color: white;
+    margin: auto;
   }
   img {
-    width: 20px;
-    height: 20px;
+    width: 17px;
+    height: 17px;
+    color: white;
   }
 }
 
 #guide-history-card {
-  margin: $spacing;
-  margin-top: $topnav-height;
+  margin-left: 30px;
+  margin-top: 20px;
   background: $white;
-  width: 408px;
+  width: 380px;
   border-radius: $regular-radius;
-  height: 580px !important;
+  height: 572px !important;
   display: flex;
   justify-content: left;
   flex-direction: column;
@@ -1081,10 +1104,11 @@ input {
     padding: 15px;
   }
   #card-title {
+    text-align: left;
     font-family: $font;
-    font-size: 20px;
-    color: $huntease-medium;
-    font-weight: $regular;
+    font-size: 21px;
+    color: $huntease-dark;
+    font-weight: $bold;
   }
   .historyCard {
     display: flex;
@@ -1093,10 +1117,10 @@ input {
     align-items: top;
 
     p {
-      font-size: 18px;
+      font-size: 14px;
       font-weight: $regular;
       padding-left: 20px;
-      color: $huntease-darkmode;
+      color: $huntease-main;
     }
     img {
       width: 25px;
@@ -1516,12 +1540,16 @@ input {
   background: $white;
   width: 1143px;
   border-radius: $regular-radius;
-  height: 623px !important;
+  min-height: 623px;
+  max-height: 623px;
+
   margin-top: -18px;
 
   @include desktop-sm {
   }
   @include desktop-md {
+    min-height: 623px;
+    max-height: 623px;
   }
   @include desktop-xl {
   }
@@ -1738,6 +1766,13 @@ input {
     img {
       width: 40px;
       height: 40px;
+      border-radius: 15px;
+    }
+    #edit {
+      width: 40px;
+      height: 40px;
+      border-radius: 15px;
+      background: #8ba2ff79 0% 0% no-repeat padding-box;
       border-radius: 15px;
     }
   }
@@ -1976,8 +2011,8 @@ input {
     background-color: white;
     color: $huntease-main;
     border-radius: 10px;
-    margin-left: 15px;
-    margin-right: 25px;
+    margin-left: 0px;
+    margin-right: 5px;
 
     border: none;
     font-size: 14px;
@@ -2135,13 +2170,12 @@ input {
 }
 
 #btn-add {
-  margin: 15px;
+  margin-left: 20px;
 
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  box-shadow: $shadow;
-  background-color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 15px;
+  background-color: #8ba2ff48;
   display: flex;
   justify-content: center;
   flex-direction: column;
