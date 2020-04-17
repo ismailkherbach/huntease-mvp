@@ -94,7 +94,7 @@ $mainback: url("../img/mainback.svg");
 }
 
 .topnav {
-  height: 70px;
+  height: 97px;
   margin-left: 4rem;
   margin-bottom: 0px;
   display: flex;
@@ -112,10 +112,10 @@ $mainback: url("../img/mainback.svg");
     color: $white;
     font-size: 28px;
     font-family: $font;
-    font-weight: $regular;
+    font-weight: 200;
     opacity: 0.7;
     margin-bottom: 0px;
-    margin-left: 65px;
+    margin-left: 75px;
   }
 }
 
@@ -666,7 +666,7 @@ span {
 
 .login-logo {
   margin-top: 40px;
-  width: 13%;
+  width: 22%;
 }
 
 .login-signup-input {
@@ -909,7 +909,8 @@ input {
   }
   ul li {
     color: #8ba3ff;
-    font-weight: $medium;
+    font-weight: $regular;
+    font-family: $font;
     font-size: 14px;
     list-style-type: none;
     text-align: center;
@@ -1006,10 +1007,9 @@ input {
   margin-top: $topnav-height;
   background: $white;
   width: 760px;
-
   border-radius: $regular-radius;
   height: 440px !important;
-
+  margin-left: 15px;
   @include desktop-sm {
     width: 720px;
   }
@@ -1035,6 +1035,7 @@ input {
   width: 760px;
   border-radius: $regular-radius;
   height: 161px !important;
+  margin-left: 15px;
 
   @include desktop-sm {
     width: 720px;
@@ -1178,9 +1179,12 @@ input {
 #calls-card {
   margin-top: $topnav-height;
   background: $white;
-  width: 622px;
+  max-width: 680px;
+  min-width: 680px;
+  margin-right: 30px;
   border-radius: $regular-radius;
-  height: 625px !important;
+  height: 631px !important;
+
   @include desktop-sm {
   }
   @include desktop-md {
@@ -1189,15 +1193,61 @@ input {
   }
   @include desktop-lg {
   }
+
+  .btn-clicked {
+    height: 40px;
+    border-radius: 15px;
+    margin: 20px;
+    margin-right: 0px;
+    color: #8ba3ff;
+    background-color: #a8c4ff1a;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-direction: row;
+  }
+
+  .btn-text-clicked {
+    text-align: center;
+    font-size: 14px;
+    margin: auto;
+    font-weight: $regular;
+    font-family: $font;
+    color: #8ba3ff;
+  }
+  .btn {
+    height: 40px;
+    border-radius: 15px;
+    margin: 20px;
+    margin-right: 0px;
+    color: #001134;
+    border: 2px solid $huntease-main;
+    background-color: white;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-direction: row;
+  }
+
+  .btn-text {
+    text-align: center;
+    font-size: 14px;
+    margin: auto;
+    font-weight: $regular;
+    font-family: $font;
+    color: $huntease-main;
+  }
 }
 
 #calls-list-card {
   margin-left: 15px;
   margin-top: $topnav-height;
   background: $white;
-  width: 450px;
+  max-width: 460px;
+  min-width: 460px;
+  margin-left: 0px;
   border-radius: $regular-radius;
-  height: 625px !important;
+  height: 630px !important;
 
   @include desktop-sm {
   }

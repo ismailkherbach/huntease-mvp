@@ -6,14 +6,10 @@ export default class Call extends React.Component {
   render() {
     return (
       <Fragment>
-        <Row>
-          <Col>
-            <ScriptCard />
-          </Col>
-          <Col>
-            <CallCard />
-          </Col>
-        </Row>
+        <div className="inlineBtn-center">
+          <ScriptCard />
+          <CallCard />
+        </div>
       </Fragment>
     );
   }
