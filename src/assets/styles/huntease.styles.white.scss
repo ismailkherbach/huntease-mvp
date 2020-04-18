@@ -101,6 +101,10 @@ $mainback: url("../img/mainback.svg");
   justify-content: left;
   flex-direction: row;
   align-items: center;
+
+  @include desktop-xl {
+    margin-left: 25em;
+  }
   p {
     color: white;
   }
@@ -222,7 +226,6 @@ span {
   @include desktop-xl {
     width: 375px;
     height: 315px;
-    margin-left: 0px;
   }
   @include desktop-lg {
     width: 375px;
@@ -239,6 +242,7 @@ span {
   background: $white;
   border-radius: $regular-radius;
   box-shadow: $shadow;
+  margin-left: 30px;
 
   @include desktop-sm {
     width: 360px;
@@ -267,26 +271,23 @@ span {
   border-radius: $regular-radius;
   box-shadow: $shadow;
   height: $top-component-height !important;
+  margin-left: 30px;
 
   @include desktop-sm {
     width: 375px;
     height: 315px;
-    margin-left: 50px;
   }
   @include desktop-md {
     width: 375px;
     height: 315px;
-    margin-left: 80px;
   }
   @include desktop-xl {
     width: 375px;
     height: 315px;
-    margin-left: 70px;
   }
   @include desktop-lg {
     width: 375px;
     height: 315px;
-    margin-left: 70px;
   }
 
   ::-webkit-scrollbar {
@@ -319,8 +320,7 @@ span {
   background: $white;
   box-shadow: $shadow;
   border-radius: $regular-radius;
-  margin-left: 0px;
-  margin-right: 0px;
+  margin-right: 23px;
   @include desktop-sm {
     width: 670px;
   }
@@ -329,14 +329,10 @@ span {
     max-width: 686px;
     min-height: 280px;
     min-width: 686px;
-    margin-left: 0px;
-    margin-right: 0px;
   }
   @include desktop-xl {
     height: 280px;
     width: 715px;
-    margin-left: 0px;
-    margin-right: 0px;
   }
   @include desktop-lg {
     height: 280px;
@@ -370,9 +366,9 @@ span {
 
 #top-weekly-performers {
   background: $white;
-  max-width: 440px;
+  max-width: 456px;
   max-height: 280px;
-  min-width: 440px;
+  min-width: 456px;
   min-height: 280px;
   margin-top: 34px;
   box-shadow: $shadow;
@@ -905,7 +901,8 @@ input {
     margin-top: 100px;
   }
   @include desktop-xl {
-    margin-right: 0px;
+    margin-left: 20em;
+    margin-right: -20em;
   }
   ul li {
     color: #8ba3ff;
@@ -1201,6 +1198,7 @@ input {
     margin-right: 0px;
     color: #8ba3ff;
     background-color: #a8c4ff1a;
+    border-color: white;
     display: flex;
     align-content: center;
     justify-content: center;
@@ -1215,7 +1213,7 @@ input {
     font-family: $font;
     color: #8ba3ff;
   }
-  .btn {
+  .btn-unclicked {
     height: 40px;
     border-radius: 15px;
     margin: 20px;
@@ -1229,7 +1227,7 @@ input {
     flex-direction: row;
   }
 
-  .btn-text {
+  .btn-text-unclicked {
     text-align: center;
     font-size: 14px;
     margin: auto;
@@ -1257,164 +1255,205 @@ input {
   }
   @include desktop-lg {
   }
-  .leadInfos {
-    h4 {
-      margin-left: 25px;
 
-      font-size: 16px;
-      font-family: $font;
-      font-weight: $regular;
-      color: $huntease-medium;
-    }
-    h5 {
-      margin-left: 25px;
-      font-size: 25px;
-      font-family: $font;
-      font-weight: $regular;
-      color: $huntease-darkmode;
-    }
-    h3 {
-      margin-left: 25px;
-      font-size: 14px;
-      font-family: $font;
-      font-weight: $custom;
-      color: $huntease-dark;
-    }
-    p {
-      margin-left: 25px;
-      font-size: 14px;
-      font-family: $font;
-      font-weight: $custom;
-      color: $huntease-main;
-    }
-    .callSection {
-      img {
-        margin-left: 25px;
-        width: 87px;
-        height: 87px;
-        border-radius: $max-radius;
-      }
-      #callButton {
-        width: 37px;
-        height: 37px;
-        float: right;
-        margin: 3rem;
-      }
-    }
+  #card-title {
+    padding: $spacing;
 
-    #icon {
-      height: 25px;
-      width: 25px;
-      border-radius: 0%;
-    }
-    #social {
-      height: 19.5px;
-      width: 19.5px;
-      border-radius: 0%;
-    }
-    .lead-status {
-      margin-left: 20px;
-
-      height: 31px;
-      width: 100px;
-      font-size: 12px;
-      font-weight: $medium;
-      color: $huntease-main;
-      background-color: white;
-      border-radius: 16px;
-      border: 2px solid $huntease-light;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+    font-family: $font;
+    font-size: $card-title;
+    color: #001c56;
+    font-weight: $bold;
+  }
+  h4 {
+    font-size: 16px;
+    font-family: $font;
+    font-weight: $regular;
+    color: #0026bc;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+  }
+  h2 {
+    font-size: 22px;
+    font-family: $font;
+    font-weight: $regular;
+    color: #8ba3ff;
+    margin: 10px;
   }
   h5 {
-    margin-left: 25px;
-    font-size: 16px;
+    font-size: 14px;
     font-family: $font;
-    font-weight: $custom;
-    color: $huntease-darkmode;
+    font-weight: $bold;
+    color: #26ec82;
+    padding-top: 8px;
+  }
+  h3 {
+    font-size: 20px;
+    font-family: $font;
+    font-weight: $bold;
+    color: #0026bc;
   }
   p {
-    margin-left: 25px;
-    padding-bottom: 10px;
-    font-size: 16px;
+    font-size: 14px;
     font-family: $font;
-    font-weight: $custom;
-    color: $huntease-main;
+    font-weight: $regular;
+    color: #8ba3ff;
+    padding-top: 0px;
   }
   img {
-    margin-left: 25px;
-    width: 50px;
-    height: 50px;
-    border-radius: $max-radius;
+    height: 80px;
+    width: 80px;
+    border-radius: 15px;
+    margin: 8px;
   }
-  #field-button {
-    height: 50px;
-    width: 383px;
-    border-radius: $regular-radius;
-    background-color: white;
-    border: 1px solid $huntease-light;
-    color: $huntease-main;
-    font-weight: $medium;
+  .icon {
+    height: 40px;
+    width: 40px;
+    border-radius: 15px;
+    background-color: $huntease-red;
+    margin-left: 15px;
+    margin-right: 15px;
     display: flex;
     justify-content: center;
     flex-direction: row;
     align-items: center;
-    p {
-      font-size: 16px;
-      font-family: $font;
-      font-weight: $custom;
-      color: $huntease-medium;
-    }
   }
-  .callProcess {
-    img {
-      margin-left: 0px;
 
-      width: 87px;
-      height: 87px;
-      border-radius: $max-radius;
-    }
-    #callButton {
-      width: 37px;
-      height: 37px;
-      float: right;
-      margin: 3rem;
-    }
-    .icon {
-      margin: 4px;
-      height: 51px;
-      width: 51px;
-      border-radius: 35%;
-      background-color: #e9effb;
-      display: flex;
-      justify-content: center;
-      flex-direction: row;
-      align-items: center;
-      img {
-        height: unset;
-        width: unset;
-        border-radius: 0%;
-      }
-    }
-
+  .icon-call {
+    height: 45px;
+    width: 45px;
+    border-radius: 15px;
+    background-color: #26ec82;
+    margin-left: 120px;
+    margin-right: 15px;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+  }
+  .lead-listing {
+    margin-bottom: 19px;
+    margin-left: 19px;
+  }
+  .lead-infos {
     h4 {
-      margin-left: 0px;
-      text-align: center;
       font-size: 16px;
       font-family: $font;
-      font-weight: $regular;
-      color: $huntease-medium;
+      font-weight: $bold;
+      color: #0026bc;
+      padding-bottom: 0px;
+      margin-bottom: 0px;
+
+      margin-right: 40px;
     }
     h5 {
-      margin-left: 0px;
-
-      text-align: center;
-      font-size: 25px;
+      font-size: 14px;
+      font-family: $font;
+      font-weight: $bold;
+      color: #26ec82;
+      padding-top: 8px;
+    }
+    h3 {
+      font-size: 20px;
+      font-family: $font;
+      font-weight: $bold;
+      color: #0026bc;
+    }
+    h2 {
+      font-size: 22px;
       font-family: $font;
       font-weight: $regular;
-      color: $huntease-darkmode;
+      color: #8ba3ff;
+      margin: 10px;
+    }
+    p {
+      font-size: 14px;
+      font-family: $font;
+      font-weight: $regular;
+      color: #8ba3ff;
+      margin: 54px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+    .firstBlock {
+      height: 270px;
+      width: 460px;
+      background-color: white;
+
+      border-radius: 25px;
+      box-shadow: $shadow;
+    }
+    .call-section {
+      bottom: 0;
+      margin-top: 25%;
+      .icon-call-section {
+        height: 50px;
+        width: 50px;
+        border-radius: 20px;
+        background-color: rgba(202, 212, 255, 0.678);
+        margin-right: 15px;
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        align-items: center;
+      }
+
+      .icon-call-section-off {
+        height: 50px;
+        width: 50px;
+        border-radius: 20px;
+        background-color: #ff5773;
+
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        align-items: center;
+      }
+    }
+    .emotion-block {
+      margin: auto;
+      h4 {
+        font-size: 19px;
+        font-family: $font;
+        font-weight: $regular;
+        color: #26ec82;
+        text-align: center;
+        margin: auto;
+      }
+      h3 {
+        font-size: 32px;
+        font-family: $font;
+        font-weight: $regular;
+        color: #26ec82;
+        text-align: center;
+      }
+      img {
+        height: 30px;
+        width: 150px;
+      }
+    }
+    .hubspot {
+      width: 115px;
+      height: 34px;
+      background: #ffc6a8 0% 0% no-repeat padding-box;
+      border-radius: 10px;
+      color: #f7894d;
+      font-size: 12px;
+      font-family: $font;
+      font-weight: $bold;
+      border-color: white;
+    }
+    .lead-input {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      height: 45px;
+      width: 410px;
+      background-color: #e8edff;
+      color: #8ba3ff;
+      border-radius: 10px;
+      border-color: none;
+      margin-top: 26px;
+      padding-left: 5px;
     }
   }
 }
@@ -1866,7 +1905,7 @@ input {
       width: 40px;
       height: 40px;
       border-radius: 15px;
-      background: #8ba2ff79 0% 0% no-repeat padding-box;
+      background: #8ba2ff2d 0% 0% no-repeat padding-box;
       border-radius: 15px;
     }
   }

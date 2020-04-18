@@ -16,26 +16,15 @@ export default class Dashboard extends React.Component {
   render() {
     return (
       <Fragment>
-        <Row>
-          <Col className="col-4">
-            <Performance />
-          </Col>
-          <Col className="col-3">
-            <Calls />
-          </Col>
-          <Col>
-            <Meetings />
-          </Col>
-        </Row>
-
-        <Row>
-          <Col>
-            <Engagement />
-          </Col>
-          <Col>
-            <TopSales />
-          </Col>
-        </Row>
+        <div className="inlineBtn-center">
+          <Performance />
+          <Calls />
+          <Meetings />
+        </div>
+        <div className="inlineBtn-center">
+          <Engagement />
+          <TopSales />
+        </div>
       </Fragment>
     );
   }
