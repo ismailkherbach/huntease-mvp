@@ -739,6 +739,21 @@ input {
   }
   @include desktop-lg {
   }
+  .notes {
+    .notes-text-area {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      height: 406px;
+      width: 620px;
+      background-color: red;
+      color: black;
+      border-radius: 10px;
+      border-color: none;
+      margin-top: 26px;
+      padding-left: 5px;
+    }
+  }
 }
 
 #calls-list-card {
