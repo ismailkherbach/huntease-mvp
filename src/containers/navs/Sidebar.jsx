@@ -3,6 +3,9 @@ import menuItems from "../../constants/menu";
 import { Link, withRouter } from "react-router-dom";
 import "boxicons";
 import IntlMessages from "../../helpers/IntlMessages";
+import { connect } from "react-redux";
+import { logoutUser } from "../../redux/actions";
+import { injectIntl } from "react-intl";
 
 class Sidebar extends React.Component {
   constructor(props) {
@@ -13,11 +16,9 @@ class Sidebar extends React.Component {
   }
 
   handleLogout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("user_id");
-
-    this.props.history.push("/user/login");
+    this.props.logoutUser(this.props.history);
   };
+
   render() {
     return (
       <div className="sidenav no-gutters disable-select">
@@ -41,7 +42,7 @@ class Sidebar extends React.Component {
               </Link>
             );
           })}
-          <li id="logout" onClick={this.handleLogout}>
+          <li id="logout" onClick={() => this.handleLogout()}>
             {" "}
             <box-icon name="log-out" type="solid" color="#8ba2ff96"></box-icon>
             <IntlMessages id="logout" />
@@ -52,4 +53,7 @@ class Sidebar extends React.Component {
   }
 }
 
-export default withRouter(Sidebar);
+const mapStateToProps = ({}) => {
+  return {};
+};
+export default injectIntl(connect(mapStateToProps, { logoutUser })(Sidebar));
