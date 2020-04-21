@@ -1,7 +1,6 @@
 import React from "react";
 import axios from "axios";
 const Twilio = require("twilio-client");
-
 class CallTwilio extends React.Component {
   constructor(props) {
     super(props);
@@ -13,30 +12,39 @@ class CallTwilio extends React.Component {
       onPhone: false,
     };
     this.handleToggleCall = this.handleToggleCall.bind(this);
+    this.handleToggleMute = this.handleToggleMute.bind(this);
   }
 
   componentDidMount() {
     var self = this;
+    axios
+      .get("https://radiant-bastion-46195.herokuapp.com/token")
+      .then((response) => {
+        console.log(response.data.token);
+        const { token } = response.data.token;
+        Twilio.Device.setup(response.data.token, {
+          audioConstraints: true,
+          audioHelper: true,
+          pstream: true,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+        self.setState({ log: "Could not fetch token, see console.log" });
+      });
 
-    console.log(Twilio.Connection);
-    Twilio.Device.setup(
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZSI6InNjb3BlOmNsaWVudDpvdXRnb2luZz9hcHBTaWQ9QVA0MGYyMWU5MDkyNDExYzcwZGNkYzY2NjY1Nzc4NjY4OSIsImlzcyI6IkFDNjlhODk2YTVhNzBlM2UxZTUzOGYyNmExODc3YTY1OTIiLCJleHAiOjE1ODc0MTUyNjIsImlhdCI6MTU4NzQxMTY2Mn0.gwbSMOHnOQDnWjn2L7SITJOTeAwKpo0cNslyC22mUYo",
-      { audio: true }
-    );
-    Twilio.Device.ready(function() {
-      self.log = "Connected";
-    });
-
-    // Fetch Twilio capability token from our Node.js server
-
-    // Configure event handlers for Twilio Device
     Twilio.Device.disconnect(function() {
       self.setState({
         onPhone: false,
         log: "Call ended.",
       });
     });
+
+    Twilio.Device.ready(function() {
+      self.log = "Connected";
+    });
   }
+
   // Handle country code selection
   handleChangeCountryCode(countryCode) {
     this.setState({ countryCode: countryCode });
@@ -64,12 +72,9 @@ class CallTwilio extends React.Component {
   handleToggleCall() {
     if (!this.state.onPhone) {
       var constraints = { audio: true, video: false };
-      navigator.mediaDevices
-        .getUserMedia(constraints)
-
-        .catch(function(err) {
-          console.log(err.name + ": " + err.message);
-        });
+      navigator.mediaDevices.getUserMedia(constraints).catch(function(err) {
+        console.log(err.name + ": " + err.message);
+      });
       this.setState({
         muted: false,
         onPhone: true,
@@ -119,7 +124,7 @@ class CallTwilio extends React.Component {
                 color="#8BA3FF"
               ></box-icon>
             </div>
-            <div className="icon-call-section">
+            <div className="icon-call-section" onClick={this.handleToggleMute}>
               <box-icon
                 name={this.state.muted ? "microphone-off" : "microphone"}
                 type="solid"
@@ -138,7 +143,7 @@ class CallTwilio extends React.Component {
               className={
                 this.state.onPhone
                   ? "icon-call-section-off"
-                  : "icon-call-section"
+                  : "icon-call-section-start"
               }
             >
               <box-icon name="phone" type="solid" color="white"></box-icon>

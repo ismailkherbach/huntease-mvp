@@ -66,7 +66,6 @@ $mainback: url("../img/mainback.svg");
   right: 0;
   bottom: 0;
   left: 0;
-  height: 786px;
   font-size: 16px;
   font-family: $font;
   font-weight: $regular;
@@ -1547,7 +1546,16 @@ input {
         width: 50px;
         border-radius: 20px;
         background-color: #ff5773;
-
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        align-items: center;
+      }
+      .icon-call-section-start {
+        height: 50px;
+        width: 50px;
+        border-radius: 20px;
+        background-color: #26ec82;
         display: flex;
         justify-content: center;
         flex-direction: row;
