@@ -11,7 +11,7 @@ class CallCard extends React.Component {
     this.state = {
       visibleLeadId: {},
       visibleLeadInfos: {},
-      shownLead: true,
+      shownLead: false,
       callSection: false,
       leadListing: false,
       shownLeadInfos: true,
@@ -45,7 +45,6 @@ class CallCard extends React.Component {
   handleCallClick = () => {
     this.setState({
       callSection: true,
-      shownLead: true,
       shownLeadInfos: false,
       leadListing: false,
     });
@@ -94,7 +93,7 @@ class CallCard extends React.Component {
                     <h3>Ismail kherbach</h3>
                     <p>Tech lead</p>
                   </div>
-                  <div className="icon-call">
+                  <div className="icon-call" onClick={this.handleCallClick}>
                     <box-icon
                       name="phone"
                       type="solid"
@@ -108,7 +107,6 @@ class CallCard extends React.Component {
                   <h5>Activity</h5>
                 </div>
               </div>
-
               <div className="">
                 <div className="inlineBtn-center mt-4">
                   <div className="inlineBtn-center">
@@ -155,52 +153,9 @@ class CallCard extends React.Component {
               </div>
             </div>
           )}
-          {this.state.shownLead && this.state.callSection && (
+          {this.state.callSection && (
             <div className="lead-infos inlineBtn-col-center">
-              <div className="firstBlock">
-                <img alt="avatar" src={require("../../../assets/img/0.jpeg")} />
-                <h3>Ismail kherbach</h3>
-                <p>Tech lead</p>
-                <h2>00:54</h2>
-
-                <div className="inlineBtn-center">
-                  <p>General</p>
-                  <p> | </p>
-                  <p>Activity</p>
-                </div>
-              </div>
-              {this.state.shownLeadInfos && (
-                <div className="inlineBtn-col-center">
-                  <div className="inlineBtn-center mt-4">
-                    <div className="inlineBtn-center">
-                      <box-icon
-                        name="linkedin-square"
-                        type="logo"
-                        color="#091ad4"
-                      ></box-icon>
-                      <h4>LinkedIn</h4>
-                    </div>
-                    <div className="inlineBtn-center">
-                      <box-icon name="world" color="#091ad4"></box-icon>
-                      <h4>Website</h4>
-                    </div>
-                    <Button className="hubspot">View in hubspot</Button>
-                  </div>
-                  <input
-                    className="lead-input"
-                    placeholder="+44 7911123456"
-                    type="text"
-                  />{" "}
-                  <input
-                    className="lead-input"
-                    placeholder="gi_kherbach@esi.dz"
-                    type="text"
-                  />
-                </div>
-              )}
-              {this.state.callSection && (
-                <CallTwilio muted={this.state.muted} />
-              )}
+              <CallTwilio muted={this.state.muted} />
             </div>
           )}
 

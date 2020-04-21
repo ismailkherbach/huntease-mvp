@@ -1289,6 +1289,25 @@ input {
 }
 
 #calls-list-card {
+  ::-webkit-scrollbar {
+    background: $huntease-light;
+    border-radius: 2px;
+    height: 8px;
+    width: 7px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: $huntease-medium;
+    border-radius: 2px;
+    background-clip: content-box;
+    border: 5px solid transparent;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: $huntease-medium;
+  }
+  ::-webkit-scrollbar-button {
+    display: none;
+  }
   margin-left: 15px;
   margin-top: $topnav-height;
   background: $white;
@@ -1528,7 +1547,7 @@ input {
     }
     .call-section {
       bottom: 0;
-      margin-top: 25%;
+      margin-top: 4%;
       .icon-call-section {
         height: 50px;
         width: 50px;
@@ -2738,6 +2757,13 @@ input {
   overflow-y: scroll;
   overflow-x: hidden;
 }
+.scroll-lead {
+  padding-right: unset;
+  margin-right: unset;
+  height: 300px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
 .scroll-team {
   padding-right: unset;
   margin-right: unset;
@@ -2859,4 +2885,23 @@ input {
   -khtml-user-select: none; /* Konqueror HTML */
   -moz-user-select: none; /* Firefox */
   -ms-user-select: none; /* Internet Explorer/Edge */
+}
+::-webkit-scrollbar {
+  background: $huntease-light;
+  border-radius: 2px;
+  height: 8px;
+  width: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $huntease-medium;
+  border-radius: 2px;
+  background-clip: content-box;
+  border: 5px solid transparent;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: $huntease-medium;
+}
+::-webkit-scrollbar-button {
+  display: none;
 }
