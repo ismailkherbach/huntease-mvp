@@ -4,15 +4,16 @@ import PerfectScrollbar from "react-perfect-scrollbar";
 import ActionLead from "../dashboard/actionLead";
 import CallProcess from "./callProcess";
 import Button from "reactstrap/lib/Button";
+import CallTwilio from "./CallTwilio";
 class CallCard extends React.Component {
   constructor() {
     super();
     this.state = {
       visibleLeadId: {},
       visibleLeadInfos: {},
-      shownLead: false,
-      callSection: false,
-      leadListing: true,
+      shownLead: true,
+      callSection: true,
+      leadListing: false,
       shownLeadInfos: false,
       noLeads: false,
       callIcon: false,
@@ -78,129 +79,18 @@ class CallCard extends React.Component {
                   </div>
                 )}
               </div>{" "}
-              <div
-                className="inlineBtn-left"
-                onMouseEnter={this.handleHoverOn}
-                onMouseLeave={this.handleHoverOff}
-              >
-                <div className="icon">
-                  <box-icon name="headphone" color="#091ad4"></box-icon>
-                </div>
-                <div className="inlineBtn-col-left">
-                  <h4>Ismail kherbach</h4>
-                  <p>Tech lead</p>
-                </div>
-                {this.state.callIcon && (
-                  <div className="icon-call">
-                    <box-icon
-                      name="phone"
-                      type="solid"
-                      color="white"
-                    ></box-icon>{" "}
-                  </div>
-                )}
-              </div>{" "}
-              <div
-                className="inlineBtn-left"
-                onMouseEnter={this.handleHoverOn}
-                onMouseLeave={this.handleHoverOff}
-              >
-                <div className="icon">
-                  <box-icon name="headphone" color="#091ad4"></box-icon>
-                </div>
-                <div className="inlineBtn-col-left">
-                  <h4>Ismail kherbach</h4>
-                  <p>Tech lead</p>
-                </div>
-                {this.state.callIcon && (
-                  <div className="icon-call">
-                    <box-icon
-                      name="phone"
-                      type="solid"
-                      color="white"
-                    ></box-icon>{" "}
-                  </div>
-                )}
-              </div>{" "}
-              <div
-                className="inlineBtn-left"
-                onMouseEnter={this.handleHoverOn}
-                onMouseLeave={this.handleHoverOff}
-              >
-                <div className="icon">
-                  <box-icon name="headphone" color="#091ad4"></box-icon>
-                </div>
-                <div className="inlineBtn-col-left">
-                  <h4>Ismail kherbach</h4>
-                  <p>Tech lead</p>
-                </div>
-                {this.state.callIcon && (
-                  <div className="icon-call">
-                    <box-icon
-                      name="phone"
-                      type="solid"
-                      color="white"
-                    ></box-icon>{" "}
-                  </div>
-                )}
-              </div>{" "}
-              <div
-                className="inlineBtn-left"
-                onMouseEnter={this.handleHoverOn}
-                onMouseLeave={this.handleHoverOff}
-              >
-                <div className="icon">
-                  <box-icon name="headphone" color="#091ad4"></box-icon>
-                </div>
-                <div className="inlineBtn-col-left">
-                  <h4>Ismail kherbach</h4>
-                  <p>Tech lead</p>
-                </div>
-                {this.state.callIcon && (
-                  <div className="icon-call">
-                    <box-icon
-                      name="phone"
-                      type="solid"
-                      color="white"
-                    ></box-icon>{" "}
-                  </div>
-                )}
-              </div>{" "}
-              <div
-                className="inlineBtn-left"
-                onMouseEnter={this.handleHoverOn}
-                onMouseLeave={this.handleHoverOff}
-              >
-                <div className="icon">
-                  <box-icon name="headphone" color="#091ad4"></box-icon>
-                </div>
-                <div className="inlineBtn-col-left">
-                  <h4>Ismail kherbach</h4>
-                  <p>Tech lead</p>
-                </div>
-                {this.state.callIcon && (
-                  <div className="icon-call">
-                    <box-icon
-                      name="phone"
-                      type="solid"
-                      color="white"
-                    ></box-icon>{" "}
-                  </div>
-                )}
-              </div>
             </div>
           )}
-
           {this.state.shownLeadInfos && (
             <div className="lead-infos inlineBtn-col-center">
-              <div className="firstBlock">
-                <p>Contact infos</p>{" "}
+              <div className="firstBlock-leadinfos">
+                <h4>Contact infos</h4>{" "}
                 <div className="inlineBtn-center">
                   <img
                     alt="avatar"
                     src={require("../../../assets/img/0.jpeg")}
                   />
-                  <div className="inlineBtn-col">
+                  <div className="inlineBtn-col ">
                     <h3>Ismail kherbach</h3>
                     <p>Tech lead</p>
                   </div>
@@ -213,13 +103,13 @@ class CallCard extends React.Component {
                   </div>{" "}
                 </div>
                 <div className="inlineBtn-center">
-                  <p>General</p>
-                  <p> | </p>
-                  <p>Activity</p>
+                  <h5>General</h5>
+                  <h5> | </h5>
+                  <h5>Activity</h5>
                 </div>
               </div>
 
-              <div className="inlineBtn-col-center">
+              <div className="">
                 <div className="inlineBtn-center mt-4">
                   <div className="inlineBtn-center">
                     <box-icon
@@ -245,6 +135,23 @@ class CallCard extends React.Component {
                   placeholder="gi_kherbach@esi.dz"
                   type="text"
                 />
+                <div className="leadStatus">
+                  <h4>Lead status</h4>
+                  <div className="inlineBtn-left">
+                    <div className="lead-status">New</div>
+                    <div className="lead-status">Open</div>
+                    <div className="lead-status">Unqualified</div>
+                    <div className="lead-status">Connected</div>{" "}
+                    <div className="lead-status">Open deal</div>{" "}
+                  </div>
+                  <div className="inlineBtn-left">
+                    <div className="lead-status">In progress</div>
+                    <div className="lead-status-active">
+                      Attempted to contact
+                    </div>
+                    <div className="lead-status">Bad time</div>
+                  </div>
+                </div>
               </div>
             </div>
           )}
@@ -262,7 +169,7 @@ class CallCard extends React.Component {
                   <p>Activity</p>
                 </div>
               </div>
-              {this.state.shownLead && (
+              {this.state.shownLeadInfos && (
                 <div className="inlineBtn-col-center">
                   <div className="inlineBtn-center mt-4">
                     <div className="inlineBtn-center">
@@ -292,65 +199,12 @@ class CallCard extends React.Component {
                 </div>
               )}
               {this.state.callSection && (
-                <div>
-                  <div className="inlineBtn-center mt-5">
-                    <div className="inlineBtn-col-center mt-3">
-                      <div className="emotion-block">
-                        <h3>+30</h3>
-                        <h4>Enthusiasm</h4>
-                        <img
-                          alt="emotion"
-                          src={require("../../../assets/img/emotion-green.svg")}
-                        />
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="call-section inlineBtn-center ">
-                    <div className="icon-call-section">
-                      <box-icon
-                        name="face"
-                        type="solid"
-                        color="#8BA3FF"
-                      ></box-icon>
-                    </div>
-
-                    <div className="icon-call-section">
-                      <box-icon
-                        name="video-recording"
-                        type="solid"
-                        color="#8BA3FF"
-                      ></box-icon>
-                    </div>
-                    <div className="icon-call-section">
-                      <box-icon
-                        name={
-                          this.state.muted ? "microphone-off" : "microphone"
-                        }
-                        type="solid"
-                        color="#8BA3FF"
-                      ></box-icon>
-                    </div>
-                    <div className="icon-call-section">
-                      <box-icon
-                        name="time-five"
-                        type="solid"
-                        color="#8BA3FF"
-                      ></box-icon>
-                    </div>
-                    <div className="icon-call-section-off">
-                      <box-icon
-                        name="phone"
-                        type="solid"
-                        color="white"
-                      ></box-icon>
-                    </div>
-                  </div>
-                </div>
+                <CallTwilio muted={this.state.muted} />
               )}
             </div>
           )}
-          <div className="inlineBtn-cnter"></div>
+
+          <div></div>
         </div>
       </Fragment>
     );

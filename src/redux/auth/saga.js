@@ -58,9 +58,9 @@ function* forgotPassword({ payload }) {
   const { email } = payload.forgotUserMail;
   try {
     yield call(forgotPasswordAsync, email);
+    yield put(forgotPasswordSuccess("success"));
   } catch (error) {}
 }
-
 const registerWithEmailPasswordAsync = async (
   firstname,
   lastname,
@@ -157,6 +157,10 @@ export function* watchLoginUser() {
   yield takeEvery(LOGIN_USER, loginWithEmailPassword);
 }
 
+export function* watchForgotPassword() {
+  yield takeEvery(FORGOT_PASSWORD, forgotPassword);
+}
+
 export function* watchLogoutUser() {
   yield takeEvery(LOGOUT_USER, logout);
 }
@@ -167,6 +171,7 @@ export function* watchRegisterUser() {
 export default function* rootSaga() {
   yield all([
     fork(watchLoginUser),
+    fork(watchForgotPassword),
     fork(watchRegisterUser),
     fork(watchLogoutUser),
   ]);

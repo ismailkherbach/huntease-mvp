@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
-import { Col, Row, Button } from "reactstrap";
+import { Row, Card, CardTitle, Label, FormGroup, Button } from "reactstrap";
+import { Formik, Form, Field } from "formik";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { loginUser } from "../../redux/actions";
@@ -12,7 +13,7 @@ class Login extends React.Component {
     super(props);
     this.state = {
       email: "",
-      password: ""
+      password: "",
     };
 
     this.handleChangeEmail = this.handleChangeEmail.bind(this);
@@ -50,40 +51,88 @@ class Login extends React.Component {
       }
     );
   };*/
+  onUserLogin = (values) => {
+    if (!this.props.loading) {
+      if (values.email !== "" && values.password !== "") {
+        this.props.loginUser(values, this.props.history);
+      }
+    }
+  };
 
-  onUserLogin = () => {
-    this.props.loginUser(this.state, this.props.history);
+  validateEmail = (value) => {
+    let error;
+    if (!value) {
+      error = "Please enter your email address";
+    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) {
+      error = "Invalid email address";
+    }
+    return error;
+  };
+
+  validatePassword = (value) => {
+    let error;
+    if (!value) {
+      error = "Please enter your password";
+    } else if (value.length < 7) {
+      error = "Value must be longer than 8 characters";
+    }
+    return error;
   };
 
   render() {
+    const { password, email } = this.state;
+    const initialValues = { email, password };
     return (
       <Fragment>
         <main className="auth-container-align">
-          <div className="auth-container">
+          <div className="auth-container inlineBtn-col-center">
             {" "}
             <h3 className="btn-get-started-textt">Welcome Back!</h3>
-            <input
-              className="auth-input-large"
-              placeholder="Work Email"
-              type="text"
-              onChange={this.handleChangeEmail}
-            />
-            <input
-              className="auth-input-large"
-              placeholder="Paasword"
-              type="password"
-              onChange={this.handleChangePassword}
-            />
-            <Btn class={"btn-get-started"} onClick={this.onUserLogin}>
-              <div className="btn-get-started-text" onClick={this.onUserLogin}>
-                Login
-              </div>
-            </Btn>
+            <Formik initialValues={initialValues} onSubmit={this.onUserLogin}>
+              {({ errors, touched }) => (
+                <Form class>
+                  <FormGroup>
+                    <Field
+                      className={
+                        errors.email && touched.email
+                          ? "auth-input-large-error"
+                          : "auth-input-large"
+                      }
+                      name="email"
+                      validate={this.validateEmail}
+                      placeholder="Email"
+                    />
+                    {errors.email && touched.email && (
+                      <div className="invalid-feedback d-block">
+                        {errors.email}
+                      </div>
+                    )}
+                    <Field
+                      className={
+                        errors.password && touched.password
+                          ? "auth-input-large-error"
+                          : "auth-input-large"
+                      }
+                      type="password"
+                      name="password"
+                      validate={this.validatePassword}
+                    />
+                    {errors.password && touched.password && (
+                      <div className="invalid-feedback d-block">
+                        {errors.password}
+                      </div>
+                    )}
+                  </FormGroup>
+                  <div className="inlineBtn-center">
+                    <Button className="btn-get-started">
+                      <div className="btn-get-started-text">Login </div>
+                    </Button>
+                  </div>
+                </Form>
+              )}
+            </Formik>{" "}
             <div className="condition-term">
-              <Link
-               
-                to={"/user/forgot-password"}
-              >
+              <Link to={"/user/forgot-password"}>
                 <p>Forgot your password ?</p>
               </Link>
             </div>
@@ -100,5 +149,5 @@ const mapStateToProps = ({ authUser }) => {
 };
 
 export default connect(mapStateToProps, {
-  loginUser
+  loginUser,
 })(Login);

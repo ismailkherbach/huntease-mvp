@@ -1,6 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Twilio from "twilio";
 var NumberInputText = React.createClass({
   render: function() {
     return (
@@ -230,16 +229,19 @@ var DialerApp = React.createClass({
     var self = this;
     const token = localStorage.getItem("uer_id");
     Twilio.Device.setup(token);
-
-    // Fetch Twilio capability token from our Node.js server
-    /* $.getJSON("/token")
-      .done(function(data) {
-        Twilio.Device.setup(data.token);
+    axios({
+      method: "get",
+      url:
+        "https://radiant-bastion-46195.herokuapp.com/?fbclid=IwAR2eytfr1sbvfeo5oDCFtdK9AMO1dg_QJxQpBs0jsmdzVLoHEPfEcr1LyTo/token",
+    })
+      .then((response) => {
+        Twilio.Device.setup(response.data.token);
       })
-      .fail(function(err) {
-        console.log(err);
+      .catch((error) => {
+        console.log(error);
         self.setState({ log: "Could not fetch token, see console.log" });
-      });*/
+      });
+    // Fetch Twilio capability token from our Node.js server
 
     // Configure event handlers for Twilio Device
     Twilio.Device.disconnect(function() {
