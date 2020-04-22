@@ -1376,6 +1376,7 @@ input {
     width: 80px;
     border-radius: 25px;
     margin: 8px;
+    margin-top: 0px;
     z-index: 1000;
     position: relative;
   }
@@ -1456,6 +1457,8 @@ input {
       box-shadow: $shadow;
     }
     .audioShow {
+      margin-top: 0px;
+      padding-top: 0px;
       margin-bottom: -90px;
       z-index: 100;
       position: relative;

@@ -76,7 +76,8 @@ class CallTwilio extends React.Component {
     await this.handleToggleCall();
   };
   componentDidMount() {
-    //  this.fetchToken();
+    this.getMicrophone();
+    this.fetchToken();
   }
   // Handle country code selection
   handleChangeCountryCode(countryCode) {
@@ -100,8 +101,8 @@ class CallTwilio extends React.Component {
   // Handle muting
   handleToggleMute() {
     var muted = !this.state.muted;
-
-    this.setState({ muted: muted });
+    var audio = !this.state.audio;
+    this.setState({ muted: muted, audio: audio });
     Twilio.Device.activeConnection().mute(muted);
   }
   // Make an outbound call with the current number,
@@ -115,7 +116,6 @@ class CallTwilio extends React.Component {
       this.setState({
         muted: false,
         onPhone: true,
-        audio: true,
       });
       // make outbound call with current number
       var n =
@@ -203,11 +203,13 @@ class CallTwilio extends React.Component {
             <div className="inlineBtn-center mt-5 mb-5">
               <div className="inlineBtn-col-center mt-3">
                 <div className="emotion-block">
-                  <button onClick={this.toggleMicrophone}>
-                    {this.state.audio
-                      ? "Stop microphone"
-                      : "Get microphone input"}
-                  </button>
+                  {" "}
+                  <h3>+30</h3>
+                  <h4>Enthusiasm</h4>
+                  <img
+                    alt="emotion"
+                    src={require("../../../assets/img/emotion-green.svg")}
+                  />
                 </div>
               </div>
             </div>
@@ -229,7 +231,7 @@ class CallTwilio extends React.Component {
             </div>
             <div className="icon-call-section" onClick={this.handleToggleMute}>
               <box-icon
-                name={this.state.muted ? "microphone-off" : "microphone"}
+                name={!this.state.audio ? "microphone-off" : "microphone"}
                 type="solid"
                 color="#8BA3FF"
               ></box-icon>

@@ -142,7 +142,8 @@ function* logout({ payload }) {
   try {
     const logoutUser = yield call(logoutAsync, history);
     console.log(JSON.parse(localStorage.getItem("user_id")));
-    if (logoutUser.status == 200) {
+    console.log(logoutUser);
+    if (logoutUser) {
       yield put(logoutUserSuccess(logoutUser));
 
       history.push("/user/login");
