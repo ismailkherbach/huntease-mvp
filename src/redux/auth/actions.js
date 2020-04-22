@@ -11,6 +11,9 @@ import {
   RESET_PASSWORD,
   RESET_PASSWORD_SUCCESS,
   RESET_PASSWORD_ERROR,
+  JOIN_COMPANY,
+  JOIN_COMPANY_SUCCESS,
+  JOIN_COMPANY_ERROR,
 } from "../actions";
 
 export const loginUser = (user, history) => ({
@@ -54,6 +57,19 @@ export const registerUser = (user, history) => ({
 export const registerUserSuccess = (user) => ({
   type: REGISTER_USER_SUCCESS,
   payload: user,
+});
+
+export const joinTeamMember = (joinTeamCode, history) => ({
+  type: FORGOT_PASSWORD,
+  payload: { joinTeamCode, history },
+});
+export const joinTeamMemberSuccess = (joinTeamCode) => ({
+  type: FORGOT_PASSWORD_SUCCESS,
+  payload: joinTeamCode,
+});
+export const joinTeamMemberError = (message) => ({
+  type: FORGOT_PASSWORD_ERROR,
+  payload: { message },
 });
 
 export const logoutUser = (history) => ({

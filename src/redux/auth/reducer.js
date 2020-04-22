@@ -11,6 +11,9 @@ import {
   RESET_PASSWORD,
   RESET_PASSWORD_SUCCESS,
   RESET_PASSWORD_ERROR,
+  JOIN_COMPANY,
+  JOIN_COMPANY_SUCCESS,
+  JOIN_COMPANY_ERROR,
 } from "../actions";
 
 const INIT_STATE = {
@@ -19,6 +22,7 @@ const INIT_STATE = {
   forgotUserMail: "",
   newPassword: "",
   resetPasswordCode: "",
+  teamJoinCode: "",
 };
 
 export default (state = INIT_STATE, action) => {
@@ -70,6 +74,23 @@ export default (state = INIT_STATE, action) => {
       return { ...state, user: null, error: "" };
     case LOGOUT_USER:
       return { ...state };
+
+    case JOIN_COMPANY:
+      return { ...state, loading: true, error: "" };
+    case JOIN_COMPANY_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        teamJoinCode: action.payload,
+        error: "",
+      };
+    case JOIN_COMPANY_ERROR:
+      return {
+        ...state,
+        loading: false,
+        teamJoinCode: "",
+        error: action.payload.message,
+      };
     default:
       return { ...state };
   }

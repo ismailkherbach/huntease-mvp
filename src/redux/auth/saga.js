@@ -4,6 +4,7 @@ import {
   REGISTER_USER,
   LOGOUT_USER,
   FORGOT_PASSWORD,
+  JOIN_COMPANY,
 } from "../actions";
 import axios from "axios";
 import {
@@ -11,6 +12,8 @@ import {
   registerUserSuccess,
   logoutUserSuccess,
   forgotPasswordSuccess,
+  joinTeamMember,
+  joinTeamMemberSuccess,
 } from "./actions";
 
 const loginWithEmailPasswordAsync = async (email, password) =>
@@ -102,6 +105,26 @@ function* registerWithEmailPassword({ payload }) {
   }
 }
 
+const joinTeamAsync = async (joinTeamCode) =>
+  await axios({
+    method: "post",
+    url: "https://huntease-mvp.herokuapp.com/v1/account/check-token",
+    data: {
+      email: "gi_kherbach@esi.dz",
+      joinTeamCode,
+    },
+  })
+    .then((authUser) => authUser)
+    .catch((error) => error);
+
+function* joinTeam({ payload }) {
+  const { joinTeamCode } = payload.joinTeamCode;
+  try {
+    yield call(joinTeamAsync, joinTeamCode);
+    yield put(joinTeamMemberSuccess("success"));
+  } catch (error) {}
+}
+
 const loginWithLinkedInAsync = () => {};
 
 /*const logoutAsync = async history => {
@@ -169,11 +192,15 @@ export function* watchLogoutUser() {
 export function* watchRegisterUser() {
   yield takeEvery(REGISTER_USER, registerWithEmailPassword);
 }
+export function* watchJoinTeam() {
+  yield takeEvery(JOIN_COMPANY, joinTeam);
+}
 export default function* rootSaga() {
   yield all([
     fork(watchLoginUser),
     fork(watchForgotPassword),
     fork(watchRegisterUser),
     fork(watchLogoutUser),
+    fork(watchJoinTeam),
   ]);
 }
