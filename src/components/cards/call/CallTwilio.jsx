@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import { Button } from "reactstrap";
 import PerfectScrollbar from "react-perfect-scrollbar";
+import AudioAnalyser from "./AudioAnalyser";
 
 const Twilio = require("twilio-client");
 class CallTwilio extends React.Component {
@@ -15,10 +16,32 @@ class CallTwilio extends React.Component {
       onPhone: false,
       emotionAnalytics: true,
       general: false,
+      audio: null,
     };
     this.handleToggleCall = this.handleToggleCall.bind(this);
     this.handleToggleMute = this.handleToggleMute.bind(this);
     this.handleToggleGeneral = this.handleToggleGeneral.bind(this);
+    this.toggleMicrophone = this.toggleMicrophone.bind(this);
+  }
+  async getMicrophone() {
+    const audio = await navigator.mediaDevices.getUserMedia({
+      audio: true,
+      video: false,
+    });
+    this.setState({ audio });
+  }
+
+  stopMicrophone() {
+    this.state.audio.getTracks().forEach((track) => track.stop());
+    this.setState({ audio: null });
+  }
+
+  toggleMicrophone() {
+    if (this.state.audio) {
+      this.stopMicrophone();
+    } else {
+      this.getMicrophone();
+    }
   }
   fetchToken = async () => {
     var self = this;
@@ -41,6 +64,7 @@ class CallTwilio extends React.Component {
     Twilio.Device.disconnect(function() {
       self.setState({
         onPhone: false,
+        audio: false,
         log: "Call ended.",
       });
     });
@@ -52,7 +76,7 @@ class CallTwilio extends React.Component {
     await this.handleToggleCall();
   };
   componentDidMount() {
-    this.fetchToken();
+    //  this.fetchToken();
   }
   // Handle country code selection
   handleChangeCountryCode(countryCode) {
@@ -91,6 +115,7 @@ class CallTwilio extends React.Component {
       this.setState({
         muted: false,
         onPhone: true,
+        audio: true,
       });
       // make outbound call with current number
       var n =
@@ -113,6 +138,7 @@ class CallTwilio extends React.Component {
       <div>
         <div className="firstBlock">
           <h5>{this.state.log}</h5>
+          {this.state.audio ? <AudioAnalyser audio={this.state.audio} /> : ""}
           <img alt="avatar" src={require("../../../assets/img/0.jpeg")} />
           <h3>Ismail kherbach</h3>
           <p>Tech lead</p>
@@ -177,12 +203,11 @@ class CallTwilio extends React.Component {
             <div className="inlineBtn-center mt-5 mb-5">
               <div className="inlineBtn-col-center mt-3">
                 <div className="emotion-block">
-                  <h3>+30</h3>
-                  <h4>Enthusiasm</h4>
-                  <img
-                    alt="emotion"
-                    src={require("../../../assets/img/emotion-green.svg")}
-                  />
+                  <button onClick={this.toggleMicrophone}>
+                    {this.state.audio
+                      ? "Stop microphone"
+                      : "Get microphone input"}
+                  </button>
                 </div>
               </div>
             </div>

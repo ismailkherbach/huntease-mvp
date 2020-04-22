@@ -5,6 +5,7 @@ import ActionLead from "../dashboard/actionLead";
 import CallProcess from "./callProcess";
 import Button from "reactstrap/lib/Button";
 import CallTwilio from "./CallTwilio";
+
 class CallCard extends React.Component {
   constructor() {
     super();
@@ -12,8 +13,8 @@ class CallCard extends React.Component {
       visibleLeadId: {},
       visibleLeadInfos: {},
       shownLead: false,
-      callSection: false,
-      leadListing: true,
+      callSection: true,
+      leadListing: false,
       shownLeadInfos: false,
       noLeads: false,
       callIcon: false,

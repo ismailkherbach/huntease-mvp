@@ -156,6 +156,7 @@ $mainback: url("../img/mainback.svg");
   align-items: center;
   position: relative;
   left: 47%;
+  z-index: 10;
 }
 span {
   color: $white;
@@ -165,6 +166,7 @@ span {
   width: 2rem;
   height: 2rem;
   border-radius: $max-radius;
+  z-index: 10;
 }
 
 // --------- Auth pages
@@ -1374,6 +1376,8 @@ input {
     width: 80px;
     border-radius: 25px;
     margin: 8px;
+    z-index: 1000;
+    position: relative;
   }
   .icon {
     height: 40px;
@@ -1451,7 +1455,11 @@ input {
       border-radius: 25px;
       box-shadow: $shadow;
     }
-
+    .audioShow {
+      margin-bottom: -90px;
+      z-index: 100;
+      position: relative;
+    }
     .firstBlock-leadinfos {
       width: 460px;
       background-color: white;
