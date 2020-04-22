@@ -21,6 +21,8 @@ class CallTwilio extends React.Component {
     this.handleToggleGeneral = this.handleToggleGeneral.bind(this);
   }
   fetchToken = async () => {
+    var self = this;
+
     await axios
       .get("https://radiant-bastion-46195.herokuapp.com/token")
       .then((response) => {
@@ -35,10 +37,6 @@ class CallTwilio extends React.Component {
         console.log(error);
         this.setState({ log: "Could not fetch token, see console.log" });
       });
-  };
-  componentDidMount() {
-    var self = this;
-    this.fetchToken();
 
     Twilio.Device.disconnect(function() {
       self.setState({
@@ -51,7 +49,10 @@ class CallTwilio extends React.Component {
       self.log = "Connected";
     });
 
-    this.handleToggleCall();
+    await this.handleToggleCall();
+  };
+  componentDidMount() {
+    this.fetchToken();
   }
   // Handle country code selection
   handleChangeCountryCode(countryCode) {
@@ -81,7 +82,7 @@ class CallTwilio extends React.Component {
   }
   // Make an outbound call with the current number,
   // or hang up the current call
-  handleToggleCall() {
+  handleToggleCall = async () => {
     if (!this.state.onPhone) {
       var constraints = { audio: true, video: false };
       navigator.mediaDevices.getUserMedia(constraints).catch(function(err) {
@@ -106,7 +107,7 @@ class CallTwilio extends React.Component {
       // hang up call in progress
       Twilio.Device.disconnectAll();
     }
-  }
+  };
   render() {
     return (
       <div>

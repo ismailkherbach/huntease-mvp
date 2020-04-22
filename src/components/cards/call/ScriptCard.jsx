@@ -16,7 +16,7 @@ class ScriptCard extends React.Component {
               <h3 className="btn-text-clicked">Continue without guide</h3>
             </Button>
           </div>
-          <div className="notes inlineBtn-center">
+          <div className="notes inlineBtn-col-center">
             <input
               className="notes-text-area"
               placeholder="Notes"

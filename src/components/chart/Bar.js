@@ -10,7 +10,7 @@ class BarChart extends React.Component {
     this.myRef = React.createRef();
     this.state = {
       chartData: {},
-      chartOption: {}
+      chartOption: {},
     };
   }
   handleClick(evt) {
@@ -192,7 +192,7 @@ class BarChart extends React.Component {
         [left, bottom],
         [left, top],
         [right, top],
-        [right, bottom]
+        [right, bottom],
       ];
 
       // Find first (starting) corner with fallback to 'bottom'
@@ -302,9 +302,9 @@ class BarChart extends React.Component {
 
     var ctx = document.getElementById("canvas").getContext("2d");
     var gradient = ctx.createLinearGradient(0, 0, 0, 70);
-    gradient.addColorStop(0, "#FFD4A2");
-    gradient.addColorStop(0.5, "#FFD4A2");
-    gradient.addColorStop(1, "#FF8565");
+    gradient.addColorStop(0, "#FFEED8");
+    gradient.addColorStop(0.5, "#F78C51");
+    gradient.addColorStop(1, "#F78C51");
 
     const newChartData = {
       labels: this.props.barLabels,
@@ -314,17 +314,17 @@ class BarChart extends React.Component {
           backgroundColor: gradient,
 
           pointRadius: 4,
-          barPercentage: 0.3,
+          barPercentage: 0.25,
           pointHoverRadius: 5,
           borderTopLeftRadius: 50,
           borderTopRightRadius: 50,
           fill: false,
           data: this.props.barData,
           datalabels: {
-            fontStyle: "bold"
-          }
-        }
-      ]
+            fontStyle: "bold",
+          },
+        },
+      ],
     };
     this.setState({ chartData: newChartData });
   }
@@ -344,9 +344,9 @@ class BarChart extends React.Component {
 
 const mapStateToProps = ({ dashboard }) => {
   return {
-    dashboard
+    dashboard,
   };
 };
 export default connect(mapStateToProps, {
-  getCalls
+  getCalls,
 })(BarChart);
