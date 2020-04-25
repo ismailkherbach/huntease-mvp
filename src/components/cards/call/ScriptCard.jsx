@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import Btn from "../../small.componenets/Btn";
 import { Button } from "reactstrap";
 import ChooseGuidePopup from "../../popup/ChooseGuidePopup";
+import SchedulesPopup from "../../popup/SchedulesPopup";
 
 class ScriptCard extends React.Component {
   constructor(props) {
@@ -9,15 +10,23 @@ class ScriptCard extends React.Component {
     this.state = {
       showPopup: false,
       withoutGuide: false,
+      schedulePopup: false,
     };
   }
   toggleWithoutGuide() {
     this.setState({ withoutGuide: true, showPopup: false });
   }
+  toggleSchedule() {
+    this.setState({
+      schedulePopup: !this.state.schedulePopup,
+      showPopup: false,
+    });
+  }
   togglePopup() {
     this.setState({
       showPopup: !this.state.showPopup,
       withoutGuide: false,
+      schedulePopup: false,
     });
   }
   render() {
@@ -29,6 +38,7 @@ class ScriptCard extends React.Component {
             closePopup={this.togglePopup.bind(this)}
           />
         ) : null}
+
         <div id="calls-card">
           <div className="inlineBtn-left">
             <Button
@@ -85,15 +95,36 @@ class ScriptCard extends React.Component {
           </div>{" "}
           <div className="guide-response inlineBtn-col-center">
             {!this.state.withoutGuide && (
-              <input
-                className="guide-response-text-area"
-                placeholder="Guide response"
-                type="text"
-              />
+              <div>
+                <h3>Let's make some calls</h3>
+                <h5>Sodales vulputate pellentesque</h5>
+                <input
+                  className="guide-response-text-area"
+                  placeholder="Guide response"
+                  type="text"
+                />
+                <h5>Sodales vulputate pellentesque</h5>
+                <input
+                  className="guide-response-text-area"
+                  placeholder="Guide response"
+                  type="text"
+                />
+              </div>
             )}
           </div>{" "}
           <div className="inlineBtn-col-center">
-            <Button className="confirm-btn">Book a meeting</Button>
+            {this.state.schedulePopup ? (
+              <SchedulesPopup
+                text='Click "Close Button" to hide popup'
+                closePopup={this.toggleSchedule.bind(this)}
+              />
+            ) : null}
+            <Button
+              onClick={this.toggleSchedule.bind(this)}
+              className="confirm-btn"
+            >
+              Book a meeting
+            </Button>
           </div>
         </div>
       </Fragment>

@@ -2,18 +2,8 @@ import React, { Fragment } from "react";
 import { connect } from "react-redux";
 import { injectIntl } from "react-intl";
 
-import {
-  Row,
-  Col,
-  Input,
-  UncontrolledDropdown,
-  DropdownItem,
-  DropdownToggle,
-  DropdownMenu,
-  Button,
-} from "reactstrap";
-import Terms from "./Terms";
-import Helps from "./Helps";
+import { Row, Col, Button } from "reactstrap";
+
 import { changeLocale, darkMode } from "../../../redux/actions";
 import { localeOptions } from "../../../constants/defaultValues";
 import ChangePassPopup from "../../popup/ChangePassPopup";

@@ -10,7 +10,7 @@ $navbar-height-lg: 30px;
 @import url("https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,700&display=swap");
 // --------- Importing FontAwesome for Icons
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0/css/font-awesome.min.css");
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;600;700&display=swap");
 // --------- VARIABLES
 $top-component-height: 345px;
 $bottom-component-height: 300px;
@@ -1262,6 +1262,23 @@ input {
   }
 
   .guide-response {
+    h3 {
+      font-family: $font;
+      font-size: 21px;
+      font-weight: $bold;
+      color: #001c56;
+      padding: 18px;
+      padding-left: 0px;
+      text-align: left;
+    }
+    h5 {
+      text-align: left;
+      font-family: $regular;
+      font-size: 15px;
+      font-weight: $regular;
+      color: #0026bc;
+      padding-bottom: 3px;
+    }
     .guide-response-text-area {
       -webkit-appearance: none;
       -moz-appearance: none;
@@ -1269,11 +1286,13 @@ input {
       height: 60px;
       width: 620px;
       background-color: #bbc7ff65;
-      color: black;
+
+      color: #8ba3ff;
       border-radius: 0px 15px 15px 15px;
       border-color: none;
-      margin-top: 26px;
       padding-left: 5px;
+      padding-top: 0;
+      margin-bottom: 10px;
     }
   }
 
@@ -1323,7 +1342,7 @@ input {
   }
 }
 .popup-chooseGuide {
-  position: fixed;
+  position: absolute;
   width: 500px;
   height: 500px;
   bottom: 3rem;
@@ -1383,6 +1402,77 @@ input {
     align-items: center;
   }
 }
+.popup-scheduls {
+  position: absolute;
+  width: 350px;
+  height: 330px;
+  bottom: 4rem;
+  background-color: white;
+  border-radius: $regular-radius;
+  box-shadow: $shadow;
+  z-index: 44;
+}
+.popup_inner-scheduls {
+  width: 350px;
+  height: 330px;
+  bottom: 3rem;
+
+  background-color: white;
+  box-shadow: $shadow;
+  border-radius: $regular-radius;
+  border-radius: 20px;
+
+  h4 {
+    font-family: $font;
+    font-size: 18px;
+    font-weight: $bold;
+    color: #001c56;
+    padding: 20px;
+    text-align: left;
+  }
+  .historyCard {
+    display: flex;
+    justify-content: left;
+    flex-direction: row;
+    align-items: center;
+    margin-right: 20px;
+    margin-bottom: 8px;
+    border-radius: 10px;
+    background-color: rgba(139, 162, 255, 0.11);
+
+    p {
+      font-size: 14px;
+      font-weight: $regular;
+      padding-left: 20px;
+      color: #0026bc;
+      margin: auto;
+      margin-left: 5px;
+      text-align: left;
+      padding: 10px;
+    }
+    img {
+      width: 40px;
+      height: 4px;
+    }
+  }
+  .confirm-btn {
+    margin: 36px;
+    border-radius: 13px;
+    height: 39px;
+    border-color: white;
+    padding: 15px;
+    background-color: #1428a8;
+    color: white;
+    font-family: $font;
+    font-size: 14px;
+    font-weight: $regular;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
 #calls-list-card {
   ::-webkit-scrollbar {
     background: $huntease-light;
