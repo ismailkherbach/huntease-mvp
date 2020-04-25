@@ -10,25 +10,33 @@ import {
   DropdownItem,
   DropdownToggle,
   DropdownMenu,
-  Button
+  Button,
 } from "reactstrap";
 import Terms from "./Terms";
 import Helps from "./Helps";
 import { changeLocale, darkMode } from "../../../redux/actions";
 import { localeOptions } from "../../../constants/defaultValues";
+import ChangePassPopup from "../../popup/ChangePassPopup";
 
 class AccountCall extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      userInfo: JSON.parse(localStorage.getItem("user_id"))
+      userInfo: JSON.parse(localStorage.getItem("user_id")),
+      showPopup: false,
     };
   }
-  handleChangeLocale = locale => {
+
+  togglePopup() {
+    this.setState({
+      showPopup: !this.state.showPopup,
+    });
+  }
+  handleChangeLocale = (locale) => {
     this.props.changeLocale(locale);
   };
 
-  handleDarkMode = color => {
+  handleDarkMode = (color) => {
     this.props.darkMode(color);
   };
 
@@ -106,7 +114,15 @@ class AccountCall extends React.Component {
                         type="text"
                         onChange={this.handleChangeEmail}
                       />
-
+                      <Button className="change-button">Change</Button>
+                    </div>
+                    <div className="inlineBtn-center">
+                      {!this.state.showPopup ? (
+                        <ChangePassPopup
+                          text='Click "Close Button" to hide popup'
+                          closePopup={this.togglePopup.bind(this)}
+                        />
+                      ) : null}
                     </div>
                   </div>
                   <h3 id="field-top">General settings</h3>
@@ -134,9 +150,8 @@ class AccountCall extends React.Component {
                     <Col>
                       {" "}
                       <div className="change-profil-card inlineBtn-left">
-
-                      <Button className="change-button">Light</Button>
-</div>
+                        <Button className="change-button">Light</Button>
+                      </div>
                     </Col>
                   </Row>
                 </Col>
@@ -174,12 +189,12 @@ class AccountCall extends React.Component {
 const mapStateToProps = ({ settings }) => {
   const { locale } = settings;
   return {
-    locale
+    locale,
   };
 };
 export default injectIntl(
   connect(mapStateToProps, {
     changeLocale,
-    darkMode
+    darkMode,
   })(AccountCall)
 );

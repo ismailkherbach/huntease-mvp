@@ -72,7 +72,7 @@ $mainback: url("../img/mainback.svg");
   box-sizing: border-box;
   color: $huntease-dark;
   background-color: $huntease-light;
-
+  height: 120vh;
   overflow-y: hidden;
   overflow-x: hidden;
 }
@@ -1228,6 +1228,23 @@ input {
   }
   @include desktop-lg {
   }
+  .confirm-btn {
+    border-radius: 13px;
+    height: 39px;
+    border-color: white;
+    padding: 15px;
+    background-color: #1428a8;
+    color: white;
+    font-family: $font;
+    font-size: 14px;
+    font-weight: $regular;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+  }
   .notes {
     .notes-text-area {
       -webkit-appearance: none;
@@ -1235,9 +1252,25 @@ input {
       appearance: none;
       height: 406px;
       width: 620px;
-      background-color: #bbc8ff;
+      background-color: #bbc7ff65;
       color: black;
       border-radius: 10px;
+      border-color: none;
+      margin-top: 26px;
+      padding-left: 5px;
+    }
+  }
+
+  .guide-response {
+    .guide-response-text-area {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      height: 60px;
+      width: 620px;
+      background-color: #bbc7ff65;
+      color: black;
+      border-radius: 0px 15px 15px 15px;
       border-color: none;
       margin-top: 26px;
       padding-left: 5px;
@@ -1289,7 +1322,67 @@ input {
     color: $huntease-main;
   }
 }
+.popup-chooseGuide {
+  position: fixed;
+  width: 500px;
+  height: 500px;
+  bottom: 3rem;
+  background-color: white;
+  border-radius: $regular-radius;
+  box-shadow: $shadow;
+  z-index: 44;
+}
+.popup_inner-chooseGuide {
+  width: 500px;
+  height: 500px;
+  bottom: 3rem;
 
+  background-color: white;
+  box-shadow: $shadow;
+  border-radius: $regular-radius;
+  border-radius: 20px;
+
+  h4 {
+    font-family: $font;
+    font-size: 18px;
+    font-weight: $bold;
+    color: #001c56;
+    padding: 20px;
+  }
+  .historyCard {
+    display: flex;
+    justify-content: left;
+    flex-direction: row;
+    align-items: top;
+
+    p {
+      font-size: 14px;
+      font-weight: $regular;
+      padding-left: 20px;
+      color: $huntease-main;
+    }
+    img {
+      width: 25px;
+      height: 25px;
+    }
+  }
+  .confirm-btn {
+    margin: 36px;
+    border-radius: 13px;
+    height: 39px;
+    border-color: white;
+    padding: 15px;
+    background-color: #1428a8;
+    color: white;
+    font-family: $font;
+    font-size: 14px;
+    font-weight: $regular;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
+}
 #calls-list-card {
   ::-webkit-scrollbar {
     background: $huntease-light;
@@ -1417,7 +1510,6 @@ input {
       color: #0026bc;
       padding-bottom: 0px;
       margin-bottom: 0px;
-
       margin-right: 40px;
     }
     h5 {
@@ -1870,6 +1962,49 @@ input {
   @include desktop-xl {
   }
   @include desktop-lg {
+  }
+
+  .popup-change-password {
+    position: fixed;
+    width: 375px;
+    height: 416px;
+
+    background-color: white;
+    border-radius: $regular-radius;
+    box-shadow: $shadow;
+    z-index: 44;
+  }
+  .popup_inner-change-password {
+    width: 375px;
+    height: 416px;
+    background-color: white;
+    box-shadow: $shadow;
+    border-radius: $regular-radius;
+    border-radius: 20px;
+
+    h4 {
+      font-family: $font;
+      font-size: 18px;
+      font-weight: $bold;
+      color: #001c56;
+      padding: 20px;
+    }
+    .confirm-btn {
+      margin: 36px;
+      border-radius: 13px;
+      height: 39px;
+      border-color: white;
+      padding: 15px;
+      background-color: #1428a8;
+      color: white;
+      font-family: $font;
+      font-size: 14px;
+      font-weight: $regular;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+    }
   }
   .profile-input {
     -webkit-appearance: none;
@@ -2532,6 +2667,14 @@ input {
   align-items: left;
 }
 .inlineBtn-col-center {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.inlineBtn-col-center-bottom {
   display: flex;
   justify-content: center;
   flex-direction: column;

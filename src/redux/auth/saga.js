@@ -105,22 +105,22 @@ function* registerWithEmailPassword({ payload }) {
   }
 }
 
-const joinTeamAsync = async (joinTeamCode) =>
+const joinTeamAsync = async (teamCode) =>
   await axios({
     method: "post",
     url: "https://huntease-mvp.herokuapp.com/v1/account/check-token",
     data: {
       email: "gi_kherbach@esi.dz",
-      joinTeamCode,
+      token: teamCode,
     },
   })
     .then((authUser) => authUser)
     .catch((error) => error);
 
 function* joinTeam({ payload }) {
-  const { joinTeamCode } = payload.joinTeamCode;
+  const { teamCode } = payload.teamJoinCode;
   try {
-    yield call(joinTeamAsync, joinTeamCode);
+    yield call(joinTeamAsync, teamCode);
     yield put(joinTeamMemberSuccess("success"));
   } catch (error) {}
 }

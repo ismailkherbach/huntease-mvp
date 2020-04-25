@@ -15,16 +15,16 @@ import {
 import Btn from "../../../components/small.componenets/Btn";
 import axios from "axios";
 import JoinCompanySecondStep from "./joinCompanySecond";
-
+import { connect } from "react-redux";
+import { joinTeamMember } from "../../../redux/actions";
 class JoinCompanyFirstStep extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       firstname: "",
       lastname: "",
-      email: "",
       password: "",
-      teamJoinCode: "",
+      teamCode: "",
       secondStepStatus: false,
     };
 
@@ -35,8 +35,8 @@ class JoinCompanyFirstStep extends React.Component {
   }
   onJoinTeam = (values) => {
     if (!this.props.loading) {
-      if (values.teamJoinCode !== "") {
-        this.props.forgotPassword(values, this.props.history);
+      if (values.teamCode !== "") {
+        this.props.joinTeamMember(values, this.props.history);
       }
     }
   };
@@ -75,8 +75,8 @@ class JoinCompanyFirstStep extends React.Component {
   };*/
 
   render() {
-    const { teamJoinCode } = this.state;
-    const initialValues = { teamJoinCode };
+    const { teamCode } = this.state;
+    const initialValues = { teamCode };
     return (
       <div>
         {!this.state.secondStepStatus ? (
@@ -100,9 +100,9 @@ class JoinCompanyFirstStep extends React.Component {
                         // validate={this.validateEmail}
                         placeholder="teamJoinCode"
                       />
-                      {errors.teamJoinCode && touched.teamJoinCode && (
+                      {errors.teamCode && touched.teamCode && (
                         <div className="invalid-feedback d-block">
-                          {errors.teamJoinCode}
+                          {errors.teamCode}
                         </div>
                       )}
                     </FormGroup>
@@ -126,4 +126,10 @@ class JoinCompanyFirstStep extends React.Component {
   }
 }
 
-export default JoinCompanyFirstStep;
+const mapStateToProps = ({ authUser }) => {
+  const { teamJoinCode, loading, error } = authUser;
+  return { teamJoinCode, loading, error };
+};
+export default connect(mapStateToProps, { joinTeamMember })(
+  JoinCompanyFirstStep
+);

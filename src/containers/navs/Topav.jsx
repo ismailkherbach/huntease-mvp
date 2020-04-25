@@ -12,16 +12,16 @@ class Topnav extends React.Component {
     this.state = {
       color: "",
       greetingTo: JSON.parse(localStorage.getItem("user_id")),
-      showPopup: false
+      showPopup: false,
     };
   }
-  handleDarkMode = color => {
+  handleDarkMode = (color) => {
     this.props.darkMode(color);
   };
 
   togglePopup() {
     this.setState({
-      showPopup: !this.state.showPopup
+      showPopup: !this.state.showPopup,
     });
   }
   render() {
@@ -38,12 +38,7 @@ class Topnav extends React.Component {
               src={require("../../assets/img/huntease_logo_icon_white.png")}
             />
             <p className="d-inline-block greeting">
-              <IntlMessages id="gretting" />{" "}
-              {localStorage.getItem("user_id")
-                ? this.state.greetingTo.firstname +
-                  " " +
-                  this.state.greetingTo.lastname
-                : ""}
+              <IntlMessages id="gretting" /> Ismail kherbach
             </p>
           </Col>
         </Row>
@@ -62,12 +57,12 @@ class Topnav extends React.Component {
 const mapStateToProps = ({ settings }) => {
   const { locale } = settings;
   return {
-    locale
+    locale,
   };
 };
 export default injectIntl(
   connect(mapStateToProps, {
-    darkMode
+    darkMode,
   })(Topnav)
 );
 /*   <Button className="btn-dark ml-4" onClick={this.handleDarkMode("dark")}>

@@ -11,8 +11,8 @@ class CallTwilio extends React.Component {
     this.state = {
       muted: false,
       log: "Waiting for call",
-      countryCode: "213",
-      currentNumber: "550207141",
+      countryCode: "33",
+      currentNumber: "629325234",
       onPhone: false,
       emotionAnalytics: true,
       general: false,
@@ -22,10 +22,18 @@ class CallTwilio extends React.Component {
     this.handleToggleMute = this.handleToggleMute.bind(this);
     this.handleToggleGeneral = this.handleToggleGeneral.bind(this);
     this.toggleMicrophone = this.toggleMicrophone.bind(this);
+    this.stopIt = this.stopIt.bind(this);
   }
   async getMicrophone() {
     const audio = await navigator.mediaDevices.getUserMedia({
       audio: true,
+      video: false,
+    });
+    this.setState({ audio });
+  }
+  async stopIt() {
+    const audio = await navigator.mediaDevices.getUserMedia({
+      audio: false,
       video: false,
     });
     this.setState({ audio });
@@ -60,6 +68,9 @@ class CallTwilio extends React.Component {
         console.log(error);
         this.setState({ log: "Could not fetch token, see console.log" });
       });
+    this.getMicrophone();
+
+    await this.handleToggleCall();
 
     Twilio.Device.disconnect(function() {
       self.setState({
@@ -72,13 +83,11 @@ class CallTwilio extends React.Component {
     Twilio.Device.ready(function() {
       self.log = "Connected";
     });
-
-    await this.handleToggleCall();
   };
   componentDidMount() {
-    this.getMicrophone();
     this.fetchToken();
   }
+
   // Handle country code selection
   handleChangeCountryCode(countryCode) {
     this.setState({ countryCode: countryCode });
@@ -108,11 +117,11 @@ class CallTwilio extends React.Component {
   // Make an outbound call with the current number,
   // or hang up the current call
   handleToggleCall = async () => {
+    var constraints = { audio: true, video: false };
+    navigator.mediaDevices.getUserMedia(constraints).catch(function(err) {
+      console.log(err.name + ": " + err.message);
+    });
     if (!this.state.onPhone) {
-      var constraints = { audio: true, video: false };
-      navigator.mediaDevices.getUserMedia(constraints).catch(function(err) {
-        console.log(err.name + ": " + err.message);
-      });
       this.setState({
         muted: false,
         onPhone: true,

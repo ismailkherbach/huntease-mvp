@@ -60,15 +60,15 @@ export const registerUserSuccess = (user) => ({
 });
 
 export const joinTeamMember = (joinTeamCode, history) => ({
-  type: FORGOT_PASSWORD,
+  type: JOIN_COMPANY,
   payload: { joinTeamCode, history },
 });
 export const joinTeamMemberSuccess = (joinTeamCode) => ({
-  type: FORGOT_PASSWORD_SUCCESS,
+  type: JOIN_COMPANY_SUCCESS,
   payload: joinTeamCode,
 });
 export const joinTeamMemberError = (message) => ({
-  type: FORGOT_PASSWORD_ERROR,
+  type: JOIN_COMPANY_ERROR,
   payload: { message },
 });
 
