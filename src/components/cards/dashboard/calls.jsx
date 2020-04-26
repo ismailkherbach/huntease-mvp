@@ -11,8 +11,14 @@ import IntlMessages from "../../../helpers/IntlMessages";
 import { connect } from "react-redux";
 import { getCalls } from "../../../redux/actions";
 class Calls extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
   componentDidMount() {
     this.props.getCalls();
+    console.log(this.props.dashboard);
   }
   render() {
     const { barData, barLabels } = this.props.dashboard;
@@ -31,7 +37,9 @@ class Calls extends React.Component {
             <Btn class={clickedDateLarge}>This week</Btn>
             <Btn class={unclickedDateLarge}>This month</Btn>
           </div>
-          <BarChart barData={barData} barLabels={barLabels} />
+          {barData && barLabels && (
+            <BarChart barData={barData} barLabels={barLabels} />
+          )}
         </div>
       </Fragment>
     );

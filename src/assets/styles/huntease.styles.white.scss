@@ -861,6 +861,23 @@ span {
   flex-direction: column;
 }
 
+.error-block {
+  height: 43px;
+  width: 505px;
+  border-radius: 15px;
+  margin: 20px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: $regular;
+  font-family: $font;
+  color: white;
+  display: flex;
+  background-color: #f82967;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
 .btn-get-started:hover {
   height: 43px;
   width: 237px;
@@ -1349,12 +1366,13 @@ input {
   background-color: white;
   border-radius: $regular-radius;
   box-shadow: $shadow;
-  z-index: 44;
+  z-index: 200;
 }
 .popup_inner-chooseGuide {
   width: 500px;
   height: 500px;
   bottom: 3rem;
+  z-index: 200;
 
   background-color: white;
   box-shadow: $shadow;
@@ -1560,7 +1578,7 @@ input {
     border-radius: 25px;
     margin: 8px;
     margin-top: 0px;
-    z-index: 1000;
+    z-index: 100;
     position: relative;
   }
   .icon {
@@ -2058,7 +2076,7 @@ input {
     position: fixed;
     width: 375px;
     height: 416px;
-
+    bottom: 5rem;
     background-color: white;
     border-radius: $regular-radius;
     box-shadow: $shadow;
@@ -2096,18 +2114,87 @@ input {
       align-items: center;
     }
   }
+
+  .theme-light-button {
+    width: 90px;
+    height: 39px;
+    background: #ffffff 0% 0% no-repeat padding-box;
+    box-shadow: 0px 0px 9px #f7894d4d;
+    border-radius: 10px;
+    margin-left: 30px;
+    margin-right: 5px;
+    font-size: 14px;
+    font-family: $font;
+    font-weight: bold;
+    color: #040f79;
+    border: none;
+    font-size: 14px;
+  }
+
+  .theme-dark-button {
+    width: 90px;
+    height: 39px;
+    background: #001c56 0% 0% no-repeat padding-box;
+    box-shadow: 0px 0px 9px #f7894d4d;
+    border-radius: 10px;
+    margin-left: 10px;
+    margin-right: 5px;
+    font-size: 14px;
+    font-family: $font;
+    font-weight: bold;
+    color: #8ba3ff;
+    border: none;
+    font-size: 14px;
+  }
+  .change-button {
+    height: 37px;
+    width: 70px;
+    background-color: white;
+    color: $huntease-main;
+    border-radius: 10px;
+    margin-right: 5px;
+    margin-top: 3px;
+    border: none;
+    font-size: 14px;
+    box-shadow: $shadow;
+  }
   .profile-input {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
     height: 43px;
     width: 250px;
-    background-color: #e8edff;
+    background-color: #8ba2ff2d;
     color: #8ba3ff;
     border-radius: 10px;
     border-color: none;
     padding-left: 5px;
     margin-left: 5px;
+    h3 {
+      font-family: $font;
+      font-size: 15px;
+      font-weight: $regular;
+      text-align: left;
+      color: #0026bc;
+      margin: auto;
+    }
+    .change-button {
+      height: 37px;
+      width: 70px;
+      background-color: white;
+      color: $huntease-main;
+      border-radius: 10px;
+      margin-right: 5px;
+      margin-top: 0px;
+      border: none;
+      font-size: 14px;
+      box-shadow: $shadow;
+    }
+
+    .flag-img {
+      width: 27px;
+      height: 18px;
+    }
   }
   .profile-input-large {
     -webkit-appearance: none;
@@ -2115,7 +2202,7 @@ input {
     appearance: none;
     height: 43px;
     width: 513px;
-    background-color: #e8edff;
+    background-color: #8ba2ff2d;
     color: #8ba3ff;
     border-radius: 10px;
     border-color: none;
@@ -2394,7 +2481,7 @@ input {
     appearance: none;
     height: 43px;
     width: 250px;
-    background-color: #e8edff;
+    background-color: #8ba2ff15;
     color: #8ba3ff;
 
     border-radius: 15px;
@@ -2409,7 +2496,7 @@ input {
     appearance: none;
     height: 43px;
     width: 513px;
-    background-color: #e8edff;
+    background-color: #8ba2ff15;
     color: #8ba3ff;
     border-radius: 15px;
     border-color: none;
@@ -2547,17 +2634,16 @@ input {
   flex-direction: column;
   align-items: center;
   .change-button {
-    height: 37px;
-    width: 70px;
-    background-color: white;
-    color: $huntease-main;
+    width: 90px;
+    height: 39px;
+    background: #ffffff 0% 0% no-repeat padding-box;
+    box-shadow: 0px 0px 9px #f7894d4d;
     border-radius: 10px;
     margin-left: 0px;
     margin-right: 5px;
 
     border: none;
     font-size: 14px;
-    box-shadow: $shadow;
   }
 }
 .profil-card {
@@ -2818,7 +2904,7 @@ input {
 .date-filter:hover {
   width: 58px;
   height: 26px;
-  margin: 8px;
+  margin: 10px;
   background-color: #3855cc;
   color: #8ba2ff60;
   border-radius: 9;
@@ -2830,7 +2916,7 @@ input {
   height: 26px;
   background: #8ba2ff96 0% 0% no-repeat padding-box;
   border-radius: 9px;
-  margin: 8px;
+  margin: 10px;
   font-size: 11px;
   font-weight: $bold;
   color: #0c2eb6;
@@ -2845,7 +2931,7 @@ input {
   height: 26px;
   background: #b6c4ff60 0% 0% no-repeat padding-box;
   border-radius: 9px;
-  margin: 10px;
+  margin: 6px;
   font-size: 11px;
   font-weight: $bold;
   color: #3855cc;
@@ -2857,7 +2943,7 @@ input {
 .date-filter-large:hover {
   width: 114px;
   height: 26px;
-  margin: 8px;
+  margin: 6px;
   background-color: #3855cc;
   color: #8ba2ff60;
   border-radius: 9;

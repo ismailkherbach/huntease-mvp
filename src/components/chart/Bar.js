@@ -11,6 +11,7 @@ class BarChart extends React.Component {
     this.state = {
       chartData: {},
       chartOption: {},
+      gradient: null,
     };
   }
   handleClick(evt) {
@@ -305,7 +306,7 @@ class BarChart extends React.Component {
     gradient.addColorStop(0, "#FFEED8");
     gradient.addColorStop(0.5, "#F78C51");
     gradient.addColorStop(1, "#F78C51");
-
+    this.setState({ gradient: gradient });
     const newChartData = {
       labels: this.props.barLabels,
 
@@ -334,7 +335,26 @@ class BarChart extends React.Component {
       <div>
         <Bar
           height={220}
-          data={this.state.chartData}
+          data={{
+            labels: this.props.barLabels,
+
+            datasets: [
+              {
+                backgroundColor: this.state.gradient,
+
+                pointRadius: 4,
+                barPercentage: 0.25,
+                pointHoverRadius: 5,
+                borderTopLeftRadius: 50,
+                borderTopRightRadius: 50,
+                fill: false,
+                data: this.props.barData,
+                datalabels: {
+                  fontStyle: "bold",
+                },
+              },
+            ],
+          }}
           options={{ ...barOptions }}
         />
       </div>

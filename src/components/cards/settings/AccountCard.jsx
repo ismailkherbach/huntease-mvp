@@ -7,6 +7,7 @@ import { Row, Col, Button } from "reactstrap";
 import { changeLocale, darkMode } from "../../../redux/actions";
 import { localeOptions } from "../../../constants/defaultValues";
 import ChangePassPopup from "../../popup/ChangePassPopup";
+import ChangeNumberPopup from "../../popup/ChangeNumberPopup";
 
 class AccountCall extends React.Component {
   constructor(props) {
@@ -85,7 +86,7 @@ class AccountCall extends React.Component {
                   </div>
 
                   <div className="inlineBtn-left">
-                    <div className="inlinBtn-col-center">
+                    <div className="inlinBtn-col-center mb-4">
                       <div id="field-top">Work email</div>
 
                       <input
@@ -97,34 +98,43 @@ class AccountCall extends React.Component {
                     </div>
                     <div className="inlinBtn-col-center">
                       <div id="field-top">Current password</div>
-
-                      <input
-                        className="profile-input"
-                        placeholder=""
-                        type="text"
-                        onChange={this.handleChangeEmail}
-                      />
-                      <Button className="change-button">Change</Button>
-                    </div>
-                    <div className="inlineBtn-center">
-                      {!this.state.showPopup ? (
-                        <ChangePassPopup
-                          text='Click "Close Button" to hide popup'
-                          closePopup={this.togglePopup.bind(this)}
-                        />
-                      ) : null}
+                      <div className="inlineBtn-center">
+                        <div className="profile-input inlineBtn-center">
+                          <h3>**********</h3>
+                          <Button
+                            className="change-button float-right"
+                            onClick={this.togglePopup.bind(this)}
+                          >
+                            Change
+                          </Button>
+                        </div>
+                      </div>
+                      <div className="inlineBtn-center">
+                        {this.state.showPopup ? (
+                          <ChangePassPopup
+                            text='Click "Close Button" to hide popup'
+                            closePopup={this.togglePopup.bind(this)}
+                          />
+                        ) : null}
+                        {this.state.showPopup ? (
+                          <ChangeNumberPopup
+                            text='Click "Close Button" to hide popup'
+                            closePopup={this.togglePopup.bind(this)}
+                          />
+                        ) : null}
+                      </div>
                     </div>
                   </div>
-                  <h3 id="field-top">General settings</h3>
 
-                  <Row>
-                    <Col>
-                      {" "}
-                      <h3 id="field-top">Time Zone</h3>
-                    </Col>
+                  <h3 className="mt-5" id="field-top">
+                    General settings
+                  </h3>
 
-                    <Col>
-                      {" "}
+                  <Row className="mt-4">
+                    <Col className="inlineBtn-center">
+                      <h3 className="col-2" id="field-top">
+                        Time Zone
+                      </h3>{" "}
                       <input
                         className="profile-input-large"
                         placeholder=""
@@ -132,17 +142,16 @@ class AccountCall extends React.Component {
                         onChange={this.handleChangeEmail}
                       />
                     </Col>
-                    <Col>
+                    <Col className="inlineBtn-center pt-4 ml-4">
                       {" "}
                       <h3 id="field-top">Theme</h3>
-                    </Col>
-
-                    <Col>
-                      {" "}
-                      <div className="change-profil-card inlineBtn-left">
-                        <Button className="change-button">Light</Button>
+                      <div className="inlineBtn-left">
+                        <Button className="theme-light-button">LIGHT</Button>
+                        <Button className="theme-dark-button">DARK</Button>
                       </div>
                     </Col>
+
+                    <Col> </Col>
                   </Row>
                 </Col>
                 <Col>
@@ -158,13 +167,20 @@ class AccountCall extends React.Component {
                   </div>
 
                   <div className="change-profil-card inlineBtn-center">
-                    <input
-                      className="profile-input"
-                      placeholder="+213 541 1379"
-                      type="text"
-                      onChange={this.handleChangeEmail}
-                    />
-                    <Button className="change-button">Change</Button>
+                    <div className="profile-input inlineBtn-center">
+                      <img
+                        src={require("../../../assets/img/indicatif/flag-fr.png")}
+                        alt={"profile"}
+                        className="flag-img"
+                      />
+                      <h3>+213 42137918</h3>{" "}
+                      <Button
+                        className="change-button float-right"
+                        onClick={this.togglePopup.bind(this)}
+                      >
+                        Change
+                      </Button>
+                    </div>
                   </div>
                 </Col>
               </Row>

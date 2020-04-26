@@ -102,11 +102,7 @@ class Login extends React.Component {
                       validate={this.validateEmail}
                       placeholder="Email"
                     />
-                    {errors.email && touched.email && (
-                      <div className="invalid-feedback d-block">
-                        {errors.email}
-                      </div>
-                    )}
+
                     <Field
                       className={
                         errors.password && touched.password
@@ -117,17 +113,22 @@ class Login extends React.Component {
                       name="password"
                       validate={this.validatePassword}
                     />
-                    {errors.password && touched.password && (
-                      <div className="invalid-feedback d-block">
-                        {errors.password}
-                      </div>
-                    )}
                   </FormGroup>
                   <div className="inlineBtn-center">
                     <Button className="btn-get-started">
                       <div className="btn-get-started-text">Login </div>
                     </Button>
                   </div>
+                  {errors.email && touched.email && (
+                    <div className="inlineBtn-center">
+                      <div className="error-block">{errors.email}</div>
+                    </div>
+                  )}
+                  {errors.password && touched.password && (
+                    <div className="inlineBtn-center">
+                      <div className="error-block">{errors.password}</div>
+                    </div>
+                  )}
                 </Form>
               )}
             </Formik>{" "}

@@ -16,7 +16,7 @@ import {
   TEAM_LIST_GET_MEMBER_ERROR,
   MEETINGS_LIST_GET,
   MEETINGS_LIST_GET_SUCCESS,
-  MEETINGS_LIST_GET_ERROR
+  MEETINGS_LIST_GET_ERROR,
 } from "../../actions";
 
 const INIT_STATE = {
@@ -29,7 +29,9 @@ const INIT_STATE = {
   callsData: [],
   labels: [],
   data: [],
-  loading: false
+  barData: [],
+  barLabels: [],
+  loading: false,
 };
 
 export default (state = INIT_STATE, action) => {
@@ -42,7 +44,7 @@ export default (state = INIT_STATE, action) => {
         loading: true,
         performanceData: action.payload,
         lineLabels: action.payload.labels,
-        lineData: action.payload.data
+        lineData: action.payload.data,
       };
     case PERFORMANCE_LIST_GET_ERROR:
       return { ...state, loading: true, error: action.payload };
@@ -54,7 +56,7 @@ export default (state = INIT_STATE, action) => {
         loading: true,
         callData: action.payload,
         barLabels: action.payload.labels,
-        barData: action.payload.data
+        barData: action.payload.data,
       };
     case CALLS_LIST_GET_ERROR:
       return { ...state, loading: true, error: action.payload };
@@ -69,7 +71,7 @@ export default (state = INIT_STATE, action) => {
         callsPastTwo: action.payload.callsPastTwo,
         talkDuration: action.payload.talkDuration,
         answeredCalls: action.payload.answeredCalls,
-        conversionRate: action.payload.conversionRate
+        conversionRate: action.payload.conversionRate,
       };
     case ENGAGEMENT_RATE_ERROR:
       return { ...state, loading: true, error: action.payload };
@@ -82,7 +84,7 @@ export default (state = INIT_STATE, action) => {
         ...state,
         loading: true,
         allTeamMembers: action.payload,
-        teamMembers: action.payload
+        teamMembers: action.payload,
       };
 
     case TEAM_LIST_ADD_MEMBER_ERROR:

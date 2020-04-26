@@ -8,6 +8,7 @@ import { getPerformance } from "../../../redux/actions";
 class Performance extends React.Component {
   componentDidMount() {
     this.props.getPerformance();
+    console.log(this.props.dashboard);
   }
   render() {
     const { lineData, lineLabels } = this.props.dashboard;
@@ -39,11 +40,11 @@ class Performance extends React.Component {
 
 const mapStateToProps = ({ dashboard }) => {
   return {
-    dashboard
+    dashboard,
   };
 };
 export default connect(mapStateToProps, {
-  getPerformance
+  getPerformance,
 })(Performance);
 
 // <PerformanceGraph />
