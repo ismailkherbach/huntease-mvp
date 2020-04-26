@@ -4,7 +4,9 @@ export default class Account extends React.Component {
   render() {
     return (
       <Fragment>
-        <AccountCall />{" "}
+        <div className="inlineBtn-center">
+          <AccountCall />{" "}
+        </div>
       </Fragment>
     );
   }

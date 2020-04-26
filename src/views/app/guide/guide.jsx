@@ -9,24 +9,16 @@ export default class Guide extends React.Component {
   render() {
     return (
       <Fragment>
-        <Row>
-          <Col>
-            <Row>
-              <ScriptEditor />
-            </Row>
-            <Row>
-              <TagPicker />
-            </Row>
-          </Col>
-          <Col>
-            <Row>
-              <SearchBar />
-            </Row>
-            <Row>
-              <GuideHistory />
-            </Row>
-          </Col>
-        </Row>
+        <div className="inlineBtn-center">
+          <div className="inlineBtn-col-center">
+            <ScriptEditor />
+            <TagPicker />
+          </div>
+          <div className="inlineBtn-col-center">
+            <SearchBar />
+            <GuideHistory />
+          </div>
+        </div>
       </Fragment>
     );
   }

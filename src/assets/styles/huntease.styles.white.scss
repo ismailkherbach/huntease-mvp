@@ -1855,7 +1855,16 @@ input {
   align-items: center;
   margin: 0px;
   padding: 0px;
-
+  @include desktop-sm {
+  }
+  @include desktop-md {
+  }
+  @include desktop-xl {
+    margin-left: 28em;
+  }
+  @include desktop-lg {
+    margin-left: 10em;
+  }
   .setting-items {
     background-color: white;
     width: 170px;
@@ -1868,14 +1877,7 @@ input {
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
   }
-  @include desktop-sm {
-  }
-  @include desktop-md {
-  }
-  @include desktop-xl {
-  }
-  @include desktop-lg {
-  }
+
   h1 {
     font-family: $font;
     font-size: 14px;

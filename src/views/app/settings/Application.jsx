@@ -5,11 +5,9 @@ export default class Application extends React.Component {
   render() {
     return (
       <Fragment>
-        <Row>
-          <Col>
-            <ApplicationCard />
-          </Col>
-        </Row>
+        <div className="inlineBtn-center">
+          <ApplicationCard />
+        </div>
       </Fragment>
     );
   }

@@ -7,22 +7,22 @@ export default class SettingsNav extends React.Component {
   constructor() {
     super();
     this.state = {
-      settingsMenu
+      settingsMenu,
     };
   }
   render() {
     return (
-      <div id="settings-navigation-card" className="no-gutters mx-0">
-        {this.state.settingsMenu.map(item => {
+      <div id="settings-navigation-card" className="">
+        {this.state.settingsMenu.map((item) => {
           return (
             <div className="setting-items">
-
-            <Link style={{ textDecoration: "none" }} to={item.to}>
-              <h1>
-                <IntlMessages id={item.id} />
-              </h1>
-            </Link>
-        </div>  );
+              <Link style={{ textDecoration: "none" }} to={item.to}>
+                <h1>
+                  <IntlMessages id={item.id} />
+                </h1>
+              </Link>
+            </div>
+          );
         })}
       </div>
     );

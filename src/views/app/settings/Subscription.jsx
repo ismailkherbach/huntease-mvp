@@ -5,11 +5,9 @@ export default class Subscription extends React.Component {
   render() {
     return (
       <Fragment>
-        <Row>
-          <Col>
-            <SubscriptionContent />
-          </Col>
-        </Row>
+        <div className="inlineBtn-center">
+          <SubscriptionContent />
+        </div>
       </Fragment>
     );
   }
