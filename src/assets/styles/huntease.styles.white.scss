@@ -204,6 +204,7 @@ span {
   opacity: 0.5;
   font-weight: $regular;
   width: 570px;
+  text-align: left;
 }
 
 #performance {
@@ -1439,7 +1440,51 @@ input {
   box-shadow: $shadow;
   border-radius: $regular-radius;
   border-radius: 20px;
-
+  .add-schedule-btn {
+    margin: 36px;
+    border-radius: 13px;
+    height: 39px;
+    border-color: white;
+    padding: 15px;
+    background-color: #0026bc;
+    color: white;
+    font-family: $font;
+    font-size: 14px;
+    font-weight: $regular;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
+  #field-top {
+    display: flex;
+    margin-top: $spacing;
+    margin-bottom: 4px;
+    font-family: $font;
+    font-size: 14px;
+    font-weight: $regular;
+    color: $huntease-medium;
+  }
+  .profile-input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    height: 43px;
+    width: 250px;
+    background-color: #8ba2ff2d;
+    color: #8ba3ff;
+    border-radius: 10px;
+    border-color: none;
+    padding-left: 5px;
+    h3 {
+      font-family: $font;
+      font-size: 15px;
+      font-weight: $regular;
+      text-align: left;
+      color: #0026bc;
+      margin: auto;
+    }
+  }
   h4 {
     font-family: $font;
     font-size: 18px;
@@ -1448,7 +1493,16 @@ input {
     padding: 20px;
     text-align: left;
   }
-  .historyCard {
+  h5 {
+    font-family: $font;
+    font-size: 16px;
+    font-weight: $bold;
+    color: #001c56;
+    text-align: left;
+    margin: auto;
+    margin-left: 4px;
+  }
+  .schedule-list {
     display: flex;
     justify-content: left;
     flex-direction: row;
@@ -1456,8 +1510,14 @@ input {
     margin-right: 20px;
     margin-bottom: 8px;
     border-radius: 10px;
-    background-color: rgba(139, 162, 255, 0.11);
-
+    background-color: rgba(139, 162, 255, 0.062);
+    #edit {
+      width: 40px;
+      height: 40px;
+      border-radius: 15px;
+      background: #2b55ff2d 0% 0% no-repeat padding-box;
+      border-radius: 15px;
+    }
     p {
       font-size: 14px;
       font-weight: $regular;
@@ -2402,7 +2462,7 @@ input {
       width: 40px;
       height: 40px;
       border-radius: 15px;
-      background: #8ba2ff2d 0% 0% no-repeat padding-box;
+      background: #2b55ff2d 0% 0% no-repeat padding-box;
       border-radius: 15px;
     }
   }
