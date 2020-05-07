@@ -40,6 +40,21 @@ export const TEAM_LIST_ADD_MEMBER_ERROR = "TEAM_LIST_ADD_MEMBER_ERROR";
 export const TEAM_LIST_GET_MEMBER = "TEAM_LIST_GET_MEMBER";
 export const TEAM_LIST_GET_MEMBER_SUCCESS = "TEAM_LIST_GET_MEMBER_SUCCESS";
 export const TEAM_LIST_GET_MEMBER_ERROR = "TEAM_LIST_GET_MEMBER_ERROR";
+
+/* TEAMS */
+
+export const ADD_TEAM_MEMBER = "ADD_TEAM_MEMBER";
+export const ADD_TEAM_MEMBER_SUCCESS = "ADD_TEAM_MEMBER_SUCCESS";
+export const ADD_TEAM_MEMBER_ERROR = "ADD_TEAM_MEMBER_ERROR";
+
+export const GET_TEAM_MEMBER = "GET_TEAM_MEMBER";
+export const GET_TEAM_MEMBER_SUCCESS = "GET_TEAM_MEMBER_SUCCESS";
+export const GET_TEAM_MEMBER_ERROR = "GET_TEAM_MEMBER_ERROR";
+
+export const DELETE_TEAM_MEMBER = "DELETE_TEAM_MEMBER";
+export const DELETE_TEAM_MEMBER_SUCCESS = "DELETE_TEAM_MEMBER_SUCCESS";
+export const DELETE_TEAM_MEMBER_ERROR = "DELETE_TEAM_MEMBER_ERROR";
+
 /* SETTINGS */
 
 export const CHANGE_LOCALE = "CHANGE_LOCALE";
@@ -49,3 +64,4 @@ export const WHITE_MODE = "WHITE_MODE";
 export * from "./settings/actions";
 export * from "./auth/actions";
 export * from "./app/dashboard/actions";
+export * from "./app/team/actions";

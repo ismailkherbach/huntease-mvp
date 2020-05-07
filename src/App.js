@@ -4,7 +4,7 @@ import {
   BrowserRouter as Router,
   Route,
   Switch,
-  Redirect,
+  Redirect
 } from "react-router-dom";
 import app from "./views/app";
 import main from "./views";
@@ -17,14 +17,14 @@ import AppLocale from "./lang";
 const AuthRoute = ({ component: Component, authUser, ...rest }) => (
   <Route
     {...rest}
-    render={(props) =>
+    render={props =>
       authUser ? (
         <Component {...props} />
       ) : (
         <Redirect
           to={{
             pathname: "/user/login",
-            state: { from: props.location },
+            state: { from: props.location }
           }}
         />
       )

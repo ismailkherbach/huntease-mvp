@@ -10,46 +10,35 @@ import {
   DropdownMenu,
   DropdownToggle,
   DropdownItem,
-  Dropdown
+  Dropdown,
 } from "reactstrap";
 import Btn from "../../../components/small.componenets/Btn";
 import axios from "axios";
-
-
-
 
 class AddCompanySecondStep extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      firstname: "",
-      lastname: "",
-      email: "",
-      password: "",
-      secondStepStatus: false
+      memberCount: "20",
+      industry: "Tech",
+      userData: {},
+      secondStepStatus: false,
     };
 
-    this.handleChangeFirst = this.handleChangeFirst.bind(this);
-    this.handleChangeLast = this.handleChangeLast.bind(this);
-    this.handleChangeEmail = this.handleChangeEmail.bind(this);
-    this.handleChangePassword = this.handleChangePassword.bind(this);
+    this.handleChangeIndustry = this.handleChangeIndustry.bind(this);
+    this.handleChangeMemberCount = this.handleChangeMemberCount.bind(this);
   }
 
-  handleChangeFirst(e) {
-    this.setState({ firstname: e.target.value });
+  handleChangeMemberCount(e) {
+    this.setState({ memberCount: e.target.value });
   }
-  handleChangeLast(e) {
-    this.setState({ lastname: e.target.value });
-  }
-  handleChangeEmail(e) {
-    this.setState({ email: e.target.value });
-  }
-  handleChangePassword(e) {
-    this.setState({ password: e.target.value });
+  handleChangeIndustry(e) {
+    this.setState({ industry: e.target.value });
   }
 
   onUserRegister = () => {
-    this.props.registerUser(this.state, this.props.history);
+    console.log(this.props.userData);
+    //this.props.registerUser(user, this.props.history);
   };
   secondStep = () => {
     this.setState({ secondStepStatus: true });
@@ -77,51 +66,48 @@ class AddCompanySecondStep extends React.Component {
 
   render() {
     return (
-        <Fragment>
-        
-       
-            <div className="auth-container">
-              {" "}
-              <h3>How many people are in your team?</h3>
-              <div className="inlineBtn-center">
-                <Btn class={"btn-choice-company"} onClick={this.onUserLogin}>
-                  <h3>1</h3>
-                </Btn>
-                <Btn class={"btn-choice-company"} onClick={this.onUserLogin}>
-                  <h3>5 - 10</h3>
-                </Btn>
-                <Btn class={"btn-choice-company"} onClick={this.onUserLogin}>
-                  <h3>2 - 6</h3>
-                </Btn>
-                <Btn class={"btn-choice-company"} onClick={this.onUserLogin}>
-                  <h3>10 - 50</h3>
-                </Btn>
-                <Btn class={"btn-choice-company"} onClick={this.onUserLogin}>
-                  <h3>+50</h3>
-                </Btn>
-              </div>
-              <input
-                className="auth-input-large"
-                placeholder="Work Email"
-                type="text"
-                onChange={this.handleChangeEmail}
-              />
-              <input
-                className="auth-input-large"
-                placeholder="Paasword"
-                type="password"
-                onChange={this.handleChangePassword}
-              />
-              <Btn class={"btn-get-started"} onClick={this.onUserLogin}>
-                <div className="btn-get-started-text">Access my account</div>
-              </Btn>
+      <Fragment>
+        <div className="auth-container">
+          {" "}
+          <h3>How many people are in your team?</h3>
+          <div className="inlineBtn-center">
+            <Btn class={"btn-choice-company"}>
+              <h3>1</h3>
+            </Btn>
+            <Btn class={"btn-choice-company"}>
+              <h3>5 - 10</h3>
+            </Btn>
+            <Btn class={"btn-choice-company"}>
+              <h3>2 - 6</h3>
+            </Btn>
+            <Btn class={"btn-choice-company"}>
+              <h3>10 - 50</h3>
+            </Btn>
+            <Btn class={"btn-choice-company"}>
+              <h3>+50</h3>
+            </Btn>
+          </div>
+          <input
+            className="auth-input-large"
+            placeholder="Industy"
+            type="text"
+            onChange={this.handleChangeIndustry}
+          />
+          <input
+            className="auth-input-large"
+            placeholder="Role"
+            type="text"
+            onChange={this.handleChangeMemberCount}
+          />
+          <Btn class={"btn-get-started"} onClick={this.onUserRegister}>
+            <div className="btn-get-started-text" onClick={this.onUserRegister}>
+              Access my account
             </div>
-        </Fragment>
-  );
+          </Btn>
+        </div>
+      </Fragment>
+    );
   }
 }
 
-
-
-export default AddCompanySecondStep
-
+export default AddCompanySecondStep;

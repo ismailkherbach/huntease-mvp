@@ -1,13 +1,45 @@
 import React, { Fragment } from "react";
 import { Row, Col, Input, Button, Table } from "reactstrap";
 import PerfectScrollbar from "react-perfect-scrollbar";
+import { connect } from "react-redux";
+import { addTeam } from "../../../redux/actions";
 import "boxicons";
 
 class TeamManagement extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      firstname: "",
+      lastname: "",
+      email: "",
+    };
+    this.handleChangeEmail = this.handleChangeEmail.bind(this);
+    this.handleChangeFirst = this.handleChangeFirst.bind(this);
+    this.handleChangeLast = this.handleChangeLast.bind(this);
   }
+
+  handleChangeFirst(e) {
+    this.setState({
+      firstname: e.target.value,
+    });
+  }
+  handleChangeLast(e) {
+    this.setState({
+      lastname: e.target.value,
+    });
+  }
+  handleChangeEmail(e) {
+    this.setState({
+      email: e.target.value,
+    });
+  }
+
+  onAddMember = () => {
+    let member = this.state;
+    let emailPro = member.lastname + "@hunteas.io";
+    console.log(member);
+    this.props.addTeam(this.state);
+  };
   render() {
     return (
       <Fragment>
@@ -23,23 +55,28 @@ class TeamManagement extends React.Component {
                 className="member-input"
                 placeholder="First name"
                 type="text"
+                onChange={this.handleChangeFirst}
               />
               <input
                 className="member-input"
                 placeholder="Last name"
                 type="text"
+                onChange={this.handleChangeLast}
               />{" "}
               <input
                 className="email-input"
                 placeholder="email name"
                 type="text"
+                onChange={this.handleChangeEmail}
               />
               <input
                 className="email-input"
                 placeholder="@huntease.io"
                 type="text"
               />{" "}
-              <Button className="send-invite">Send this invite</Button>
+              <Button onClick={this.onAddMember} className="send-invite">
+                Send this invite
+              </Button>
             </div>
             <PerfectScrollbar>
               <div className="scroll-team">
@@ -258,4 +295,11 @@ class TeamManagement extends React.Component {
     );
   }
 }
-export default TeamManagement;
+const mapStateToProps = ({ team }) => {
+  const { member, loading } = team;
+  return { member, loading };
+};
+
+export default connect(mapStateToProps, {
+  addTeam,
+})(TeamManagement);

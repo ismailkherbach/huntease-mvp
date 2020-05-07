@@ -65,34 +65,56 @@ function* forgotPassword({ payload }) {
   } catch (error) {}
 }
 const registerWithEmailPasswordAsync = async (
-  firstname,
-  lastname,
+  firstName,
+  lastName,
   email,
-  password
+  password,
+  phone,
+  memberCount,
+  role,
+  industry
 ) =>
   await axios({
     method: "post",
-    url: "http://localhost:5000/api/v1/auth/register",
+    url: "https://huntease-mvp.herokuapp.com/v1/account/register",
     data: {
-      firstname,
-      lastname,
       email,
       password,
+      phone,
+      firstName,
+      lastName,
+      role: "manager",
+      company: {
+        industry,
+        memberCount,
+      },
     },
   })
-    .then((authUser) => authUser)
+    .then((authUser) => console.log(authUser))
     .catch((error) => error);
 
 function* registerWithEmailPassword({ payload }) {
-  const { firstname, lastname, email, password } = payload.user;
+  const {
+    firstName,
+    lastName,
+    email,
+    password,
+    phone,
+    memberCount,
+    industry,
+  } = payload.user;
   const { history } = payload;
+
   try {
     const registerUser = yield call(
       registerWithEmailPasswordAsync,
-      firstname,
-      lastname,
+      firstName,
+      lastName,
       email,
-      password
+      password,
+      phone,
+      industry,
+      memberCount
     );
     if (registerUser.status == 201) {
       yield put(registerUserSuccess(registerUser));
@@ -152,8 +174,8 @@ const logoutAsync = async (history) => {
   await axios({
     method: "post",
     url: "https://huntease-mvp.herokuapp.com/v1/account/logout",
-    data: {
-      token: JSON.parse(localStorage.getItem("user_id")),
+    headers: {
+      authorization: JSON.parse(localStorage.getItem("user_id")),
     },
   })
     .then((authUser) => authUser)
