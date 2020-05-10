@@ -15,6 +15,8 @@ class AccountCall extends React.Component {
     this.state = {
       userInfo: JSON.parse(localStorage.getItem("user_id")),
       showPopup: false,
+      user: JSON.parse(localStorage.getItem("user")),
+      domain: JSON.parse(localStorage.getItem("domain")).split(".")[0],
     };
   }
 
@@ -45,7 +47,7 @@ class AccountCall extends React.Component {
 
                       <input
                         className="profile-input"
-                        placeholder=""
+                        placeholder={this.state.user.firstName}
                         type="text"
                         onChange={this.handleChangeEmail}
                       />
@@ -55,7 +57,7 @@ class AccountCall extends React.Component {
 
                       <input
                         className="profile-input"
-                        placeholder=""
+                        placeholder={this.state.user.lastName}
                         type="text"
                         onChange={this.handleChangeEmail}
                       />
@@ -68,7 +70,10 @@ class AccountCall extends React.Component {
 
                       <input
                         className="profile-input"
-                        placeholder=""
+                        placeholder={
+                          this.state.domain.charAt(0).toUpperCase() +
+                          this.state.domain.slice(1)
+                        }
                         type="text"
                         onChange={this.handleChangeEmail}
                       />
@@ -91,9 +96,10 @@ class AccountCall extends React.Component {
 
                       <input
                         className="profile-input"
-                        placeholder=""
+                        placeholder={this.state.user.email}
                         type="text"
                         onChange={this.handleChangeEmail}
+                        disabled
                       />
                     </div>
                     <div className="inlinBtn-col-center">
@@ -161,9 +167,17 @@ class AccountCall extends React.Component {
                       alt={"profile"}
                       className="profile-img"
                     />
-                    <h3>Lori Powell</h3>
+                    <h3>
+                      {this.state.user.firstName.charAt(0).toUpperCase() +
+                        this.state.user.firstName.slice(1) +
+                        " " +
+                        this.state.user.lastName}
+                    </h3>
                     <p>Sales Development Representative</p>
-                    <p>Amazon</p>
+                    <p>
+                      {this.state.domain.charAt(0).toUpperCase() +
+                        this.state.domain.slice(1)}
+                    </p>
                   </div>
 
                   <div className="change-profil-card inlineBtn-center">

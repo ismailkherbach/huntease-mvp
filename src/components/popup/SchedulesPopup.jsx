@@ -22,21 +22,19 @@ class SchedulesPopup extends React.Component {
             <div>
               {" "}
               <div className="float-right mr-3 mt-3">
-                <box-icon
+                <img
                   onClick={this.handleBackClick}
-                  name="box"
-                  type="solid"
-                  color="#0026BC"
-                ></box-icon>
+                  alt="avatar"
+                  src={require("../../assets/img/add_schedule.png")}
+                />
               </div>
               <h4>Schedules</h4>
               <div className="inlineBtn-col-left ml-4">
                 <div className="schedule-list">
-                  <box-icon
-                    name="notepad"
-                    type="solid"
-                    color="#091ad4"
-                  ></box-icon>
+                  <img
+                    alt="avatar"
+                    src={require("../../assets/img/female-icon.png")}
+                  />
 
                   <p>Andreea Coleman</p>
                   <div id="edit" className="inlineBtn-center">
@@ -44,11 +42,10 @@ class SchedulesPopup extends React.Component {
                   </div>
                 </div>
                 <div className="schedule-list">
-                  <box-icon
-                    name="notepad"
-                    type="solid"
-                    color="#091ad4"
-                  ></box-icon>
+                  <img
+                    alt="avatar"
+                    src={require("../../assets/img/female-icon.png")}
+                  />
 
                   <p>Andreea Coleman</p>
                   <div id="edit" className="inlineBtn-center">
@@ -56,11 +53,10 @@ class SchedulesPopup extends React.Component {
                   </div>
                 </div>
                 <div className="schedule-list">
-                  <box-icon
-                    name="notepad"
-                    type="solid"
-                    color="#091ad4"
-                  ></box-icon>
+                  <img
+                    alt="avatar"
+                    src={require("../../assets/img/female-icon.png")}
+                  />
                   <p>Andreea Coleman</p>
                   <div id="edit" className="inlineBtn-center">
                     <box-icon name="pencil" color="#0026bc"></box-icon>

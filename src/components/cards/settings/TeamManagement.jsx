@@ -2,16 +2,16 @@ import React, { Fragment } from "react";
 import { Row, Col, Input, Button, Table } from "reactstrap";
 import PerfectScrollbar from "react-perfect-scrollbar";
 import { connect } from "react-redux";
-import { addTeam } from "../../../redux/actions";
+import { addTeam, getTeamMembers } from "../../../redux/actions";
 import "boxicons";
 
 class TeamManagement extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      firstname: "",
-      lastname: "",
-      email: "",
+      newMember: { firstName: "", lastName: "", email: "" },
+
+      domain: "@" + JSON.parse(localStorage.getItem("domain")),
     };
     this.handleChangeEmail = this.handleChangeEmail.bind(this);
     this.handleChangeFirst = this.handleChangeFirst.bind(this);
@@ -20,26 +20,38 @@ class TeamManagement extends React.Component {
 
   handleChangeFirst(e) {
     this.setState({
-      firstname: e.target.value,
+      newMember: {
+        ...this.state.newMember,
+        firstName: e.target.value,
+      },
     });
   }
   handleChangeLast(e) {
     this.setState({
-      lastname: e.target.value,
+      newMember: {
+        ...this.state.newMember,
+        lastName: e.target.value,
+      },
     });
   }
   handleChangeEmail(e) {
     this.setState({
-      email: e.target.value,
+      newMember: {
+        ...this.state.newMember,
+        email: e.target.value,
+      },
     });
   }
 
   onAddMember = () => {
-    let member = this.state;
-    let emailPro = member.lastname + "@hunteas.io";
-    console.log(member);
-    this.props.addTeam(this.state);
+    console.log(this.state.newMember);
+    this.props.addTeam(this.state.newMember);
   };
+
+  componentDidMount() {
+    this.props.getTeamMembers();
+    console.log(this.props.team.teamMembers);
+  }
   render() {
     return (
       <Fragment>
@@ -71,8 +83,9 @@ class TeamManagement extends React.Component {
               />
               <input
                 className="email-input"
-                placeholder="@huntease.io"
+                placeholder={this.state.domain}
                 type="text"
+                disabled
               />{" "}
               <Button onClick={this.onAddMember} className="send-invite">
                 Send this invite
@@ -95,197 +108,45 @@ class TeamManagement extends React.Component {
                       <h4>EDIT</h4>
                     </Col>
                   </Row>
-                  <Row>
-                    <Col>
-                      <div className="inlineBtn-left-center">
-                        <img
-                          alt={"avatar"}
-                          src={require("../../../assets/img/0.jpeg")}
-                        />
-                        <p>Ismail kherbach</p>
-                      </div>{" "}
-                    </Col>
-                    <Col>
-                      <h4>Pro</h4>
-                    </Col>
-                    <Col>
-                      <h4>Active</h4>
-                    </Col>
-                    <Col>
-                      <div id="edit" className="inlineBtn-center">
-                        <box-icon name="pencil" color="#0026bc"></box-icon>
-                      </div>
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col>
-                      <div className="inlineBtn-left-center">
-                        <img
-                          alt={"avatar"}
-                          src={require("../../../assets/img/0.jpeg")}
-                        />
-                        <p>Ismail kherbach</p>
-                      </div>{" "}
-                    </Col>
-                    <Col>
-                      <h4>Pro</h4>
-                    </Col>
-                    <Col>
-                      <h4>Active</h4>
-                    </Col>
-                    <Col>
-                      <div id="edit" className="inlineBtn-center">
-                        <box-icon name="pencil" color="#0026bc"></box-icon>
-                      </div>
-                    </Col>
-                  </Row>
-
-                  <Row>
-                    <Col>
-                      <div className="inlineBtn-left-center">
-                        <img
-                          alt={"avatar"}
-                          src={require("../../../assets/img/0.jpeg")}
-                        />
-                        <p>Ismail kherbach</p>
-                      </div>{" "}
-                    </Col>
-                    <Col>
-                      <h4>Pro</h4>
-                    </Col>
-                    <Col>
-                      <h4>Active</h4>
-                    </Col>
-                    <Col>
-                      <div id="edit" className="inlineBtn-center">
-                        <box-icon name="pencil" color="#0026bc"></box-icon>
-                      </div>
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col>
-                      <div className="inlineBtn-left-center">
-                        <img
-                          alt={"avatar"}
-                          src={require("../../../assets/img/0.jpeg")}
-                        />
-                        <p>Ismail kherbach</p>
-                      </div>{" "}
-                    </Col>
-                    <Col>
-                      <h4>Pro</h4>
-                    </Col>
-                    <Col>
-                      <p id="invitation-sent">Invitation sent</p>
-                    </Col>
-                    <Col>
-                      <div id="edit" className="inlineBtn-center">
-                        <box-icon name="pencil" color="#0026bc"></box-icon>
-                      </div>
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col>
-                      <div className="inlineBtn-left-center">
-                        <img
-                          alt={"avatar"}
-                          src={require("../../../assets/img/0.jpeg")}
-                        />
-                        <p>Ismail kherbach previously kherbach haja</p>
-                      </div>
-                    </Col>
-                    <Col></Col>
-                    <Col></Col>
-                    <Col>
-                      <Button id="accept">Approuve</Button>
-                      <Button id="decline">Decline</Button>
-                    </Col>
-                  </Row>
-
-                  <Row>
-                    <Col>
-                      <div className="inlineBtn-left-center">
-                        <img
-                          alt={"avatar"}
-                          src={require("../../../assets/img/0.jpeg")}
-                        />
-                        <p>Ismail kherbach</p>
-                      </div>{" "}
-                    </Col>
-                    <Col>
-                      <h4>Pro</h4>
-                    </Col>
-                    <Col>
-                      <h4>Active</h4>
-                    </Col>
-                    <Col>
-                      <div id="edit" className="inlineBtn-center">
-                        <box-icon name="pencil" color="#0026bc"></box-icon>
-                      </div>
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col>
-                      <div className="inlineBtn-left-center">
-                        <img
-                          alt={"avatar"}
-                          src={require("../../../assets/img/0.jpeg")}
-                        />
-                        <p>Ismail kherbach</p>
-                      </div>{" "}
-                    </Col>
-                    <Col>
-                      <h4>Pro</h4>
-                    </Col>
-                    <Col>
-                      <h4>Active</h4>
-                    </Col>
-                    <Col>
-                      <div id="edit" className="inlineBtn-center">
-                        <box-icon name="pencil" color="#0026bc"></box-icon>
-                      </div>
-                    </Col>
-                  </Row>
-
-                  <Row>
-                    <Col>
-                      <div className="inlineBtn-left-center">
-                        <img
-                          alt={"avatar"}
-                          src={require("../../../assets/img/0.jpeg")}
-                        />
-                        <p>Ismail kherbach</p>
-                      </div>{" "}
-                    </Col>
-                    <Col>
-                      <h4>Pro</h4>
-                    </Col>
-                    <Col>
-                      <p id="invitation-sent">Invitation sent</p>
-                    </Col>
-                    <Col>
-                      <div id="edit" className="inlineBtn-center">
-                        <box-icon name="pencil" color="#0026bc"></box-icon>
-                      </div>
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col>
-                      <div className="inlineBtn-left-center">
-                        <img
-                          alt={"avatar"}
-                          src={require("../../../assets/img/0.jpeg")}
-                        />
-                        <p>Ismail kherbach previously kherbach haja</p>
-                      </div>
-                    </Col>
-                    <Col></Col>
-                    <Col></Col>
-                    <Col>
-                      <Button id="accept">Approuve</Button>
-                      <Button id="decline">Decline</Button>
-                    </Col>
-                  </Row>
+                  {this.props.team.teamMembers != undefined
+                    ? this.props.team.teamMembers.map((user) => {
+                        return (
+                          <Row>
+                            <Col>
+                              <div className="inlineBtn-left-center">
+                                <img
+                                  alt={"avatar"}
+                                  src={require("../../../assets/img/0.jpeg")}
+                                />
+                                <p>
+                                  {user.user.firstName +
+                                    " " +
+                                    user.user.lastName}
+                                </p>
+                              </div>{" "}
+                            </Col>
+                            <Col>
+                              <h5>Pro</h5>
+                            </Col>
+                            <Col>
+                              {user.status == "pending" ? (
+                                <p id="invitation-sent">Invitation sent</p>
+                              ) : (
+                                <h5>Active</h5>
+                              )}
+                            </Col>
+                            <Col className="inlineBtn-center">
+                              <div id="edit" className="inlineBtn-center">
+                                <box-icon
+                                  name="pencil"
+                                  color="#0026bc"
+                                ></box-icon>
+                              </div>
+                            </Col>
+                          </Row>
+                        );
+                      })
+                    : ""}
                 </div>
               </div>
             </PerfectScrollbar>
@@ -296,10 +157,12 @@ class TeamManagement extends React.Component {
   }
 }
 const mapStateToProps = ({ team }) => {
-  const { member, loading } = team;
-  return { member, loading };
+  return {
+    team,
+  };
 };
 
 export default connect(mapStateToProps, {
   addTeam,
+  getTeamMembers,
 })(TeamManagement);

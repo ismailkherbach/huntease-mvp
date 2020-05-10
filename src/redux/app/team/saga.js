@@ -5,33 +5,39 @@ import {
   DELETE_TEAM_MEMBER,
 } from "../../actions";
 import axios from "axios";
-import { addTeamSuccess, getTeamSuccess, deleteTeamSuccess } from "./actions";
+import {
+  addTeamSuccess,
+  getTeamMembersSuccess,
+  deleteTeamSuccess,
+} from "./actions";
 
-const addTeamMemberAsync = async (firstname, lastname, email) =>
+const addTeamMemberAsync = async (firstName, lastName, emailPro) =>
   await axios({
     method: "post",
     url: "https://huntease-mvp.herokuapp.com/v1/user/",
     data: {
-      email,
-      firstname,
-      lastname,
+      firstName,
+      lastName,
+      email: emailPro,
     },
     headers: {
       authorization: JSON.parse(localStorage.getItem("user_id")),
     },
   })
-    .then((authUser) => console.log(authUser))
+    .then((authUser) => authUser)
     .catch((error) => error);
 
 function* addTeamMember({ payload }) {
-  const { firstname, lastname, email } = payload;
+  const { firstName, lastName, email } = payload;
+  let emailPro =
+    payload.email + "@" + JSON.parse(localStorage.getItem("domain"));
 
   try {
     const addResponse = yield call(
       addTeamMemberAsync,
-      firstname,
-      lastname,
-      email
+      firstName,
+      lastName,
+      emailPro
     );
     if (addResponse.status == 201) {
       yield put(addTeamSuccess(addResponse));
@@ -46,22 +52,22 @@ function* addTeamMember({ payload }) {
 const getTeamMemberAsync = async () =>
   await axios({
     method: "get",
-    url: "https://huntease-mvp.herokuapp.com/v1/user/",
+    url: "https://huntease-mvp.herokuapp.com/v1/team/",
 
     headers: {
       authorization: JSON.parse(localStorage.getItem("user_id")),
     },
   })
-    .then((authUser) => console.log(authUser))
+    .then((authUser) => authUser)
     .catch((error) => error);
 
 function* getTeamMember({}) {
   // const { firstname, lastname, email } = payload;
 
   try {
-    const getResponse = yield call(addTeamMemberAsync);
+    const getResponse = yield call(getTeamMemberAsync);
     if (getResponse.status == 200) {
-      yield put(getTeamSuccess(getResponse));
+      yield put(getTeamMembersSuccess(getResponse.data.team.users));
     } else {
       console.log("get failed :", getResponse);
     }

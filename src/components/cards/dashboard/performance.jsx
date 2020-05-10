@@ -6,6 +6,10 @@ import { unclickedDate, clickedDate } from "../../../constants/buttonStatus";
 import { connect } from "react-redux";
 import { getPerformance } from "../../../redux/actions";
 class Performance extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { emptyBlock: true };
+  }
   componentDidMount() {
     this.props.getPerformance();
     console.log(this.props.dashboard);

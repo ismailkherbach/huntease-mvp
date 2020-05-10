@@ -33,9 +33,18 @@ function* loginWithEmailPassword({ payload }) {
   const { history } = payload;
   try {
     const loginUser = yield call(loginWithEmailPasswordAsync, email, password);
+    console.log(loginUser);
     if (loginUser.status == 200) {
       //   localStorage.setItem("user_id", JSON.stringify(loginUser.data));
       localStorage.setItem("user_id", JSON.stringify(loginUser.data.token));
+      localStorage.setItem(
+        "twilioToken",
+        JSON.stringify(loginUser.data.twilioToken)
+      );
+      localStorage.setItem("user", JSON.stringify(loginUser.data.user));
+      let domain = loginUser.data.user.email.split("@")[1];
+      localStorage.setItem("domain", JSON.stringify(domain));
+
       yield put(loginUserSuccess(loginUser));
       history.push("/");
     } else {

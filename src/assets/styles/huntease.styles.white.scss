@@ -72,9 +72,18 @@ $mainback: url("../img/mainback.svg");
   box-sizing: border-box;
   color: $huntease-dark;
   background-color: $huntease-light;
-  height: 120vh;
+  height: 100vh;
   overflow-y: hidden;
   overflow-x: hidden;
+  @include desktop-xl {
+    height: 120vh;
+  }
+  @include desktop-lg {
+    height: 100vh;
+  }
+  @include desktop-md {
+    height: 120vh;
+  }
 }
 
 .dashboard-page {
@@ -103,6 +112,9 @@ $mainback: url("../img/mainback.svg");
 
   @include desktop-xl {
     margin-left: 25em;
+  }
+  @include desktop-lg {
+    margin-left: 6em;
   }
   p {
     color: white;
@@ -960,6 +972,11 @@ input {
     margin-left: 20em;
     margin-right: -20em;
   }
+
+  @include desktop-lg {
+    margin-left: 0.5em;
+    margin-right: -1.5em;
+  }
   ul li {
     color: #8ba3ff;
     font-weight: $regular;
@@ -1261,7 +1278,7 @@ input {
     flex-direction: column;
     align-items: center;
     position: absolute;
-    bottom: 0;
+    bottom: 7em;
   }
   .notes {
     .notes-text-area {
@@ -1425,7 +1442,7 @@ input {
   position: absolute;
   width: 350px;
   height: 330px;
-  bottom: 4rem;
+  bottom: 10rem;
   background-color: white;
   border-radius: $regular-radius;
   box-shadow: $shadow;
@@ -1527,10 +1544,6 @@ input {
       margin-left: 5px;
       text-align: left;
       padding: 10px;
-    }
-    img {
-      width: 40px;
-      height: 4px;
     }
   }
   .confirm-btn {
@@ -2400,6 +2413,15 @@ input {
       font-weight: $bold;
       color: #8ba3ff;
       padding-block-start: 20px;
+      text-align: center;
+    }
+    h5 {
+      font-family: $font;
+      font-size: 14px;
+      font-weight: $regular;
+      color: #0026bc;
+      padding-block-start: 14px;
+      text-align: center;
     }
     p {
       text-align: left;
@@ -2409,9 +2431,10 @@ input {
       font-weight: $bold;
       color: $huntease-main;
       padding: 5px;
+      padding-left: 20px;
     }
     #invitation-sent {
-      text-align: left;
+      text-align: center;
       margin-top: auto;
       font-family: $font;
       font-size: 14px;
@@ -2462,7 +2485,7 @@ input {
       width: 40px;
       height: 40px;
       border-radius: 15px;
-      background: #2b55ff2d 0% 0% no-repeat padding-box;
+      background: #eaedf6 0% 0% no-repeat padding-box;
       border-radius: 15px;
     }
   }

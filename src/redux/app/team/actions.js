@@ -10,16 +10,16 @@ import {
   DELETE_TEAM_MEMBER_SUCCESS,
 } from "../../actions";
 
-export const getTeam = () => ({
+export const getTeamMembers = () => ({
   type: GET_TEAM_MEMBER,
 });
 
-export const getTeamSuccess = (item) => ({
+export const getTeamMembersSuccess = (item) => ({
   type: GET_TEAM_MEMBER_SUCCESS,
   payload: item,
 });
 
-export const getTeamError = (error) => ({
+export const getTeamMembersError = (error) => ({
   type: GET_TEAM_MEMBER_ERROR,
   payload: error,
 });

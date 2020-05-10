@@ -15,7 +15,7 @@ class PerformanceGraph extends Component {
       compareArray: [],
       compare: null,
       lineLabels: [],
-      lineData: []
+      lineData: [],
     };
     this.handleClickColor = this.handleClickColor.bind(this);
     this.updateChart = this.updateChart.bind(this);
@@ -45,7 +45,7 @@ class PerformanceGraph extends Component {
           _stroke.apply(this, arguments);
           ctx.restore();
         };
-      }
+      },
     });
 
     Chart.pluginService.register({
@@ -63,7 +63,7 @@ class PerformanceGraph extends Component {
                     _chartInstance: chart,
                     _data: chart.data,
                     _options: chart.options.tooltips,
-                    _active: [sector]
+                    _active: [sector],
                   },
                   chart
                 )
@@ -94,7 +94,7 @@ class PerformanceGraph extends Component {
           });
           chart.options.tooltips.enabled = false;
         }
-      }
+      },
     });
 
     Chart.defaults.lineWithLine = Chart.defaults.line;
@@ -118,7 +118,7 @@ class PerformanceGraph extends Component {
           ctx.stroke();
           ctx.restore();
         }
-      }
+      },
     });
 
     Chart.helpers.extend(Chart.controllers.line.prototype, {
@@ -160,7 +160,7 @@ class PerformanceGraph extends Component {
         var boundingRect = canvas.getBoundingClientRect();
         var points = this.getDataset().metaData;
         this.fireSliderEvent(points[point], canvas, boundingRect);
-      }
+      },
     });
   }
 
@@ -169,6 +169,7 @@ class PerformanceGraph extends Component {
     // console.log(this.props.dashboard.lineLabels);
     //console.log(this.props.dashboard.lineData);
     this.DrawShadow();
+
     var ctx = document.getElementById("canvas").getContext("2d");
     var gradient = ctx.createLinearGradient(0, 0, 0, 70);
     gradient.addColorStop(0, "white");
@@ -200,8 +201,8 @@ class PerformanceGraph extends Component {
           datalabels: {
             align: "end",
             anchor: "end",
-            fontStyle: "bold"
-          }
+            fontStyle: "bold",
+          },
         },
         {
           type: "bar",
@@ -217,10 +218,10 @@ class PerformanceGraph extends Component {
           fill: false,
           data: [200, 200, 200, 200, 200, 200, 200],
           datalabels: {
-            fontStyle: "bold"
-          }
-        }
-      ]
+            fontStyle: "bold",
+          },
+        },
+      ],
     };
 
     var newOptions = {
@@ -244,13 +245,13 @@ class PerformanceGraph extends Component {
           labelColor: function(tooltipItem, chart) {
             return {
               labelTextColor: "#254ebe",
-              backgroundColor: "#254ebe"
+              backgroundColor: "#254ebe",
             };
           },
           labelTextColor: function(tooltipItem, chart) {
             return "#254ebe";
-          }
-        }
+          },
+        },
       },
       maintainAspectRatio: false,
       legend: { display: false },
@@ -262,16 +263,16 @@ class PerformanceGraph extends Component {
             categoryPercentage: 1,
             gridLines: {
               offsetGridLines: true,
-              color: "rgba(0, 0, 0, 0)"
+              color: "rgba(0, 0, 0, 0)",
             },
             ticks: {
               beginAtZero: true,
               fontFamily: "Rubik",
               fontColor: "#c4cfef",
               fontSize: 12,
-              fontStyle: "bold"
-            }
-          }
+              fontStyle: "bold",
+            },
+          },
         ],
         yAxes: [
           {
@@ -280,22 +281,22 @@ class PerformanceGraph extends Component {
             gridLines: {
               offsetGridLines: true,
               display: false,
-              color: "rgba(0, 0, 0, 0)"
+              color: "rgba(0, 0, 0, 0)",
             },
             ticks: {
               stepSize: 40,
               beginAtZero: true,
               fontFamily: "Rubik",
               fontColor: "#c4cfef",
-              fontSize: 12
-            }
-          }
-        ]
+              fontSize: 12,
+            },
+          },
+        ],
       },
       title: {
         display: false,
-        text: ""
-      }
+        text: "",
+      },
     };
     this.setState({ chartData: newData, chartOption: newOptions });
     this.setState({ colorBack: gradient });
@@ -328,8 +329,8 @@ class PerformanceGraph extends Component {
                   datalabels: {
                     align: "end",
                     anchor: "end",
-                    fontStyle: "bold"
-                  }
+                    fontStyle: "bold",
+                  },
                 },
                 {
                   type: "bar",
@@ -346,14 +347,14 @@ class PerformanceGraph extends Component {
                   fill: false,
                   data: [200, 200, 200, 200, 200, 200, 200],
                   datalabels: {
-                    fontStyle: "bold"
-                  }
-                }
-              ]
+                    fontStyle: "bold",
+                  },
+                },
+              ],
             }}
             options={{ ...lineOptions }}
-            getDatasetAtEvent={dataset => console.log(dataset[0])}
-            onElementsClick={async elems => {
+            getDatasetAtEvent={(dataset) => console.log(dataset[0])}
+            onElementsClick={async (elems) => {
               var activePoint = elems[0];
               var data = activePoint._chart.data;
               var datasetIndex = activePoint._datasetIndex;
@@ -376,9 +377,9 @@ class PerformanceGraph extends Component {
 
 const mapStateToProps = ({ dashboard }) => {
   return {
-    dashboard
+    dashboard,
   };
 };
 export default connect(mapStateToProps, {
-  getPerformance
+  getPerformance,
 })(PerformanceGraph);
