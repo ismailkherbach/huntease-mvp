@@ -1,26 +1,25 @@
 import React, { Fragment } from "react";
 import Editor from "react-medium-editor";
-import { Input } from "reactstrap";
+import { Input, Button } from "reactstrap";
 import Draggable from "react-draggable";
-
+import { connect } from "react-redux";
+import { addGuide, getGuide } from "../../../redux/actions";
 // load theme styles with webpack
 require("medium-editor/dist/css/medium-editor.css");
 require("medium-editor/dist/css/themes/default.css");
-export default class ScriptEditor extends React.Component {
+class ScriptEditor extends React.Component {
   constructor() {
     super();
     this.state = {
-      text: "Give this guide a title",
-      contenu: "Enter a question or a prompt",
-      values: [],
+      title: "Give this guide a title",
       questions: [{ question: "" }],
     };
     this.handleChangeTitle = this.handleChangeTitle.bind(this);
     this.handleChangeContenu = this.handleChangeContenu.bind(this);
   }
 
-  handleChangeTitle(text, medium) {
-    this.setState({ text: text });
+  handleChangeTitle(title, medium) {
+    this.setState({ title: title });
   }
   handleChangeContenu(contenu) {
     this.setState({ contenu: contenu });
@@ -39,9 +38,15 @@ export default class ScriptEditor extends React.Component {
     }));
     console.log(this.state.questions);
   }
+
   handleClick() {
     this.setState({ text: "" });
   }
+
+  onAddGuide = () => {
+    console.log(this.state);
+    this.props.addGuide(this.state);
+  };
   createUI() {
     return this.state.questions.map((el, i) => (
       <div className="inlineBtn-left mb-3">
@@ -52,7 +57,7 @@ export default class ScriptEditor extends React.Component {
           key={i}
           id="prompt"
           tag="pre"
-          text={this.state.contenu}
+          text="Enter a question or a prompt"
           value={el.question || ""}
           name="question"
           onChange={this.handleChange.bind(this, i)}
@@ -69,6 +74,9 @@ export default class ScriptEditor extends React.Component {
     questions[i] = event;
     this.setState({ questions });
   }
+  componentDidMount() {
+    this.props.getGuide();
+  }
 
   render() {
     return (
@@ -77,7 +85,7 @@ export default class ScriptEditor extends React.Component {
           <Editor
             id="card-title"
             tag="pre"
-            text={this.state.text}
+            text={this.state.title}
             onChange={this.handleChangeTitle}
             options={{
               toolbar: { buttons: ["bold", "italic", "underline"] },
@@ -86,7 +94,31 @@ export default class ScriptEditor extends React.Component {
 
           {this.createUI()}
         </div>
+        <div id="tags-card">
+          <h5 id="card-title">Add your tags</h5>
+          <div className="inlineBtn-col-center">
+            <input
+              className="tag-input-large"
+              placeholder="Write your tags here and hit enter to save them"
+              type="text"
+            />
+            <Button className="save-changes" onClick={this.onAddGuide}>
+              Save changes
+            </Button>
+          </div>
+        </div>
       </Fragment>
     );
   }
 }
+
+const mapStateToProps = ({ guide }) => {
+  return {
+    guide,
+  };
+};
+
+export default connect(mapStateToProps, {
+  addGuide,
+  getGuide,
+})(ScriptEditor);

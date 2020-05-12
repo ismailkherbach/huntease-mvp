@@ -41,6 +41,20 @@ export const TEAM_LIST_GET_MEMBER = "TEAM_LIST_GET_MEMBER";
 export const TEAM_LIST_GET_MEMBER_SUCCESS = "TEAM_LIST_GET_MEMBER_SUCCESS";
 export const TEAM_LIST_GET_MEMBER_ERROR = "TEAM_LIST_GET_MEMBER_ERROR";
 
+/* GUIDE */
+
+export const ADD_GUIDE = "ADD_GUIDE";
+export const ADD_GUIDE_SUCCESS = "ADD_GUIDE_SUCCESS";
+export const ADD_GUIDE_ERROR = "ADD_GUIDE_ERROR";
+export const GET_GUIDE = "GET_GUIDE";
+export const GET_GUIDE_SUCCESS = "GET_GUIDE_SUCCESS";
+export const GET_GUIDE_ERROR = "GET_GUIDE_ERROR";
+export const UPDATE_GUIDE = "UPDATE_GUIDE";
+export const UPDATE_GUIDE_SUCCESS = "UPDATE_GUIDE_SUCCESS";
+export const UPDATE_GUIDE_ERROR = "UPDATE_GUIDE_ERROR";
+export const DELETE_GUIDE = "DELETE_GUIDE";
+export const DELETE_GUIDE_SUCCESS = "DELETE_GUIDE_SUCCESS";
+export const DELETE_GUIDE_ERROR = "DELETE_GUIDE_ERROR";
 /* TEAMS */
 
 export const ADD_TEAM_MEMBER = "ADD_TEAM_MEMBER";
@@ -65,3 +79,4 @@ export * from "./settings/actions";
 export * from "./auth/actions";
 export * from "./app/dashboard/actions";
 export * from "./app/team/actions";
+export * from "./app/guide/actions";

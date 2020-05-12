@@ -4,6 +4,7 @@ import UserLayout from "../../layout/UserLayout";
 import login from "./login";
 import register from "./register";
 import forgotPassword from "./forgotpassword";
+import resetpassword from "./resetpassword";
 
 class User extends React.Component {
   componentDidMount() {
@@ -22,6 +23,11 @@ class User extends React.Component {
             <Redirect exact from={`${match.url}/`} to={`${match.url}/login`} />
             <Route path={`${match.url}/login`} component={login} />
             <Route path={`${match.url}/register`} component={register} />
+            <Route
+              path={`${match.url}/reset-password/:token`}
+              component={resetpassword}
+            />
+
             <Route
               path={`${match.url}/forgot-password`}
               component={forgotPassword}

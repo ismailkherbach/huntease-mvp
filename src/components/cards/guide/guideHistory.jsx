@@ -1,27 +1,49 @@
 import React, { Fragment } from "react";
+import { connect } from "react-redux";
+import { getGuide } from "../../../redux/actions";
 import "boxicons";
+class GuideHistory extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
 
-const GuideHistory = ({ children }) => {
-  return (
-    <Fragment>
-      <div id="guide-history-card">
-        <h5 id="card-title">Your Guides</h5>
-        <div className="historyCard">
-          <box-icon name="notepad" type="solid" color="#091ad4"></box-icon>
+  componentDidMount() {
+    this.props.getGuide();
+  }
+  componentWillUpdate() {}
+  render() {
+    return (
+      <Fragment>
+        <div id="guide-history-card">
+          <h5 id="card-title">Your Guides</h5>
+          {this.props.guide.guides != undefined
+            ? this.props.guide.guides.map((guide) => {
+                return (
+                  <div className="historyCard">
+                    <box-icon
+                      name="notepad"
+                      type="solid"
+                      color="#091ad4"
+                    ></box-icon>
 
-          <p>Guide N°01</p>
+                    <p>{guide.title}</p>
+                  </div>
+                );
+              })
+            : ""}
         </div>
-        <div className="historyCard">
-          <box-icon name="notepad" type="solid" color="#091ad4"></box-icon>
+      </Fragment>
+    );
+  }
+}
 
-          <p>Guide N°02</p>
-        </div>
-        <div className="historyCard">
-          <box-icon name="notepad" type="solid" color="#091ad4"></box-icon>
-          <p>Guide N°03</p>
-        </div>
-      </div>
-    </Fragment>
-  );
+const mapStateToProps = ({ guide }) => {
+  return {
+    guide,
+  };
 };
-export default GuideHistory;
+
+export default connect(mapStateToProps, {
+  getGuide,
+})(GuideHistory);

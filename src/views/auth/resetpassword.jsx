@@ -1,0 +1,110 @@
+import React, { Fragment } from "react";
+import { Row, Card, CardTitle, Label, FormGroup, Button } from "reactstrap";
+import { Formik, Form, Field } from "formik";
+import { Link } from "react-router-dom";
+import Btn from "../../components/small.componenets/Btn";
+import { connect } from "react-redux";
+import { forgotPassword } from "../../redux/actions";
+class ResetPassword extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      password: "",
+      confirmPassword: "",
+    };
+    this.handleChangePassword = this.handleChangePassword.bind(this);
+  }
+  handleChangePassword(e) {
+    this.setState({ password: e.target.value });
+  }
+  onResetPassword = (values) => {
+    if (!this.props.loading) {
+      if (values.password !== "" && values.password == values.confirmPassword) {
+        // this.props.forgotPassword(values, this.props.history);
+        console.log(values);
+      }
+    }
+  };
+  validatePassword = (value) => {
+    let error;
+    if (!value) {
+      error = "Please enter your password";
+    } else if (value.length < 7) {
+      error = "Value must be longer than 8 characters";
+    }
+    return error;
+  };
+  componentDidMount() {
+    const token = this.props.match.params.token;
+    console.log(token);
+  }
+  render() {
+    const { password, confirmPassword } = this.state;
+    const initialValues = { password, confirmPassword };
+
+    return (
+      <Fragment>
+        <main className="auth-container-align">
+          <div className="auth-container inlineBtn-col-center">
+            {" "}
+            <h3 className="btn-get-started-textt">Change your password</h3>
+            <Formik
+              initialValues={initialValues}
+              onSubmit={this.onResetPassword}
+            >
+              {({ errors, touched }) => (
+                <Form class>
+                  <FormGroup>
+                    <Field
+                      className={
+                        errors.password && touched.password
+                          ? "auth-input-large-error"
+                          : "auth-input-large"
+                      }
+                      type="password"
+                      name="password"
+                      validate={this.validatePassword}
+                      placeholder="New password"
+                    />
+                    <Field
+                      className={
+                        errors.confirmPassword && touched.confirmPassword
+                          ? "auth-input-large-error"
+                          : "auth-input-large"
+                      }
+                      type="password"
+                      name="confirmPassword"
+                      validate={this.validatePassword}
+                      placeholder="Confirm new password"
+                    />
+                  </FormGroup>
+                  <div className="inlineBtn-center">
+                    <Button className="btn-get-started">
+                      <div className="btn-get-started-text">
+                        Change your password
+                      </div>
+                    </Button>
+                  </div>
+                </Form>
+              )}
+            </Formik>{" "}
+            <div className="condition-term">
+              <Link to={"/user/login"}>
+                <p>Go back to Sign in</p>
+              </Link>
+            </div>
+          </div>
+        </main>
+      </Fragment>
+    );
+  }
+}
+
+const mapStateToProps = ({ authUser }) => {
+  const { forgotUserMail, loading, error } = authUser;
+  return { forgotUserMail, loading, error };
+};
+
+export default connect(mapStateToProps, {
+  forgotPassword,
+})(ResetPassword);

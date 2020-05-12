@@ -14,6 +14,7 @@ import {
   forgotPasswordSuccess,
   joinTeamMember,
   joinTeamMemberSuccess,
+  joinTeamMemberError,
 } from "./actions";
 
 const loginWithEmailPasswordAsync = async (email, password) =>
@@ -136,23 +137,28 @@ function* registerWithEmailPassword({ payload }) {
   }
 }
 
-const joinTeamAsync = async (teamCode) =>
+const joinTeamAsync = async (teamJoinCode) =>
   await axios({
     method: "post",
     url: "https://huntease-mvp.herokuapp.com/v1/account/check-token",
     data: {
       email: "gi_kherbach@esi.dz",
-      token: teamCode,
+      token: teamJoinCode,
     },
   })
     .then((authUser) => authUser)
     .catch((error) => error);
 
 function* joinTeam({ payload }) {
-  const { teamCode } = payload.teamJoinCode;
+  const { teamJoinCode } = payload.joinTeamCode;
   try {
-    yield call(joinTeamAsync, teamCode);
-    yield put(joinTeamMemberSuccess("success"));
+    const joinResponse = yield call(joinTeamAsync, teamJoinCode);
+
+    if (joinResponse.status == 200) {
+      yield put(joinTeamMemberSuccess("success"));
+    } else {
+      yield put(joinTeamMemberError("invalid team code"));
+    }
   } catch (error) {}
 }
 
@@ -179,7 +185,31 @@ export function* watchLogoutUser() {
 }
 */
 
-const logoutAsync = async (history) => {
+const logoutAsync = async () =>
+  await axios({
+    method: "post",
+    url: "https://huntease-mvp.herokuapp.com/v1/account/logout",
+    headers: {
+      authorization: JSON.parse(localStorage.getItem("user_id")),
+    },
+  })
+    .then((authUser) => authUser)
+    .catch((error) => error);
+
+function* logout({ payload }) {
+  const { history } = payload;
+  try {
+    const logoutResponse = yield call(logoutAsync);
+
+    if (logoutResponse.status == 200) {
+      yield put(logoutUserSuccess(logoutResponse));
+      history.push("/user/login");
+      localStorage.clear();
+    }
+  } catch (error) {}
+}
+
+/*const logoutAsync = async () => {
   await axios({
     method: "post",
     url: "https://huntease-mvp.herokuapp.com/v1/account/logout",
@@ -193,20 +223,20 @@ const logoutAsync = async (history) => {
 
 function* logout({ payload }) {
   const { history } = payload;
+  console.log(history);
   try {
-    const logoutUser = yield call(logoutAsync, history);
-    console.log(JSON.parse(localStorage.getItem("user_id")));
+    const logoutUser = yield call(logoutAsync);
     console.log(logoutUser);
-    if (logoutUser) {
-      yield put(logoutUserSuccess(logoutUser));
 
+    if (logoutUser.status == 200) {
+      yield put(logoutUserSuccess(logoutUser));
       history.push("/user/login");
       localStorage.removeItem("user_id");
     } else {
       console.log("logout failed :", logoutUser);
     }
   } catch (error) {}
-}
+}*/
 
 export function* watchLoginUser() {
   yield takeEvery(LOGIN_USER, loginWithEmailPassword);

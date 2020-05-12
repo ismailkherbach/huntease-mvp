@@ -76,6 +76,7 @@ class AccountCall extends React.Component {
                         }
                         type="text"
                         onChange={this.handleChangeEmail}
+                        disabled
                       />
                     </div>
                     <div className="inlinBtn-col-center">
@@ -86,6 +87,7 @@ class AccountCall extends React.Component {
                         placeholder=""
                         type="text"
                         onChange={this.handleChangeEmail}
+                        disabled
                       />
                     </div>
                   </div>
@@ -143,7 +145,7 @@ class AccountCall extends React.Component {
                       </h3>{" "}
                       <input
                         className="profile-input-large"
-                        placeholder=""
+                        placeholder="+1 GMT, Paris France"
                         type="text"
                         onChange={this.handleChangeEmail}
                       />

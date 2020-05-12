@@ -16,7 +16,7 @@ import Btn from "../../../components/small.componenets/Btn";
 import axios from "axios";
 import JoinCompanySecondStep from "./joinCompanySecond";
 import { connect } from "react-redux";
-import { joinTeamMember } from "../../../redux/actions";
+import { joinTeamMember, joinTeamMemberError } from "../../../redux/actions";
 class JoinCompanyFirstStep extends React.Component {
   constructor(props) {
     super(props);
@@ -24,7 +24,7 @@ class JoinCompanyFirstStep extends React.Component {
       firstname: "",
       lastname: "",
       password: "",
-      teamCode: "",
+      teamJoinCode: "",
       secondStepStatus: false,
     };
 
@@ -35,12 +35,17 @@ class JoinCompanyFirstStep extends React.Component {
   }
   onJoinTeam = (values) => {
     if (!this.props.loading) {
-      if (values.teamCode !== "") {
+      if (values.teamJoinCode !== "") {
         this.props.joinTeamMember(values, this.props.history);
       }
     }
   };
-
+  componentDidUpdate() {}
+  componentDidMount() {
+    if (this.props.authUser.error == "invalid team code") {
+      this.setState({ secondStepStatus: true });
+    }
+  }
   validateEmail = (value) => {
     let error;
     if (!value) {
@@ -75,11 +80,11 @@ class JoinCompanyFirstStep extends React.Component {
   };*/
 
   render() {
-    const { teamCode } = this.state;
-    const initialValues = { teamCode };
+    const { teamJoinCode } = this.state;
+    const initialValues = { teamJoinCode };
     return (
       <div>
-        {!this.state.secondStepStatus ? (
+        {this.props.authUser.teamJoinCode != "success" && (
           <Fragment>
             <div className="auth-container">
               {" "}
@@ -98,7 +103,7 @@ class JoinCompanyFirstStep extends React.Component {
                         className="auth-input-large"
                         name="teamJoinCode"
                         // validate={this.validateEmail}
-                        placeholder="teamJoinCode"
+                        placeholder="Team code"
                       />
                       {errors.teamCode && touched.teamCode && (
                         <div className="invalid-feedback d-block">
@@ -118,18 +123,19 @@ class JoinCompanyFirstStep extends React.Component {
               </Formik>{" "}
             </div>
           </Fragment>
-        ) : (
+        )}
+        {this.props.authUser.teamJoinCode == "success" && (
           <JoinCompanySecondStep />
-        )}{" "}
+        )}
       </div>
     );
   }
 }
 
 const mapStateToProps = ({ authUser }) => {
-  const { teamJoinCode, loading, error } = authUser;
-  return { teamJoinCode, loading, error };
+  return { authUser };
 };
-export default connect(mapStateToProps, { joinTeamMember })(
-  JoinCompanyFirstStep
-);
+export default connect(mapStateToProps, {
+  joinTeamMember,
+  joinTeamMemberError,
+})(JoinCompanyFirstStep);

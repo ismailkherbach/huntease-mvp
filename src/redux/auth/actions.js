@@ -67,9 +67,9 @@ export const joinTeamMemberSuccess = (joinTeamCode) => ({
   type: JOIN_COMPANY_SUCCESS,
   payload: joinTeamCode,
 });
-export const joinTeamMemberError = (message) => ({
+export const joinTeamMemberError = (error) => ({
   type: JOIN_COMPANY_ERROR,
-  payload: { message },
+  payload: { error },
 });
 
 export const logoutUser = (history) => ({

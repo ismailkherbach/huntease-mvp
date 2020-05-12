@@ -56,4 +56,6 @@ class Sidebar extends React.Component {
 const mapStateToProps = ({}) => {
   return {};
 };
-export default injectIntl(connect(mapStateToProps, { logoutUser })(Sidebar));
+export default injectIntl(
+  withRouter(connect(mapStateToProps, { logoutUser })(Sidebar))
+);

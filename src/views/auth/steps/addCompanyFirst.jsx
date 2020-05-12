@@ -169,11 +169,9 @@ class AddCompanyFirstStep extends React.Component {
                   </Label>
                 </FormGroup>
               </div>
-              <Btn class={"btn-get-started"} onClick={this.secondStep}>
-                <div className="btn-get-started-text" onClick={this.secondStep}>
-                  Create your company account
-                </div>
-              </Btn>
+              <Button className={"btn-get-started"} onClick={this.secondStep}>
+                Create your company account
+              </Button>
             </div>
           </Fragment>
         ) : (
@@ -210,14 +208,17 @@ class AddCompanyFirstStep extends React.Component {
                 type="text"
                 onChange={this.handleChangeMemberCount}
               />
-              <Btn class={"btn-get-started"} onClick={this.onUserRegister}>
+              <Button
+                className={"btn-get-started"}
+                onClick={this.onUserRegister}
+              >
                 <div
                   className="btn-get-started-text"
                   onClick={this.onUserRegister}
                 >
                   Access my account
                 </div>
-              </Btn>
+              </Button>
             </div>
           </Fragment>
         )}{" "}

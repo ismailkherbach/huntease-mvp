@@ -62,10 +62,7 @@ $mainback: url("../img/mainback.svg");
 #root {
   background: $mainback no-repeat;
   background-size: cover;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+
   font-size: 16px;
   font-family: $font;
   font-weight: $regular;
@@ -726,7 +723,10 @@ span {
     height: 61px;
     width: 178px;
     background-color: $huntease-dark;
-    color: white;
+    color: $huntease-main;
+    font-size: 14px;
+    font-weight: $bold;
+    font-family: $font;
     border-radius: 18px;
     margin: 15px;
     border: none;
@@ -736,6 +736,9 @@ span {
     width: 178px;
     background-color: white;
     color: $huntease-dark;
+    font-size: 14px;
+    font-weight: $bold;
+    font-family: $font;
   }
   .auth-button-clicked {
     height: 61px;
@@ -869,6 +872,10 @@ span {
   border: 2px solid $huntease-main;
   display: flex;
   background-color: white;
+  text-align: center;
+  font-size: 14px;
+  font-weight: $bold;
+  font-family: $font;
   align-items: center;
   justify-content: center;
   flex-direction: column;
@@ -900,6 +907,10 @@ span {
   border: 2px solid $huntease-main;
   display: flex;
   background-color: $huntease-main;
+  text-align: center;
+  font-size: 14px;
+  font-weight: $bold;
+  font-family: $font;
   align-items: center;
   justify-content: center;
   flex-direction: column;
@@ -913,7 +924,7 @@ span {
   color: $huntease-main;
 }
 
-.btn-get-started-tex:hover {
+.btn-get-started-text:hover {
   text-align: center;
   font-size: 14px;
   font-weight: $bold;
@@ -1131,13 +1142,15 @@ input {
     appearance: none;
     height: 40px;
     width: 710px;
-    background: #8ba3ff 0% 0% no-repeat padding-box;
+    background: #8ba2ff2a 0% 0% no-repeat padding-box;
     border-radius: 15px;
-    opacity: 0.1;
+    opacity: 1;
     border-radius: 10px;
     border-color: white;
     margin-top: 10px;
     margin-bottom: 18px;
+    padding-left: 8px;
+    color: #8ba3ff;
   }
   .save-changes {
     -webkit-appearance: none;

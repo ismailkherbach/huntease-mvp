@@ -10,7 +10,7 @@ import {
   DropdownMenu,
   DropdownToggle,
   DropdownItem,
-  Dropdown
+  Dropdown,
 } from "reactstrap";
 import { connect } from "react-redux";
 import { registerUser } from "../../redux/actions";
@@ -18,9 +18,6 @@ import Btn from "../../components/small.componenets/Btn";
 import axios from "axios";
 import AddCompanyFirstStep from "./steps/addCompanyFirst";
 import JoinCompanyFirstStep from "./steps/joinCompanyFirst";
-
-
-
 
 class Register extends React.Component {
   constructor(props) {
@@ -31,7 +28,7 @@ class Register extends React.Component {
       email: "",
       password: "",
       joinCompany: false,
-      addCompany:true
+      addCompany: true,
     };
 
     this.handleChangeFirst = this.handleChangeFirst.bind(this);
@@ -57,10 +54,10 @@ class Register extends React.Component {
     this.props.registerUser(this.state, this.props.history);
   };
   addCompanyStatus = () => {
-    this.setState({ addCompany: true,joinCompany:false });
+    this.setState({ addCompany: true, joinCompany: false });
   };
-    joinCompanyStatus = () => {
-    this.setState({ addCompany: false,joinCompany:true });
+  joinCompanyStatus = () => {
+    this.setState({ addCompany: false, joinCompany: true });
   };
 
   /*handleSubmit = () => {
@@ -86,22 +83,20 @@ class Register extends React.Component {
   render() {
     return (
       <div>
-      <main className="auth-container-align">
-        <div className="inlineBtn-col-center">
-          <Button className="auth-button" onClick={this.addCompanyStatus}>
-            <div className="btn-get-started-text">Add a company</div>
-          </Button>
+        <main className="auth-container-align">
+          <div className="inlineBtn-col-center">
+            <Button className="auth-button" onClick={this.addCompanyStatus}>
+              Add a company
+            </Button>
 
-          <Button className="auth-button" onClick={this.joinCompanyStatus}>
-            <div className="btn-get-started-text">Join a company</div>
-          </Button>
-        </div>
-    {this.state.addCompany && <AddCompanyFirstStep/>  }
-    {this.state.joinCompany && <JoinCompanyFirstStep/>}
-
-           </main>  
-
- </div>
+            <Button className="auth-button" onClick={this.joinCompanyStatus}>
+              Join a company
+            </Button>
+          </div>
+          {this.state.addCompany && <AddCompanyFirstStep />}
+          {this.state.joinCompany && <JoinCompanyFirstStep />}
+        </main>
+      </div>
     );
   }
 }
@@ -112,6 +107,5 @@ const mapStateToProps = ({ authUser }) => {
 };
 
 export default connect(mapStateToProps, {
-  registerUser
+  registerUser,
 })(Register);
-

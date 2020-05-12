@@ -115,9 +115,7 @@ class Login extends React.Component {
                     />
                   </FormGroup>
                   <div className="inlineBtn-center">
-                    <Button className="btn-get-started">
-                      <div className="btn-get-started-text">Login </div>
-                    </Button>
+                    <Button className="btn-get-started">Login</Button>
                   </div>
                   {errors.email && touched.email && (
                     <div className="inlineBtn-center">
