@@ -4,13 +4,14 @@ import { Formik, Form, Field } from "formik";
 import { Link } from "react-router-dom";
 import Btn from "../../components/small.componenets/Btn";
 import { connect } from "react-redux";
-import { forgotPassword } from "../../redux/actions";
+import { resetPassword } from "../../redux/actions";
 class ResetPassword extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       password: "",
       confirmPassword: "",
+      token: "",
     };
     this.handleChangePassword = this.handleChangePassword.bind(this);
   }
@@ -20,8 +21,10 @@ class ResetPassword extends React.Component {
   onResetPassword = (values) => {
     if (!this.props.loading) {
       if (values.password !== "" && values.password == values.confirmPassword) {
-        // this.props.forgotPassword(values, this.props.history);
-        console.log(values);
+        let resetPasswordCode = values.token;
+        let newPassword = values.password;
+        let history = this.props.history;
+        this.props.resetPassword({ resetPasswordCode, newPassword, history });
       }
     }
   };
@@ -34,13 +37,12 @@ class ResetPassword extends React.Component {
     }
     return error;
   };
-  componentDidMount() {
-    const token = this.props.match.params.token;
-    console.log(token);
+  componentWillMount() {
+    this.setState({ token: this.props.match.params.token });
   }
   render() {
-    const { password, confirmPassword } = this.state;
-    const initialValues = { password, confirmPassword };
+    const { password, confirmPassword, token } = this.state;
+    const initialValues = { password, confirmPassword, token };
 
     return (
       <Fragment>
@@ -101,10 +103,9 @@ class ResetPassword extends React.Component {
 }
 
 const mapStateToProps = ({ authUser }) => {
-  const { forgotUserMail, loading, error } = authUser;
-  return { forgotUserMail, loading, error };
+  return { authUser };
 };
 
 export default connect(mapStateToProps, {
-  forgotPassword,
+  resetPassword,
 })(ResetPassword);

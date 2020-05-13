@@ -5,6 +5,7 @@ import {
   LOGOUT_USER,
   FORGOT_PASSWORD,
   JOIN_COMPANY,
+  RESET_PASSWORD,
 } from "../actions";
 import axios from "axios";
 import {
@@ -15,6 +16,9 @@ import {
   joinTeamMember,
   joinTeamMemberSuccess,
   joinTeamMemberError,
+  resetPassword,
+  resetPasswordSuccess,
+  resetPasswordError,
 } from "./actions";
 
 const loginWithEmailPasswordAsync = async (email, password) =>
@@ -74,6 +78,35 @@ function* forgotPassword({ payload }) {
     yield put(forgotPasswordSuccess("success"));
   } catch (error) {}
 }
+
+const resetPasswordAsync = async (resetPasswordCode, newPassword) =>
+  await axios({
+    method: "post",
+    url: "https://huntease-mvp.herokuapp.com/v1/account/reset-password",
+    data: {
+      password: newPassword,
+      token: resetPasswordCode,
+      confirmPassword: newPassword,
+    },
+  })
+    .then((authUser) => authUser)
+    .catch((error) => error);
+
+function* resetNewPassword({ payload }) {
+  const { resetPasswordCode, newPassword, history } = payload;
+  try {
+    const resetResponse = yield call(
+      resetPasswordAsync,
+      resetPasswordCode,
+      newPassword
+    );
+    if (resetResponse.status == 200) {
+      yield put(forgotPasswordSuccess(newPassword));
+      history.push("/user/login");
+    }
+  } catch (error) {}
+}
+
 const registerWithEmailPasswordAsync = async (
   firstName,
   lastName,
@@ -245,6 +278,9 @@ export function* watchLoginUser() {
 export function* watchForgotPassword() {
   yield takeEvery(FORGOT_PASSWORD, forgotPassword);
 }
+export function* watchResetPassword() {
+  yield takeEvery(RESET_PASSWORD, resetNewPassword);
+}
 
 export function* watchLogoutUser() {
   yield takeEvery(LOGOUT_USER, logout);
@@ -260,6 +296,7 @@ export default function* rootSaga() {
   yield all([
     fork(watchLoginUser),
     fork(watchForgotPassword),
+    fork(watchResetPassword),
     fork(watchRegisterUser),
     fork(watchLogoutUser),
     fork(watchJoinTeam),
