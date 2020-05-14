@@ -54,7 +54,14 @@ class CallTwilio extends React.Component {
   fetchToken = async () => {
     var self = this;
 
-    await axios
+    //console.log(localStorage.getItem("twilioToken"));
+    Twilio.Device.setup(JSON.parse(localStorage.getItem("twilioToken")), {
+      audioConstraints: true,
+      audioHelper: true,
+      pstream: true,
+    });
+
+    /*    await axios
       .get("https://radiant-bastion-46195.herokuapp.com/token")
       .then((response) => {
         console.log(response.data.token);
@@ -67,7 +74,8 @@ class CallTwilio extends React.Component {
       .catch((error) => {
         console.log(error);
         this.setState({ log: "Could not fetch token, see console.log" });
-      });
+      }); */
+
     this.getMicrophone();
 
     await this.handleToggleCall();

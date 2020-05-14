@@ -114,19 +114,19 @@ class Login extends React.Component {
                       validate={this.validatePassword}
                     />
                   </FormGroup>
-                  <div className="inlineBtn-center">
-                    <Button className="btn-get-started">Login</Button>
-                  </div>
                   {errors.email && touched.email && (
                     <div className="inlineBtn-center">
-                      <div className="error-block">{errors.email}</div>
+                      <p>{errors.email}</p>
                     </div>
                   )}
                   {errors.password && touched.password && (
                     <div className="inlineBtn-center">
-                      <div className="error-block">{errors.password}</div>
+                      <p>{errors.password}</p>
                     </div>
                   )}
+                  <div className="inlineBtn-center">
+                    <Button className="btn-get-started">Login</Button>
+                  </div>
                 </Form>
               )}
             </Formik>{" "}

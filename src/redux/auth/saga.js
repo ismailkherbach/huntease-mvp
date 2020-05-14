@@ -20,7 +20,7 @@ import {
   resetPasswordSuccess,
   resetPasswordError,
 } from "./actions";
-
+const credentials = ["token", "twilioToken", "user", "user_id"];
 const loginWithEmailPasswordAsync = async (email, password) =>
   await axios({
     method: "post",

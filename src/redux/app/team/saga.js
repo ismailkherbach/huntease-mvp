@@ -10,18 +10,23 @@ import {
   getTeamMembersSuccess,
   deleteTeamSuccess,
 } from "./actions";
-
+const BASIC_URL = "https://huntease-mvp.herokuapp.com/v1/";
+const token_bearer = JSON.parse(localStorage.getItem("user_id"));
+const CREDENTIALS = {
+  tokenBearer: JSON.parse(localStorage.getItem("user_id")),
+  domainName: JSON.parse(localStorage.getItem("domain")),
+};
 const addTeamMemberAsync = async (firstName, lastName, emailPro) =>
   await axios({
     method: "post",
-    url: "https://huntease-mvp.herokuapp.com/v1/user/",
+    url: `${BASIC_URL}/user/`,
     data: {
       firstName,
       lastName,
       email: emailPro,
     },
     headers: {
-      authorization: JSON.parse(localStorage.getItem("user_id")),
+      authorization: CREDENTIALS["tokenBearer"],
     },
   })
     .then((authUser) => authUser)
@@ -29,8 +34,7 @@ const addTeamMemberAsync = async (firstName, lastName, emailPro) =>
 
 function* addTeamMember({ payload }) {
   const { firstName, lastName, email } = payload;
-  let emailPro =
-    payload.email + "@" + JSON.parse(localStorage.getItem("domain"));
+  let emailPro = payload.email + "@" + CREDENTIALS["domainName"];
 
   try {
     const addResponse = yield call(
@@ -52,10 +56,10 @@ function* addTeamMember({ payload }) {
 const getTeamMemberAsync = async () =>
   await axios({
     method: "get",
-    url: "https://huntease-mvp.herokuapp.com/v1/team/",
+    url: `${BASIC_URL}/team/`,
 
     headers: {
-      authorization: JSON.parse(localStorage.getItem("user_id")),
+      authorization: CREDENTIALS["tokenBearer"],
     },
   })
     .then((authUser) => authUser)

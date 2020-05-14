@@ -4,7 +4,7 @@ import {
   BrowserRouter as Router,
   Route,
   Switch,
-  Redirect
+  Redirect,
 } from "react-router-dom";
 import app from "./views/app";
 import main from "./views";
@@ -13,18 +13,32 @@ import Error from "./views/error";
 import settings from "./views/app/settings";
 import { IntlProvider } from "react-intl";
 import AppLocale from "./lang";
+import axios from "axios";
+
+const UNAUTHORIZED = 401;
+axios.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    const { status } = error.response;
+    if (status === UNAUTHORIZED) {
+      localStorage.clear();
+      window.location.replace("/user/login");
+    }
+    return Promise.reject(error);
+  }
+);
 
 const AuthRoute = ({ component: Component, authUser, ...rest }) => (
   <Route
     {...rest}
-    render={props =>
+    render={(props) =>
       authUser ? (
         <Component {...props} />
       ) : (
         <Redirect
           to={{
             pathname: "/user/login",
-            state: { from: props.location }
+            state: { from: props.location },
           }}
         />
       )
@@ -32,7 +46,28 @@ const AuthRoute = ({ component: Component, authUser, ...rest }) => (
   />
 );
 
+const AuthedRoute = ({ component: Component, authUser, ...rest }) => (
+  <Route
+    {...rest}
+    render={(props) =>
+      !authUser ? (
+        <Component {...props} />
+      ) : (
+        <Redirect
+          to={{
+            pathname: "/app/dashboards",
+            state: { from: props.location },
+          }}
+        />
+      )
+    }
+  />
+);
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     const { locale, loginUser } = this.props;
 
@@ -47,7 +82,7 @@ class App extends React.Component {
             <Switch>
               <AuthRoute path="/app" authUser={loginUser} component={app} />
               <Route path="/" exact component={main} />
-              <Route path="/user" component={user} />
+              <AuthedRoute path="/user" authUser={loginUser} component={user} />
               <Route path="/app/settings" component={settings} />
 
               <Route path="/error" exact component={Error} />

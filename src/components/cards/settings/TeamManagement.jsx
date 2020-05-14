@@ -50,7 +50,7 @@ class TeamManagement extends React.Component {
 
   componentDidMount() {
     this.props.getTeamMembers();
-    console.log(this.props.team.teamMembers);
+    //console.log(this.props.team.teamMembers);
   }
   render() {
     return (
@@ -156,9 +156,10 @@ class TeamManagement extends React.Component {
     );
   }
 }
-const mapStateToProps = ({ team }) => {
+const mapStateToProps = ({ team, authUser }) => {
   return {
     team,
+    authUser,
   };
 };
 

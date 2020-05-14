@@ -7,11 +7,11 @@ import {
 } from "../../actions";
 import axios from "axios";
 import { addGuideSuccess, getGuideSuccess, deleteGuide } from "./actions";
-
+const BASIC_URL = "https://huntease-mvp.herokuapp.com/v1/";
 const addGuideAsync = async (title, questions) =>
   await axios({
     method: "post",
-    url: "https://huntease-mvp.herokuapp.com/v1/guide/",
+    url: `${BASIC_URL}/guide/`,
     data: {
       title,
       questions,
@@ -42,7 +42,7 @@ function* addGuideNew({ payload }) {
 const getGuideAsync = async () =>
   await axios({
     method: "get",
-    url: "https://huntease-mvp.herokuapp.com/v1/guide/",
+    url: `${BASIC_URL}/guide/`,
 
     headers: {
       authorization: JSON.parse(localStorage.getItem("user_id")),
@@ -69,7 +69,7 @@ function* getGuideList({}) {
 const updateGuideAsync = async (title, questions, id) =>
   await axios({
     method: "put",
-    url: `https://huntease-mvp.herokuapp.com/v1/guide/${id}`,
+    url: `${BASIC_URL}/guide/${id}`,
     data: {
       title,
       questions,
