@@ -6,7 +6,11 @@ import {
   DELETE_GUIDE,
 } from "../../actions";
 import axios from "axios";
-import { addGuideSuccess, getGuideSuccess, deleteGuide } from "./actions";
+import {
+  addGuideSuccess,
+  getGuideSuccess,
+  deleteGuideSuccess,
+} from "./actions";
 const BASIC_URL = "https://huntease-mvp.herokuapp.com/v1/";
 const addGuideAsync = async (title, questions) =>
   await axios({
@@ -97,6 +101,33 @@ function* updateGuide({ payload }) {
   }
 }
 
+const deleteGuideAsync = async (id) =>
+  await axios({
+    method: "get",
+    url: `${BASIC_URL}/guide/${id}`,
+
+    headers: {
+      authorization: JSON.parse(localStorage.getItem("user_id")),
+    },
+  })
+    .then((authUser) => console.log(authUser))
+    .catch((error) => error);
+
+function* deleteGuide({ payload }) {
+  const { id } = payload;
+  console.log(payload);
+  try {
+    const deleteResponse = yield call(deleteGuideAsync, id);
+    if (deleteResponse.status == 200) {
+      yield put(deleteGuideSuccess(deleteResponse));
+    } else {
+      console.log("delete failed :", deleteResponse);
+    }
+  } catch (error) {
+    console.log("delete error : ", error);
+  }
+}
+
 export function* watchAddGuide() {
   yield takeEvery(ADD_GUIDE, addGuideNew);
 }
@@ -108,7 +139,15 @@ export function* watchGetGuide() {
 export function* watchUpdateGuide() {
   yield takeEvery(UPDATE_GUIDE, updateGuide);
 }
+export function* watchDeleteGuide() {
+  yield takeEvery(DELETE_GUIDE, deleteGuide);
+}
 
 export default function* rootSaga() {
-  yield all([fork(watchAddGuide), fork(watchGetGuide), watchUpdateGuide()]);
+  yield all([
+    fork(watchAddGuide),
+    fork(watchGetGuide),
+    fork(watchUpdateGuide),
+    fork(watchDeleteGuide),
+  ]);
 }

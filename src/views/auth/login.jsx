@@ -1,12 +1,12 @@
 import React, { Fragment } from "react";
-import { Row, Card, CardTitle, Label, FormGroup, Button } from "reactstrap";
+import { FormGroup, Button, Spinner } from "reactstrap";
 import { Formik, Form, Field } from "formik";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { loginUser } from "../../redux/actions";
-import Btn from "../../components/small.componenets/Btn";
+//import Btn from "../../components/small.componenets/Btn";
 
-import axios from "axios";
+//import axios from "axios";
 
 class Login extends React.Component {
   constructor(props) {
@@ -125,7 +125,13 @@ class Login extends React.Component {
                     </div>
                   )}
                   <div className="inlineBtn-center">
-                    <Button className="btn-get-started">Login</Button>
+                    <Button className="btn-get-started">
+                      {this.props.loading ? (
+                        <Spinner animation="border" />
+                      ) : (
+                        "Login"
+                      )}
+                    </Button>
                   </div>
                 </Form>
               )}

@@ -3,16 +3,19 @@ import axios from "axios";
 import { Button } from "reactstrap";
 import PerfectScrollbar from "react-perfect-scrollbar";
 import AudioAnalyser from "./AudioAnalyser";
+import { w3cwebsocket as W3CWebSocket } from "websocket";
 
 const Twilio = require("twilio-client");
+const client = new W3CWebSocket("ws://127.0.0.1:8000");
+
 class CallTwilio extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       muted: false,
       log: "Waiting for call",
-      countryCode: "33",
-      currentNumber: "629325234",
+      countryCode: "213",
+      currentNumber: "550207141",
       onPhone: false,
       emotionAnalytics: true,
       general: false,
@@ -38,7 +41,14 @@ class CallTwilio extends React.Component {
     });
     this.setState({ audio });
   }
-
+  async getEmotions() {
+    client.onopen = () => {
+      console.log("WebSocket Client Connected");
+    };
+    client.onmessage = (emotionPacket) => {
+      console.log(emotionPacket);
+    };
+  }
   stopMicrophone() {
     this.state.audio.getTracks().forEach((track) => track.stop());
     this.setState({ audio: null });
@@ -55,13 +65,13 @@ class CallTwilio extends React.Component {
     var self = this;
 
     //console.log(localStorage.getItem("twilioToken"));
-    Twilio.Device.setup(JSON.parse(localStorage.getItem("twilioToken")), {
+    /* Twilio.Device.setup(JSON.parse(localStorage.getItem("twilioToken")), {
       audioConstraints: true,
       audioHelper: true,
       pstream: true,
-    });
+    });*/
 
-    /*    await axios
+    await axios
       .get("https://radiant-bastion-46195.herokuapp.com/token")
       .then((response) => {
         console.log(response.data.token);
@@ -74,7 +84,7 @@ class CallTwilio extends React.Component {
       .catch((error) => {
         console.log(error);
         this.setState({ log: "Could not fetch token, see console.log" });
-      }); */
+      });
 
     this.getMicrophone();
 
@@ -143,6 +153,7 @@ class CallTwilio extends React.Component {
       Twilio.Device.connect({
         number: n,
         audioConstraints: { audio: true, video: false },
+        id: "3333",
       });
       this.setState({ log: "Calling" });
     } else {

@@ -1,5 +1,14 @@
 import React, { Fragment } from "react";
-import { Row, Col, Input, Button, Table } from "reactstrap";
+import {
+  Row,
+  Col,
+  Button,
+  Spinner,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+} from "reactstrap";
 import PerfectScrollbar from "react-perfect-scrollbar";
 import { connect } from "react-redux";
 import { addTeam, getTeamMembers } from "../../../redux/actions";
@@ -108,6 +117,11 @@ class TeamManagement extends React.Component {
                       <h4>EDIT</h4>
                     </Col>
                   </Row>
+                  {this.props.team.loading ? (
+                    <div className="inlineBtn-center">
+                      <Spinner animation="border" />
+                    </div>
+                  ) : null}
                   {this.props.team.teamMembers != undefined
                     ? this.props.team.teamMembers.map((user) => {
                         return (
@@ -137,10 +151,21 @@ class TeamManagement extends React.Component {
                             </Col>
                             <Col className="inlineBtn-center">
                               <div id="edit" className="inlineBtn-center">
-                                <box-icon
-                                  name="pencil"
-                                  color="#0026bc"
-                                ></box-icon>
+                                <UncontrolledDropdown className="ml-5">
+                                  <DropdownToggle
+                                    color="empty"
+                                    className="dropdown-toggle-split"
+                                  >
+                                    <box-icon
+                                      name="pencil"
+                                      color="#0026bc"
+                                    ></box-icon>
+                                  </DropdownToggle>
+                                  <DropdownMenu className="mt-3" right>
+                                    <DropdownItem>Edit</DropdownItem>
+                                    <DropdownItem>Delete</DropdownItem>
+                                  </DropdownMenu>
+                                </UncontrolledDropdown>
                               </div>
                             </Col>
                           </Row>

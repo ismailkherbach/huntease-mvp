@@ -55,6 +55,16 @@ export const UPDATE_GUIDE_ERROR = "UPDATE_GUIDE_ERROR";
 export const DELETE_GUIDE = "DELETE_GUIDE";
 export const DELETE_GUIDE_SUCCESS = "DELETE_GUIDE_SUCCESS";
 export const DELETE_GUIDE_ERROR = "DELETE_GUIDE_ERROR";
+
+/* CALLS */
+
+export const GET_LEADS = "GET_LEADS";
+export const GET_LEADS_SUCCESS = "GET_LEADS_SUCCESS";
+export const GET_LEADS_ERROR = "GET_LEADS_ERROR";
+export const DELETE_LEADS = "DELETE_LEADS";
+export const DELETE_LEADS_SUCCESS = "DELETE_LEADS_SUCCESS";
+export const DELETE_LEADS_ERROR = "DELETE_LEADS_ERROR";
+
 /* TEAMS */
 
 export const ADD_TEAM_MEMBER = "ADD_TEAM_MEMBER";
@@ -69,6 +79,12 @@ export const DELETE_TEAM_MEMBER = "DELETE_TEAM_MEMBER";
 export const DELETE_TEAM_MEMBER_SUCCESS = "DELETE_TEAM_MEMBER_SUCCESS";
 export const DELETE_TEAM_MEMBER_ERROR = "DELETE_TEAM_MEMBER_ERROR";
 
+/* INTEGRATIONS */
+
+export const INTEGRATE_HUBSPOT = "GET_LEADS";
+export const INTEGRATE_HUBSPOT_SUCCESS = "INTEGRATE_HUBSPOT_SUCCESS";
+export const INTEGRATE_HUBSPOT_ERROR = "INTEGRATE_HUBSPOT_ERROR";
+
 /* SETTINGS */
 
 export const CHANGE_LOCALE = "CHANGE_LOCALE";
@@ -80,3 +96,4 @@ export * from "./auth/actions";
 export * from "./app/dashboard/actions";
 export * from "./app/team/actions";
 export * from "./app/guide/actions";
+export * from "./app/calls/actions";

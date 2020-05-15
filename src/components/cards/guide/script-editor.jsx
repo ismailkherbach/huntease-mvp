@@ -57,7 +57,11 @@ class ScriptEditor extends React.Component {
           key={i}
           id="prompt"
           tag="pre"
-          text="Enter a question or a prompt"
+          text={
+            this.props.guide.guides
+              ? this.props.guide.guides[0].questions[0]
+              : "Enter your question here"
+          }
           value={el.question || ""}
           name="question"
           onChange={this.handleChange.bind(this, i)}
@@ -76,6 +80,9 @@ class ScriptEditor extends React.Component {
   }
   componentDidMount() {
     this.props.getGuide();
+    if (this.props.guide.guides) {
+      console.log(this.props.guide.guides[0].questions);
+    }
   }
 
   render() {

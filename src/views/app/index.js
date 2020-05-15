@@ -1,18 +1,26 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
-import Dashboard from "./dashboard/dashboard";
-import Call from "./call/call";
-import Guide from "./guide/guide";
-import Settings from "./settings";
+
 import AppLayout from "../../layout/AppLayout";
 import Fullscreen from "react-full-screen";
-
+const Dashboard = React.lazy(() =>
+  import(/* webpackChunkName: "Dashboard" */ "./dashboard/dashboard")
+);
+const Guide = React.lazy(() =>
+  import(/* webpackChunkName: "Guide" */ "./guide/guide")
+);
+const Call = React.lazy(() =>
+  import(/* webpackChunkName: "Call" */ "./call/call")
+);
+const Settings = React.lazy(() =>
+  import(/* webpackChunkName: "Settings" */ "./settings")
+);
 export default class App extends React.Component {
   constructor(props) {
     super();
 
     this.state = {
-      isFull: false
+      isFull: false,
     };
   }
 
@@ -26,23 +34,37 @@ export default class App extends React.Component {
     return (
       <Fullscreen
         enabled={this.state.isFull}
-        onChange={isFull => this.setState({ isFull })}
+        onChange={(isFull) => this.setState({ isFull })}
       >
         <div className="dashboard-page">
           <div id="lvl2bg">
             <AppLayout>
-              <Switch>
-                <Redirect
-                  exact
-                  from={`${match.url}/`}
-                  to={`${match.url}/dashboards`}
-                />
-                <Route path={`${match.url}/dashboards`} component={Dashboard} />
-                <Route path={`${match.url}/call`} component={Call} />
-                <Route path={`${match.url}/guide`} component={Guide} />
-                <Route path={`${match.url}/settings`} component={Settings} />
-                <Redirect to="/error" />
-              </Switch>
+              <Suspense fallback={<div className="loading" />}>
+                <Switch>
+                  <Redirect
+                    exact
+                    from={`${match.url}/`}
+                    to={`${match.url}/dashboards`}
+                  />
+                  <Route
+                    path={`${match.url}/dashboards`}
+                    render={(props) => <Dashboard {...props} />}
+                  />
+                  <Route
+                    path={`${match.url}/call`}
+                    render={(props) => <Call {...props} />}
+                  />
+                  <Route
+                    path={`${match.url}/guide`}
+                    render={(props) => <Guide {...props} />}
+                  />
+                  <Route
+                    path={`${match.url}/settings`}
+                    render={(props) => <Settings {...props} />}
+                  />
+                  <Redirect to="/error" />
+                </Switch>
+              </Suspense>
             </AppLayout>
           </div>
         </div>
