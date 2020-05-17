@@ -2,6 +2,9 @@ import React, { Fragment } from "react";
 import Btn from "../../small.componenets/Btn";
 import { Button } from "reactstrap";
 import ChooseGuidePopup from "../../popup/ChooseGuidePopup";
+import { connect } from "react-redux";
+import { getGuide } from "../../../redux/actions";
+
 import SchedulesPopup from "../../popup/SchedulesPopup";
 
 class ScriptCard extends React.Component {
@@ -11,6 +14,7 @@ class ScriptCard extends React.Component {
       showPopup: false,
       withoutGuide: false,
       schedulePopup: false,
+      guide: null,
     };
   }
   toggleWithoutGuide() {
@@ -29,14 +33,47 @@ class ScriptCard extends React.Component {
       schedulePopup: false,
     });
   }
+
+  guideCallback(guide) {
+    this.setState({ guide: guide }, console.log(this.state.guide));
+  }
+  componentDidMount() {
+    this.props.getGuide();
+    console.log(this.props.guide.guides);
+  }
   render() {
     return (
       <Fragment>
         {this.state.showPopup ? (
-          <ChooseGuidePopup
-            text='Click "Close Button" to hide popup'
-            closePopup={this.togglePopup.bind(this)}
-          />
+          <div className="popup-chooseGuide">
+            <div className="popup_inner-chooseGuide">
+              <h4 className="float-right" onClick={this.togglePopup.bind(this)}>
+                x
+              </h4>
+
+              <h4>Choose Guide</h4>
+              {this.props.guide.guides.map((guide, x) => {
+                return (
+                  <div className="inlineBtn-col-left ml-4">
+                    <div
+                      className="historyCard"
+                      onClick={this.guideCallback.bind(this, guide)}
+                    >
+                      <box-icon
+                        name="notepad"
+                        type="solid"
+                        color="#091ad4"
+                      ></box-icon>
+                      <p>{guide.title}</p>{" "}
+                    </div>
+                  </div>
+                );
+              })}
+              <div className="inlineBtn-col-center">
+                <Button className="confirm-btn">Confim changes</Button>
+              </div>
+            </div>
+          </div>
         ) : null}
 
         <div id="calls-card">
@@ -94,23 +131,26 @@ class ScriptCard extends React.Component {
             )}
           </div>{" "}
           <div className="guide-response inlineBtn-col-center">
-            {!this.state.withoutGuide && (
-              <div>
-                <h3>Let's make some calls</h3>
-                <h5>Sodales vulputate pellentesque</h5>
-                <input
-                  className="guide-response-text-area"
-                  placeholder="Guide response"
-                  type="text"
-                />
-                <h5>Sodales vulputate pellentesque</h5>
-                <input
-                  className="guide-response-text-area"
-                  placeholder="Guide response"
-                  type="text"
-                />
-              </div>
-            )}
+            {!this.state.withoutGuide &&
+              (this.state.guide ? (
+                <div>
+                  <h3>{this.state.guide.title}</h3>
+                  {this.state.guide.questions.map((question, x) => {
+                    return (
+                      <div>
+                        <h5>
+                          <div dangerouslySetInnerHTML={{ __html: question }} />
+                        </h5>
+                        <input
+                          className="guide-response-text-area"
+                          placeholder="Guide response"
+                          type="text"
+                        />
+                      </div>
+                    );
+                  })}
+                </div>
+              ) : null)}
           </div>{" "}
           <div className="inlineBtn-col-center">
             {this.state.schedulePopup ? (
@@ -131,4 +171,13 @@ class ScriptCard extends React.Component {
     );
   }
 }
-export default ScriptCard;
+const mapStateToProps = ({ call, guide }) => {
+  return {
+    call,
+    guide,
+  };
+};
+
+export default connect(mapStateToProps, {
+  getGuide,
+})(ScriptCard);

@@ -3,8 +3,20 @@ import {
   GET_LEADS_ERROR,
   GET_LEADS_SUCCESS,
   DELETE_LEADS,
+  SYNC_LEADS,
+  SYNC_LEADS_ERROR,
+  SYNC_LEADS_SUCCESS,
   DELETE_LEADS_ERROR,
   DELETE_LEADS_SUCCESS,
+  INTEGRATE_HUBSPOT,
+  INTEGRATE_HUBSPOT_ERROR,
+  INTEGRATE_HUBSPOT_SUCCESS,
+  GET_INTEGRATION,
+  GET_INTEGRATION_ERROR,
+  GET_INTEGRATION_SUCCESS,
+  DELETE_INTEGRATION,
+  DELETE_INTEGRATION_ERROR,
+  DELETE_INTEGRATION_SUCCESS,
 } from "../../actions";
 
 const INIT_STATE = {
@@ -12,6 +24,9 @@ const INIT_STATE = {
   lead: null,
   leads: null,
   loading: false,
+  apiKey: null,
+  integrationStatus: null,
+  message: "",
 };
 
 export default (state = INIT_STATE, action) => {
@@ -32,6 +47,22 @@ export default (state = INIT_STATE, action) => {
         leads: "",
         error: action.payload,
       };
+    case SYNC_LEADS:
+      return { ...state, loading: true, error: "" };
+    case SYNC_LEADS_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        message: action.payload,
+        error: "",
+      };
+    case SYNC_LEADS_ERROR:
+      return {
+        ...state,
+        loading: false,
+        message: "",
+        error: action.payload,
+      };
 
     case DELETE_LEADS:
       return { ...state, loading: true, error: "" };
@@ -49,7 +80,54 @@ export default (state = INIT_STATE, action) => {
         lead: "",
         error: action.payload,
       };
-
+    case INTEGRATE_HUBSPOT:
+      return { ...state, loading: true, error: "" };
+    case INTEGRATE_HUBSPOT_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        message: action.payload,
+        error: "",
+      };
+    case INTEGRATE_HUBSPOT_ERROR:
+      return {
+        ...state,
+        loading: false,
+        apiKey: "",
+        error: action.payload,
+      };
+    case GET_INTEGRATION:
+      return { ...state, loading: true, error: "" };
+    case GET_INTEGRATION_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        integrationStatus: action.payload,
+        error: "",
+      };
+    case GET_INTEGRATION_ERROR:
+      return {
+        ...state,
+        loading: false,
+        integrationStatus: "",
+        error: action.payload,
+      };
+    case DELETE_INTEGRATION:
+      return { ...state, loading: true, error: "" };
+    case DELETE_INTEGRATION_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        message: action.payload,
+        error: "",
+      };
+    case DELETE_INTEGRATION_ERROR:
+      return {
+        ...state,
+        loading: false,
+        message: "",
+        error: action.payload,
+      };
     default:
       return { ...state };
   }

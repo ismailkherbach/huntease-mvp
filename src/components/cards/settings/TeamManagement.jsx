@@ -150,23 +150,23 @@ class TeamManagement extends React.Component {
                               )}
                             </Col>
                             <Col className="inlineBtn-center">
-                              <div id="edit" className="inlineBtn-center">
-                                <UncontrolledDropdown className="ml-5">
-                                  <DropdownToggle
-                                    color="empty"
-                                    className="dropdown-toggle-split"
-                                  >
+                              <UncontrolledDropdown className="ml-5">
+                                <DropdownToggle
+                                  color="empty"
+                                  className="dropdown-toggle-split"
+                                >
+                                  <div id="edit" className="inlineBtn-center">
                                     <box-icon
                                       name="pencil"
                                       color="#0026bc"
                                     ></box-icon>
-                                  </DropdownToggle>
-                                  <DropdownMenu className="mt-3" right>
-                                    <DropdownItem>Edit</DropdownItem>
-                                    <DropdownItem>Delete</DropdownItem>
-                                  </DropdownMenu>
-                                </UncontrolledDropdown>
-                              </div>
+                                  </div>
+                                </DropdownToggle>
+                                <DropdownMenu className="btn" right>
+                                  <DropdownItem>Edit</DropdownItem>
+                                  <DropdownItem>Delete</DropdownItem>
+                                </DropdownMenu>
+                              </UncontrolledDropdown>
                             </Col>
                           </Row>
                         );

@@ -5,6 +5,7 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
+  Col,
 } from "reactstrap";
 import { connect } from "react-redux";
 import { getGuide, deleteGuide } from "../../../redux/actions";
@@ -15,7 +16,7 @@ class GuideHistory extends React.Component {
     this.state = {};
   }
   onDeleteGuide(id) {
-    this.props.deleteGuide(id);
+    this.props.deleteGuide({ id });
   }
 
   componentDidMount() {
@@ -35,7 +36,7 @@ class GuideHistory extends React.Component {
           {this.props.guides != undefined
             ? this.props.guides.map((guide) => {
                 return (
-                  <div className="historyCard">
+                  <div className="historyCard inlineBtn-col-center">
                     <box-icon
                       name="notepad"
                       type="solid"
@@ -43,22 +44,25 @@ class GuideHistory extends React.Component {
                     ></box-icon>
 
                     <p>{guide.title}</p>
-                    <UncontrolledDropdown className="ml-5">
-                      <DropdownToggle color="empty" className="float-right">
-                        <box-icon
-                          className="float-right"
-                          name="dots-vertical-rounded"
-                        ></box-icon>
-                      </DropdownToggle>
-                      <DropdownMenu className="mt-3" right>
-                        <DropdownItem>Edit</DropdownItem>
-                        <DropdownItem
-                          onClick={this.onDeleteGuide.bind(this, guide._id)}
-                        >
-                          Delete
-                        </DropdownItem>
-                      </DropdownMenu>
-                    </UncontrolledDropdown>
+                    <Col className="float-right">
+                      {" "}
+                      <UncontrolledDropdown>
+                        <DropdownToggle color="empty" className="float-right">
+                          <box-icon
+                            name="dots-vertical-rounded"
+                            color="#254ebe"
+                          ></box-icon>
+                        </DropdownToggle>
+                        <DropdownMenu className="btn mt-1" right>
+                          <DropdownItem>Edit</DropdownItem>
+                          <DropdownItem
+                            onClick={this.onDeleteGuide.bind(this, guide._id)}
+                          >
+                            Delete
+                          </DropdownItem>
+                        </DropdownMenu>
+                      </UncontrolledDropdown>
+                    </Col>
                   </div>
                 );
               })

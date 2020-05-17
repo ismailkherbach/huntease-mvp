@@ -25,7 +25,7 @@ const addGuideAsync = async (title, questions) =>
       authorization: JSON.parse(localStorage.getItem("user_id")),
     },
   })
-    .then((authUser) => console.log(authUser))
+    .then((authUser) => authUser)
     .catch((error) => error);
 
 function* addGuideNew({ payload }) {
@@ -83,7 +83,7 @@ const updateGuideAsync = async (title, questions, id) =>
       authorization: JSON.parse(localStorage.getItem("user_id")),
     },
   })
-    .then((authUser) => console.log(authUser))
+    .then((authUser) => authUser)
     .catch((error) => error);
 
 function* updateGuide({ payload }) {
@@ -103,22 +103,22 @@ function* updateGuide({ payload }) {
 
 const deleteGuideAsync = async (id) =>
   await axios({
-    method: "get",
-    url: `${BASIC_URL}/guide/${id}`,
+    method: "DELETE",
+    url: `https://huntease-mvp.herokuapp.com/v1/guide/${id}`,
 
     headers: {
       authorization: JSON.parse(localStorage.getItem("user_id")),
     },
   })
-    .then((authUser) => console.log(authUser))
+    .then((authUser) => authUser)
     .catch((error) => error);
 
 function* deleteGuide({ payload }) {
   const { id } = payload;
-  console.log(payload);
+
   try {
     const deleteResponse = yield call(deleteGuideAsync, id);
-    if (deleteResponse.status == 200) {
+    if (deleteResponse.status == 204) {
       yield put(deleteGuideSuccess(deleteResponse));
     } else {
       console.log("delete failed :", deleteResponse);

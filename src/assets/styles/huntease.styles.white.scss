@@ -82,6 +82,11 @@ $mainback: url("../img/mainback.svg");
     height: 120vh;
   }
 }
+.btn.focus,
+.btn:focus {
+  outline: 0;
+  box-shadow: none !important;
+}
 
 .dashboard-page {
   top: 0;
@@ -1286,6 +1291,9 @@ input {
       font-weight: $regular;
       padding-left: 20px;
       color: $huntease-main;
+      align-items: center;
+      justify-content: center;
+      margin: auto;
     }
     img {
       width: 25px;
@@ -1796,6 +1804,13 @@ input {
   .lead-listing {
     margin-bottom: 19px;
     margin-left: 19px;
+    #edit {
+      width: 40px;
+      height: 40px;
+      border-radius: 15px;
+      background: #eaedf6 0% 0% no-repeat padding-box;
+      border-radius: 15px;
+    }
   }
   .lead-infos {
     h4 {
@@ -3282,7 +3297,7 @@ input {
 .scroll-leads {
   padding-right: unset;
   margin-right: unset;
-  height: 91%;
+  height: 100%;
   overflow-y: scroll;
   overflow-x: hidden;
 }

@@ -2,6 +2,8 @@ import React, { Fragment } from "react";
 import { Row, Col } from "reactstrap";
 import Terms from "./Terms";
 import Helps from "./Helps";
+import { connect } from "react-redux";
+import { integrateHubspot, getIntegrations } from "../../../redux/actions";
 import IntegrationHubspotPopup from "../../popup/IntegrationHubspotPopup";
 
 class ApplicationCard extends React.Component {
@@ -14,6 +16,11 @@ class ApplicationCard extends React.Component {
     this.setState({
       showPopup: !this.state.showPopup,
     });
+  }
+
+  onRemoveIntegration = () => {};
+  componentWillMount() {
+    this.props.getIntegrations();
   }
   render() {
     return (
@@ -40,7 +47,9 @@ class ApplicationCard extends React.Component {
                     Suspendisse ornare ante sit amet arcu semper,{" "}
                   </p>
                   <div id="btn" onClick={this.togglePopup.bind(this)}>
-                    Integrate
+                    {this.props.call.integrationStatus == "hubspot"
+                      ? "Remove"
+                      : "Integrate"}
                   </div>
                 </Col>
 
@@ -140,4 +149,12 @@ class ApplicationCard extends React.Component {
     );
   }
 }
-export default ApplicationCard;
+const mapStateToProps = ({ call }) => {
+  return {
+    call,
+  };
+};
+
+export default connect(mapStateToProps, {
+  getIntegrations,
+})(ApplicationCard);

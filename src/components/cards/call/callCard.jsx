@@ -3,6 +3,18 @@ import leads from "../../../constants/leads";
 import PerfectScrollbar from "react-perfect-scrollbar";
 import ActionLead from "../dashboard/actionLead";
 import CallProcess from "./callProcess";
+import { connect } from "react-redux";
+import { getLeads } from "../../../redux/actions";
+import {
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+  Col,
+  Row,
+} from "reactstrap";
+import "boxicons";
+
 import Button from "reactstrap/lib/Button";
 import CallTwilio from "./CallTwilio";
 
@@ -50,37 +62,117 @@ class CallCard extends React.Component {
       leadListing: false,
     });
   };
+  componentDidMount() {
+    this.props.getLeads();
+    console.log(this.props.call.leads);
+  }
   render() {
     return (
       <Fragment>
         <div id="calls-list-card">
           {this.state.leadListing && (
-            <div className="lead-listing">
-              <h3 id="card-title">Your leads</h3>
-              <div
-                className="inlineBtn-left"
-                onMouseEnter={this.handleHoverOn}
-                onMouseLeave={this.handleHoverOff}
-              >
-                <div className="icon" onClick={this.handleLeadClick}>
-                  <box-icon name="headphone" color="#091ad4"></box-icon>
-                </div>
-                <div className="inlineBtn-col-left">
-                  <h4>Ismail kherbach</h4>
-                  <p>Tech lead</p>
-                </div>
-                {this.state.callIcon && (
-                  <div className="icon-call" onClick={this.handleCallClick}>
-                    <box-icon
-                      name="phone"
-                      type="solid"
-                      color="white"
-                    ></box-icon>{" "}
+            <PerfectScrollbar>
+              <div className="scroll-leads">
+                <div className="lead-listing">
+                  <div className="inlineBtn-center">
+                    <Col className="col-8">
+                      <h3 id="card-title">Your leads (50)</h3>
+                    </Col>
+                    <Col className="col-1">
+                      <div id="edit" className="inlineBtn-center">
+                        <box-icon name="search" color="#0026bc"></box-icon>
+                      </div>
+                    </Col>
+                    <Col className="col-1 mr-4">
+                      <UncontrolledDropdown>
+                        <DropdownToggle
+                          color="empty"
+                          className="dropdown-toggle-split"
+                        >
+                          <div id="edit" className="inlineBtn-center">
+                            <box-icon name="pencil" color="#0026bc"></box-icon>
+                          </div>
+                        </DropdownToggle>
+                        <DropdownMenu className="btn" right>
+                          <DropdownItem>Edit</DropdownItem>
+                          <DropdownItem>Delete</DropdownItem>
+                        </DropdownMenu>
+                      </UncontrolledDropdown>
+                    </Col>
                   </div>
-                )}
-              </div>{" "}
-            </div>
+                  <div
+                    className="inlineBtn-left"
+                    onMouseEnter={this.handleHoverOn}
+                    onMouseLeave={this.handleHoverOff}
+                  >
+                    <div className="icon" onClick={this.handleLeadClick}>
+                      <box-icon name="headphone" color="#091ad4"></box-icon>
+                    </div>
+                    <div className="inlineBtn-col-left">
+                      <h4>Ismail kherbach</h4>
+                      <p>Tech lead</p>
+                    </div>
+                    {this.state.callIcon && (
+                      <div className="icon-call" onClick={this.handleCallClick}>
+                        <box-icon
+                          name="phone"
+                          type="solid"
+                          color="white"
+                        ></box-icon>{" "}
+                      </div>
+                    )}
+                  </div>{" "}
+                  {this.props.call.leads
+                    ? this.props.call.leads.map((lead, i) => {
+                        return (
+                          <div
+                            className="inlineBtn-left no-gutters mx-0"
+                            onMouseEnter={this.handleHoverOn}
+                            onMouseLeave={this.handleHoverOff}
+                          >
+                            <div className="inlineBtn-left mx-0 col-5 no-gutters">
+                              <div
+                                className="icon"
+                                onClick={this.handleLeadClick}
+                              >
+                                <box-icon
+                                  name="headphone"
+                                  color="#091ad4"
+                                ></box-icon>
+                              </div>
+                              <div className="inlineBtn-col-left">
+                                <h4>
+                                  {lead.firstName +
+                                    " " +
+                                    lead.lastName.split("(")[0]}
+                                </h4>
+                                <p>{lead.jobtitle}</p>
+                              </div>
+                            </div>
+
+                            <Col className="mx-0 col-1 no-gutters">
+                              {this.state.callIcon && (
+                                <div
+                                  className="icon-call"
+                                  onClick={this.handleCallClick}
+                                >
+                                  <box-icon
+                                    name="phone"
+                                    type="solid"
+                                    color="white"
+                                  ></box-icon>{" "}
+                                </div>
+                              )}
+                            </Col>
+                          </div>
+                        );
+                      })
+                    : null}
+                </div>
+              </div>
+            </PerfectScrollbar>
           )}
+
           {this.state.shownLeadInfos && (
             <div className="lead-infos inlineBtn-col-center">
               <div className="firstBlock-leadinfos">
@@ -166,7 +258,16 @@ class CallCard extends React.Component {
     );
   }
 }
-export default CallCard;
+
+const mapStateToProps = ({ call }) => {
+  return {
+    call,
+  };
+};
+
+export default connect(mapStateToProps, {
+  getLeads,
+})(CallCard);
 
 /*
   {this.state.shownLead && (
