@@ -209,6 +209,32 @@ span {
   z-index: 1;
 }
 
+.loading-block-overlay {
+  z-index: 1050;
+  position: relative;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.loading-block {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  border: 2px solid blue;
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 1s ease-in-out infinite;
+  -webkit-animation: spin 1s ease-in-out infinite;
+  left: calc(50% - 15px);
+  top: calc(50% - 15px);
+  position: fixed;
+  z-index: 1;
+}
+
 @keyframes spin {
   to {
     -webkit-transform: rotate(360deg);
@@ -1051,7 +1077,10 @@ input {
     justify-content: center;
     flex-direction: column;
     align-items: center;
-
+    .box-color {
+      background-color: red;
+      color: red;
+    }
     img {
       width: 20px;
       height: 20px;
@@ -1219,11 +1248,28 @@ input {
   max-width: 380px;
   min-width: 380px;
   margin-left: 30px;
-
   height: 37px;
   background: #8ba3ff 0% 0% no-repeat padding-box;
   border-radius: 10px;
   opacity: 0.2;
+  input {
+    background-color: #8ba3ff;
+    font-family: $font;
+    font-size: 16px;
+    font-weight: $regular;
+    color: $huntease-dark;
+    padding: 10px;
+  }
+  ::placeholder {
+    /* Chrome, Firefox, Opera, Safari 10.1+ */
+    font-family: $font;
+    font-size: 16px;
+    font-weight: $regular;
+    color: $huntease-dark;
+    padding: 10px;
+    color: $huntease-dark;
+    opacity: 1; /* Firefox */
+  }
   @include desktop-sm {
     width: 380px;
     margin-left: 25px;
@@ -1259,7 +1305,6 @@ input {
   justify-content: left;
   flex-direction: column;
   align-items: top;
-  padding-left: 30px;
   @include desktop-sm {
     width: 380px;
     margin-left: 25px;
@@ -1269,6 +1314,28 @@ input {
   @include desktop-xl {
   }
   @include desktop-lg {
+  }
+  .empty-guide {
+    width: 130px;
+    height: 130px;
+    margin-left: 0px;
+    padding-left: 0px;
+    margin: 0px;
+  }
+  .add-guide {
+    width: 114px;
+    height: 37px;
+    border-radius: 13px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    font-family: $font;
+    font-size: 14px;
+    font-weight: $regular;
+    border-color: #0026bc;
+    color: #0026bc;
   }
   h5 {
     padding: 15px;
@@ -1321,11 +1388,13 @@ input {
   }
   @include desktop-lg {
   }
+
   .confirm-btn {
     border-radius: 13px;
     height: 39px;
     border-color: white;
     padding: 15px;
+    margin: auto;
     background-color: #1428a8;
     color: white;
     font-family: $font;
@@ -1355,6 +1424,37 @@ input {
   }
 
   .guide-response {
+    .empty-guide {
+      width: 170px;
+      height: 170px;
+      margin-left: 0px;
+      padding-left: 0px;
+      margin: 0px;
+      padding: 0px;
+    }
+    .add-guide {
+      width: 114px;
+      height: 37px;
+      border-radius: 13px;
+      background-color: white;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      font-family: $font;
+      font-size: 14px;
+      font-weight: $regular;
+      border-color: #0026bc;
+      color: #0026bc;
+    }
+    .empty-text {
+      text-align: center;
+      font-size: 18px;
+      margin: auto;
+      font-weight: $regular;
+      font-family: $font;
+      color: $huntease-medium;
+    }
     h3 {
       font-family: $font;
       font-size: 21px;
@@ -1706,7 +1806,7 @@ input {
   ::-webkit-scrollbar-button {
     display: none;
   }
-  margin-left: 15px;
+  margin-left: 19px;
   margin-top: $topnav-height;
   background: $white;
   max-width: 460px;
@@ -1714,7 +1814,6 @@ input {
   margin-left: 0px;
   border-radius: $regular-radius;
   height: 630px !important;
-
   @include desktop-sm {
   }
   @include desktop-md {
@@ -1726,17 +1825,27 @@ input {
 
   #card-title {
     padding: $spacing;
-
+    padding-bottom: 0;
     font-family: $font;
     font-size: $card-title;
     color: #001c56;
     font-weight: $bold;
+  }
+  #edit {
+    width: 40px;
+    height: 40px;
+    border-radius: 15px;
+    background: #eaedf6 0% 0% no-repeat padding-box;
+    border-radius: 15px;
   }
   h4 {
     font-size: 16px;
     font-family: $font;
     font-weight: $regular;
     color: #0026bc;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
     padding-bottom: 0px;
     margin-bottom: 0px;
   }
@@ -1766,6 +1875,11 @@ input {
     font-weight: $regular;
     color: #8ba3ff;
     padding-top: 0px;
+    padding: 0;
+    margin: 0;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
   }
   img {
     height: 80px;
@@ -1802,14 +1916,36 @@ input {
     align-items: center;
   }
   .lead-listing {
-    margin-bottom: 19px;
-    margin-left: 19px;
     #edit {
       width: 40px;
       height: 40px;
       border-radius: 15px;
       background: #eaedf6 0% 0% no-repeat padding-box;
       border-radius: 15px;
+    }
+    .illustration {
+      width: 130px;
+      height: 130px;
+    }
+    .import-leads {
+      background-color: $huntease-red;
+      font-size: 14px;
+      font-family: $font;
+      font-weight: $regular;
+      color: white;
+      border-color: white;
+      border-radius: $regular-radius;
+    }
+    .lead-item {
+      margin: auto;
+      padding: auto;
+      padding: 10px;
+      cursor: pointer;
+    }
+    .lead-item:hover {
+      background-color: #eaedf6;
+      padding: 10px;
+      cursor: pointer;
     }
   }
   .lead-infos {
@@ -1818,8 +1954,9 @@ input {
       font-family: $font;
       font-weight: $bold;
       color: #0026bc;
-      padding-bottom: 0px;
-      margin-bottom: 0px;
+
+      margin: 0;
+      padding: 0;
       margin-right: 40px;
     }
     h5 {
@@ -1834,6 +1971,9 @@ input {
       font-family: $font;
       font-weight: $bold;
       color: #0026bc;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
     }
     h2 {
       font-size: 22px;
@@ -1850,6 +1990,9 @@ input {
       margin: 54px;
       margin-top: 10px;
       margin-bottom: 10px;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
     }
     .firstBlock {
       width: 460px;
@@ -2559,8 +2702,23 @@ input {
       font-size: 14px;
       font-weight: $bold;
       color: $huntease-main;
-      padding: 5px;
-      padding-left: 20px;
+    }
+
+    .prev {
+      text-align: left;
+      margin-top: 12px;
+      font-family: $font;
+      font-size: 14px;
+      font-weight: $bold;
+      color: $huntease-medium;
+    }
+    .new {
+      text-align: left;
+      margin-top: 12px;
+      font-family: $font;
+      font-size: 14px;
+      font-weight: $bold;
+      color: $huntease-red;
     }
     #invitation-sent {
       text-align: center;
@@ -2574,7 +2732,7 @@ input {
     #decline {
       width: 80px;
       height: 37px;
-
+      margin: auto;
       -webkit-appearance: none;
       -moz-appearance: none;
       appearance: none;
@@ -2587,11 +2745,12 @@ input {
       font-family: $font;
       font-size: 14px;
       font-weight: $bold;
+      margin-left: 5px;
     }
     #accept {
       width: 80px;
       height: 37px;
-
+      margin: auto;
       -webkit-appearance: none;
       -moz-appearance: none;
       appearance: none;
@@ -2717,6 +2876,21 @@ input {
     padding: 20px;
     margin-left: 5px;
     bottom: 0px;
+  }
+  .save-changes {
+    background-color: $huntease-red;
+    font-size: 15px;
+    font-family: $font;
+    font-weight: $regular;
+    color: white;
+    border-color: white;
+    border-radius: $regular-radius;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    bottom: -6em;
+    right: 3em;
   }
   #field-top {
     display: flex;
@@ -2997,16 +3171,68 @@ input {
     color: $huntease-medium;
   }
 
-  #btn {
+  .btn-integrate {
     width: 160px;
     height: 40px;
     border-radius: $regular-radius;
-    border: 2px solid $huntease-dark;
     background-color: white;
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    box-shadow: $shadow;
+    font-family: $font;
+    font-size: 14px;
+    font-weight: $regular;
+    color: #0026bc;
+  }
+  .btn-integrate:hover {
+    width: 160px;
+    height: 40px;
+    border-radius: $regular-radius;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: $shadow;
+    font-family: $font;
+    font-size: 14px;
+    font-weight: $regular;
+    color: #0026bc;
+    cursor: pointer;
+  }
+  .btn-remove {
+    width: 160px;
+    height: 40px;
+    border-radius: $regular-radius;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: $shadow;
+    font-family: $font;
+    font-size: 14px;
+    font-weight: $regular;
+    color: $huntease-red;
+  }
+
+  .btn-remove:hover {
+    width: 160px;
+    height: 40px;
+    border-radius: $regular-radius;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: $shadow;
+    font-family: $font;
+    font-size: 14px;
+    font-weight: $regular;
+    color: $huntease-red;
+    cursor: pointer;
   }
 }
 
@@ -3297,7 +3523,7 @@ input {
 .scroll-leads {
   padding-right: unset;
   margin-right: unset;
-  height: 100%;
+  height: 91%;
   overflow-y: scroll;
   overflow-x: hidden;
 }

@@ -21,6 +21,7 @@ class ScriptEditor extends React.Component {
     super();
     this.state = {
       showStatus: false,
+      searchField: "",
       displayGuide: [{ question: "" }],
       title: "Give this guide a title",
       questions: [{ question: "" }],
@@ -126,7 +127,9 @@ class ScriptEditor extends React.Component {
     questions[i] = event;
     this.setState({ questions });
   }
-
+  handleSearchChange(e) {
+    this.setState({ searchField: e.target.value });
+  }
   componentDidMount() {
     this.props.getGuide();
     if (this.props.guide.guides) {
@@ -134,6 +137,7 @@ class ScriptEditor extends React.Component {
   }
 
   render() {
+    const { searchField } = this.state;
     return (
       <Fragment>
         <div className="inlineBtn-col-center">
@@ -172,7 +176,13 @@ class ScriptEditor extends React.Component {
                 alt={"search"}
                 src={require("../../../assets/img/search.svg")}
               />
-              <p>Tap your search here</p>
+              <input
+                alt={"search"}
+                placeholder="Enter your search here"
+                type="text"
+                src={require("../../../assets/img/search.svg")}
+                onChange={this.handleSearchChange.bind(this)}
+              />
             </div>
           </Fragment>
           <Fragment>
@@ -183,55 +193,70 @@ class ScriptEditor extends React.Component {
                   <Spinner animation="border" />
                 </div>
               ) : null}
-              {this.props.guide.guides != undefined
-                ? this.props.guide.guides.map((guide, x) => {
-                    return (
-                      <div className="historyCard inlineBtn-col-center">
-                        <box-icon
-                          name="notepad"
-                          type="solid"
-                          color="#091ad4"
-                        ></box-icon>
+              {this.props.guide.guides != undefined ? (
+                this.props.guide.guides.length != 0 ? (
+                  this.props.guide.guides
+                    .filter((x) =>
+                      x.title.toLowerCase().includes(searchField.toLowerCase())
+                    )
+                    .map((guide, x) => {
+                      return (
+                        <div className="historyCard inlineBtn-col-center ml-4">
+                          <box-icon
+                            name="notepad"
+                            type="solid"
+                            color="#091ad4"
+                          ></box-icon>
 
-                        <p
-                          key={x}
-                          onClick={
-                            this.showGuide.bind(this, guide)
-                            /*this.showGuide.bind(this, guide)*/
-                          }
-                        >
-                          {" "}
-                          {guide.title}
-                        </p>
-                        <Col className="float-right">
-                          {" "}
-                          <UncontrolledDropdown>
-                            <DropdownToggle
-                              color="empty"
-                              className="float-right"
-                            >
-                              <box-icon
-                                name="dots-vertical-rounded"
-                                color="#254ebe"
-                              ></box-icon>
-                            </DropdownToggle>
-                            <DropdownMenu className="btn mt-1" right>
-                              <DropdownItem>Edit</DropdownItem>
-                              <DropdownItem
-                                onClick={this.onDeleteGuide.bind(
-                                  this,
-                                  guide._id
-                                )}
+                          <p
+                            key={x}
+                            onClick={
+                              this.showGuide.bind(this, guide)
+                              /*this.showGuide.bind(this, guide)*/
+                            }
+                          >
+                            {" "}
+                            {guide.title}
+                          </p>
+                          <Col className="float-right">
+                            {" "}
+                            <UncontrolledDropdown>
+                              <DropdownToggle
+                                color="empty"
+                                className="float-right"
                               >
-                                Delete
-                              </DropdownItem>
-                            </DropdownMenu>
-                          </UncontrolledDropdown>
-                        </Col>
-                      </div>
-                    );
-                  })
-                : ""}
+                                <box-icon
+                                  name="dots-vertical-rounded"
+                                  color="#254ebe"
+                                ></box-icon>
+                              </DropdownToggle>
+                              <DropdownMenu className="btn mt-1" right>
+                                <DropdownItem>Edit</DropdownItem>
+                                <DropdownItem
+                                  onClick={this.onDeleteGuide.bind(
+                                    this,
+                                    guide._id
+                                  )}
+                                >
+                                  Delete
+                                </DropdownItem>
+                              </DropdownMenu>
+                            </UncontrolledDropdown>
+                          </Col>
+                        </div>
+                      );
+                    })
+                ) : (
+                  <div className="inlineBtn-col-center mt-5">
+                    <img
+                      className="empty-guide mt-5"
+                      alt="no-guide"
+                      src={require("../../../assets/img/no_guide.png")}
+                    />
+                    <Button className="add-guide mt-4">+ Add guide</Button>
+                  </div>
+                )
+              ) : null}
             </div>
           </Fragment>
         </div>

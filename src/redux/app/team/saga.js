@@ -3,12 +3,14 @@ import {
   ADD_TEAM_MEMBER,
   GET_TEAM_MEMBER,
   DELETE_TEAM_MEMBER,
+  CHANGE_NAME,
 } from "../../actions";
 import axios from "axios";
 import {
   addTeamSuccess,
   getTeamMembersSuccess,
   deleteTeamSuccess,
+  changeNameResponseSuccess,
 } from "./actions";
 const BASIC_URL = "https://huntease-mvp.herokuapp.com/v1/";
 const token_bearer = JSON.parse(localStorage.getItem("user_id"));
@@ -28,9 +30,7 @@ const addTeamMemberAsync = async (firstName, lastName, emailPro) =>
     headers: {
       authorization: CREDENTIALS["tokenBearer"],
     },
-  })
-    .then((authUser) => authUser)
-    .catch((error) => error);
+  });
 
 function* addTeamMember({ payload }) {
   const { firstName, lastName, email } = payload;
@@ -53,6 +53,31 @@ function* addTeamMember({ payload }) {
   }
 }
 
+const changeNameResponseAsync = async (id, desicion) =>
+  await axios({
+    method: "get",
+    url: `${BASIC_URL}/requests/${id}/${desicion}`,
+
+    headers: {
+      authorization: CREDENTIALS["tokenBearer"],
+    },
+  });
+
+function* changeNameResponse({ payload }) {
+  const { id, desicion } = payload;
+
+  try {
+    const changeResponse = yield call(changeNameResponseAsync, id, desicion);
+    if (changeResponse.status == 201) {
+      yield put(changeNameResponseSuccess(changeResponse));
+    } else {
+      console.log("response failed :", changeResponse);
+    }
+  } catch (error) {
+    console.log("response error : ", error);
+  }
+}
+
 const getTeamMemberAsync = async () =>
   await axios({
     method: "get",
@@ -61,9 +86,7 @@ const getTeamMemberAsync = async () =>
     headers: {
       authorization: CREDENTIALS["tokenBearer"],
     },
-  })
-    .then((authUser) => authUser)
-    .catch((error) => error);
+  });
 
 function* getTeamMember({}) {
   // const { firstname, lastname, email } = payload;
@@ -84,10 +107,18 @@ export function* watchAddMember() {
   yield takeEvery(ADD_TEAM_MEMBER, addTeamMember);
 }
 
+export function* watchChangeResponse() {
+  yield takeEvery(CHANGE_NAME, changeNameResponse);
+}
+
 export function* watchGetMember() {
   yield takeEvery(GET_TEAM_MEMBER, getTeamMember);
 }
 
 export default function* rootSaga() {
-  yield all([fork(watchAddMember), fork(watchGetMember)]);
+  yield all([
+    fork(watchAddMember),
+    fork(watchGetMember),
+    fork(watchChangeResponse),
+  ]);
 }

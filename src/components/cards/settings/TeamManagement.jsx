@@ -11,7 +11,11 @@ import {
 } from "reactstrap";
 import PerfectScrollbar from "react-perfect-scrollbar";
 import { connect } from "react-redux";
-import { addTeam, getTeamMembers } from "../../../redux/actions";
+import {
+  addTeam,
+  getTeamMembers,
+  changeNameResponse,
+} from "../../../redux/actions";
 import "boxicons";
 
 class TeamManagement extends React.Component {
@@ -57,9 +61,15 @@ class TeamManagement extends React.Component {
     this.props.addTeam(this.state.newMember);
   };
 
+  onRequestResponse(id, desicion) {
+    let changeResponse = { id, desicion };
+    this.props.changeNameResponse(changeResponse);
+    //console.log(changeResponse);
+  }
+
   componentDidMount() {
     this.props.getTeamMembers();
-    //console.log(this.props.team.teamMembers);
+    console.log(this.props.team.teamMembers);
   }
   render() {
     return (
@@ -122,26 +132,55 @@ class TeamManagement extends React.Component {
                       <Spinner animation="border" />
                     </div>
                   ) : null}
-                  {this.props.team.teamMembers != undefined
-                    ? this.props.team.teamMembers.map((user) => {
-                        return (
-                          <Row>
-                            <Col>
-                              <div className="inlineBtn-left-center">
-                                <img
-                                  alt={"avatar"}
-                                  src={require("../../../assets/img/0.jpeg")}
-                                />
-                                <p>
-                                  {user.user.firstName +
-                                    " " +
-                                    user.user.lastName}
-                                </p>
-                              </div>{" "}
-                            </Col>
+                  {this.props.team.teamMembers &&
+                    this.props.team.teamMembers.map((user) => {
+                      return (
+                        <Row>
+                          <Col>
+                            <div className="inlineBtn-left-center">
+                              <img
+                                alt={"avatar"}
+                                src={require("../../../assets/img/0.jpeg")}
+                              />
+                              {user.user.requests.length == 0 ||
+                              user.user.requests[1].status == "approved" ? (
+                                <div className="inlineBtn-left ml-2">
+                                  {" "}
+                                  <p>
+                                    {user.user.firstName +
+                                      " " +
+                                      user.user.lastName}
+                                  </p>
+                                </div>
+                              ) : (
+                                <div className="inlineBtn-left mx-0 no-gutters ml-3">
+                                  <p className="new">
+                                    {user.user.requests[1].fields[0].value +
+                                      " " +
+                                      user.user.requests[1].fields[1].value +
+                                      " "}
+                                  </p>
+                                  <p className="prev ml-1 mr-1">
+                                    {" "}
+                                    {" Previously "}{" "}
+                                  </p>
+                                  <p>
+                                    {user.user.firstName +
+                                      " " +
+                                      user.user.lastName}
+                                  </p>
+                                </div>
+                              )}
+                            </div>{" "}
+                          </Col>
+                          {user.user.requests.length == 0 ||
+                          user.user.requests[1].status == "approved" ? (
                             <Col>
                               <h5>Pro</h5>
                             </Col>
+                          ) : null}
+                          {user.user.requests.length == 0 ||
+                          user.user.requests[1].status == "approved" ? (
                             <Col>
                               {user.status == "pending" ? (
                                 <p id="invitation-sent">Invitation sent</p>
@@ -149,6 +188,9 @@ class TeamManagement extends React.Component {
                                 <h5>Active</h5>
                               )}
                             </Col>
+                          ) : null}
+                          {user.user.requests.length == 0 ||
+                          user.user.requests[1].status == "approved" ? (
                             <Col className="inlineBtn-center">
                               <UncontrolledDropdown className="ml-5">
                                 <DropdownToggle
@@ -168,10 +210,35 @@ class TeamManagement extends React.Component {
                                 </DropdownMenu>
                               </UncontrolledDropdown>
                             </Col>
-                          </Row>
-                        );
-                      })
-                    : ""}
+                          ) : (
+                            <Col className="inlineBtn-center col-4">
+                              <div>
+                                <Button
+                                  id="accept"
+                                  onClick={this.onRequestResponse.bind(
+                                    this,
+                                    user.user.requests[1]._id,
+                                    "approve"
+                                  )}
+                                >
+                                  Approve
+                                </Button>
+                                <Button
+                                  id="decline"
+                                  onClick={this.onRequestResponse.bind(
+                                    this,
+                                    user.user.requests[1]._id,
+                                    "reject"
+                                  )}
+                                >
+                                  Decline
+                                </Button>
+                              </div>
+                            </Col>
+                          )}
+                        </Row>
+                      );
+                    })}
                 </div>
               </div>
             </PerfectScrollbar>
@@ -191,4 +258,5 @@ const mapStateToProps = ({ team, authUser }) => {
 export default connect(mapStateToProps, {
   addTeam,
   getTeamMembers,
+  changeNameResponse,
 })(TeamManagement);

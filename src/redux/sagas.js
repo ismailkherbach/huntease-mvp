@@ -4,6 +4,7 @@ import dashboardSagas from "./app/dashboard/saga";
 import teamSagas from "./app/team/saga";
 import guideSagas from "./app/guide/saga";
 import callSagas from "./app/calls/saga";
+import settingSagas from "./settings/saga";
 export default function* rootSaga(getState) {
   yield all([
     authSagas(),
@@ -11,5 +12,6 @@ export default function* rootSaga(getState) {
     teamSagas(),
     guideSagas(),
     callSagas(),
+    settingSagas(),
   ]);
 }

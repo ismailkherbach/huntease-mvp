@@ -6,8 +6,10 @@ import AudioAnalyser from "./AudioAnalyser";
 import { w3cwebsocket as W3CWebSocket } from "websocket";
 
 const Twilio = require("twilio-client");
-const client = new W3CWebSocket("ws://127.0.0.1:8000");
-
+const user = JSON.parse(localStorage.getItem("user"));
+const client = new W3CWebSocket(
+  `ws://radiant-bastion-46195.herokuapp.com/${user.id}`
+);
 class CallTwilio extends React.Component {
   constructor(props) {
     super(props);
@@ -32,7 +34,7 @@ class CallTwilio extends React.Component {
       audio: true,
       video: false,
     });
-    this.setState({ audio });
+    await this.setState({ audio });
   }
   async stopIt() {
     const audio = await navigator.mediaDevices.getUserMedia({
@@ -65,13 +67,13 @@ class CallTwilio extends React.Component {
     var self = this;
 
     //console.log(localStorage.getItem("twilioToken"));
-    /* Twilio.Device.setup(JSON.parse(localStorage.getItem("twilioToken")), {
+    Twilio.Device.setup(JSON.parse(localStorage.getItem("twilioToken")), {
       audioConstraints: true,
       audioHelper: true,
       pstream: true,
-    });*/
+    });
 
-    await axios
+    /*await axios
       .get("https://radiant-bastion-46195.herokuapp.com/token")
       .then((response) => {
         console.log(response.data.token);
@@ -85,7 +87,7 @@ class CallTwilio extends React.Component {
         console.log(error);
         this.setState({ log: "Could not fetch token, see console.log" });
       });
-
+*/
     this.getMicrophone();
 
     await this.handleToggleCall();
@@ -104,6 +106,12 @@ class CallTwilio extends React.Component {
   };
   componentDidMount() {
     this.fetchToken();
+    client.onopen = () => {
+      console.log("WebSocket Client Connected");
+    };
+    client.onmessage = (emotionPacket) => {
+      console.log(JSON.parse(emotionPacket.data));
+    };
   }
 
   // Handle country code selection
@@ -135,6 +143,8 @@ class CallTwilio extends React.Component {
   // Make an outbound call with the current number,
   // or hang up the current call
   handleToggleCall = async () => {
+    const user = JSON.parse(localStorage.getItem("user"));
+
     var constraints = { audio: true, video: false };
     navigator.mediaDevices.getUserMedia(constraints).catch(function(err) {
       console.log(err.name + ": " + err.message);
@@ -153,8 +163,9 @@ class CallTwilio extends React.Component {
       Twilio.Device.connect({
         number: n,
         audioConstraints: { audio: true, video: false },
-        id: "3333",
+        id: user.id,
       });
+
       this.setState({ log: "Calling" });
     } else {
       // hang up call in progress

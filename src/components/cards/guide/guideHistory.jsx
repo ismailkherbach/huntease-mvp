@@ -30,7 +30,7 @@ class GuideHistory extends React.Component {
           <h5 id="card-title">Your Guides</h5>
           {this.props.loading ? (
             <div className="inlineBtn-center">
-              <Spinner animation="border" />
+              <div className="loading-block" />{" "}
             </div>
           ) : null}
           {this.props.guides != undefined

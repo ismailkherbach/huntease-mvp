@@ -12,6 +12,8 @@ class Sidebar extends React.Component {
     super(props);
     this.state = {
       menuItems,
+      menuHover: false,
+      menuOn: null,
     };
   }
 
@@ -19,22 +21,38 @@ class Sidebar extends React.Component {
     this.props.logoutUser(this.props.history);
   };
 
+  handleHoverOn(id) {
+    this.setState({ menuHover: true, menuOn: id });
+  }
+
+  handleHoverOff() {
+    this.setState({ menuHover: false });
+  }
+
   render() {
     return (
       <div className="sidenav no-gutters disable-select">
         <ul>
-          {this.state.menuItems.map((item) => {
+          {this.state.menuItems.map((item, x) => {
             return (
               <Link
                 key={item.id}
                 to={item.to}
                 style={{ textDecoration: "none" }}
               >
-                <li key={item.id}>
+                <li
+                  key={item.id}
+                  onMouseEnter={this.handleHoverOn.bind(this, x)}
+                  onMouseLeave={this.handleHoverOff.bind(this)}
+                >
                   <box-icon
                     name={item.icon}
                     type="solid"
-                    color="#8ba2ff96"
+                    color={
+                      this.state.menuHover && this.state.menuOn == x
+                        ? "#ffc371"
+                        : "#8ba2ff96"
+                    }
                   ></box-icon>
 
                   <IntlMessages id={item.id} />
@@ -42,9 +60,23 @@ class Sidebar extends React.Component {
               </Link>
             );
           })}
-          <li id="logout" onClick={() => this.handleLogout()}>
+          <li
+            id="logout"
+            onClick={() => this.handleLogout()}
+            key="logoutItem"
+            onMouseEnter={this.handleHoverOn.bind(this, "logoutItem")}
+            onMouseLeave={this.handleHoverOff.bind(this)}
+          >
             {" "}
-            <box-icon name="log-out" type="solid" color="#8ba2ff96"></box-icon>
+            <box-icon
+              name="log-out"
+              type="solid"
+              color={
+                this.state.menuHover && this.state.menuOn == "logoutItem"
+                  ? "#ffc371"
+                  : "#8ba2ff96"
+              }
+            ></box-icon>
             <IntlMessages id="logout" />
           </li>
         </ul>

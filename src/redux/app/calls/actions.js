@@ -17,6 +17,7 @@ import {
   DELETE_INTEGRATION,
   DELETE_INTEGRATION_ERROR,
   DELETE_INTEGRATION_SUCCESS,
+  LEADS_LIST_SELECTED_ITEMS_CHANGE,
 } from "../../actions";
 
 export const getLeads = () => ({
@@ -102,4 +103,9 @@ export const deleteIntegrationSuccess = (integration) => ({
 export const dleteIntegrationError = (error) => ({
   type: DELETE_INTEGRATION_ERROR,
   payload: error,
+});
+
+export const selectedLeadsItemsChange = (selectedItems) => ({
+  type: LEADS_LIST_SELECTED_ITEMS_CHANGE,
+  payload: selectedItems,
 });

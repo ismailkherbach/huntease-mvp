@@ -15,7 +15,7 @@ import { IntlProvider } from "react-intl";
 import AppLocale from "./lang";
 import axios from "axios";
 
-const UNAUTHORIZED = 401;
+/*const UNAUTHORIZED = 401;
 axios.interceptors.response.use(
   (response) => response,
   (error) => {
@@ -23,6 +23,18 @@ axios.interceptors.response.use(
     if (status === UNAUTHORIZED) {
       localStorage.clear();
       window.location.replace("/user/login");
+    }
+    return Promise.reject(error);
+  }
+);*/
+
+const FORBIDDEN = 403;
+axios.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    const { status } = error.response;
+    if (status === FORBIDDEN) {
+      window.location.replace("/");
     }
     return Promise.reject(error);
   }

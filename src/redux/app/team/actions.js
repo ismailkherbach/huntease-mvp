@@ -8,6 +8,9 @@ import {
   DELETE_TEAM_MEMBER,
   DELETE_TEAM_MEMBER_ERROR,
   DELETE_TEAM_MEMBER_SUCCESS,
+  CHANGE_NAME,
+  CHANGE_NAME_ERROR,
+  CHANGE_NAME_SUCCESS,
 } from "../../actions";
 
 export const getTeamMembers = () => ({
@@ -36,6 +39,21 @@ export const addTeamSuccess = (member) => ({
 
 export const addTeamError = (error) => ({
   type: ADD_TEAM_MEMBER_ERROR,
+  payload: error,
+});
+
+export const changeNameResponse = (desicion) => ({
+  type: CHANGE_NAME,
+  payload: desicion,
+});
+
+export const changeNameResponseSuccess = (desicion) => ({
+  type: CHANGE_NAME_SUCCESS,
+  payload: desicion,
+});
+
+export const changeNameResponseError = (error) => ({
+  type: CHANGE_NAME_ERROR,
   payload: error,
 });
 

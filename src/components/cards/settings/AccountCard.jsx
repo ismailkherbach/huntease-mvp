@@ -4,7 +4,7 @@ import { injectIntl } from "react-intl";
 
 import { Row, Col, Button } from "reactstrap";
 
-import { changeLocale, darkMode } from "../../../redux/actions";
+import { changeLocale, darkMode, editProfile } from "../../../redux/actions";
 import { localeOptions } from "../../../constants/defaultValues";
 import ChangePassPopup from "../../popup/ChangePassPopup";
 import ChangeNumberPopup from "../../popup/ChangeNumberPopup";
@@ -17,9 +17,25 @@ class AccountCall extends React.Component {
       showPopup: false,
       user: JSON.parse(localStorage.getItem("user")),
       domain: JSON.parse(localStorage.getItem("domain")).split(".")[0],
+      userData: { firstName: "", lastName: "" },
     };
   }
-
+  handleChangeFirst(e) {
+    this.setState({
+      userData: {
+        ...this.state.userData,
+        firstName: e.target.value,
+      },
+    });
+  }
+  handleChangeLast(e) {
+    this.setState({
+      userData: {
+        ...this.state.userData,
+        lastName: e.target.value,
+      },
+    });
+  }
   togglePopup() {
     this.setState({
       showPopup: !this.state.showPopup,
@@ -32,7 +48,10 @@ class AccountCall extends React.Component {
   handleDarkMode = (color) => {
     this.props.darkMode(color);
   };
-
+  onEditProfile() {
+    this.props.editProfile(this.state.userData);
+    console.log(this.state.userData);
+  }
   render() {
     return (
       <Fragment>
@@ -49,7 +68,7 @@ class AccountCall extends React.Component {
                         className="profile-input"
                         placeholder={this.state.user.firstName}
                         type="text"
-                        onChange={this.handleChangeEmail}
+                        onChange={this.handleChangeFirst.bind(this)}
                       />
                     </div>
                     <div className="inlinBtn-col-center">
@@ -59,7 +78,7 @@ class AccountCall extends React.Component {
                         className="profile-input"
                         placeholder={this.state.user.lastName}
                         type="text"
-                        onChange={this.handleChangeEmail}
+                        onChange={this.handleChangeLast.bind(this)}
                       />
                     </div>
                   </div>
@@ -162,10 +181,13 @@ class AccountCall extends React.Component {
                     <Col> </Col>
                   </Row>
                 </Col>
+
                 <Col>
                   <div className="profil-card">
                     <img
-                      src={require("../../../assets/img/0.jpeg")}
+                      src={
+                        "https://huntease-mvp.herokuapp.com/v1/uploads/5ec30cb17b39ec0017b94ab7"
+                      }
                       alt={"profile"}
                       className="profile-img"
                     />
@@ -198,6 +220,18 @@ class AccountCall extends React.Component {
                       </Button>
                     </div>
                   </div>
+                  <div className="inlineBtn-center mt-5 ml-5">
+                    {" "}
+                    {this.state.userData.firstName != "" &&
+                      this.state.userData.lastName != "" && (
+                        <Button
+                          className="inlineBtn-center mt-5 ml-5 save-changes"
+                          onClick={this.onEditProfile.bind(this)}
+                        >
+                          Save changes
+                        </Button>
+                      )}
+                  </div>
                 </Col>
               </Row>
             </div>
@@ -218,5 +252,6 @@ export default injectIntl(
   connect(mapStateToProps, {
     changeLocale,
     darkMode,
+    editProfile,
   })(AccountCall)
 );

@@ -17,6 +17,7 @@ import {
   DELETE_INTEGRATION,
   DELETE_INTEGRATION_ERROR,
   DELETE_INTEGRATION_SUCCESS,
+  LEADS_LIST_SELECTED_ITEMS_CHANGE,
 } from "../../actions";
 
 const INIT_STATE = {
@@ -27,6 +28,7 @@ const INIT_STATE = {
   apiKey: null,
   integrationStatus: null,
   message: "",
+  selectedItems: [],
 };
 
 export default (state = INIT_STATE, action) => {
@@ -128,6 +130,9 @@ export default (state = INIT_STATE, action) => {
         message: "",
         error: action.payload,
       };
+
+    case LEADS_LIST_SELECTED_ITEMS_CHANGE:
+      return { ...state, loading: true, selectedItems: action.payload };
     default:
       return { ...state };
   }

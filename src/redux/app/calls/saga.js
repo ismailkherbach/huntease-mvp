@@ -5,6 +5,7 @@ import {
   SYNC_LEADS,
   INTEGRATE_HUBSPOT,
   GET_INTEGRATION,
+  DELETE_INTEGRATION,
 } from "../../actions";
 import axios from "axios";
 import {
@@ -14,8 +15,9 @@ import {
   integrateHubspotSuccess,
   getIntegrationsSuccess,
   deleteIntegrationSuccess,
+  getIntegrationsError,
 } from "./actions";
-const BASIC_URL = "https://huntease-mvp.herokuapp.com/v1/";
+const BASIC_URL = "https://huntease-mvp.herokuapp.com/v1";
 const CREDENTIALS = {
   tokenBearer: JSON.parse(localStorage.getItem("user_id")),
 };
@@ -26,13 +28,20 @@ const getLeadsAsync = async () =>
     headers: {
       authorization: CREDENTIALS["tokenBearer"],
     },
-  })
-    .then((authUser) => authUser)
-    .catch((error) => error);
-
+  });
+const pullLeadsAysnc = async () =>
+  await axios({
+    method: "get",
+    url: `${BASIC_URL}/integration/sync`,
+    headers: {
+      authorization: CREDENTIALS["tokenBearer"],
+    },
+  });
 function* getLeads({ payload }) {
   try {
     const getResponse = yield call(getLeadsAsync);
+    //yield call(pullLeadsAysnc);
+
     if (getResponse.status == 200) {
       yield put(getLeadsSuccess(getResponse.data.leads));
     } else {
@@ -50,9 +59,7 @@ const syncLeadsAsync = async () =>
     headers: {
       authorization: CREDENTIALS["tokenBearer"],
     },
-  })
-    .then((authUser) => authUser)
-    .catch((error) => error);
+  });
 
 function* syncLeads({ payload }) {
   try {
@@ -74,9 +81,7 @@ const deleteLeadsAsync = async (lead) =>
     headers: {
       authorization: CREDENTIALS["tokenBearer"],
     },
-  })
-    .then((authUser) => authUser)
-    .catch((error) => error);
+  });
 
 function* deleteLeads({ payload }) {
   const { lead } = payload;
@@ -103,9 +108,7 @@ const integrateHubspotAsync = async (apiKey) =>
     headers: {
       authorization: CREDENTIALS["tokenBearer"],
     },
-  })
-    .then((authUser) => authUser)
-    .catch((error) => error);
+  });
 
 function* integrateHubspot({ payload }) {
   const { apiKey } = payload.apiKey;
@@ -130,21 +133,21 @@ const getIntegrationAsync = async () =>
     headers: {
       authorization: CREDENTIALS["tokenBearer"],
     },
-  })
-    .then((authUser) => authUser)
-    .catch((error) => error);
+  });
 
 function* getIntegration({ payload }) {
   try {
     const getIntegrationResponse = yield call(getIntegrationAsync);
-    console.log(getIntegrationResponse.data.type);
+    //console.log(getIntegrationResponse.data.type);
     if (getIntegrationResponse.status == 200) {
       yield put(getIntegrationsSuccess(getIntegrationResponse.data.type));
-    } else {
-      console.log("get integration failed :", getIntegrationResponse);
     }
   } catch (error) {
-    console.log(" getintegration error : ", error);
+    if (error.response.status == 404) {
+      console.log("You don't have any integrations");
+      yield put(getIntegrationsError("You don't have any integrations"));
+    }
+    console.log(" getintegration error : ", error.response);
   }
 }
 
@@ -155,15 +158,14 @@ const deleteIntegrationAsync = async () =>
     headers: {
       authorization: CREDENTIALS["tokenBearer"],
     },
-  })
-    .then((authUser) => authUser)
-    .catch((error) => error);
+  });
 
 function* deleteIntegration({ payload }) {
   try {
     const deleteResponse = yield call(deleteIntegrationAsync);
     if (deleteResponse.status == 204) {
       yield put(deleteIntegrationSuccess(deleteResponse));
+      window.location.reload();
     } else {
       console.log("delete failed :", deleteResponse);
     }
@@ -190,7 +192,7 @@ export function* watchGetIntegration() {
   yield takeEvery(GET_INTEGRATION, getIntegration);
 }
 export function* watchDeleteIntegration() {
-  yield takeEvery(GET_INTEGRATION, getIntegration);
+  yield takeEvery(DELETE_INTEGRATION, deleteIntegration);
 }
 export default function* rootSaga() {
   yield all([

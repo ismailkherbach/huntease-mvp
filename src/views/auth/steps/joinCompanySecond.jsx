@@ -10,46 +10,45 @@ import {
   DropdownMenu,
   DropdownToggle,
   DropdownItem,
-  Dropdown
+  Dropdown,
 } from "reactstrap";
+import { Link, withRouter } from "react-router-dom";
+
 import Btn from "../../../components/small.componenets/Btn";
+import { connect } from "react-redux";
+import { registerSimpleUser } from "../../../redux/actions";
 import axios from "axios";
 
-
-
-
-class JoinCompanySecondStep extends React.Component {
+export default class JoinCompanySecondStep extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      firstname: "",
-      lastname: "",
       email: "",
       password: "",
-      secondStepStatus: false
+      confirmPassword: "",
+      secondStepStatus: false,
     };
 
-    this.handleChangeFirst = this.handleChangeFirst.bind(this);
-    this.handleChangeLast = this.handleChangeLast.bind(this);
-    this.handleChangeEmail = this.handleChangeEmail.bind(this);
     this.handleChangePassword = this.handleChangePassword.bind(this);
+    this.handleChangeConfirmPassword = this.handleChangeConfirmPassword.bind(
+      this
+    );
   }
 
-  handleChangeFirst(e) {
-    this.setState({ firstname: e.target.value });
-  }
-  handleChangeLast(e) {
-    this.setState({ lastname: e.target.value });
-  }
-  handleChangeEmail(e) {
-    this.setState({ email: e.target.value });
-  }
   handleChangePassword(e) {
     this.setState({ password: e.target.value });
   }
+  handleChangeConfirmPassword(e) {
+    this.setState({ confirmPassword: e.target.value });
+  }
 
   onUserRegister = () => {
-    this.props.registerUser(this.state, this.props.history);
+    let email = "ismailkhrbach.98@gmail.com";
+    let token = "rmqIwX2Tit06UpKJLkRV8.bgIh.jRKq2";
+    let password = this.state.password;
+    let role = "user";
+    let history = this.props.history;
+    this.props.registerUser({ email, password, role, token, history });
   };
   secondStep = () => {
     this.setState({ secondStepStatus: true });
@@ -77,34 +76,35 @@ class JoinCompanySecondStep extends React.Component {
 
   render() {
     return (
-        <Fragment>
-        
-       
-            <div className="auth-container">
-              {" "}
-        
-              <input
-                className="auth-input-large"
-                placeholder="Password"
-                type="password"
-                onChange={this.handleChangePassword}
-              />
-              <input
-                className="auth-input-large"
-                placeholder="Repeat Password"
-                type="password"
-                onChange={this.handleChangePassword}
-              />
-              <Btn class={"btn-get-started"} onClick={this.onUserLogin}>
-                <div className="btn-get-started-text">Complete my profile</div>
-              </Btn>
-            </div>
-        </Fragment>
-  );
+      <Fragment>
+        <div className="auth-container">
+          {" "}
+          <input
+            className="auth-input-large"
+            placeholder="Password"
+            type="password"
+            onChange={this.handleChangePassword}
+          />
+          <input
+            className="auth-input-large"
+            placeholder="Repeat Password"
+            type="password"
+            onChange={this.handleChangeConfirmPassword}
+          />
+          <Button className="btn-get-started" onClick={this.onUserRegister}>
+            <div className="btn-get-started-text">Complete my profile </div>
+          </Button>
+        </div>
+      </Fragment>
+    );
   }
 }
 
-
-
-export default JoinCompanySecondStep
-
+const mapStateToProps = ({ authUser }) => {
+  return { authUser };
+};
+withRouter(
+  connect(mapStateToProps, {
+    registerSimpleUser,
+  })
+)(JoinCompanySecondStep);

@@ -6,6 +6,8 @@ import {
   FORGOT_PASSWORD,
   JOIN_COMPANY,
   RESET_PASSWORD,
+  CONFIRM_ACCOUNT,
+  REGISTER_SIMPLE_USER,
 } from "../actions";
 import axios from "axios";
 import {
@@ -13,9 +15,11 @@ import {
   registerUserSuccess,
   logoutUserSuccess,
   forgotPasswordSuccess,
+  confirmAccountSuccess,
   joinTeamMember,
   joinTeamMemberSuccess,
   joinTeamMemberError,
+  registerSimpleUserSuccess,
   resetPassword,
   resetPasswordSuccess,
   resetPasswordError,
@@ -29,9 +33,7 @@ const loginWithEmailPasswordAsync = async (email, password) =>
       email,
       password,
     },
-  })
-    .then((authUser) => authUser)
-    .catch((error) => error);
+  });
 
 function* loginWithEmailPassword({ payload }) {
   const { email, password } = payload.user;
@@ -67,9 +69,7 @@ const forgotPasswordAsync = async (email) =>
     data: {
       email,
     },
-  })
-    .then((authUser) => authUser)
-    .catch((error) => error);
+  });
 
 function* forgotPassword({ payload }) {
   const { email } = payload.forgotUserMail;
@@ -88,9 +88,7 @@ const resetPasswordAsync = async (resetPasswordCode, newPassword) =>
       token: resetPasswordCode,
       confirmPassword: newPassword,
     },
-  })
-    .then((authUser) => authUser)
-    .catch((error) => error);
+  });
 
 function* resetNewPassword({ payload }) {
   const { resetPasswordCode, newPassword, history } = payload;
@@ -102,6 +100,37 @@ function* resetNewPassword({ payload }) {
     );
     if (resetResponse.status == 200) {
       yield put(forgotPasswordSuccess(newPassword));
+      history.push("/user/login");
+    }
+  } catch (error) {}
+}
+
+const registerSimpleUserAsync = async (email, password, role, token) =>
+  await axios({
+    method: "post",
+    url: "https://huntease-mvp.herokuapp.com/v1/account/register",
+    data: {
+      email,
+      password,
+      confirmPassword: password,
+      role,
+      token,
+    },
+  });
+
+function* registerSimpleUser({ payload }) {
+  const { email, password, role, token, history } = payload;
+  console.log(payload);
+  try {
+    const registerResponse = yield call(
+      registerSimpleUserAsync,
+      email,
+      password,
+      role,
+      token
+    );
+    if (registerResponse.status == 200) {
+      yield put(registerSimpleUserSuccess(registerResponse));
       history.push("/user/login");
     }
   } catch (error) {}
@@ -132,9 +161,7 @@ const registerWithEmailPasswordAsync = async (
         memberCount,
       },
     },
-  })
-    .then((authUser) => console.log(authUser))
-    .catch((error) => error);
+  });
 
 function* registerWithEmailPassword({ payload }) {
   const {
@@ -170,6 +197,28 @@ function* registerWithEmailPassword({ payload }) {
   }
 }
 
+const confirmAccountAsync = async (confirmToken) =>
+  await axios({
+    method: "get",
+    url: `https://huntease-mvp.herokuapp.com/v1/account/confirm/${confirmToken}`,
+  });
+
+function* confirmAccount({ payload }) {
+  const { confirmToken, history } = payload;
+
+  try {
+    const confirmResponse = yield call(confirmAccountAsync, confirmToken);
+    if (confirmResponse.status == 200) {
+      yield put(confirmAccountSuccess("success"));
+      history.push("/user/login");
+    } else {
+      console.log("confirm failed :", confirmResponse);
+    }
+  } catch (error) {
+    console.log("confirm error : ", error);
+  }
+}
+
 const joinTeamAsync = async (teamJoinCode) =>
   await axios({
     method: "post",
@@ -178,21 +227,18 @@ const joinTeamAsync = async (teamJoinCode) =>
       email: "gi_kherbach@esi.dz",
       token: teamJoinCode,
     },
-  })
-    .then((authUser) => authUser)
-    .catch((error) => error);
+  });
 
 function* joinTeam({ payload }) {
   const { teamJoinCode } = payload.joinTeamCode;
   try {
     const joinResponse = yield call(joinTeamAsync, teamJoinCode);
+    console.log(joinResponse.data);
 
-    if (joinResponse.status == 200) {
-      yield put(joinTeamMemberSuccess("success"));
-    } else {
-      yield put(joinTeamMemberError("invalid team code"));
-    }
-  } catch (error) {}
+    yield put(joinTeamMemberSuccess(joinResponse.data));
+  } catch (error) {
+    yield put(joinTeamMemberError("invalid team code"));
+  }
 }
 
 const loginWithLinkedInAsync = () => {};
@@ -225,9 +271,7 @@ const logoutAsync = async () =>
     headers: {
       authorization: JSON.parse(localStorage.getItem("user_id")),
     },
-  })
-    .then((authUser) => authUser)
-    .catch((error) => error);
+  });
 
 function* logout({ payload }) {
   const { history } = payload;
@@ -281,6 +325,9 @@ export function* watchForgotPassword() {
 export function* watchResetPassword() {
   yield takeEvery(RESET_PASSWORD, resetNewPassword);
 }
+export function* watchConfirmAccount() {
+  yield takeEvery(CONFIRM_ACCOUNT, confirmAccount);
+}
 
 export function* watchLogoutUser() {
   yield takeEvery(LOGOUT_USER, logout);
@@ -288,6 +335,10 @@ export function* watchLogoutUser() {
 
 export function* watchRegisterUser() {
   yield takeEvery(REGISTER_USER, registerWithEmailPassword);
+}
+
+export function* watchRegisterSimpleUser() {
+  yield takeEvery(REGISTER_SIMPLE_USER, registerSimpleUser);
 }
 export function* watchJoinTeam() {
   yield takeEvery(JOIN_COMPANY, joinTeam);
@@ -297,7 +348,9 @@ export default function* rootSaga() {
     fork(watchLoginUser),
     fork(watchForgotPassword),
     fork(watchResetPassword),
+    fork(watchConfirmAccount),
     fork(watchRegisterUser),
+    fork(watchRegisterSimpleUser),
     fork(watchLogoutUser),
     fork(watchJoinTeam),
   ]);

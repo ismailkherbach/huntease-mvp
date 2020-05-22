@@ -4,6 +4,7 @@ import { Button } from "reactstrap";
 import ChooseGuidePopup from "../../popup/ChooseGuidePopup";
 import { connect } from "react-redux";
 import { getGuide } from "../../../redux/actions";
+import { Link } from "react-router-dom";
 
 import SchedulesPopup from "../../popup/SchedulesPopup";
 
@@ -150,7 +151,18 @@ class ScriptCard extends React.Component {
                     );
                   })}
                 </div>
-              ) : null)}
+              ) : (
+                <div className="inlineBtn-col-center mt-5">
+                  <img
+                    className="empty-guide mt-5"
+                    alt="no-guide"
+                    src={require("../../../assets/img/no_guide.png")}
+                  />
+                  <h3 className="empty-text mt-3">
+                    You don't have guides click on add guide to create one
+                  </h3>
+                </div>
+              ))}
           </div>{" "}
           <div className="inlineBtn-col-center">
             {this.state.schedulePopup ? (
@@ -159,6 +171,7 @@ class ScriptCard extends React.Component {
                 closePopup={this.toggleSchedule.bind(this)}
               />
             ) : null}
+
             <Button
               onClick={this.toggleSchedule.bind(this)}
               className="confirm-btn"

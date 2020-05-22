@@ -16,7 +16,11 @@ import Btn from "../../../components/small.componenets/Btn";
 import axios from "axios";
 import JoinCompanySecondStep from "./joinCompanySecond";
 import { connect } from "react-redux";
-import { joinTeamMember, joinTeamMemberError } from "../../../redux/actions";
+import {
+  joinTeamMember,
+  joinTeamMemberError,
+  registerSimpleUser,
+} from "../../../redux/actions";
 class JoinCompanyFirstStep extends React.Component {
   constructor(props) {
     super(props);
@@ -84,7 +88,7 @@ class JoinCompanyFirstStep extends React.Component {
     const initialValues = { teamJoinCode };
     return (
       <div>
-        {this.props.authUser.teamJoinCode != "success" && (
+        {this.props.authUser.teamJoinCode.valid != true && (
           <Fragment>
             <div className="auth-container">
               {" "}
@@ -124,8 +128,11 @@ class JoinCompanyFirstStep extends React.Component {
             </div>
           </Fragment>
         )}
-        {this.props.authUser.teamJoinCode == "success" && (
-          <JoinCompanySecondStep />
+        {this.props.authUser.teamJoinCode.valid == true && (
+          <JoinCompanySecondStep
+            dataUser={this.props.authUser.teamJoinCode.user}
+            registerUser={this.props.registerSimpleUser}
+          />
         )}
       </div>
     );
@@ -138,4 +145,5 @@ const mapStateToProps = ({ authUser }) => {
 export default connect(mapStateToProps, {
   joinTeamMember,
   joinTeamMemberError,
+  registerSimpleUser,
 })(JoinCompanyFirstStep);

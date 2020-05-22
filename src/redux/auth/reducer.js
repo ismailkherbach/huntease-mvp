@@ -14,6 +14,12 @@ import {
   JOIN_COMPANY,
   JOIN_COMPANY_SUCCESS,
   JOIN_COMPANY_ERROR,
+  CONFIRM_ACCOUNT,
+  CONFIRM_ACCOUNT_SUCCESS,
+  CONFIRM_ACCOUNT_ERROR,
+  REGISTER_SIMPLE_USER_SUCCESS,
+  REGISTER_SIMPLE_USER_ERROR,
+  REGISTER_SIMPLE_USER,
 } from "../actions";
 
 const INIT_STATE = {
@@ -65,6 +71,40 @@ export default (state = INIT_STATE, action) => {
         loading: false,
         newPassword: "",
         resetPasswordCode: "",
+        error: action.payload.message,
+      };
+
+    case REGISTER_SIMPLE_USER:
+      return { ...state, loading: true, error: "" };
+    case REGISTER_SIMPLE_USER_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        userInfos: action.payload,
+        error: "",
+      };
+    case REGISTER_SIMPLE_USER_ERROR:
+      return {
+        ...state,
+        loading: false,
+        userInfos: "",
+        error: action.payload.message,
+      };
+
+    case CONFIRM_ACCOUNT:
+      return { ...state, loading: true, error: "" };
+    case CONFIRM_ACCOUNT_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        account: action.payload,
+        error: "",
+      };
+    case CONFIRM_ACCOUNT_ERROR:
+      return {
+        ...state,
+        loading: false,
+        account: "",
         error: action.payload.message,
       };
 

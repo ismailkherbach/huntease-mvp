@@ -3,7 +3,11 @@ import { Row, Col } from "reactstrap";
 import Terms from "./Terms";
 import Helps from "./Helps";
 import { connect } from "react-redux";
-import { integrateHubspot, getIntegrations } from "../../../redux/actions";
+import {
+  integrateHubspot,
+  getIntegrations,
+  deleteIntegration,
+} from "../../../redux/actions";
 import IntegrationHubspotPopup from "../../popup/IntegrationHubspotPopup";
 
 class ApplicationCard extends React.Component {
@@ -18,7 +22,9 @@ class ApplicationCard extends React.Component {
     });
   }
 
-  onRemoveIntegration = () => {};
+  onRemoveIntegration() {
+    this.props.deleteIntegration();
+  }
   componentWillMount() {
     this.props.getIntegrations();
   }
@@ -46,24 +52,35 @@ class ApplicationCard extends React.Component {
                     Phasellus finibus enim nulla, quis ornare odio facilisis eu.
                     Suspendisse ornare ante sit amet arcu semper,{" "}
                   </p>
-                  <div id="btn" onClick={this.togglePopup.bind(this)}>
-                    {this.props.call.integrationStatus == "hubspot"
-                      ? "Remove"
-                      : "Integrate"}
-                  </div>
+
+                  {this.props.call.integrationStatus == "hubspot" ? (
+                    <div
+                      className="btn-remove"
+                      onClick={this.onRemoveIntegration.bind(this)}
+                    >
+                      - Remove
+                    </div>
+                  ) : (
+                    <div
+                      className="btn-integrate"
+                      onClick={this.togglePopup.bind(this)}
+                    >
+                      + Integrate
+                    </div>
+                  )}
                 </Col>
 
                 <Col id="application-card">
                   <img
-                    alt={"googlecalander"}
-                    src={require("../../../assets/img/googlecalander.svg")}
+                    alt={"zapier"}
+                    src={require("../../../assets/img/zapier.svg")}
                   />
-                  <h2>Google Calander</h2>
+                  <h2>Zapier</h2>
                   <p>
                     Phasellus finibus enim nulla, quis ornare odio facilisis eu.
                     Suspendisse ornare ante sit amet arcu semper,{" "}
                   </p>
-                  <div id="btn">Integrate</div>
+                  <div className="btn-integrate"> + Integrate</div>
                 </Col>
                 <Col id="application-card">
                   <img
@@ -75,7 +92,7 @@ class ApplicationCard extends React.Component {
                     Phasellus finibus enim nulla, quis ornare odio facilisis eu.
                     Suspendisse ornare ante sit amet arcu semper,{" "}
                   </p>
-                  <div id="btn">Integrate</div>
+                  <div className="btn-integrate"> + Integrate</div>
                 </Col>
                 <Col id="application-card">
                   <img
@@ -87,7 +104,7 @@ class ApplicationCard extends React.Component {
                     Phasellus finibus enim nulla, quis ornare odio facilisis eu.
                     Suspendisse ornare ante sit amet arcu semper,{" "}
                   </p>
-                  <div id="btn">Integrate</div>
+                  <div className="btn-integrate"> + Integrate</div>
                 </Col>
               </Row>
 
@@ -102,7 +119,7 @@ class ApplicationCard extends React.Component {
                     Phasellus finibus enim nulla, quis ornare odio facilisis eu.
                     Suspendisse ornare ante sit amet arcu semper,{" "}
                   </p>
-                  <div id="btn">Integrate</div>
+                  <div className="btn-integrate"> + Integrate</div>
                 </Col>
 
                 <Col id="application-card">
@@ -115,7 +132,7 @@ class ApplicationCard extends React.Component {
                     Phasellus finibus enim nulla, quis ornare odio facilisis eu.
                     Suspendisse ornare ante sit amet arcu semper,{" "}
                   </p>
-                  <div id="btn">Integrate</div>
+                  <div className="btn-integrate"> + Integrate</div>
                 </Col>
                 <Col id="application-card">
                   <img
@@ -127,7 +144,7 @@ class ApplicationCard extends React.Component {
                     Phasellus finibus enim nulla, quis ornare odio facilisis eu.
                     Suspendisse ornare ante sit amet arcu semper,{" "}
                   </p>
-                  <div id="btn">Integrate</div>
+                  <div className="btn-integrate"> + Integrate</div>
                 </Col>
                 <Col id="application-card">
                   <img
@@ -139,7 +156,7 @@ class ApplicationCard extends React.Component {
                     Phasellus finibus enim nulla, quis ornare odio facilisis eu.
                     Suspendisse ornare ante sit amet arcu semper,{" "}
                   </p>
-                  <div id="btn">Integrate</div>
+                  <div className="btn-integrate"> + Integrate</div>
                 </Col>
               </Row>
             </div>
@@ -157,4 +174,5 @@ const mapStateToProps = ({ call }) => {
 
 export default connect(mapStateToProps, {
   getIntegrations,
+  deleteIntegration,
 })(ApplicationCard);

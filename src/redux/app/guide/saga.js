@@ -11,7 +11,7 @@ import {
   getGuideSuccess,
   deleteGuideSuccess,
 } from "./actions";
-const BASIC_URL = "https://huntease-mvp.herokuapp.com/v1/";
+const BASIC_URL = "https://huntease-mvp.herokuapp.com/v1";
 const addGuideAsync = async (title, questions) =>
   await axios({
     method: "post",
@@ -51,9 +51,7 @@ const getGuideAsync = async () =>
     headers: {
       authorization: JSON.parse(localStorage.getItem("user_id")),
     },
-  })
-    .then((authUser) => authUser)
-    .catch((error) => error);
+  });
 
 function* getGuideList({}) {
   // const { firstname, lastname, email } = payload;
@@ -82,9 +80,7 @@ const updateGuideAsync = async (title, questions, id) =>
     headers: {
       authorization: JSON.parse(localStorage.getItem("user_id")),
     },
-  })
-    .then((authUser) => authUser)
-    .catch((error) => error);
+  });
 
 function* updateGuide({ payload }) {
   const { title, questions, id } = payload;
@@ -109,9 +105,7 @@ const deleteGuideAsync = async (id) =>
     headers: {
       authorization: JSON.parse(localStorage.getItem("user_id")),
     },
-  })
-    .then((authUser) => authUser)
-    .catch((error) => error);
+  });
 
 function* deleteGuide({ payload }) {
   const { id } = payload;

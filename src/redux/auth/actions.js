@@ -14,6 +14,12 @@ import {
   JOIN_COMPANY,
   JOIN_COMPANY_SUCCESS,
   JOIN_COMPANY_ERROR,
+  CONFIRM_ACCOUNT,
+  CONFIRM_ACCOUNT_SUCCESS,
+  CONFIRM_ACCOUNT_ERROR,
+  REGISTER_SIMPLE_USER_SUCCESS,
+  REGISTER_SIMPLE_USER_ERROR,
+  REGISTER_SIMPLE_USER,
 } from "../actions";
 
 export const loginUser = (user, history) => ({
@@ -47,6 +53,38 @@ export const resetPasswordSuccess = (newPassword) => ({
 });
 export const resetPasswordError = (message) => ({
   type: RESET_PASSWORD_ERROR,
+  payload: { message },
+});
+
+export const registerSimpleUser = ({
+  email,
+  password,
+  role,
+  token,
+  history,
+}) => ({
+  type: REGISTER_SIMPLE_USER,
+  payload: { email, password, role, token, history },
+});
+export const registerSimpleUserSuccess = (user) => ({
+  type: REGISTER_SIMPLE_USER_SUCCESS,
+  payload: user,
+});
+export const registerSimpleUserdError = (message) => ({
+  type: REGISTER_SIMPLE_USER_ERROR,
+  payload: { message },
+});
+
+export const confirmAccount = ({ confirmToken, history }) => ({
+  type: CONFIRM_ACCOUNT,
+  payload: { confirmToken, history },
+});
+export const confirmAccountSuccess = (account) => ({
+  type: CONFIRM_ACCOUNT_SUCCESS,
+  payload: account,
+});
+export const rconfirmAccountError = (message) => ({
+  type: CONFIRM_ACCOUNT_ERROR,
   payload: { message },
 });
 

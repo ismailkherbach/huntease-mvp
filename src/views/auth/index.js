@@ -5,6 +5,7 @@ import login from "./login";
 import register from "./register";
 import forgotPassword from "./forgotpassword";
 import resetpassword from "./resetpassword";
+import confirmaccount from "./confirmaccount";
 
 class User extends React.Component {
   componentDidMount() {
@@ -26,6 +27,10 @@ class User extends React.Component {
             <Route
               path={`${match.url}/reset-password/:token`}
               component={resetpassword}
+            />
+            <Route
+              path={`${match.url}/confirm-account/:confirmToken`}
+              component={confirmaccount}
             />
 
             <Route
