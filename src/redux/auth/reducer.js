@@ -20,6 +20,7 @@ import {
   REGISTER_SIMPLE_USER_SUCCESS,
   REGISTER_SIMPLE_USER_ERROR,
   REGISTER_SIMPLE_USER,
+  LOGIN_USER_ERROR,
 } from "../actions";
 
 const INIT_STATE = {
@@ -39,6 +40,13 @@ export default (state = INIT_STATE, action) => {
       return { ...state, loading: true };
     case LOGIN_USER_SUCCESS:
       return { ...state, loading: false, user: action.payload };
+    case LOGIN_USER_ERROR:
+      return {
+        ...state,
+        loading: false,
+        user: "",
+        error: action.payload.message,
+      };
     case FORGOT_PASSWORD:
       return { ...state, loading: true, error: "" };
     case FORGOT_PASSWORD_SUCCESS:

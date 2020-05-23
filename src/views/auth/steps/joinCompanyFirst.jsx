@@ -7,6 +7,7 @@ import {
   Input,
   Label,
   FormGroup,
+  Spinner,
   DropdownMenu,
   DropdownToggle,
   DropdownItem,
@@ -115,11 +116,23 @@ class JoinCompanyFirstStep extends React.Component {
                         </div>
                       )}
                     </FormGroup>
+                    {this.props.authUser.error && (
+                      <div className="inlineBtn-center">
+                        <div className="error-block">
+                          {this.props.authUser.error}
+                        </div>
+                      </div>
+                    )}
+
                     <div className="inlineBtn-center">
                       <Button className="btn-get-started">
-                        <div className="btn-get-started-text">
-                          Join this company{" "}
-                        </div>
+                        {this.props.authUser.loading ? (
+                          <Spinner animation="border" />
+                        ) : (
+                          <h3 className="btn-get-started-text">
+                            Join this company
+                          </h3>
+                        )}
                       </Button>
                     </div>
                   </Form>

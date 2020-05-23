@@ -12,9 +12,11 @@ import {
 import axios from "axios";
 import {
   loginUserSuccess,
+  loginUserError,
   registerUserSuccess,
   logoutUserSuccess,
   forgotPasswordSuccess,
+  forgotPasswordError,
   confirmAccountSuccess,
   joinTeamMember,
   joinTeamMemberSuccess,
@@ -22,6 +24,7 @@ import {
   registerSimpleUserSuccess,
   resetPassword,
   resetPasswordSuccess,
+  confirmAccountError,
   resetPasswordError,
 } from "./actions";
 const credentials = ["token", "twilioToken", "user", "user_id"];
@@ -58,7 +61,14 @@ function* loginWithEmailPassword({ payload }) {
       console.log("login failed :", loginUser);
     }
   } catch (error) {
-    console.log("login error : ", error);
+    if (error.response.status == 401) {
+      yield put(loginUserError("Wrong email or password"));
+    }
+    if (error.response.status == 422) {
+      yield put(
+        loginUserError("Account not activated please verify your email")
+      );
+    }
   }
 }
 
@@ -76,7 +86,11 @@ function* forgotPassword({ payload }) {
   try {
     yield call(forgotPasswordAsync, email);
     yield put(forgotPasswordSuccess("success"));
-  } catch (error) {}
+  } catch (error) {
+    if (error.response.status == 422) {
+      yield put(forgotPasswordError("Invalid email or doesn't exist"));
+    }
+  }
 }
 
 const resetPasswordAsync = async (resetPasswordCode, newPassword) =>
@@ -102,7 +116,11 @@ function* resetNewPassword({ payload }) {
       yield put(forgotPasswordSuccess(newPassword));
       history.push("/user/login");
     }
-  } catch (error) {}
+  } catch (error) {
+    if (error.response.status == 401) {
+      yield put(forgotPasswordError("Invalid reset code"));
+    }
+  }
 }
 
 const registerSimpleUserAsync = async (email, password, role, token) =>
@@ -131,7 +149,9 @@ function* registerSimpleUser({ payload }) {
     );
     if (registerResponse.status == 200) {
       yield put(registerSimpleUserSuccess(registerResponse));
-      history.push("/user/login");
+      setTimeout(() => {
+        history.push("/user/login");
+      }, 2000);
     }
   } catch (error) {}
 }
@@ -210,11 +230,16 @@ function* confirmAccount({ payload }) {
     const confirmResponse = yield call(confirmAccountAsync, confirmToken);
     if (confirmResponse.status == 200) {
       yield put(confirmAccountSuccess("success"));
-      history.push("/user/login");
+
+      setTimeout(() => {
+        history.push("/user/login");
+      }, 3000);
     } else {
       console.log("confirm failed :", confirmResponse);
     }
   } catch (error) {
+    yield put(confirmAccountError("Invalid verification code"));
+
     console.log("confirm error : ", error);
   }
 }

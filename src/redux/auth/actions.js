@@ -1,6 +1,7 @@
 import {
   LOGIN_USER,
   LOGIN_USER_SUCCESS,
+  LOGIN_USER_ERROR,
   LOGOUT_USER,
   LOGOUT_USER_SUCCESS,
   REGISTER_USER,
@@ -29,6 +30,11 @@ export const loginUser = (user, history) => ({
 export const loginUserSuccess = (user) => ({
   type: LOGIN_USER_SUCCESS,
   payload: user,
+});
+
+export const loginUserError = (message) => ({
+  type: LOGIN_USER_ERROR,
+  payload: { message },
 });
 export const forgotPassword = (forgotUserMail, history) => ({
   type: FORGOT_PASSWORD,
@@ -83,7 +89,7 @@ export const confirmAccountSuccess = (account) => ({
   type: CONFIRM_ACCOUNT_SUCCESS,
   payload: account,
 });
-export const rconfirmAccountError = (message) => ({
+export const confirmAccountError = (message) => ({
   type: CONFIRM_ACCOUNT_ERROR,
   payload: { message },
 });

@@ -93,6 +93,19 @@ class Register extends React.Component {
               Join a company
             </Button>
           </div>
+
+          <div className="inlineBtn-col-center">
+            <img
+              className="trianlge"
+              alt="1"
+              src={require("../../assets/img/triangle.png")}
+            />
+            <img
+              className="trianlge"
+              alt="2"
+              src={require("../../assets/img/triangle.png")}
+            />
+          </div>
           {this.state.addCompany && <AddCompanyFirstStep />}
           {this.state.joinCompany && <JoinCompanyFirstStep />}
         </main>

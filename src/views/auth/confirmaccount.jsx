@@ -27,15 +27,13 @@ class ConfirmAccount extends React.Component {
         <main className="auth-container-align">
           <div className="auth-container inlineBtn-col-center">
             {" "}
-            <h3 className="btn-get-started-textt">Account confirmation</h3>
+            <p className="btn-get-started-textt">Account confirmation</p>
             {this.props.authUser.loading ? (
               <div className="inlineBtn-center">
                 <Spinner animation="border" />
               </div>
-            ) : (
-              "Done"
-            )}
-            <h3>{this.state.confirmToken}</h3>
+            ) : null}
+            {this.props.authUser.error && <p>{this.props.authUser.error}</p>}
             <div className="condition-term">
               <Link to={"/user/login"}>
                 <p>Go back to Sign in</p>

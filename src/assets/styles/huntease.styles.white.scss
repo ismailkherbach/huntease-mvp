@@ -32,6 +32,7 @@ $custom: 400;
 $medium: 500;
 $bold: 700;
 $shadow: 0px 1px 10px rgba(0, 0, 0, 0.08);
+$auth-shadow: 0px 1px 10px rgba(185, 185, 185, 0.08);
 $side-margin: 1rem;
 $spacing: 1.3rem;
 $menu-space: 180px;
@@ -41,6 +42,45 @@ $txt-left: 23px;
 $card-title: 18px;
 $heading-size: 19px;
 
+//@extend
+$shadowOffsetsTop: 1 3 10 14 19;
+$shadowBlursTop: 2 6 10 14 19;
+$shadowOpacitiesTop: 0.1 0.3 0.6 0.7 0.8;
+
+$shadowOffsetsBottom: 1 3 6 10 15;
+$shadowBlursBottom: 3 6 6 5 6;
+$shadowOpacitiesBottom: 0.1 0.3 0.6 0.7 0.8;
+$theme-color-purple: #922c88;
+$theme-color-blue: #145388;
+$theme-color-green: #576a3d;
+$theme-color-orange: #e2863b;
+$theme-color-red: #880a1f;
+
+$info-color: #3195a5;
+$success-color: #3e884f;
+$warning-color: #b69329;
+$error-color: #c43d4b;
+
+$separator-color-light: #313131;
+$separator-color: #424242;
+$background-color: #1b191b;
+$foreground-color: #232223;
+$input-background: #232223;
+
+$dark-btn-background: #8d8d8d;
+$light-btn-background: #e4e4e4;
+$button-text-color: #d0d0d0;
+
+$theme-color-1: #86367e;
+$theme-color-2: #3c4b9a;
+$theme-color-3: #af67a4;
+$theme-color-4: #743c6e;
+$theme-color-5: #4b5480;
+$theme-color-6: #795d75;
+
+$primary-color: #969696;
+$secondary-color: #757575;
+$muted-color: #5a5a5a;
 // --------- GENERAL STYLES
 
 $bg-img: url("../img/bgauth.svg");
@@ -48,6 +88,8 @@ $bg-lvl2: url("../img/bgapp.svg");
 $backgrd: url("../img//back_blue_air.svg");
 $login_page: url("../img//login_page.svg");
 $mainback: url("../img/mainback.svg");
+
+/* 21.Forms */
 
 #logo {
   width: 44.1px;
@@ -787,6 +829,14 @@ span {
   justify-content: center;
   flex-direction: row;
   align-items: center;
+  .trianlge {
+    padding: 0;
+    margin: 0;
+    margin-bottom: -5em;
+    margin-top: -1.42em;
+    margin-right: -5.3em;
+    margin-left: -3em;
+  }
   .auth-button {
     height: 61px;
     width: 178px;
@@ -821,11 +871,30 @@ span {
   flex-direction: column;
   align-items: center;
   margin-top: $navbar-height;
-  height: 409px;
+  height: unset;
   width: 621px;
   background-color: white;
   border-radius: 18px;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  box-shadow: $auth-shadow;
+  .btn-get-started-text {
+    text-align: center;
+    font-size: 14px;
+    font-weight: $bold;
+    font-family: $font;
+    color: $huntease-main;
+    border-color: white;
+  }
 
+  .btn-get-started-text:hover {
+    text-align: center;
+    font-size: 14px;
+    font-weight: $bold;
+    font-family: $font;
+    color: white;
+    border-color: white;
+  }
   h4 {
     font-size: 12px;
     font-weight: $regular;
@@ -839,6 +908,22 @@ span {
     font-family: $font;
     color: #0026bc;
     margin: $spacing;
+  }
+  p {
+    font-size: 12px;
+    font-weight: $regular;
+    font-family: $font;
+    color: #0026bc;
+  }
+
+  .error-message {
+    font-size: 12px;
+    font-weight: $regular;
+    font-family: $font;
+    color: red;
+    text-align: left;
+    margin: 0;
+    padding: 0;
   }
 }
 
@@ -913,9 +998,11 @@ span {
 }
 .btn-choice-company {
   border-radius: 5px;
-  margin: 10px;
+  margin: 6px;
+  padding: 10px;
   background-color: #e8edff;
-  width: 100px;
+  border-color: white;
+  width: unset;
   height: 52px;
   display: flex;
   justify-content: center;
@@ -928,6 +1015,50 @@ span {
     font-weight: $bold;
     font-family: $font;
     color: $huntease-main;
+  }
+}
+
+.btn-choice-company:hover {
+  border-radius: 5px;
+  margin: 6px;
+  padding: 10px;
+  background-color: $huntease-main;
+  border-color: white;
+  width: unset;
+  height: 52px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  border-radius: $regular-radius;
+  h3 {
+    text-align: center;
+    font-size: 14px;
+    font-weight: $bold;
+    font-family: $font;
+    color: white;
+  }
+}
+
+.btn-choice-company-clicked {
+  border-radius: 5px;
+  margin: 6px;
+  padding: 10px;
+  background-color: $huntease-main;
+  border-color: white;
+  width: unset;
+  height: 52px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  border-radius: $regular-radius;
+  h3 {
+    text-align: center;
+    font-size: 14px;
+    font-weight: $bold;
+    font-family: $font;
+    color: white;
   }
 }
 
@@ -953,7 +1084,7 @@ span {
   height: 43px;
   width: 505px;
   border-radius: 15px;
-  margin: 20px;
+  margin: 5px;
   text-align: center;
   font-size: 14px;
   font-weight: $regular;
@@ -1538,7 +1669,7 @@ input {
   position: absolute;
   width: 500px;
   height: 500px;
-  bottom: 3rem;
+  bottom: 6rem;
   background-color: white;
   border-radius: $regular-radius;
   box-shadow: $shadow;
@@ -1903,6 +2034,16 @@ input {
     align-items: center;
   }
 
+  .lead-avatar {
+    height: 40px;
+    width: 40px;
+    border-radius: 15px;
+    background-color: $huntease-red;
+    margin-left: 15px;
+    margin-right: 15px;
+    padding: 0;
+    margin-bottom: 0;
+  }
   .icon-call {
     height: 40px;
     width: 40px;
@@ -1949,6 +2090,20 @@ input {
     }
   }
   .lead-infos {
+    img {
+      width: 80px;
+      height: 80px;
+      border-radius: 20px;
+      padding: 0;
+      margin: 0;
+    }
+    .make-call {
+      width: 60px;
+      height: 60px;
+      border-radius: 20px;
+      padding: 0;
+      margin: 0;
+    }
     h4 {
       font-size: 16px;
       font-family: $font;
@@ -2000,6 +2155,12 @@ input {
 
       border-radius: 25px;
       box-shadow: $shadow;
+      img {
+        width: 80px;
+        height: 80px;
+        border-radius: 20px;
+        margin: 10px;
+      }
     }
     .audioShow {
       margin-top: 0px;
@@ -2139,6 +2300,8 @@ input {
     }
     .emotion-block {
       margin: auto;
+      margin-top: 30px;
+      margin-bottom: 30px;
       h4 {
         font-size: 19px;
         font-family: $font;
@@ -2195,7 +2358,7 @@ input {
   height: 59px !important;
   padding-top: 7px;
   display: flex;
-  justify-content: center;
+  justify-content: left;
   flex-direction: row;
   align-items: center;
   margin: 0px;
@@ -2208,7 +2371,7 @@ input {
     margin-left: 28em;
   }
   @include desktop-lg {
-    margin-left: 10em;
+    margin-left: 15em;
   }
   .setting-items {
     background-color: white;
@@ -3527,6 +3690,13 @@ input {
   overflow-y: scroll;
   overflow-x: hidden;
 }
+.scroll-guide {
+  padding-right: unset;
+  margin-right: unset;
+  height: 84%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
 .scroll-lead {
   padding-right: unset;
   margin-right: unset;
@@ -3647,6 +3817,335 @@ input {
   box-shadow: $shadow;
   border-radius: $regular-radius;
   border-radius: 20px;
+}
+
+/* Alert */
+
+.alert {
+  border-radius: 0;
+}
+
+.alert-primary {
+  color: $theme-color-1;
+  background-color: rgba($theme-color-1, 0.2);
+  border-color: rgba($theme-color-1, 0.1);
+}
+
+.alert-secondary {
+  color: $theme-color-2;
+  background-color: rgba($theme-color-2, 0.2);
+  border-color: rgba($theme-color-2, 0.1);
+}
+
+.alert-success {
+  color: $success-color;
+  background-color: rgba($success-color, 0.2);
+  border-color: rgba($success-color, 0.1);
+}
+
+.alert-info {
+  color: $info-color;
+  background-color: rgba($info-color, 0.2);
+  border-color: rgba($info-color, 0.1);
+}
+
+.alert-warning {
+  color: $warning-color;
+  background-color: rgba($warning-color, 0.2);
+  border-color: rgba($warning-color, 0.1);
+}
+
+.alert-danger {
+  color: $error-color;
+  background-color: rgba($error-color, 0.2);
+  border-color: rgba($error-color, 0.1);
+}
+
+.alert-light {
+  color: $light-btn-background;
+  background-color: rgba($light-btn-background, 0.2);
+  border-color: rgba($light-btn-background, 0.1);
+}
+
+.alert-dark {
+  color: $dark-btn-background;
+  background-color: rgba($dark-btn-background, 0.2);
+  border-color: rgba($dark-btn-background, 0.1);
+}
+
+.alert-dismissible .close {
+  text-shadow: initial;
+}
+
+.alert *[data-notify="title"] {
+  display: block;
+  font-size: 0.9rem;
+}
+
+div[data-notify="container"] {
+  padding: 18px;
+}
+
+.notification-container {
+  box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 999999;
+  width: 320px;
+  padding: 0px 15px;
+  max-height: calc(100% - 30px);
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.notification {
+  box-sizing: border-box;
+  padding: 15px 15px 15px 58px;
+  border-radius: 2px;
+  cursor: pointer;
+  font-size: 1em;
+  line-height: 1.2em;
+  position: relative;
+  opacity: 0.9;
+  margin-top: 15px;
+}
+
+.notification .title {
+  font-size: 1em;
+  line-height: 1.2em;
+  font-weight: bold;
+  margin: 0 0 5px 0;
+}
+
+.notification:hover,
+.notification:focus {
+  opacity: 1;
+}
+
+.notification-enter {
+  visibility: hidden;
+  transform: translate3d(100%, 0, 0);
+}
+
+.notification-enter.notification-enter-active {
+  visibility: visible;
+  transform: translate3d(0, 0, 0);
+  transition: all 0.4s;
+}
+
+.notification-leave {
+  visibility: visible;
+  transform: translate3d(0, 0, 0);
+}
+
+.notification-leave.notification-leave-active {
+  visibility: hidden;
+  transform: translate3d(100%, 0, 0);
+  transition: all 0.4s;
+}
+
+.notification {
+  border-radius: $regular-radius;
+  @include depth(1);
+  padding: 25px 25px 25px 25px;
+}
+
+.notification:before {
+  content: "";
+  display: none;
+}
+
+.notification-primary {
+  color: $theme-color-1;
+  background-color: $foreground-color;
+  border: 1px solid $theme-color-1;
+  opacity: 1;
+
+  .notification-message {
+    .title {
+      color: $theme-color-1;
+    }
+
+    .message {
+      color: $primary-color;
+    }
+  }
+
+  &.filled {
+    color: $foreground-color;
+    background-color: $theme-color-1;
+
+    .notification-message {
+      .title {
+        color: $foreground-color;
+      }
+
+      .message {
+        color: $foreground-color;
+      }
+    }
+  }
+}
+
+.notification-secondary {
+  color: $theme-color-2;
+  background-color: $foreground-color;
+  border: 1px solid $theme-color-2;
+  opacity: 1;
+
+  .notification-message {
+    .title {
+      color: $theme-color-2;
+    }
+
+    .message {
+      color: $secondary-color;
+    }
+  }
+
+  &.filled {
+    color: $foreground-color;
+    background-color: $theme-color-2;
+
+    .notification-message {
+      .title {
+        color: $foreground-color;
+      }
+
+      .message {
+        color: $foreground-color;
+      }
+    }
+  }
+}
+
+.notification-info {
+  color: $info-color;
+  background-color: $foreground-color;
+  border: 1px solid $info-color;
+  opacity: 1;
+
+  .notification-message {
+    .title {
+      color: $info-color;
+    }
+
+    .message {
+      color: $secondary-color;
+    }
+  }
+
+  &.filled {
+    color: $foreground-color;
+    background-color: $info-color;
+
+    .notification-message {
+      .title {
+        color: $foreground-color;
+      }
+
+      .message {
+        color: $foreground-color;
+      }
+    }
+  }
+}
+
+.notification-success {
+  color: $success-color;
+  background-color: $foreground-color;
+  border: 1px solid $success-color;
+  opacity: 1;
+
+  .notification-message {
+    .title {
+      color: $success-color;
+    }
+
+    .message {
+      color: $secondary-color;
+    }
+  }
+
+  &.filled {
+    color: $foreground-color;
+    background-color: $success-color;
+
+    .notification-message {
+      .title {
+        color: $foreground-color;
+      }
+
+      .message {
+        color: $foreground-color;
+      }
+    }
+  }
+}
+
+.notification-warning {
+  color: $warning-color;
+  background-color: $foreground-color;
+  border: 1px solid $warning-color;
+  opacity: 1;
+
+  .notification-message {
+    .title {
+      color: $warning-color;
+    }
+
+    .message {
+      color: $secondary-color;
+    }
+  }
+
+  &.filled {
+    color: $foreground-color;
+    background-color: $warning-color;
+
+    .notification-message {
+      .title {
+        color: $foreground-color;
+      }
+
+      .message {
+        color: $foreground-color;
+      }
+    }
+  }
+}
+
+.notification-error {
+  color: $error-color;
+  background-color: $foreground-color;
+  border: 1px solid $error-color;
+  opacity: 1;
+
+  .notification-message {
+    .title {
+      color: $error-color;
+    }
+
+    .message {
+      color: $secondary-color;
+    }
+  }
+
+  &.filled {
+    color: $foreground-color;
+    background-color: $error-color;
+
+    .notification-message {
+      .title {
+        color: $foreground-color;
+      }
+
+      .message {
+        color: $foreground-color;
+      }
+    }
+  }
 }
 
 .disable-select {

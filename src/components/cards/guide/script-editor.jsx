@@ -12,6 +12,7 @@ import {
 import Draggable from "react-draggable";
 import { connect } from "react-redux";
 import { addGuide, getGuide, deleteGuide } from "../../../redux/actions";
+import PerfectScrollbar from "react-perfect-scrollbar";
 
 // load theme styles with webpack
 require("medium-editor/dist/css/medium-editor.css");
@@ -151,8 +152,11 @@ class ScriptEditor extends React.Component {
                 toolbar: { buttons: ["bold", "italic", "underline"] },
               }}
             />
-
-            {this.state.showStatus ? this.displayGuide() : this.createUI()}
+            <PerfectScrollbar>
+              <div className="scroll-guide">
+                {this.state.showStatus ? this.displayGuide() : this.createUI()}
+              </div>
+            </PerfectScrollbar>{" "}
           </div>
           <div id="tags-card">
             <h5 id="card-title">Add your tags</h5>

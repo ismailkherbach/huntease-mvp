@@ -12,8 +12,8 @@ export default class SettingsNav extends React.Component {
   }
   render() {
     return (
-      <div id="settings-navigation-card" className="">
-        {this.state.settingsMenu.map((item) => {
+      <div id="settings-navigation-card" className="inlineBtn-left">
+        {this.state.settingsMenu.slice(0, 5).map((item) => {
           return (
             <div className="setting-items">
               <Link style={{ textDecoration: "none" }} to={item.to}>

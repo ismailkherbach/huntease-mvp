@@ -3,6 +3,8 @@ import { FormGroup, Button, Spinner } from "reactstrap";
 import { Formik, Form, Field } from "formik";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import { NotificationManager } from "../../components/common/react-notifications";
+
 import { loginUser } from "../../redux/actions";
 //import Btn from "../../components/small.componenets/Btn";
 
@@ -78,7 +80,18 @@ class Login extends React.Component {
     }
     return error;
   };
-
+  componentDidUpdate() {
+    if (this.props.error) {
+      NotificationManager.warning(
+        this.props.error,
+        "Login Error",
+        3000,
+        null,
+        null,
+        ""
+      );
+    }
+  }
   render() {
     const { password, email } = this.state;
     const initialValues = { email, password };
@@ -87,7 +100,7 @@ class Login extends React.Component {
         <main className="auth-container-align">
           <div className="auth-container inlineBtn-col-center">
             {" "}
-            <h3 className="btn-get-started-textt">Welcome Back!</h3>
+            <h4 className="btn-get-started-textt">Welcome Back!</h4>
             <Formik initialValues={initialValues} onSubmit={this.onUserLogin}>
               {({ errors, touched }) => (
                 <Form class>
@@ -102,28 +115,34 @@ class Login extends React.Component {
                       validate={this.validateEmail}
                       placeholder="Email"
                     />
-
-                    <Field
-                      className={
-                        errors.password && touched.password
-                          ? "auth-input-large-error"
-                          : "auth-input-large"
-                      }
-                      type="password"
-                      name="password"
-                      validate={this.validatePassword}
-                    />
+                    {errors.email && touched.email && (
+                      <p className="error-message inlineBtn-left">
+                        {errors.email}
+                      </p>
+                    )}
+                    <div className="inlineBtn-col-left">
+                      <Field
+                        className={
+                          errors.password && touched.password
+                            ? "auth-input-large-error"
+                            : "auth-input-large"
+                        }
+                        type="password"
+                        name="password"
+                        validate={this.validatePassword}
+                      />
+                      {errors.password && touched.password && (
+                        <p className="error-message">{errors.password}</p>
+                      )}
+                    </div>
                   </FormGroup>
-                  {errors.email && touched.email && (
+
+                  {this.props.error && (
                     <div className="inlineBtn-center">
-                      <p>{errors.email}</p>
+                      <div className="error-block">{this.props.error}</div>
                     </div>
                   )}
-                  {errors.password && touched.password && (
-                    <div className="inlineBtn-center">
-                      <p>{errors.password}</p>
-                    </div>
-                  )}
+
                   <div className="inlineBtn-center">
                     <Button className="btn-get-started">
                       {this.props.loading ? (
@@ -149,8 +168,8 @@ class Login extends React.Component {
 }
 
 const mapStateToProps = ({ authUser }) => {
-  const { user, loading } = authUser;
-  return { user, loading };
+  const { user, loading, error } = authUser;
+  return { user, loading, error };
 };
 
 export default connect(mapStateToProps, {

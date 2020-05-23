@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 
 import { Row, Col } from "reactstrap";
+import { NotificationManager } from "../../common/react-notifications";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
@@ -32,6 +33,12 @@ class SubscriptionContent extends React.Component {
         [4, 50],
       ],
     };
+  }
+  componentDidMount() {
+    let error = 1;
+    if (error == 1) {
+      NotificationManager.warning(error, "Login Error", 3000, null, null, "");
+    }
   }
 
   render() {

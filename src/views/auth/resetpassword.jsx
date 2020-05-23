@@ -68,17 +68,30 @@ class ResetPassword extends React.Component {
                       validate={this.validatePassword}
                       placeholder="New password"
                     />
-                    <Field
-                      className={
-                        errors.confirmPassword && touched.confirmPassword
-                          ? "auth-input-large-error"
-                          : "auth-input-large"
-                      }
-                      type="password"
-                      name="confirmPassword"
-                      validate={this.validatePassword}
-                      placeholder="Confirm new password"
-                    />
+                    <div className="inlineBtn-col-left">
+                      <Field
+                        className={
+                          errors.confirmPassword && touched.confirmPassword
+                            ? "auth-input-large-error"
+                            : "auth-input-large"
+                        }
+                        type="password"
+                        name="confirmPassword"
+                        placeholder="Confirm new password"
+                        validate={this.validatePassword}
+                      />
+                      {errors.password && touched.password && (
+                        <p className="error-message">{errors.password}</p>
+                      )}
+                    </div>
+
+                    {this.props.authUser.error && (
+                      <div className="inlineBtn-center">
+                        <div className="error-block">
+                          {this.props.authUser.error}
+                        </div>
+                      </div>
+                    )}
                   </FormGroup>
                   <div className="inlineBtn-center">
                     <Button className="btn-get-started">

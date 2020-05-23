@@ -61,6 +61,11 @@ class FotgotPassword extends React.Component {
                       </div>
                     )}
                   </FormGroup>
+                  {this.props.error && (
+                    <div className="inlineBtn-center">
+                      <div className="error-block">{this.props.error}</div>
+                    </div>
+                  )}
                   <div className="inlineBtn-center">
                     <Button className="btn-get-started">
                       <div className="btn-get-started-text">

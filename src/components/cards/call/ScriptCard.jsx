@@ -53,6 +53,37 @@ class ScriptCard extends React.Component {
               </h4>
 
               <h4>Choose Guide</h4>
+              {this.props.guide.guides.length != 0 &&
+                this.props.guide.guides.map((guide, x) => {
+                  return (
+                    <div className="inlineBtn-col-left ml-4">
+                      <div
+                        className="historyCard"
+                        onClick={this.guideCallback.bind(this, guide)}
+                      >
+                        <box-icon
+                          name="notepad"
+                          type="solid"
+                          color="#091ad4"
+                        ></box-icon>
+                        <p>{guide.title}</p>{" "}
+                      </div>
+                    </div>
+                  );
+                })}
+
+              {this.props.guide.guides.length == 0 && (
+                <div className="inlineBtn-col-center mt-5">
+                  <img
+                    className="empty-guide mt-5"
+                    alt="no-guide"
+                    src={require("../../../assets/img/no_guide.png")}
+                  />
+                  <p className="empty-text mt-3">
+                    You don't have guides click on add guide to create one
+                  </p>
+                </div>
+              )}
               {this.props.guide.guides.map((guide, x) => {
                 return (
                   <div className="inlineBtn-col-left ml-4">
@@ -70,9 +101,6 @@ class ScriptCard extends React.Component {
                   </div>
                 );
               })}
-              <div className="inlineBtn-col-center">
-                <Button className="confirm-btn">Confim changes</Button>
-              </div>
             </div>
           </div>
         ) : null}

@@ -38,7 +38,6 @@ class CallCard extends React.Component {
       muted: false,
       visibleIconId: null,
       lastChecked: null,
-      selectedItems: [],
       delecteAction: false,
     };
     this.handleHoverOn = this.handleHoverOn.bind(this);
@@ -149,49 +148,55 @@ class CallCard extends React.Component {
     return (
       <Fragment>
         <div id="calls-list-card">
-          <div className="inlineBtn-center">
-            {this.props.call.leads && this.state.delecteAction ? (
-              <CustomInput
-                className="custom-checkbox mb-0 d-inline-block"
-                type="checkbox"
-                id="checkAll"
-                checked={
-                  this.props.call.selectedItems.length >=
-                  this.props.call.leads.length
-                }
-                onClick={() => this.handleChangeSelectAll()}
-                onChange={() => this.handleChangeSelectAll()}
-                label=""
-              />
-            ) : null}
+          {this.state.leadListing && (
+            <div className="inlineBtn-center">
+              {this.props.call.leads && this.state.delecteAction ? (
+                <CustomInput
+                  className="custom-checkbox mb-0 d-inline-block"
+                  type="checkbox"
+                  id="checkAll"
+                  checked={
+                    this.props.call.selectedItems.length >=
+                    this.props.call.leads.length
+                  }
+                  onClick={() => this.handleChangeSelectAll()}
+                  onChange={() => this.handleChangeSelectAll()}
+                  label=""
+                />
+              ) : null}
 
-            <Col className="col-8">
-              <h3 id="card-title">
-                Your leads (
-                {this.props.call.leads ? this.props.call.leads.length : "..."})
-              </h3>
-            </Col>
-            <Col className="col-1">
-              <div id="edit" className="inlineBtn-center">
-                <box-icon name="search" color="#0026bc"></box-icon>
-              </div>
-            </Col>
-            <Col className="col-1 mr-4">
-              <UncontrolledDropdown>
-                <DropdownToggle color="empty" className="dropdown-toggle-split">
-                  <div id="edit" className="inlineBtn-center">
-                    <box-icon name="pencil" color="#0026bc"></box-icon>
-                  </div>
-                </DropdownToggle>
-                <DropdownMenu className="btn" right>
-                  <DropdownItem>Edit</DropdownItem>
-                  <DropdownItem onClick={this.deleteCheckBox.bind(this)}>
-                    Delete
-                  </DropdownItem>
-                </DropdownMenu>
-              </UncontrolledDropdown>
-            </Col>
-          </div>
+              <Col className="col-8">
+                <h3 id="card-title">
+                  Your leads (
+                  {this.props.call.leads ? this.props.call.leads.length : "..."}
+                  )
+                </h3>
+              </Col>
+              <Col className="col-1">
+                <div id="edit" className="inlineBtn-center">
+                  <box-icon name="search" color="#0026bc"></box-icon>
+                </div>
+              </Col>
+              <Col className="col-1 mr-4">
+                <UncontrolledDropdown>
+                  <DropdownToggle
+                    color="empty"
+                    className="dropdown-toggle-split"
+                  >
+                    <div id="edit" className="inlineBtn-center">
+                      <box-icon name="pencil" color="#0026bc"></box-icon>
+                    </div>
+                  </DropdownToggle>
+                  <DropdownMenu className="btn" right>
+                    <DropdownItem onClick={this.deleteCheckBox.bind(this)}>
+                      Edit
+                    </DropdownItem>
+                    <DropdownItem>Delete</DropdownItem>
+                  </DropdownMenu>
+                </UncontrolledDropdown>
+              </Col>
+            </div>
+          )}
           {this.state.leadListing && (
             <PerfectScrollbar>
               <div className="scroll-leads">
@@ -226,15 +231,19 @@ class CallCard extends React.Component {
                                   label=""
                                 />
                               )}
-                              <Col
-                                className="icon col-2"
-                                onClick={this.handleLeadClick.bind(this, lead)}
-                              >
-                                <box-icon
-                                  name="headphone"
-                                  color="#091ad4"
-                                ></box-icon>
+
+                              <Col className="col-4">
+                                <img
+                                  alt={lead._id}
+                                  src={require("../../../assets/img/avatar_male.png")}
+                                  className="lead-avatar"
+                                  onClick={this.handleLeadClick.bind(
+                                    this,
+                                    lead
+                                  )}
+                                />
                               </Col>
+
                               <Col className="inlineBtn-col-left">
                                 <h4>
                                   {lead.firstName +
@@ -299,10 +308,11 @@ class CallCard extends React.Component {
                 <h4>Contact infos</h4>{" "}
                 <div className="inlineBtn-center">
                   <img
+                    className="ml-4"
                     alt="avatar"
                     src={require("../../../assets/img/0.jpeg")}
                   />
-                  <Col className="inlineBtn-col col-4 ">
+                  <div className="inlineBtn-col col-8">
                     <h3>
                       {" "}
                       {this.state.visibleLeadId.firstName +
@@ -310,14 +320,13 @@ class CallCard extends React.Component {
                         this.state.visibleLeadId.lastName.split("(")[0]}
                     </h3>
                     <p>{this.state.visibleLeadId.jobtitle}</p>
-                  </Col>
-                  <div className="icon-call" onClick={this.handleCallClick}>
-                    <box-icon
-                      name="phone"
-                      type="solid"
-                      color="white"
-                    ></box-icon>{" "}
-                  </div>{" "}
+                  </div>
+                  <img
+                    alt="make-call"
+                    className="make-call"
+                    src={require("../../../assets/img/make-call.png")}
+                    onClick={this.handleCallClick}
+                  />
                 </div>
                 <div className="inlineBtn-center">
                   <h5>General</h5>
@@ -354,18 +363,81 @@ class CallCard extends React.Component {
                 <div className="leadStatus">
                   <h4>Lead status</h4>
                   <div className="inlineBtn-left">
-                    <div className="lead-status">New</div>
-                    <div className="lead-status">Open</div>
-                    <div className="lead-status">Unqualified</div>
-                    <div className="lead-status">Connected</div>
-                    <div className="lead-status">Open deal</div>
+                    <div
+                      className={
+                        this.state.visibleLeadId.status == "NEW"
+                          ? "lead-status-active"
+                          : "lead-status"
+                      }
+                    >
+                      NEW
+                    </div>
+                    <div
+                      className={
+                        this.state.visibleLeadId.status == "OPEN"
+                          ? "lead-status-active"
+                          : "lead-status"
+                      }
+                    >
+                      Open
+                    </div>
+                    <div
+                      className={
+                        this.state.visibleLeadId.status == "UNQUALIFIED"
+                          ? "lead-status-active"
+                          : "lead-status"
+                      }
+                    >
+                      Unqualified
+                    </div>
+                    <div
+                      className={
+                        this.state.visibleLeadId.status == "CONNECTED"
+                          ? "lead-status-active"
+                          : "lead-status"
+                      }
+                    >
+                      Connected
+                    </div>
+                    <div
+                      className={
+                        this.state.visibleLeadId.status == "OPEN_DEAL"
+                          ? "lead-status-active"
+                          : "lead-status"
+                      }
+                    >
+                      Open deal
+                    </div>
                   </div>
                   <div className="inlineBtn-left">
-                    <div className="lead-status">In progress</div>
-                    <div className="lead-status-active">
+                    <div
+                      className={
+                        this.state.visibleLeadId.status == "IN_PROGRESS"
+                          ? "lead-status-active"
+                          : "lead-status"
+                      }
+                    >
+                      In progress
+                    </div>
+                    <div
+                      className={
+                        this.state.visibleLeadId.status ==
+                        "ATTEMPTED_TO_CONTACT"
+                          ? "lead-status-active"
+                          : "lead-status"
+                      }
+                    >
                       Attempted to contact
                     </div>
-                    <div className="lead-status">Bad time</div>
+                    <div
+                      className={
+                        this.state.visibleLeadId.status == "BAD_TIME"
+                          ? "lead-status-active"
+                          : "lead-status"
+                      }
+                    >
+                      Bad time
+                    </div>
                   </div>
                 </div>
               </div>
