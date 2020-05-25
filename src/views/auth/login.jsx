@@ -146,7 +146,7 @@ class Login extends React.Component {
                   <div className="inlineBtn-center">
                     <Button className="btn-get-started">
                       {this.props.loading ? (
-                        <Spinner animation="border" />
+                        <div className="loading-main-button"></div>
                       ) : (
                         "Login"
                       )}

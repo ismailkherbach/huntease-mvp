@@ -143,7 +143,7 @@ class TeamManagement extends React.Component {
                                 src={require("../../../assets/img/0.jpeg")}
                               />
                               {user.user.requests.length == 0 ||
-                              user.user.requests[1].status == "approved" ? (
+                              user.user.requests[0].status == "approved" ? (
                                 <div className="inlineBtn-left ml-2">
                                   {" "}
                                   <p>
@@ -155,9 +155,9 @@ class TeamManagement extends React.Component {
                               ) : (
                                 <div className="inlineBtn-left mx-0 no-gutters ml-3">
                                   <p className="new">
-                                    {user.user.requests[1].fields[0].value +
+                                    {user.user.requests[0].fields[0].value +
                                       " " +
-                                      user.user.requests[1].fields[1].value +
+                                      user.user.requests[0].fields[1].value +
                                       " "}
                                   </p>
                                   <p className="prev ml-1 mr-1">
@@ -174,13 +174,13 @@ class TeamManagement extends React.Component {
                             </div>{" "}
                           </Col>
                           {user.user.requests.length == 0 ||
-                          user.user.requests[1].status == "approved" ? (
+                          user.user.requests[0].status == "approved" ? (
                             <Col>
                               <h5>Pro</h5>
                             </Col>
                           ) : null}
                           {user.user.requests.length == 0 ||
-                          user.user.requests[1].status == "approved" ? (
+                          user.user.requests[0].status == "approved" ? (
                             <Col>
                               {user.status == "pending" ? (
                                 <p id="invitation-sent">Invitation sent</p>
@@ -190,7 +190,7 @@ class TeamManagement extends React.Component {
                             </Col>
                           ) : null}
                           {user.user.requests.length == 0 ||
-                          user.user.requests[1].status == "approved" ? (
+                          user.user.requests[0].status == "approved" ? (
                             <Col className="inlineBtn-center">
                               <UncontrolledDropdown className="ml-5">
                                 <DropdownToggle
@@ -217,7 +217,7 @@ class TeamManagement extends React.Component {
                                   id="accept"
                                   onClick={this.onRequestResponse.bind(
                                     this,
-                                    user.user.requests[1]._id,
+                                    user.user.requests[0]._id,
                                     "approve"
                                   )}
                                 >
@@ -227,7 +227,7 @@ class TeamManagement extends React.Component {
                                   id="decline"
                                   onClick={this.onRequestResponse.bind(
                                     this,
-                                    user.user.requests[1]._id,
+                                    user.user.requests[0]._id,
                                     "reject"
                                   )}
                                 >

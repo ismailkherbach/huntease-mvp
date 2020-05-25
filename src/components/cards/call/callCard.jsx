@@ -42,6 +42,7 @@ class CallCard extends React.Component {
     };
     this.handleHoverOn = this.handleHoverOn.bind(this);
     this.handleHoverOff = this.handleHoverOff.bind(this);
+    this.handleCallClick = this.handleCallClick.bind(this);
   }
 
   handleHoverOn(id) {
@@ -73,13 +74,14 @@ class CallCard extends React.Component {
       console.log(this.state.visibleLeadId)
     );
   }
-  handleCallClick = () => {
+  handleCallClick(lead) {
     this.setState({
       callSection: true,
       shownLeadInfos: false,
       leadListing: false,
+      visibleLeadId: lead,
     });
-  };
+  }
 
   handleCheckChange = (event, id) => {
     if (this.state.lastChecked == null) {
@@ -121,7 +123,7 @@ class CallCard extends React.Component {
         this.props.selectedLeadsItemsChange([]);
       } else {
         this.props.selectedLeadsItemsChange(
-          this.props.call.leads.map((x) => x._id)
+          this.props.call.leads.map((x) => x.id)
         );
         console.log(this.props.call.selectedItems);
       }
@@ -217,16 +219,16 @@ class CallCard extends React.Component {
                                   className="custom-checkbox mb-0 d-inline-block"
                                   type="checkbox"
                                   key={i}
-                                  id={lead._id}
+                                  id={lead.id}
                                   checked={
                                     this.props.call.loading
                                       ? this.props.call.selectedItems.includes(
-                                          lead._id
+                                          lead.id
                                         )
                                       : false
                                   }
                                   onChange={(event) =>
-                                    this.handleCheckChange(event, lead._id)
+                                    this.handleCheckChange(event, lead.id)
                                   }
                                   label=""
                                 />
@@ -234,8 +236,8 @@ class CallCard extends React.Component {
 
                               <Col className="col-4">
                                 <img
-                                  alt={lead._id}
-                                  src={require("../../../assets/img/avatar_male.png")}
+                                  // alt={lead.id}
+                                  src={lead.picture}
                                   className="lead-avatar"
                                   onClick={this.handleLeadClick.bind(
                                     this,
@@ -259,7 +261,10 @@ class CallCard extends React.Component {
                                 this.state.visibleIconId == i && (
                                   <div
                                     className="icon-call"
-                                    onClick={this.handleCallClick}
+                                    onClick={this.handleCallClick.bind(
+                                      this,
+                                      lead
+                                    )}
                                   >
                                     <box-icon
                                       name="phone"
@@ -350,16 +355,30 @@ class CallCard extends React.Component {
                   </div>
                   <Button className="hubspot">View in hubspot</Button>
                 </div>
-                <input
-                  className="lead-input"
-                  placeholder="+44 7911123456"
-                  type="text"
-                />{" "}
-                <input
-                  className="lead-input"
-                  placeholder={this.state.visibleLeadId.emails[0]}
-                  type="text"
-                />
+                <div className="inlineBtn-col-center mt-2">
+                  <div className="email-dropdown inlineBtn-center">
+                    <img src={require("../../../assets/img/bxs-phone.png")} />
+                    <input
+                      className="lead-input"
+                      placeholder={this.state.visibleLeadId.phones.fixe[1]}
+                      type="text"
+                      disabled
+                    />{" "}
+                  </div>
+
+                  <div className="email-dropdown inlineBtn-center">
+                    <img
+                      src={require("../../../assets/img/bxs-envelope.png")}
+                    />
+
+                    <input
+                      className="lead-input"
+                      placeholder={this.state.visibleLeadId.emails[0]}
+                      type="text"
+                      disabled
+                    />
+                  </div>
+                </div>
                 <div className="leadStatus">
                   <h4>Lead status</h4>
                   <div className="inlineBtn-left">
@@ -370,7 +389,7 @@ class CallCard extends React.Component {
                           : "lead-status"
                       }
                     >
-                      NEW
+                      New
                     </div>
                     <div
                       className={
@@ -445,7 +464,10 @@ class CallCard extends React.Component {
           )}
           {this.state.callSection && (
             <div className="lead-infos inlineBtn-col-center">
-              <CallTwilio muted={this.state.muted} />
+              <CallTwilio
+                muted={this.state.muted}
+                visibleLeadId={this.state.visibleLeadId}
+              />
             </div>
           )}
 

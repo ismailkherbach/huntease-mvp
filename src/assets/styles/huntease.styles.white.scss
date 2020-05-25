@@ -52,13 +52,13 @@ $shadowBlursBottom: 3 6 6 5 6;
 $shadowOpacitiesBottom: 0.1 0.3 0.6 0.7 0.8;
 $theme-color-purple: #922c88;
 $theme-color-blue: #145388;
-$theme-color-green: #576a3d;
+$theme-color-green: #26ec82;
 $theme-color-orange: #e2863b;
 $theme-color-red: #880a1f;
 
 $info-color: #3195a5;
 $success-color: #3e884f;
-$warning-color: #b69329;
+$warning-color: #f1c336;
 $error-color: #c43d4b;
 
 $separator-color-light: #313131;
@@ -234,6 +234,41 @@ span {
   bottom: 0;
   width: 100%;
   height: 100%;
+}
+
+.loading-main-button {
+  width: 25px;
+  height: 25px;
+  border: 2px solid white;
+  border-radius: 50%;
+  border-top-color: #0026bc;
+  animation: spin 0.5s ease-in-out infinite;
+  -webkit-animation: spin 0.5s ease-in-out infinite;
+  left: calc(50% - 15px);
+  top: calc(50% - 15px);
+  z-index: 1;
+}
+
+.loading-button-overlay {
+  z-index: 1050;
+
+  width: 100%;
+  height: 100%;
+}
+
+.loading-button {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  border: 2px solid blue;
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 0.5s ease-in-out infinite;
+  -webkit-animation: spin 0.5s ease-in-out infinite;
+  left: calc(50% - 15px);
+  top: calc(50% - 15px);
+  position: fixed;
+  z-index: 1;
 }
 
 .loading {
@@ -1067,10 +1102,28 @@ span {
   width: 237px;
   border-radius: 15px;
   margin: 20px;
-  color: #001134;
+  color: $huntease-main;
   border: 2px solid $huntease-main;
   display: flex;
   background-color: white;
+  text-align: center;
+  font-size: 14px;
+  font-weight: $bold;
+  font-family: $font;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.btn-get-started:focus {
+  height: 43px;
+  width: 237px;
+  border-radius: 15px;
+  margin: 20px;
+  color: white;
+  border: 2px solid $huntease-main;
+  display: flex;
+  background-color: $huntease-main;
   text-align: center;
   font-size: 14px;
   font-weight: $bold;
@@ -1113,6 +1166,9 @@ span {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+}
+.btn-get-started {
+  transition: all 0.5s;
 }
 
 .btn-get-started-text {
@@ -2163,17 +2219,59 @@ input {
       }
     }
     .audioShow {
+      margin: 0;
+      padding: 0;
       margin-top: 0px;
       padding-top: 0px;
       margin-bottom: -90px;
       z-index: 100;
       position: relative;
     }
+
+    .emptyAudio {
+      width: 460px;
+      height: 72px;
+      background-color: white;
+      margin-top: 50px;
+      padding-top: 0px;
+      margin-bottom: -90px;
+      z-index: 100;
+      position: relative;
+    }
+    .email-dropdown {
+      img {
+        height: unset;
+        width: unset;
+        margin: auto;
+        border-radius: 0;
+      }
+      background-color: #f6f9ff;
+      width: 410px;
+      height: 45px;
+      padding: 0;
+      margin: 0;
+      margin-top: 15px;
+      border-radius: 15px;
+      .lead-input {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        height: 30px;
+        width: 350px;
+        background-color: #f6f9ff;
+        color: #8ba3ff;
+        border-radius: 10px;
+        border-color: none;
+        padding-left: 0px;
+        margin: 0;
+      }
+    }
     .firstBlock-leadinfos {
       width: 460px;
       background-color: white;
       border-radius: 25px;
       box-shadow: $shadow;
+
       h3 {
         font-size: 20px;
         font-family: $font;
@@ -2265,11 +2363,60 @@ input {
     .call-section {
       bottom: 0;
       margin-top: 4%;
+
+      p {
+        padding: 0;
+        margin: auto;
+        margin-top: 5px;
+      }
       .icon-call-section {
+        margin-left: 8px;
+
         height: 50px;
         width: 50px;
         border-radius: 20px;
         background-color: rgba(202, 212, 255, 0.678);
+        margin-right: 15px;
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        align-items: center;
+      }
+
+      .icon-call-section-emotion-sad-law {
+        margin-left: 8px;
+
+        height: 50px;
+        width: 50px;
+        border-radius: 20px;
+        background-color: #26ec82;
+        margin-right: 15px;
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        align-items: center;
+      }
+      .icon-call-section-emotion-sad-high {
+        margin-left: 8px;
+
+        height: 50px;
+        width: 50px;
+        border-radius: 20px;
+        background-color: red;
+        margin-right: 15px;
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        align-items: center;
+      }
+
+      .icon-call-section-emotion-sad-medium {
+        margin-left: 8px;
+
+        height: 50px;
+        width: 50px;
+        border-radius: 20px;
+        background-color: $warning-color;
         margin-right: 15px;
         display: flex;
         justify-content: center;
@@ -2286,6 +2433,7 @@ input {
         justify-content: center;
         flex-direction: row;
         align-items: center;
+        margin-left: 8px;
       }
       .icon-call-section-start {
         height: 50px;
@@ -2296,12 +2444,18 @@ input {
         justify-content: center;
         flex-direction: row;
         align-items: center;
+        margin-left: 8px;
       }
     }
     .emotion-block {
       margin: auto;
       margin-top: 30px;
       margin-bottom: 30px;
+      .alert-warning {
+        color: $warning-color;
+        background-color: rgba($warning-color, 0.2);
+        border-color: rgba($warning-color, 0.1);
+      }
       h4 {
         font-size: 19px;
         font-family: $font;
@@ -3700,7 +3854,7 @@ input {
 .scroll-lead {
   padding-right: unset;
   margin-right: unset;
-  height: 300px;
+  height: 235px;
   overflow-y: scroll;
   overflow-x: hidden;
 }

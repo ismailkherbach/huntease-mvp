@@ -84,23 +84,6 @@ class ScriptCard extends React.Component {
                   </p>
                 </div>
               )}
-              {this.props.guide.guides.map((guide, x) => {
-                return (
-                  <div className="inlineBtn-col-left ml-4">
-                    <div
-                      className="historyCard"
-                      onClick={this.guideCallback.bind(this, guide)}
-                    >
-                      <box-icon
-                        name="notepad"
-                        type="solid"
-                        color="#091ad4"
-                      ></box-icon>
-                      <p>{guide.title}</p>{" "}
-                    </div>
-                  </div>
-                );
-              })}
             </div>
           </div>
         ) : null}

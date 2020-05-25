@@ -22,12 +22,32 @@ class CallTwilio extends React.Component {
       emotionAnalytics: true,
       general: false,
       audio: null,
+      emotions: {
+        Happiness: "",
+        Fear: "",
+        Sadness: "",
+        Anger: "",
+        Neutrality: "",
+      },
     };
     this.handleToggleCall = this.handleToggleCall.bind(this);
     this.handleToggleMute = this.handleToggleMute.bind(this);
     this.handleToggleGeneral = this.handleToggleGeneral.bind(this);
     this.toggleMicrophone = this.toggleMicrophone.bind(this);
     this.stopIt = this.stopIt.bind(this);
+  }
+
+  handleChangeEmotion(emotion) {
+    this.setState({
+      emotions: {
+        Happiness: Math.round(emotion.Happiness.toFixed(4) * 100 * 10) / 10,
+        Fear: Math.round(emotion.Fear.toFixed(4) * 100 * 10) / 10,
+        Sadness: Math.round(emotion.Sadness.toFixed(4) * 100 * 10) / 10,
+        Anger: Math.round(emotion.Anger.toFixed(4) * 100 * 10) / 10,
+        Neutrality: Math.round(emotion.Neutrality.toFixed(4) * 100 * 10) / 10,
+      },
+    });
+    console.log(this.state.emotions);
   }
   async getMicrophone() {
     const audio = await navigator.mediaDevices.getUserMedia({
@@ -105,12 +125,17 @@ class CallTwilio extends React.Component {
     });
   };
   componentDidMount() {
+    console.log(this.props.visibleLeadId);
     this.fetchToken();
     client.onopen = () => {
       console.log("WebSocket Client Connected");
     };
     client.onmessage = (emotionPacket) => {
-      console.log(JSON.parse(emotionPacket.data));
+      let myData = JSON.parse(emotionPacket.data);
+      //console.log(myData.data);
+      this.handleChangeEmotion(myData.data);
+
+      //this.handleChangeEmotion(emotionPacket.data)
     };
   }
 
@@ -173,14 +198,63 @@ class CallTwilio extends React.Component {
     }
   };
   render() {
+    const Sadness = this.state.emotions.Sadness;
+    let bloc;
+    if (Sadness == "") {
+      bloc = (
+        <div className="icon-call-section" onClick={this.handleToggleGeneral}>
+          <box-icon name="face" type="solid" color="#8BA3FF"></box-icon>
+        </div>
+      );
+    } else {
+      if (Sadness < 40) {
+        bloc = (
+          <div
+            className="icon-call-section-emotion-sad-law"
+            onClick={this.handleToggleGeneral}
+          >
+            <box-icon name="face" type="solid" color="white"></box-icon>
+          </div>
+        );
+      }
+      if (Sadness > 40 && Sadness < 65) {
+        bloc = (
+          <div
+            className="icon-call-section-emotion-sad-medium "
+            onClick={this.handleToggleGeneral}
+          >
+            <box-icon name="face" type="solid" color="white"></box-icon>
+          </div>
+        );
+      }
+      if (Sadness > 65) {
+        bloc = (
+          <div
+            className="icon-call-section-emotion-sad-high"
+            onClick={this.handleToggleGeneral}
+          >
+            <box-icon name="face" type="solid" color="white"></box-icon>
+          </div>
+        );
+      }
+    }
     return (
       <div>
         <div className="firstBlock">
           <h5>{this.state.log}</h5>
-          {this.state.audio ? <AudioAnalyser audio={this.state.audio} /> : ""}
-          <img alt="avatar" src={require("../../../assets/img/0.jpeg")} />
-          <h3>Ismail kherbach</h3>
-          <p>Tech lead</p>
+          {this.state.audio ? (
+            <AudioAnalyser audio={this.state.audio} />
+          ) : (
+            <div className="emptyAudio">{"Hello"}</div>
+          )}
+          <img alt="avatar" src={this.props.visibleLeadId.picture} />
+          <h3>
+            {" "}
+            {this.props.visibleLeadId.firstName +
+              " " +
+              this.props.visibleLeadId.lastName.split("(")[0]}
+          </h3>
+          <p>{this.props.visibleLeadId.jobtitle}</p>
           <h2>{this.state.log}</h2>
 
           <div className="inlineBtn-center">
@@ -208,16 +282,30 @@ class CallTwilio extends React.Component {
                   </div>
                   <Button className="hubspot">View in hubspot</Button>
                 </div>
-                <input
-                  className="lead-input"
-                  placeholder="+44 7911123456"
-                  type="text"
-                />{" "}
-                <input
-                  className="lead-input"
-                  placeholder="gi_kherbach@esi.dz"
-                  type="text"
-                />
+                <div className="inlineBtn-col-center mt-2">
+                  <div className="email-dropdown inlineBtn-center">
+                    <img src={require("../../../assets/img/bxs-phone.png")} />
+                    <input
+                      className="lead-input"
+                      placeholder={this.props.visibleLeadId.phones.fixe[1]}
+                      type="text"
+                      disabled
+                    />{" "}
+                  </div>
+
+                  <div className="email-dropdown inlineBtn-center">
+                    <img
+                      src={require("../../../assets/img/bxs-envelope.png")}
+                    />
+
+                    <input
+                      className="lead-input"
+                      placeholder={this.props.visibleLeadId.emails[0]}
+                      type="text"
+                      disabled
+                    />
+                  </div>
+                </div>
                 <div className="leadStatus">
                   <h4>Lead status</h4>
                   <div className="inlineBtn-left">
@@ -240,57 +328,78 @@ class CallTwilio extends React.Component {
           )}
           {this.state.emotionAnalytics && (
             <div className="inlineBtn-center mt-5 mb-5">
-              <div className="inlineBtn-col-center mt-3">
+              <div className="inlineBtn-col-center mt-1">
                 <div className="emotion-block">
-                  {" "}
-                  <h3>+30</h3>
-                  <h4>Enthusiasm</h4>
-                  <img
+                  <h4 className="mb-3">Lead emotions</h4>
+
+                  <h3>
+                    {this.state.emotions.Sadness == ""
+                      ? "... Waiting ..."
+                      : this.state.emotions.Sadness + " %"}
+                  </h3>
+                  {/*  <img
                     alt="emotion"
                     src={require("../../../assets/img/emotion-green.svg")}
-                  />
+                  />*/}
                 </div>
               </div>
             </div>
           )}
-          <div className="call-section inlineBtn-center ">
-            <div
-              className="icon-call-section"
-              onClick={this.handleToggleGeneral}
-            >
-              <box-icon name="face" type="solid" color="#8BA3FF"></box-icon>
+          <div className="call-section inlineBtn-center">
+            <div className="inline-col-center">
+              {bloc}
+              <p>
+                {" "}
+                {this.state.emotions.Sadness == ""
+                  ? "..."
+                  : this.state.emotions.Sadness + " %"}
+              </p>
             </div>
-
-            <div className="icon-call-section">
-              <box-icon
-                name="video-recording"
-                type="solid"
-                color="#8BA3FF"
-              ></box-icon>
+            <div className="inline-col-center">
+              <div className="icon-call-section">
+                <box-icon
+                  name="video-recording"
+                  type="solid"
+                  color="#8BA3FF"
+                ></box-icon>
+              </div>
+              <p>Record</p>
             </div>
-            <div className="icon-call-section" onClick={this.handleToggleMute}>
-              <box-icon
-                name={!this.state.audio ? "microphone-off" : "microphone"}
-                type="solid"
-                color="#8BA3FF"
-              ></box-icon>
+            <div className="inline-col-center">
+              <div
+                className="icon-call-section"
+                onClick={this.handleToggleMute}
+              >
+                <box-icon
+                  name={!this.state.audio ? "microphone-off" : "microphone"}
+                  type="solid"
+                  color="#8BA3FF"
+                ></box-icon>
+              </div>
+              <p>Mute</p>
             </div>
-            <div className="icon-call-section">
-              <box-icon
-                name="time-five"
-                type="solid"
-                color="#8BA3FF"
-              ></box-icon>
+            <div className="inline-col-center">
+              <div className="icon-call-section">
+                <box-icon
+                  name="time-five"
+                  type="solid"
+                  color="#8BA3FF"
+                ></box-icon>
+              </div>
+              <p>Later</p>
             </div>
-            <div
-              onClick={this.handleToggleCall}
-              className={
-                this.state.onPhone
-                  ? "icon-call-section-off"
-                  : "icon-call-section-start"
-              }
-            >
-              <box-icon name="phone" type="solid" color="white"></box-icon>
+            <div className="inline-col-center">
+              <div
+                onClick={this.handleToggleCall}
+                className={
+                  this.state.onPhone
+                    ? "icon-call-section-off"
+                    : "icon-call-section-start"
+                }
+              >
+                <box-icon name="phone" type="solid" color="white"></box-icon>
+              </div>
+              <p>End</p>
             </div>
           </div>
         </div>

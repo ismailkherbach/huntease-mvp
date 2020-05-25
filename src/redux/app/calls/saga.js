@@ -118,6 +118,7 @@ function* integrateHubspot({ payload }) {
     const integrationResponse = yield call(integrateHubspotAsync, apiKey);
     if (integrationResponse.status == 201) {
       yield put(integrateHubspotSuccess("success"));
+      yield call(pullLeadsAysnc);
     } else {
       console.log("integration failed :", integrationResponse);
     }
