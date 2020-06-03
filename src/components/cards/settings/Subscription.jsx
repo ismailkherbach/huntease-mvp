@@ -3,6 +3,8 @@ import React, { Fragment } from "react";
 import { Row, Col } from "reactstrap";
 import { NotificationManager } from "../../common/react-notifications";
 import styled from "styled-components";
+import Subscribed from "./subsciption/Subscribed";
+import ChoosePlan from "./subsciption/ChoosePlan";
 
 const Wrapper = styled.div`
   overflow: hidden;
@@ -23,47 +25,20 @@ const Wrapper = styled.div`
 class SubscriptionContent extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      userInfo: JSON.parse(localStorage.getItem("user_id")),
-      points: [
-        [0, 50],
-        [1, 51],
-        [2, 50.5],
-        [3, 56],
-        [4, 50],
-      ],
-    };
+    this.state = {};
   }
-  componentDidMount() {
-    let error = 1;
-    if (error == 1) {
-      NotificationManager.warning(error, "Login Error", 3000, null, null, "");
-    }
-  }
+
+  componentDidMount() {}
 
   render() {
     return (
       <Fragment>
-        <Row>
-          <Col>
-            <div id="settings-card" className="no-gutters mx-0">
-              <Wrapper>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 287 100">
-                  <polygon
-                    points={`${this.state.points.map(
-                      (p) => " " + p[0] + "," + p[1]
-                    )} 287,100 0,100`}
-                  />
-                  <polyline
-                    points={`${this.state.points.map(
-                      (p) => " " + p[0] + "," + p[1]
-                    )}`}
-                  />
-                </svg>
-              </Wrapper>
-            </div>
-          </Col>
-        </Row>
+        <div
+          id="subscription-card"
+          className="no-gutters mx-0 inlineBtn-col-center-top "
+        >
+          <ChoosePlan />
+        </div>
       </Fragment>
     );
   }

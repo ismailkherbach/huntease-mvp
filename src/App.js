@@ -14,6 +14,7 @@ import settings from "./views/app/settings";
 import { IntlProvider } from "react-intl";
 import AppLocale from "./lang";
 import axios from "axios";
+import NotificationContainer from "./components/common/react-notifications/NotificationContainer";
 
 /*const UNAUTHORIZED = 401;
 axios.interceptors.response.use(
@@ -90,6 +91,8 @@ class App extends React.Component {
         messages={currentAppLocale.messages}
       >
         <React.Fragment>
+          <NotificationContainer />
+
           <Router>
             <Switch>
               <AuthRoute path="/app" authUser={loginUser} component={app} />

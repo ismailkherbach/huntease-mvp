@@ -18,7 +18,13 @@ import {
   DELETE_INTEGRATION_ERROR,
   DELETE_INTEGRATION_SUCCESS,
   LEADS_LIST_SELECTED_ITEMS_CHANGE,
+  ENDING_CALL,
 } from "../../actions";
+
+export const endCall = (callSid) => ({
+  type: ENDING_CALL,
+  payload: { callSid },
+});
 
 export const getLeads = () => ({
   type: GET_LEADS,

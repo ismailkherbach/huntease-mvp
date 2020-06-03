@@ -81,7 +81,7 @@ class Login extends React.Component {
     return error;
   };
   componentDidUpdate() {
-    if (this.props.error) {
+    /*   if (this.props.error) {
       NotificationManager.warning(
         this.props.error,
         "Login Error",
@@ -90,7 +90,7 @@ class Login extends React.Component {
         null,
         ""
       );
-    }
+    }*/
   }
   render() {
     const { password, email } = this.state;

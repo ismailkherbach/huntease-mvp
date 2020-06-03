@@ -315,7 +315,7 @@ class CallCard extends React.Component {
                   <img
                     className="ml-4"
                     alt="avatar"
-                    src={require("../../../assets/img/0.jpeg")}
+                    src={this.state.visibleLeadId.picture}
                   />
                   <div className="inlineBtn-col col-8">
                     <h3>
@@ -330,7 +330,10 @@ class CallCard extends React.Component {
                     alt="make-call"
                     className="make-call"
                     src={require("../../../assets/img/make-call.png")}
-                    onClick={this.handleCallClick}
+                    onClick={this.handleCallClick.bind(
+                      this,
+                      this.state.visibleLeadId
+                    )}
                   />
                 </div>
                 <div className="inlineBtn-center">
