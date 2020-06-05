@@ -58,7 +58,7 @@ class ApplicationCard extends React.Component {
                       className="btn-remove"
                       onClick={this.onRemoveIntegration.bind(this)}
                     >
-                      - Remove
+                      Remove
                     </div>
                   ) : (
                     <div

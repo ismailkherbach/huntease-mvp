@@ -3764,6 +3764,20 @@ input {
       }
     }
     .choosePlan {
+      h5 {
+        font-weight: $bold;
+        font-size: 12px;
+        font-family: $font;
+        text-align: center;
+        color: #a8c4ff;
+        margin-left: 0px;
+        padding: 79px;
+        padding-top: 8px;
+        padding-bottom: 0;
+        margin: 0;
+      }
+      .checked_stp {
+      }
       .progress {
         width: 190px;
         height: 5px;
@@ -3772,11 +3786,13 @@ input {
       }
       .progressBlue {
         position: relative;
-        width: 190px;
+        width: 200px;
         height: 5px;
         box-shadow: $shadow;
         background-color: #0026bc;
-        z-index: 100;
+        z-index: 0;
+        padding: 0;
+        margin: 0;
       }
       .progressCircle {
         position: relative;
@@ -4183,7 +4199,7 @@ input {
     width: 160px;
     height: 40px;
     border-radius: $regular-radius;
-    background-color: white;
+    background-color: $huntease-red;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -4192,7 +4208,7 @@ input {
     font-family: $font;
     font-size: 14px;
     font-weight: $regular;
-    color: $huntease-red;
+    color: white;
     cursor: pointer;
   }
 }

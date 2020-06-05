@@ -71,6 +71,7 @@ class TeamManagement extends React.Component {
     this.props.getTeamMembers();
     console.log(this.props.team.teamMembers);
   }
+
   render() {
     return (
       <Fragment>

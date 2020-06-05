@@ -11,7 +11,11 @@ const stripePromise = loadStripe(
 class ChoosePlan extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { planChoosed: false, showPopup: false };
+    this.state = {
+      planChoosed: false,
+      showPopup: false,
+      progressStatus: "unchecked_stp1",
+    };
   }
 
   togglePopup() {
@@ -22,6 +26,7 @@ class ChoosePlan extends React.Component {
   handleChoosePlan() {
     this.setState({
       planChoosed: !this.state.planChoosed,
+      progressStatus: "checked_stp1",
     });
   }
   componentDidMount() {}
@@ -49,26 +54,18 @@ class ChoosePlan extends React.Component {
           </div>
         </div>
         <div className="buttomBloc flex fdc jcc aic">
-          <div className="choosePlan flex fdr jcc aic">
-            <div className="progressCircle flex jcc aic">
-              {" "}
-              <div className="innerBefore"></div>
+          <div className="choosePlan flex fdc jcc aic">
+            <img
+              className="checked_stp"
+              src={require(`../../../../assets/img/${this.state.progressStatus}.png`)}
+            />
+            <div className="flex fdr jcc aic">
+              <h5>Choose plan</h5>
+              <h5>Payment</h5>
+              <h5>Success</h5>
             </div>
-            <div className="progressBlue"></div>
-            <div className="progressCircle flex jcc aic">
-              <div className="innerBefore"></div>
-            </div>
-            <div className="progress"></div>
-            <div className="progressCircle flex jcc aic">
-              {" "}
-              <div className="innerBefore"></div>
-            </div>{" "}
           </div>
-          <div className=" flex fdr jcc aic">
-            <h5>Choose plan</h5>
-            <h5>Payment</h5>
-            <h5>Success</h5>
-          </div>
+
           <div
             className={
               this.state.planChoosed ? "planDetails-clicked" : "planDetails"
@@ -79,6 +76,7 @@ class ChoosePlan extends React.Component {
             <h5 className="Price">$59/mo</h5>
             <p>Learn more about this plan</p>
           </div>
+
           <div className="PromoCode flex fdc jcfs">
             <h2>Got a promo code?</h2>
             <div className="flex fdr aic">
