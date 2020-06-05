@@ -1,11 +1,23 @@
 import React, { Fragment } from "react";
+//import { Row, Col } from "reactstrap";
+import PaimentPopup from "../../../popup/Paiement";
+import { StripeProvider, Elements } from "react-stripe-elements";
+import { loadStripe } from "@stripe/stripe-js";
 
-import { Row, Col } from "reactstrap";
+const stripePromise = loadStripe(
+  "pk_test_51GqdyRBXLsKUPQbHXGJsCSA9tJYHPpXDa8Y8dChs4dW20yeQh3HT55oiMNmysRhogzBHWKSHvfCWr5DF9KlkKyfk00CQF8DBeX"
+);
 
 class ChoosePlan extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { planChoosed: false };
+    this.state = { planChoosed: false, showPopup: false };
+  }
+
+  togglePopup() {
+    this.setState({
+      showPopup: !this.state.showPopup,
+    });
   }
   handleChoosePlan() {
     this.setState({
@@ -17,6 +29,20 @@ class ChoosePlan extends React.Component {
   render() {
     return (
       <Fragment>
+        {this.state.showPopup ? (
+          <StripeProvider
+            apiKey={
+              "pk_test_51GqdyRBXLsKUPQbHXGJsCSA9tJYHPpXDa8Y8dChs4dW20yeQh3HT55oiMNmysRhogzBHWKSHvfCWr5DF9KlkKyfk00CQF8DBeX"
+            }
+          >
+            <Elements stripe={stripePromise}>
+              <PaimentPopup
+                text='Click "Close Button" to hide popup'
+                closePopup={this.togglePopup.bind(this)}
+              />
+            </Elements>
+          </StripeProvider>
+        ) : null}
         <div className="top-bloc fdr aic jcc ">
           <div className="trial jcc ">
             <h3>Your free trial ends in 2 days</h3>
@@ -28,9 +54,8 @@ class ChoosePlan extends React.Component {
               {" "}
               <div className="innerBefore"></div>
             </div>
-            <div className="progress"></div>
+            <div className="progressBlue"></div>
             <div className="progressCircle flex jcc aic">
-              {" "}
               <div className="innerBefore"></div>
             </div>
             <div className="progress"></div>
@@ -45,7 +70,9 @@ class ChoosePlan extends React.Component {
             <h5>Success</h5>
           </div>
           <div
-            className="planDetails"
+            className={
+              this.state.planChoosed ? "planDetails-clicked" : "planDetails"
+            }
             onClick={this.handleChoosePlan.bind(this)}
           >
             <h5 className="Title">Huntease Growth</h5>
@@ -65,7 +92,12 @@ class ChoosePlan extends React.Component {
         {this.state.planChoosed && (
           <div className="ButtomPricing flex fdr jcc aic">
             <h4>Estimated total of the upgrade (+ $1200) 5 seats</h4>
-            <div className="procced flex aic jcc">PROCCED</div>
+            <div
+              className="procced flex aic jcc"
+              onClick={this.togglePopup.bind(this)}
+            >
+              PROCCED
+            </div>
           </div>
         )}
       </Fragment>

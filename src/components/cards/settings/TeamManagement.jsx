@@ -128,9 +128,7 @@ class TeamManagement extends React.Component {
                     </Col>
                   </Row>
                   {this.props.team.loading ? (
-                    <div className="inlineBtn-center">
-                      <Spinner animation="border" />
-                    </div>
+                    <div className="loading"></div>
                   ) : null}
                   {this.props.team.teamMembers &&
                     this.props.team.teamMembers.map((user) => {

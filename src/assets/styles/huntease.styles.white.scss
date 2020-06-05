@@ -1993,6 +1993,130 @@ input {
   }
 }
 
+.popup-paiement {
+  position: absolute;
+  width: 597px;
+  height: 566px;
+  bottom: 6rem;
+  background-color: white;
+  border-radius: $regular-radius;
+  box-shadow: $shadow;
+  z-index: 200;
+  .cb_infos {
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 5%;
+    .Ttile {
+      font-family: $font;
+      font-size: 15px;
+      font-weight: $bold;
+      text-align: left;
+      color: #0026bc;
+    }
+    .Notice {
+      width: 493.9px;
+      height: 36.5px;
+      background-color: #fbfcff;
+      font-family: $font;
+      font-size: 14px;
+      font-weight: $bold;
+      text-align: left;
+      color: #a8c4ff;
+      border-radius: 10px;
+      padding: 5px;
+      margin-top: 15px;
+      margin-bottom: 15px;
+    }
+    & input {
+      width: 493.9px;
+      height: 36.5px;
+      background-color: #fbfcff;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      padding-left: 8px;
+    }
+    .cardNumber {
+      width: 493.9px;
+      height: 36.5px;
+      background-color: #fbfcff;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      padding-left: 8px;
+    }
+    .cvv {
+      & input {
+        width: 235.58px;
+        height: 36.5px;
+        background-color: #fbfcff;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding-left: 8px;
+        margin-right: 24px;
+      }
+      .cardCVV {
+        width: 235.58px;
+        height: 36.5px;
+        background-color: #fbfcff;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding-left: 8px;
+        margin-right: 24px;
+      }
+    }
+    .payNow {
+      width: 493.9px;
+      height: 36.5px;
+      background-color: #0026bc;
+      font-family: $font;
+      font-size: 16px;
+      font-weight: $regular;
+      text-align: center;
+      margin-top: 10px;
+      color: white;
+      border-radius: 10px;
+    }
+    .bottom-notice {
+      padding: 4px;
+      p {
+        font-size: 14px;
+        font-weight: $bold;
+        text-align: left;
+        color: #a8c4ff;
+        margin: 0;
+        padding: 0;
+        margin-left: 4px;
+      }
+    }
+  }
+  .planChoosed {
+    box-shadow: $shadow;
+    border-radius: $regular-radius $regular-radius 0 0;
+
+    width: 597px;
+    height: 121px;
+    .pleft {
+      width: 70%;
+    }
+    .pright {
+    }
+    background-color: #0026bc;
+    h5 {
+      font-family: $font;
+      font-size: 16px;
+      font-weight: $regular;
+      text-align: left;
+      color: white;
+    }
+    h2 {
+      font-family: $font;
+      font-size: 45px;
+      font-weight: $regular;
+      color: white;
+      text-align: left;
+    }
+  }
+}
+
 .popup-scheduls {
   position: absolute;
   width: 350px;
@@ -3576,6 +3700,41 @@ input {
       background-color: #edf3ff;
       border-radius: 40px;
       overflow: hidden;
+      border: 3px solid #a8c4ff;
+      cursor: pointer;
+      .Title {
+        font-family: $font;
+        font-size: 12px;
+        font-weight: $bold;
+        color: #0026bc;
+        text-align: center;
+        background-color: #a8c4ff;
+        padding: 5px;
+        margin-top: 15px;
+      }
+      .Price {
+        padding: 20px;
+        font-weight: 200;
+        font-size: 32px;
+        font-family: $font;
+        text-align: center;
+        color: #0026bc;
+      }
+      p {
+        font-weight: $bold;
+        font-size: 12px;
+        font-family: $font;
+        text-align: center;
+        color: #a8c4ff;
+      }
+    }
+    .planDetails-clicked {
+      margin: 50px;
+      width: 235px;
+      height: 152px;
+      background-color: #edf3ff;
+      border-radius: 40px;
+      overflow: hidden;
       border: 3px solid #18d57d;
       cursor: pointer;
       .Title {
@@ -3611,13 +3770,24 @@ input {
         box-shadow: $shadow;
         background-color: white;
       }
+      .progressBlue {
+        position: relative;
+        width: 190px;
+        height: 5px;
+        box-shadow: $shadow;
+        background-color: #0026bc;
+        z-index: 100;
+      }
       .progressCircle {
+        position: relative;
         width: 20px;
         height: 20px;
         box-shadow: $shadow;
         background-color: white;
         border-radius: 50%;
         .innerBefore {
+          position: relative;
+
           width: 10px;
           height: 10px;
           box-shadow: $shadow;

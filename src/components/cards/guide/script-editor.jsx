@@ -9,10 +9,10 @@ import {
   Col,
   Button,
 } from "reactstrap";
-import Draggable from "react-draggable";
 import { connect } from "react-redux";
 import { addGuide, getGuide, deleteGuide } from "../../../redux/actions";
 import PerfectScrollbar from "react-perfect-scrollbar";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 // load theme styles with webpack
 require("medium-editor/dist/css/medium-editor.css");
