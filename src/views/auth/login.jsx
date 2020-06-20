@@ -97,71 +97,67 @@ class Login extends React.Component {
     const initialValues = { email, password };
     return (
       <Fragment>
-        <main className="auth-container-align">
-          <div className="auth-container inlineBtn-col-center">
-            {" "}
-            <h4 className="btn-get-started-textt">Welcome Back!</h4>
-            <Formik initialValues={initialValues} onSubmit={this.onUserLogin}>
-              {({ errors, touched }) => (
-                <Form class>
-                  <FormGroup>
+        <div className="auth-bloc-container flex fdc aic jcfs">
+          {" "}
+          <h2 className="">Welcome Back!</h2>
+          <Formik initialValues={initialValues} onSubmit={this.onUserLogin}>
+            {({ errors, touched }) => (
+              <Form className="flex jcc aic fdc">
+                <FormGroup>
+                  <Field
+                    className={
+                      errors.email && touched.email
+                        ? "auth-input-large-error"
+                        : "auth-input-large"
+                    }
+                    name="email"
+                    validate={this.validateEmail}
+                    placeholder="Email"
+                  />
+                  <label
+                    errored={`${errors.email && touched.email}`}
+                    errinfo={errors.email}
+                  ></label>
+                  <div className="inlineBtn-col-left">
                     <Field
                       className={
-                        errors.email && touched.email
+                        errors.password && touched.password
                           ? "auth-input-large-error"
                           : "auth-input-large"
                       }
-                      name="email"
-                      validate={this.validateEmail}
-                      placeholder="Email"
+                      type="password"
+                      name="password"
+                      validate={this.validatePassword}
                     />
-                    {errors.email && touched.email && (
-                      <p className="error-message inlineBtn-left">
-                        {errors.email}
-                      </p>
-                    )}
-                    <div className="inlineBtn-col-left">
-                      <Field
-                        className={
-                          errors.password && touched.password
-                            ? "auth-input-large-error"
-                            : "auth-input-large"
-                        }
-                        type="password"
-                        name="password"
-                        validate={this.validatePassword}
-                      />
-                      {errors.password && touched.password && (
-                        <p className="error-message">{errors.password}</p>
-                      )}
-                    </div>
-                  </FormGroup>
-
-                  {this.props.error && (
-                    <div className="inlineBtn-center">
-                      <div className="error-block">{this.props.error}</div>
-                    </div>
-                  )}
-
-                  <div className="inlineBtn-center">
-                    <Button className="btn-get-started">
-                      {this.props.loading ? (
-                        <div className="loading-main-button"></div>
-                      ) : (
-                        "Login"
-                      )}
-                    </Button>
+                    <label
+                      errored={`${errors.password && touched.password}`}
+                      errinfo={errors.password}
+                    ></label>
                   </div>
-                </Form>
-              )}
-            </Formik>{" "}
-            <div className="condition-term">
-              <Link to={"/user/forgot-password"}>
-                <p>Forgot your password ?</p>
-              </Link>
-            </div>
+                </FormGroup>
+
+                {this.props.error && (
+                  <div className="inlineBtn-center">
+                    <div className="error-block">{this.props.error}</div>
+                  </div>
+                )}
+
+                <Button className="Auth-button flex aic jcc">
+                  {this.props.loading ? (
+                    <div className="loading-main-button"></div>
+                  ) : (
+                    <h5>Login</h5>
+                  )}
+                </Button>
+              </Form>
+            )}
+          </Formik>{" "}
+          <div className="condition-term">
+            <Link to={"/user/forgot-password"}>
+              <p>Forgot your password ?</p>
+            </Link>
           </div>
-        </main>
+        </div>
       </Fragment>
     );
   }

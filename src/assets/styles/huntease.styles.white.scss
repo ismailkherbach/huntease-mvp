@@ -2042,6 +2042,8 @@ input {
       margin-top: 10px;
       margin-bottom: 10px;
       padding-left: 8px;
+      padding-top: 10px;
+      border-radius: 5px;
     }
     .cvv {
       & input {
@@ -2061,6 +2063,8 @@ input {
         margin-bottom: 10px;
         padding-left: 8px;
         margin-right: 24px;
+        padding-top: 10px;
+        border-radius: 5px;
       }
     }
     .payNow {

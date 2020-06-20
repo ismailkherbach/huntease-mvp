@@ -6,9 +6,9 @@ export default class Call extends React.Component {
   render() {
     return (
       <Fragment>
-        <div className="inlineBtn-center">
+        <div className="Calls-bloc flex fdr aic jcc">
           <ScriptCard />
-          <CallCard />
+          {/*  <CallCard />*/}
         </div>
       </Fragment>
     );

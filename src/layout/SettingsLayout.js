@@ -4,10 +4,10 @@ import SettingsNav from "../containers/navs/SettingsNav";
 export default class SettingsLayout extends Component {
   render() {
     return (
-      <div>
+      <div className="Settings flex fdc aic jcc">
         <SettingsNav />
         <main>
-          <div className="container-fluid">{this.props.children}</div>
+          <div className="Settings-container"> {this.props.children}</div>
         </main>
       </div>
     );

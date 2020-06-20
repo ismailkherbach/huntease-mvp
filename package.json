@@ -5,6 +5,7 @@
   "proxy": "http://localhost:5000/",
   "dependencies": {
     "@chargebee/chargebee-js-react-wrapper": "^0.2.1",
+    "@sentry/browser": "^5.17.0",
     "@stripe/react-stripe-js": "^1.1.2",
     "@stripe/stripe-js": "^1.7.0",
     "@syncfusion/ej2-react-charts": "^17.4.51",
@@ -33,6 +34,8 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.0",
     "react-stripe-elements": "^6.1.2",
+    "react-switch": "^5.0.1",
+    "react-toggle-switch": "^3.0.4",
     "react-transition-group": "^4.4.1",
     "reactstrap": "^8.2.0",
     "redux": "^4.0.5",

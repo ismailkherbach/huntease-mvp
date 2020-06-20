@@ -10,13 +10,27 @@ import {
   Button,
 } from "reactstrap";
 import { connect } from "react-redux";
-import { addGuide, getGuide, deleteGuide } from "../../../redux/actions";
+import {
+  addGuide,
+  updateGuide,
+  getGuide,
+  deleteGuide,
+} from "../../../redux/actions";
 import PerfectScrollbar from "react-perfect-scrollbar";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import { InstalledAddOnExtensionPage } from "twilio/lib/rest/preview/marketplace/installedAddOn/installedAddOnExtension";
 
 // load theme styles with webpack
 require("medium-editor/dist/css/medium-editor.css");
 require("medium-editor/dist/css/themes/default.css");
+const reorder = (list, startIndex, endIndex) => {
+  const result = Array.from(list);
+  const [removed] = result.splice(startIndex, 1);
+  result.splice(endIndex, 0, removed);
+
+  return result;
+};
+
 class ScriptEditor extends React.Component {
   constructor() {
     super();
@@ -25,10 +39,13 @@ class ScriptEditor extends React.Component {
       searchField: "",
       displayGuide: [{ question: "" }],
       title: "Give this guide a title",
-      questions: [{ question: "" }],
+      questionsGuide: { questions: [""] },
+      updatedGuide: null,
     };
     this.handleChangeTitle = this.handleChangeTitle.bind(this);
     this.handleChangeContenu = this.handleChangeContenu.bind(this);
+    this.onDragEnd = this.onDragEnd.bind(this);
+    this.onDragEndNew = this.onDragEndNew.bind(this);
   }
 
   handleChangeTitle(title, medium) {
@@ -71,52 +88,201 @@ class ScriptEditor extends React.Component {
       questions: this.state.questions,
     });
   };
-  createUI() {
-    return this.state.questions.map((el, i) => (
-      <div className="inlineBtn-left mb-3">
-        <div id="btn-add" onClick={this.addClick.bind(this)}>
-          +
-        </div>
-        <Editor
-          key={i}
-          id="prompt"
-          tag="pre"
-          text={"Enter your question here"}
-          value={el.question || ""}
-          name="question"
-          onChange={this.handleChange.bind(this, i)}
-          options={{
-            toolbar: { buttons: ["bold", "italic", "underline"] },
-          }}
-        />
-      </div>
-    ));
+
+  onUpdateGuide = () => {
+    console.log(this.state.displayGuide);
+    this.props.updateGuide({
+      title: this.state.displayGuide.title,
+      questions: this.state.displayGuide.questions,
+      id: this.state.displayGuide._id,
+    });
+  };
+
+  onDragEndNew(result) {
+    // dropped outside the list
+    if (!result.destination) {
+      return;
+    }
+
+    const items = reorder(
+      this.state.questionsGuide.questions,
+      result.source.index,
+      result.destination.index
+    );
+
+    this.setState({
+      questionsGuide: { ...this.state.questionsGuide, questions: items },
+    });
+    console.log(this.state.questions);
   }
 
+  modifyClickNew() {
+    this.setState((prevState) => ({
+      questionsGuide: {
+        ...this.state.questionsGuide,
+        questions: [...prevState.questionsGuide.questions, "Write something"],
+      },
+    }));
+    console.log(this.state.displayGuide);
+  }
+  createUI() {
+    return (
+      <DragDropContext onDragEnd={this.onDragEndNew}>
+        <Droppable droppableId="droppable">
+          {(provided, snapshot) => (
+            <div
+              {...provided.droppableProps}
+              ref={provided.innerRef}
+              //style={getListStyle(snapshot.isDraggingOver)}
+            >
+              {this.state.questionsGuide.questions.map((item, index) => (
+                <Draggable
+                  key={`item-${index}`}
+                  draggableId={`item-${index}`}
+                  index={index}
+                >
+                  {(provided, snapshot) => (
+                    <div
+                      className="prompt-field flex fdr aic jcfs"
+                      ref={provided.innerRef}
+                      {...provided.draggableProps}
+                      {...provided.dragHandleProps}
+                    >
+                      <div
+                        className="add-prompt flex fdc aic jcc"
+                        onClick={this.modifyClickNew.bind(this)}
+                      >
+                        <img src={require("../../../assets/img/bx-plus.svg")} />
+                      </div>
+                      <Editor
+                        key={index}
+                        className="prompt"
+                        tag="pre"
+                        text={"Write something"}
+                        value={item || ""}
+                        name="question"
+                        onChange={this.handleChange.bind(this, index)}
+                        options={{
+                          toolbar: { buttons: ["bold", "italic", "underline"] },
+                        }}
+                      />
+                      <img src={require("../../../assets/img/drag.svg")} />
+                    </div>
+                  )}
+                </Draggable>
+              ))}
+              {provided.placeholder}
+            </div>
+          )}
+        </Droppable>
+      </DragDropContext>
+    );
+  }
+
+  componentDidMount() {
+    console.log(this.props.guide.guides);
+  }
   showGuide(guide) {
     this.setState({ showStatus: true, displayGuide: guide });
+    console.log(this.state.questionsGuide);
+    console.log(this.state.displayGuide);
+    console.log(this.props.guide.guides);
   }
 
+  onDragEnd(result) {
+    // dropped outside the list
+    if (!result.destination) {
+      return;
+    }
+
+    const items = reorder(
+      this.state.displayGuide.questions,
+      result.source.index,
+      result.destination.index
+    );
+
+    this.setState({
+      displayGuide: { ...this.state.displayGuide, questions: items },
+    });
+    console.log(this.state.displayGuide);
+  }
+
+  modifyClick() {
+    this.setState((prevState) => ({
+      displayGuide: {
+        ...this.state.displayGuide,
+        questions: [...prevState.displayGuide.questions, "Write something"],
+      },
+    }));
+  }
+
+  handleChangeUpdate(i, event) {
+    let questions = [...this.state.displayGuide.questions];
+    questions[i] = event;
+    this.setState({
+      displayGuide: {
+        ...this.state.displayGuide,
+        questions,
+      },
+    });
+    console.log(this.state.displayGuide);
+  }
   displayGuide() {
-    return this.state.displayGuide.questions.map((e, i) => (
-      <div className="inlineBtn-left mb-3">
-        <div id="btn-add" onClick={this.addClick.bind(this)}>
-          +
-        </div>
-        <Editor
-          key={i}
-          id="prompt"
-          tag="pre"
-          text={this.props.guide.guides ? e : "Enter your question here"}
-          value={e || ""}
-          name="question"
-          onChange={this.handleChange.bind(this, i)}
-          options={{
-            toolbar: { buttons: ["bold", "italic", "underline"] },
-          }}
-        />
-      </div>
-    ));
+    return (
+      <DragDropContext onDragEnd={this.onDragEnd}>
+        <Droppable droppableId="droppable">
+          {(provided, snapshot) => (
+            <div
+              {...provided.droppableProps}
+              ref={provided.innerRef}
+              //style={getListStyle(snapshot.isDraggingOver)}
+            >
+              {this.state.displayGuide.questions.map((item, index) => (
+                <Draggable
+                  key={`item-${index}`}
+                  draggableId={`item-${index}`}
+                  index={index}
+                >
+                  {(provided, snapshot) => (
+                    <div
+                      className="prompt-field flex fdr aic jcfs"
+                      ref={provided.innerRef}
+                      {...provided.draggableProps}
+                      {...provided.dragHandleProps}
+                    >
+                      <div
+                        className="add-prompt flex fdc aic jcc"
+                        onClick={this.modifyClick.bind(this)}
+                      >
+                        <img src={require("../../../assets/img/bx-plus.svg")} />
+                      </div>
+                      <Editor
+                        key={index}
+                        className="prompt"
+                        tag="pre"
+                        text={
+                          this.props.guide.guides
+                            ? item
+                            : "Enter your question here"
+                        }
+                        value={item || ""}
+                        name="question"
+                        onChange={this.handleChangeUpdate.bind(this, index)}
+                        options={{
+                          toolbar: { buttons: ["bold", "italic", "underline"] },
+                        }}
+                      />
+                      <img src={require("../../../assets/img/drag.svg")} />
+                    </div>
+                  )}
+                </Draggable>
+              ))}
+              {provided.placeholder}
+            </div>
+          )}
+        </Droppable>
+      </DragDropContext>
+    );
   }
   onDeleteGuide(id) {
     this.props.deleteGuide({ id });
@@ -124,10 +290,11 @@ class ScriptEditor extends React.Component {
   }
 
   handleChange(i, event) {
-    let questions = [...this.state.questions];
+    let questions = [...this.state.questionsGuide.questions];
     questions[i] = event;
     this.setState({ questions });
   }
+
   handleSearchChange(e) {
     this.setState({ searchField: e.target.value });
   }
@@ -141,10 +308,10 @@ class ScriptEditor extends React.Component {
     const { searchField } = this.state;
     return (
       <Fragment>
-        <div className="inlineBtn-col-center">
-          <div id="guide-conv-card">
+        <div className="flex fdc aic jcc">
+          <div className="Guide-editor">
             <Editor
-              id="card-title"
+              className="Title"
               tag="pre"
               text={this.state.title}
               onChange={this.handleChangeTitle}
@@ -158,28 +325,37 @@ class ScriptEditor extends React.Component {
               </div>
             </PerfectScrollbar>{" "}
           </div>
-          <div id="tags-card">
+          <div className="Tag-picker">
             <h5 id="card-title">Add your tags</h5>
-            <div className="inlineBtn-col-center">
+            <div className="flex fdc aic jcc">
               <input
                 className="tag-input-large"
                 placeholder="Write your tags here and hit enter to save them"
                 type="text"
               />
-              <Button className="save-changes" onClick={this.onAddGuide}>
-                Save changes
-              </Button>
+              {this.state.showStatus ? (
+                <Button
+                  className="Save-changes-btn"
+                  onClick={this.onUpdateGuide}
+                >
+                  Save changes
+                </Button>
+              ) : (
+                <Button className="Save-changes-btn" onClick={this.onAddGuide}>
+                  Add guide
+                </Button>
+              )}
             </div>
           </div>
         </div>
-        <div className="inlineBtn-col-center">
+        <div className="flex fdc aic jcc">
           <Fragment>
-            <div id="search-bar-guide">
-              <img
+            <div className="Search-guide">
+              {/*  <img
                 className="icon"
                 alt={"search"}
                 src={require("../../../assets/img/search.svg")}
-              />
+            />*/}
               <input
                 alt={"search"}
                 placeholder="Enter your search here"
@@ -190,8 +366,8 @@ class ScriptEditor extends React.Component {
             </div>
           </Fragment>
           <Fragment>
-            <div id="guide-history-card">
-              <h5 id="card-title">Your Guides</h5>
+            <div className="Guides">
+              <h2>Your Guides</h2>
               {this.props.guide.loading ? (
                 <div className="inlineBtn-center">
                   <Spinner animation="border" />
@@ -205,14 +381,13 @@ class ScriptEditor extends React.Component {
                     )
                     .map((guide, x) => {
                       return (
-                        <div className="historyCard inlineBtn-col-center ml-4">
+                        <div className="flex fdr aic jcc">
                           <box-icon
                             name="notepad"
                             type="solid"
                             color="#091ad4"
                           ></box-icon>
-
-                          <p
+                          <h5
                             key={x}
                             onClick={
                               this.showGuide.bind(this, guide)
@@ -221,43 +396,38 @@ class ScriptEditor extends React.Component {
                           >
                             {" "}
                             {guide.title}
-                          </p>
-                          <Col className="float-right">
-                            {" "}
-                            <UncontrolledDropdown>
-                              <DropdownToggle
-                                color="empty"
-                                className="float-right"
+                          </h5>
+                          <UncontrolledDropdown>
+                            <DropdownToggle
+                              color="empty"
+                              className="float-right"
+                            >
+                              <box-icon
+                                name="dots-vertical-rounded"
+                                color="#254ebe"
+                              ></box-icon>
+                            </DropdownToggle>
+                            <DropdownMenu className="btn mt-1" right>
+                              <DropdownItem>Edit</DropdownItem>
+                              <DropdownItem
+                                onClick={this.onDeleteGuide.bind(
+                                  this,
+                                  guide._id
+                                )}
                               >
-                                <box-icon
-                                  name="dots-vertical-rounded"
-                                  color="#254ebe"
-                                ></box-icon>
-                              </DropdownToggle>
-                              <DropdownMenu className="btn mt-1" right>
-                                <DropdownItem>Edit</DropdownItem>
-                                <DropdownItem
-                                  onClick={this.onDeleteGuide.bind(
-                                    this,
-                                    guide._id
-                                  )}
-                                >
-                                  Delete
-                                </DropdownItem>
-                              </DropdownMenu>
-                            </UncontrolledDropdown>
-                          </Col>
+                                Delete
+                              </DropdownItem>
+                            </DropdownMenu>
+                          </UncontrolledDropdown>
                         </div>
                       );
                     })
                 ) : (
-                  <div className="inlineBtn-col-center mt-5">
+                  <div className="flex fdc aic jcc">
                     <img
-                      className="empty-guide mt-5"
                       alt="no-guide"
                       src={require("../../../assets/img/no_guide.png")}
                     />
-                    <Button className="add-guide mt-4">+ Add guide</Button>
                   </div>
                 )
               ) : null}
@@ -279,4 +449,5 @@ export default connect(mapStateToProps, {
   addGuide,
   getGuide,
   deleteGuide,
+  updateGuide,
 })(ScriptEditor);

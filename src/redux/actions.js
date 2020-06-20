@@ -109,6 +109,29 @@ export const GET_INTEGRATION_ERROR = "GET_INTEGRATION_ERROR";
 export const DELETE_INTEGRATION = "DELETE_INTEGRATION";
 export const DELETE_INTEGRATION_SUCCESS = "DELETE_INTEGRATION_SUCCESS";
 export const DELETE_INTEGRATION_ERROR = "DELETE_INTEGRATION_ERROR";
+/* PAYMENT */
+
+export const PAY = "PAY";
+export const PAY_SUCCESS = "PAY_SUCCESS";
+export const PAY_ERROR = "PAY_ERROR";
+
+export const GET_PLAN = "GET_PLAN";
+export const CHANGE_PLAN = "CHANGE_PLAN";
+export const CANCEL_SUBSCRIPTION = "CANCEL_SUBSCRIPTION";
+export const MODIFY_CARD_INFO = "MODIFY_CARD_INFO";
+
+export const GET_PAIMENT_HISTORY = "GET_PAIMENT_HISTORY";
+export const GET_PAIMENT_HISTORY_SUCCESS = "GET_PAIMENT_HISTORY_SUCCESS";
+export const GET_PAIMENT_HISTORY_ERROR = "GET_PAIMENT_HISTORY_ERROR";
+
+export const GET_CARD_INFO = "GET_CARD_INFO";
+export const GET_CARD_INFO_SUCCESS = "GET_CARD_INFO_SUCCESS";
+export const GET_CARD_INFO_ERROR = "GET_CARD_INFO_ERROR";
+
+export const APPLY_DISCOUNT = "APPLY_DISCOUNT";
+export const APPLY_DISCOUNT_SUCCESS = "APPLY_DISCOUNT_SUCCESS";
+export const APPLY_DISCOUNT_ERROR = "APPLY_DISCOUNT_ERROR";
+
 /* SETTINGS */
 
 export const CHANGE_LOCALE = "CHANGE_LOCALE";
@@ -127,3 +150,4 @@ export * from "./app/dashboard/actions";
 export * from "./app/team/actions";
 export * from "./app/guide/actions";
 export * from "./app/calls/actions";
+export * from "./app/payment/actions";

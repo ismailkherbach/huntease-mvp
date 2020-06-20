@@ -75,26 +75,25 @@ class TeamManagement extends React.Component {
   render() {
     return (
       <Fragment>
-        <Row>
-          <div id="settings-card">
-            <div className="add-member-container">
-              <h3>Add your team members</h3>
-              <p>
-                You can add your team members by inviting them to join your
-                company profile
-              </p>{" "}
-              <input
-                className="member-input"
-                placeholder="First name"
-                type="text"
-                onChange={this.handleChangeFirst}
-              />
-              <input
-                className="member-input"
-                placeholder="Last name"
-                type="text"
-                onChange={this.handleChangeLast}
-              />{" "}
+        <div className="AddMember">
+          <h3>Add your team members</h3>
+          <h5>
+            You can add your team members by inviting them to join your company
+            profile
+          </h5>
+          <div className="flex fdr ">
+            <input
+              placeholder="First name"
+              type="text"
+              onChange={this.handleChangeFirst}
+            />
+            <input
+              placeholder="Last name"
+              type="text"
+              onChange={this.handleChangeLast}
+            />
+            <div className="margin-left30">
+              {" "}
               <input
                 className="email-input"
                 placeholder="email name"
@@ -107,142 +106,150 @@ class TeamManagement extends React.Component {
                 type="text"
                 disabled
               />{" "}
-              <Button onClick={this.onAddMember} className="send-invite">
+              <Button onClick={this.onAddMember} className="SendInvite">
                 Send this invite
               </Button>
             </div>
+          </div>
+        </div>
+        {
+          <div className="TeamListing">
+            {this.props.team.loading ? <div className="loading"></div> : null}
+            <div className="TeamTable">
+              <table>
+                <tbody>
+                  <tr>
+                    <th>MEMBER</th>
+                    <th>PLAN</th>
+                    <th>STATUS</th>
+                    <th>EDIT</th>
+                  </tr>
+                </tbody>
+              </table>
+            </div>{" "}
             <PerfectScrollbar>
               <div className="scroll-team">
-                <div className="team-listing ">
-                  <Row>
-                    <Col>
-                      <h4>MEMBER</h4>
-                    </Col>
-                    <Col>
-                      <h4>PLAN</h4>
-                    </Col>
-                    <Col>
-                      <h4>STATUS</h4>
-                    </Col>
-                    <Col>
-                      <h4>EDIT</h4>
-                    </Col>
-                  </Row>
-                  {this.props.team.loading ? (
-                    <div className="loading"></div>
-                  ) : null}
+                <div className="TeamTable">
                   {this.props.team.teamMembers &&
                     this.props.team.teamMembers.map((user) => {
                       return (
-                        <Row>
-                          <Col>
-                            <div className="inlineBtn-left-center">
-                              <img
-                                alt={"avatar"}
-                                src={require("../../../assets/img/0.jpeg")}
-                              />
-                              {user.user.requests.length == 0 ||
-                              user.user.requests[0].status == "approved" ? (
-                                <div className="inlineBtn-left ml-2">
-                                  {" "}
-                                  <p>
-                                    {user.user.firstName +
+                        <div>
+                          {user.user.requests.length != 0 &&
+                          user.user.requests[user.user.requests.length - 1]
+                            .status === "pending" ? (
+                            <div className="RequestNameChange">
+                              <tr>
+                                <td>
+                                  <img
+                                    alt={"avatar"}
+                                    src={require("../../../assets/img/0.jpeg")}
+                                  />
+                                  <span className="Corange">
+                                    {user.user.requests[
+                                      user.user.requests.length - 1
+                                    ].fields[0].value +
                                       " " +
-                                      user.user.lastName}
-                                  </p>
-                                </div>
-                              ) : (
-                                <div className="inlineBtn-left mx-0 no-gutters ml-3">
-                                  <p className="new">
-                                    {user.user.requests[0].fields[0].value +
-                                      " " +
-                                      user.user.requests[0].fields[1].value +
-                                      " "}
-                                  </p>
-                                  <p className="prev ml-1 mr-1">
+                                      user.user.requests[
+                                        user.user.requests.length - 1
+                                      ].fields[1].value}
+                                  </span>{" "}
+                                  previously
+                                  <span className="Cmain">
                                     {" "}
-                                    {" Previously "}{" "}
-                                  </p>
-                                  <p>
                                     {user.user.firstName +
                                       " " +
                                       user.user.lastName}
-                                  </p>
-                                </div>
-                              )}
-                            </div>{" "}
-                          </Col>
-                          {user.user.requests.length == 0 ||
-                          user.user.requests[0].status == "approved" ? (
-                            <Col>
-                              <h5>Pro</h5>
-                            </Col>
-                          ) : null}
-                          {user.user.requests.length == 0 ||
-                          user.user.requests[0].status == "approved" ? (
-                            <Col>
-                              {user.status == "pending" ? (
-                                <p id="invitation-sent">Invitation sent</p>
-                              ) : (
-                                <h5>Active</h5>
-                              )}
-                            </Col>
-                          ) : null}
-                          {user.user.requests.length == 0 ||
-                          user.user.requests[0].status == "approved" ? (
-                            <Col className="inlineBtn-center">
-                              <UncontrolledDropdown className="ml-5">
-                                <DropdownToggle
-                                  color="empty"
-                                  className="dropdown-toggle-split"
-                                >
-                                  <div id="edit" className="inlineBtn-center">
-                                    <box-icon
-                                      name="pencil"
-                                      color="#0026bc"
-                                    ></box-icon>
-                                  </div>
-                                </DropdownToggle>
-                                <DropdownMenu className="btn" right>
-                                  <DropdownItem>Edit</DropdownItem>
-                                  <DropdownItem>Delete</DropdownItem>
-                                </DropdownMenu>
-                              </UncontrolledDropdown>
-                            </Col>
+                                  </span>
+                                </td>
+                                <td>
+                                  <Button
+                                    className="DeclineBtn Accept"
+                                    onClick={this.onRequestResponse.bind(
+                                      this,
+                                      user.user.requests[
+                                        user.user.requests.length - 1
+                                      ]._id,
+                                      "approve"
+                                    )}
+                                  >
+                                    Approve
+                                  </Button>
+                                  <Button
+                                    className="DeclineBtn"
+                                    onClick={this.onRequestResponse.bind(
+                                      this,
+                                      user.user.requests[
+                                        user.user.requests.length - 1
+                                      ]._id,
+                                      "reject"
+                                    )}
+                                  >
+                                    Decline
+                                  </Button>
+                                </td>
+                              </tr>
+                            </div>
                           ) : (
-                            <Col className="inlineBtn-center col-4">
-                              <div>
-                                <Button
-                                  id="accept"
-                                  onClick={this.onRequestResponse.bind(
-                                    this,
-                                    user.user.requests[0]._id,
-                                    "approve"
+                            <table>
+                              <tbody>
+                                <tr>
+                                  <td>
+                                    <span>
+                                      {" "}
+                                      <img
+                                        alt={"avatar"}
+                                        src={require("../../../assets/img/0.jpeg")}
+                                      />
+                                    </span>
+                                    {user.user.firstName +
+                                      " " +
+                                      user.user.lastName}
+                                  </td>
+                                  <td>Growth</td>
+                                  {user.status === "pending" ? (
+                                    <td>
+                                      <span className="Corange">
+                                        Invitation sent
+                                      </span>
+                                    </td>
+                                  ) : (
+                                    <td>Active</td>
                                   )}
-                                >
-                                  Approve
-                                </Button>
-                                <Button
-                                  id="decline"
-                                  onClick={this.onRequestResponse.bind(
-                                    this,
-                                    user.user.requests[0]._id,
-                                    "reject"
-                                  )}
-                                >
-                                  Decline
-                                </Button>
-                              </div>
-                            </Col>
+                                  <td>
+                                    {" "}
+                                    <UncontrolledDropdown>
+                                      <DropdownToggle
+                                        color="empty"
+                                        className="dropdown-toggle-split"
+                                      >
+                                        <div
+                                          id="edit"
+                                          className="inlineBtn-center"
+                                        >
+                                          <box-icon
+                                            name="pencil"
+                                            color="#0026bc"
+                                          ></box-icon>
+                                        </div>
+                                      </DropdownToggle>
+                                      <DropdownMenu className="btn" right>
+                                        <DropdownItem>Edit</DropdownItem>
+                                        <DropdownItem>Delete</DropdownItem>
+                                      </DropdownMenu>
+                                    </UncontrolledDropdown>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
                           )}
-                        </Row>
+                        </div>
                       );
                     })}
                 </div>
               </div>
             </PerfectScrollbar>
           </div>
-        </Row>
+        }
       </Fragment>
     );
   }

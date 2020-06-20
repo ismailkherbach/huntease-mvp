@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="20" viewBox="0 0 16 20">
+  <g id="bxs-lock" transform="translate(8 10)" opacity="0.5">
+    <path id="bxs-lock-2" data-name="bxs-lock" d="M8,0A5.006,5.006,0,0,0,3,5V8H2a2,2,0,0,0-2,2v8a2,2,0,0,0,2,2H14a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2H13V5A5.006,5.006,0,0,0,8,0ZM5,5a3,3,0,0,1,6,0V8H5ZM9,15.723V18H7V15.723a2,2,0,1,1,2,0Z" transform="translate(-8 -10)" fill="#8ba3ff"/>
+  </g>
+</svg>

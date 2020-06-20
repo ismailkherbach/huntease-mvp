@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { injectIntl } from "react-intl";
 import { Button, Row, Col } from "reactstrap";
 import IntlMessages from "../../helpers/IntlMessages";
-import { darkMode } from "../../redux/actions";
+import { darkMode, getProfile } from "../../redux/actions";
 import ProfilePopup from "../../components/popup/ProfilePopup";
 
 class Topnav extends React.Component {
@@ -24,45 +24,44 @@ class Topnav extends React.Component {
       showPopup: !this.state.showPopup,
     });
   }
+  componentDidMount() {
+    this.props.getProfile();
+  }
   render() {
     //           <p className="d-inline-block ">Ismail kherbach</p>
 
     return (
-      <div className="topnav">
-        <Row className="inlineBtn-left">
-          <Col>
-            {" "}
-            <img
-              alt={"logo"}
-              id="logo"
-              src={require("../../assets/img/huntease_logo_icon_white.png")}
-            />
-            <p className="d-inline-block greeting">
-              <IntlMessages id="gretting" /> Ismail kherbach
-            </p>
-          </Col>
-        </Row>
-
-        {this.state.showPopup ? (
-          <ProfilePopup
-            text='Click "Close Button" to hide popup'
-            closePopup={this.togglePopup.bind(this)}
-          />
-        ) : null}
+      <div className="topnav-main flex aic jcc fdr">
+        <img
+          alt={"logo"}
+          id="logo"
+          src={require("../../assets/img/huntease_logo_icon_white.png")}
+        />
+        <h3 className="d-inline-block greeting">
+          <IntlMessages id="gretting" /> Ismail kherbach
+        </h3>
+        <h5>Ismail kherbach</h5>
+        <img
+          alt={"logo"}
+          className="avatar"
+          src={`https://huntease-mvp.herokuapp.com/v1/uploads/${this.props.profile.picture}`}
+        />
       </div>
     );
   }
 }
 
 const mapStateToProps = ({ settings }) => {
-  const { locale } = settings;
+  const { locale, profile } = settings;
   return {
     locale,
+    profile,
   };
 };
 export default injectIntl(
   connect(mapStateToProps, {
     darkMode,
+    getProfile,
   })(Topnav)
 );
 /*   <Button className="btn-dark ml-4" onClick={this.handleDarkMode("dark")}>

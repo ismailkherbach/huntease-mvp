@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="15.3" height="17" viewBox="0 0 15.3 17">
+  <g id="bxs-calendar" transform="translate(0)">
+    <path id="bxs-calendar-2" data-name="bxs-calendar" d="M15.3,15.3V3.4a1.7,1.7,0,0,0-1.7-1.7H11.9V0H10.2V1.7H5.1V0H3.4V1.7H1.7A1.7,1.7,0,0,0,0,3.4V15.3A1.7,1.7,0,0,0,1.7,17H13.6A1.7,1.7,0,0,0,15.3,15.3ZM5.1,13.6H3.4V11.9H5.1Zm0-3.4H3.4V8.5H5.1Zm3.4,3.4H6.8V11.9H8.5Zm0-3.4H6.8V8.5H8.5Zm3.4,3.4H10.2V11.9h1.7Zm0-3.4H10.2V8.5h1.7Zm1.7-4.25H1.7V4.25H13.6Z" transform="translate(0 0)" fill="#fff"/>
+  </g>
+</svg>

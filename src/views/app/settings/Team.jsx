@@ -4,7 +4,7 @@ export default class Team extends React.Component {
   render() {
     return (
       <Fragment>
-        <div className="inlineBtn-center">
+        <div className="TeamManagment">
           <TeamManagement />
         </div>
       </Fragment>

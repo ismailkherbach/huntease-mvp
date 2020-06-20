@@ -12,14 +12,14 @@ export default class SettingsNav extends React.Component {
   }
   render() {
     return (
-      <div id="settings-navigation-card" className="inlineBtn-left">
+      <div className="Settings-navigation flex fdr aic jcc">
         {this.state.settingsMenu.slice(0, 5).map((item) => {
           return (
-            <div className="setting-items">
+            <div className="settings-item flex aic jcc fdc">
               <Link style={{ textDecoration: "none" }} to={item.to}>
-                <h1>
+                <h5>
                   <IntlMessages id={item.id} />
-                </h1>
+                </h5>
               </Link>
             </div>
           );

@@ -3,6 +3,11 @@ import ReactDOM from "react-dom";
 import * as serviceWorker from "./serviceWorker";
 import { Provider } from "react-redux";
 import { configureStore } from "./redux/store";
+import * as Sentry from "@sentry/browser";
+Sentry.init({
+  dsn:
+    "https://b113d6fc6a2a496ca6b80b90d62b52a5@o410251.ingest.sentry.io/5284008",
+});
 
 const App = React.lazy(() => import(/* webpackChunkName: "App" */ "./App"));
 ReactDOM.render(

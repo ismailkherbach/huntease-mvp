@@ -77,22 +77,23 @@ export default class JoinCompanySecondStep extends React.Component {
   render() {
     return (
       <Fragment>
-        <div className="auth-container">
+        <div className="auth-bloc-container flex fdc aic jcfs">
           {" "}
           <input
-            className="auth-input-large"
             placeholder="Password"
             type="password"
             onChange={this.handleChangePassword}
           />
           <input
-            className="auth-input-large"
             placeholder="Repeat Password"
             type="password"
             onChange={this.handleChangeConfirmPassword}
           />
-          <Button className="btn-get-started" onClick={this.onUserRegister}>
-            <div className="btn-get-started-text">Complete my profile </div>
+          <Button
+            className={"Auth-button flex aic jcc"}
+            onClick={this.onUserRegister}
+          >
+            <h5>Complete my profile</h5>
           </Button>
         </div>
       </Fragment>

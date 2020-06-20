@@ -39,50 +39,46 @@ class FotgotPassword extends React.Component {
 
     return (
       <Fragment>
-        <main className="auth-container-align">
-          <div className="auth-container">
-            <h3 className="btn-get-started-text">Reset your password</h3>
-            <Formik
-              initialValues={initialValues}
-              onSubmit={this.onForgotPassword}
-            >
-              {({ errors, touched }) => (
-                <Form>
-                  <FormGroup>
-                    <Field
-                      className="auth-input-large"
-                      name="email"
-                      validate={this.validateEmail}
-                      placeholder="Email"
-                    />
-                    {errors.email && touched.email && (
-                      <div className="invalid-feedback d-block">
-                        {errors.email}
-                      </div>
-                    )}
-                  </FormGroup>
-                  {this.props.error && (
-                    <div className="inlineBtn-center">
-                      <div className="error-block">{this.props.error}</div>
+        <div className="auth-bloc-container flex fdc aic jcc">
+          <h2>Reset your password</h2>
+          <Formik
+            initialValues={initialValues}
+            onSubmit={this.onForgotPassword}
+          >
+            {({ errors, touched }) => (
+              <Form className="flex aic jcc fdc">
+                <FormGroup>
+                  <Field
+                    className="auth-input-large"
+                    name="email"
+                    validate={this.validateEmail}
+                    placeholder="Email"
+                  />
+                  {errors.email && touched.email && (
+                    <div className="invalid-feedback d-block">
+                      {errors.email}
                     </div>
                   )}
+                </FormGroup>
+                {this.props.error && (
                   <div className="inlineBtn-center">
-                    <Button className="btn-get-started">
-                      <div className="btn-get-started-text">
-                        Reset your password
-                      </div>
-                    </Button>
+                    <div className="error-block">{this.props.error}</div>
                   </div>
-                </Form>
-              )}
-            </Formik>{" "}
-            <div className="condition-term">
-              <Link to={"/user/login"}>
-                <p>Go back to Sign in</p>
-              </Link>
-            </div>
+                )}
+                <div className="inlineBtn-center">
+                  <Button className="Auth-button flex aic jcc">
+                    <h5> Reset your password</h5>
+                  </Button>
+                </div>
+              </Form>
+            )}
+          </Formik>{" "}
+          <div className="condition-term">
+            <Link to={"/user/login"}>
+              <p>Go back to Sign in</p>
+            </Link>
           </div>
-        </main>
+        </div>
       </Fragment>
     );
   }

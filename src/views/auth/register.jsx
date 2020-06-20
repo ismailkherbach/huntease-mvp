@@ -82,33 +82,25 @@ class Register extends React.Component {
 
   render() {
     return (
-      <div>
-        <main className="auth-container-align">
-          <div className="inlineBtn-col-center">
-            <Button className="auth-button" onClick={this.addCompanyStatus}>
-              Add a company
-            </Button>
-
-            <Button className="auth-button" onClick={this.joinCompanyStatus}>
-              Join a company
-            </Button>
+      <div className="flex aic jcc fdr">
+        <div className="flex fdc aic jcc">
+          <div
+            className="Register-typeActive flex aic jcc"
+            onClick={this.addCompanyStatus}
+          >
+            <h4> Add a company</h4>
           </div>
 
-          <div className="inlineBtn-col-center">
-            <img
-              className="trianlge"
-              alt="1"
-              src={require("../../assets/img/triangle.png")}
-            />
-            <img
-              className="trianlge"
-              alt="2"
-              src={require("../../assets/img/triangle.png")}
-            />
+          <div
+            className="Register-type flex aic jcc"
+            onClick={this.joinCompanyStatus}
+          >
+            <h4> Join a company</h4>
           </div>
-          {this.state.addCompany && <AddCompanyFirstStep />}
-          {this.state.joinCompany && <JoinCompanyFirstStep />}
-        </main>
+        </div>
+
+        {this.state.addCompany && <AddCompanyFirstStep />}
+        {this.state.joinCompany && <JoinCompanyFirstStep />}
       </div>
     );
   }

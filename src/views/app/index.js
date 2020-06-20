@@ -36,37 +36,35 @@ export default class App extends React.Component {
         enabled={this.state.isFull}
         onChange={(isFull) => this.setState({ isFull })}
       >
-        <div className="dashboard-page">
-          <div id="lvl2bg">
-            <AppLayout>
-              <Suspense fallback={<div className="loading" />}>
-                <Switch>
-                  <Redirect
-                    exact
-                    from={`${match.url}/`}
-                    to={`${match.url}/dashboards`}
-                  />
-                  <Route
-                    path={`${match.url}/dashboards`}
-                    render={(props) => <Dashboard {...props} />}
-                  />
-                  <Route
-                    path={`${match.url}/call`}
-                    render={(props) => <Call {...props} />}
-                  />
-                  <Route
-                    path={`${match.url}/guide`}
-                    render={(props) => <Guide {...props} />}
-                  />
-                  <Route
-                    path={`${match.url}/settings`}
-                    render={(props) => <Settings {...props} />}
-                  />
-                  <Redirect to="/error" />
-                </Switch>
-              </Suspense>
-            </AppLayout>
-          </div>
+        <div className="main-bloc">
+          <AppLayout>
+            <Suspense fallback={<div className="loading" />}>
+              <Switch>
+                <Redirect
+                  exact
+                  from={`${match.url}/`}
+                  to={`${match.url}/dashboards`}
+                />
+                <Route
+                  path={`${match.url}/dashboards`}
+                  render={(props) => <Dashboard {...props} />}
+                />
+                <Route
+                  path={`${match.url}/call`}
+                  render={(props) => <Call {...props} />}
+                />
+                <Route
+                  path={`${match.url}/guide`}
+                  render={(props) => <Guide {...props} />}
+                />
+                <Route
+                  path={`${match.url}/settings`}
+                  render={(props) => <Settings {...props} />}
+                />
+                <Redirect to="/error" />
+              </Switch>
+            </Suspense>
+          </AppLayout>
         </div>
       </Fullscreen>
     );

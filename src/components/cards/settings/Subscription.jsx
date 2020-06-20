@@ -5,6 +5,7 @@ import { NotificationManager } from "../../common/react-notifications";
 import styled from "styled-components";
 import Subscribed from "./subsciption/Subscribed";
 import ChoosePlan from "./subsciption/ChoosePlan";
+import DND from "./DND";
 
 class SubscriptionContent extends React.Component {
   constructor(props) {
@@ -17,12 +18,9 @@ class SubscriptionContent extends React.Component {
   render() {
     return (
       <Fragment>
-        <div
-          id="subscription-card"
-          className="no-gutters mx-0 inlineBtn-col-center-top "
-        >
-          <ChoosePlan />
-        </div>
+        {<ChoosePlan />}
+        {/*<Subscribed />*/}
+        {/*<DND />*/}
       </Fragment>
     );
   }

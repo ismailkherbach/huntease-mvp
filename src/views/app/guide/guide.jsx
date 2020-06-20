@@ -9,7 +9,7 @@ export default class Guide extends React.Component {
   render() {
     return (
       <Fragment>
-        <div className="inlineBtn-center">
+        <div className="Guide flex fdr aic jcc">
           <ScriptEditor />
         </div>
       </Fragment>

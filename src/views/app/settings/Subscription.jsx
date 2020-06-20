@@ -5,7 +5,7 @@ export default class Subscription extends React.Component {
   render() {
     return (
       <Fragment>
-        <div className="inlineBtn-center">
+        <div className="Subscription">
           <SubscriptionContent />
         </div>
       </Fragment>

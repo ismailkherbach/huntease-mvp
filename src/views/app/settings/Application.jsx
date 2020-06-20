@@ -5,7 +5,7 @@ export default class Application extends React.Component {
   render() {
     return (
       <Fragment>
-        <div className="inlineBtn-center">
+        <div className="">
           <ApplicationCard />
         </div>
       </Fragment>

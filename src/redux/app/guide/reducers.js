@@ -8,6 +8,9 @@ import {
   DELETE_GUIDE,
   DELETE_GUIDE_SUCCESS,
   DELETE_GUIDE_ERROR,
+  UPDATE_GUIDE,
+  UPDATE_GUIDE_SUCCESS,
+  UPDATE_GUIDE_ERROR,
 } from "../../actions";
 
 const INIT_STATE = {
@@ -15,6 +18,7 @@ const INIT_STATE = {
   guide: null,
   guides: null,
   loading: false,
+  isGuideEmpty: null,
 };
 
 export default (state = INIT_STATE, action) => {
@@ -35,6 +39,24 @@ export default (state = INIT_STATE, action) => {
         guide: "",
         error: action.payload,
       };
+
+    case UPDATE_GUIDE:
+      return { ...state, loading: true, error: "" };
+    case UPDATE_GUIDE_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        guide: action.payload,
+        error: "",
+      };
+    case UPDATE_GUIDE_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        guide: "",
+        error: action.payload,
+      };
+
     case GET_GUIDE:
       return { ...state, loading: true, error: "" };
     case GET_GUIDE_SUCCESS:
@@ -42,6 +64,7 @@ export default (state = INIT_STATE, action) => {
         ...state,
         loading: false,
         guides: action.payload,
+        isGuideEmpty: action.payload.length === 0 ? true : false,
         error: "",
       };
     case GET_GUIDE_ERROR:

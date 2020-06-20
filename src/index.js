@@ -7,5 +7,6 @@ const color = localStorage.getItem("dark_mode")
 
 localStorage.setItem("themeColor", color);
 
-require("./assets/styles/huntease.styles.white.scss");
+//require("./assets/styles/huntease.styles.white.scss");
+require("./assets/styles/hutease.refactored.scss");
 require("./AppRenderer");

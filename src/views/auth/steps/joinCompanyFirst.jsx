@@ -91,18 +91,16 @@ class JoinCompanyFirstStep extends React.Component {
       <div>
         {this.props.authUser.teamJoinCode.valid != true && (
           <Fragment>
-            <div className="auth-container">
+            <div className="auth-bloc-container flex fdc aic jcfs">
               {" "}
               <img
                 alt="joinIlust"
-                src={require("../../../assets/img/intellectual-property.png")}
+                src={require("../../../assets/img/intellectual-property.svg")}
               />
-              <div className="inlineBtn-center">
-                <h3>Ask your administrator for an invitation!</h3>
-              </div>
+              <h2>Ask your administrator for an invitation!</h2>
               <Formik initialValues={initialValues} onSubmit={this.onJoinTeam}>
                 {({ errors, touched }) => (
-                  <Form>
+                  <Form className=" flex fdc aic jcc">
                     <FormGroup>
                       <Field
                         className="auth-input-large"
@@ -124,17 +122,15 @@ class JoinCompanyFirstStep extends React.Component {
                       </div>
                     )}
 
-                    <div className="inlineBtn-center">
-                      <Button className="btn-get-started">
-                        {this.props.authUser.loading ? (
-                          <Spinner animation="border" />
-                        ) : (
-                          <h3 className="btn-get-started-text">
-                            Join this company
-                          </h3>
-                        )}
-                      </Button>
-                    </div>
+                    <Button className={"Auth-button flex aic jcc"}>
+                      {this.props.authUser.loading ? (
+                        <Spinner animation="border" />
+                      ) : (
+                        <h5 className="btn-get-started-text">
+                          Join this company
+                        </h5>
+                      )}
+                    </Button>
                   </Form>
                 )}
               </Formik>{" "}

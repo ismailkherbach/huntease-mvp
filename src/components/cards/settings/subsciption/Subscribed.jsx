@@ -1,35 +1,22 @@
 import React, { Fragment } from "react";
 
-import { Row, Col } from "reactstrap";
-
+import { Row, Col, Button } from "reactstrap";
+import { connect } from "react-redux";
+import { getPaimentHistory, getCardInfo } from "../../../../redux/actions";
 class Subscribed extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       students: [
         {
-          Date: 1,
+          Date: "Mar 27, 2020",
           Amount: "Wasif",
           Status: 21,
           Transaction_ID: "wasif@email.com",
           Invoice: "PDF",
         },
         {
-          Date: 2,
-          Amount: "Wasif",
-          Status: 21,
-          Transaction_ID: "wasif@email.com",
-          Invoice: "PDF",
-        },
-        {
-          Date: 3,
-          Amount: "Wasif",
-          Status: 21,
-          Transaction_ID: "wasif@email.com",
-          Invoice: "PDF",
-        },
-        {
-          Date: 4,
+          Date: "Mar 27, 2020",
           Amount: "Wasif",
           Status: 21,
           Transaction_ID: "wasif@email.com",
@@ -61,71 +48,83 @@ class Subscribed extends React.Component {
     });
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    this.props.getPaimentHistory();
+    this.props.getCardInfo();
+  }
 
   render() {
     return (
       <Fragment>
-        <div className="top-bloc fdr aic ">
-          <div className="left ">
+        <div className="Top-Action-Bloc flex fdr aic jcfs">
+          <div className="leftTop margin-left30 floatLeft">
             <h5>Current plan</h5>
-            <h3>Huntease Growth</h3>
+            <h2>Huntease Growth</h2>
           </div>
-          <div className="top-bloc fdr aic jcfe ">
-            <div className="right ">
-              <div className="billing_btn flex aic jcc">
-                <h5>Change plan</h5>
-              </div>
-              <p>Cancel Subscription</p>{" "}
-            </div>
+          <div className="rightTop floatRight flex aic jcc fdc">
+            <Button className="Change-profile-btn">Change plan </Button>
+            <p>Cancel Subscription</p>{" "}
           </div>
         </div>
-        <div className="scd-bloc fdr ">
-          <div className="left ">
-            <h5>Billing</h5>
-            <p>
-              Your next payment will be due on<span>Jan 25th, 2021</span>
-            </p>
-          </div>
-          <div className=" aic jcfe ">
-            <div className="right ">
-              <div className="billing_btn flex aic jcc">
-                <h5>Change address</h5>
-              </div>
+        <div className="Billing-History">
+          <div className="flex fdr aic jcfs">
+            <div className="leftBottom">
+              <h4>Billing</h4>
+              <h3 className="margin-top30">
+                Your next payment will be due on<b> Jan 25th, 2021</b>
+              </h3>
             </div>
-          </div>{" "}
-        </div>
-        <div className="scd-bloc fdr">
-          <div className="left aic">
-            <h5>Payment Information</h5>
-            <div className="flex fdr aic">
-              <img src={require("../../../../assets/img/billing_master.png")} />
-              <p>Master Card ending with ****0814</p>
-            </div>
+            <div className="rightBottom ">
+              <Button className="Change-profile-btn flex aic jcc">
+                Change address
+              </Button>
+            </div>{" "}
           </div>
-          <div className=" aic jcfe ">
-            <div className="right ">
-              <div className="billing_btn flex aic jcc">
-                <h5>Change payment</h5>
+          <div className="flex fdr aic jcfs">
+            <div className="margin-top35 margin-bottom35 leftBottom">
+              <h4>Payment Information</h4>
+              <div className="flex fdr aic">
+                <img
+                  src={require("../../../../assets/img/billing_master.png")}
+                />
+                <h3 className="padding-left10 padding-right30">
+                  Master Card ending with ****0814
+                </h3>
+                <img src={require("../../../../assets/img/bxs-lock.svg")} />
               </div>
             </div>
-          </div>{" "}
-        </div>
-        <div className="scd-bloc fdr ">
-          <div className="left ">
-            <h5>Billing History</h5>
+            <div className="rightBottom ">
+              <Button className="Change-profile-btn flex aic jcc">
+                Change payment
+              </Button>
+            </div>
+          </div>
+          <div className="scd-bloc fdr ">
+            <div className="left ">
+              <h4>Billing History</h4>
+            </div>
+          </div>
+          <div className="History-Table">
+            <table>
+              <tbody>
+                <tr>{this.renderTableHeader()}</tr>
+                {this.renderTableData()}
+              </tbody>
+            </table>
           </div>
         </div>
-
-        <table id="paymentHistory">
-          <tbody>
-            <tr>{this.renderTableHeader()}</tr>
-            {this.renderTableData()}
-          </tbody>
-        </table>
       </Fragment>
     );
   }
 }
 
-export default Subscribed;
+const mapStateToProps = ({ payment }) => {
+  return {
+    payment,
+  };
+};
+
+export default connect(mapStateToProps, {
+  getPaimentHistory,
+  getCardInfo,
+})(Subscribed);

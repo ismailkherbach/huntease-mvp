@@ -12,6 +12,8 @@ import {
   deleteTeamSuccess,
   changeNameResponseSuccess,
 } from "./actions";
+import { API_URL } from "../../../utils/utils";
+
 const BASIC_URL = "https://huntease-mvp.herokuapp.com/v1/";
 const token_bearer = JSON.parse(localStorage.getItem("user_id"));
 const CREDENTIALS = {
@@ -21,7 +23,7 @@ const CREDENTIALS = {
 const addTeamMemberAsync = async (firstName, lastName, emailPro) =>
   await axios({
     method: "post",
-    url: `${BASIC_URL}/user/`,
+    url: API_URL + `user/`,
     data: {
       firstName,
       lastName,
@@ -56,7 +58,7 @@ function* addTeamMember({ payload }) {
 const changeNameResponseAsync = async (id, desicion) =>
   await axios({
     method: "get",
-    url: `${BASIC_URL}/requests/${id}/${desicion}`,
+    url: API_URL + `requests/${id}/${desicion}`,
 
     headers: {
       authorization: CREDENTIALS["tokenBearer"],
@@ -81,7 +83,7 @@ function* changeNameResponse({ payload }) {
 const getTeamMemberAsync = async () =>
   await axios({
     method: "get",
-    url: `${BASIC_URL}/team/`,
+    url: API_URL + `team/`,
 
     headers: {
       authorization: CREDENTIALS["tokenBearer"],

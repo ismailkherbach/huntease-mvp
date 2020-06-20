@@ -128,14 +128,14 @@ class AddCompanyFirstStep extends React.Component {
       <div>
         {!this.state.secondStepStatus ? (
           <Fragment>
-            <div className="auth-container">
+            <div className="auth-bloc-container flex fdc aic jcfs">
               {" "}
-              <h4>ALL INPUTS ARE REQUIREDS</h4>
+              <p>ALL INPUTS ARE REQUIREDS</p>
               <Formik initialValues={initialValues} onSubmit={this.secondStep}>
                 {({ errors, touched }) => (
                   <Form class>
                     <FormGroup>
-                      <div className="inlineBtn-center">
+                      <div className="small-inputs flex fdr aic jcc">
                         <Field
                           className={
                             errors.firstName && touched.firstName
@@ -159,7 +159,7 @@ class AddCompanyFirstStep extends React.Component {
                         />
                       </div>
 
-                      <div className="inlineBtn-center">
+                      <div className="small-inputs flex fdr aic jcc">
                         <Field
                           className={
                             errors.companyName && touched.companyName
@@ -183,22 +183,21 @@ class AddCompanyFirstStep extends React.Component {
                         />
                       </div>
 
-                      <Field
-                        className={
-                          errors.email && touched.email
-                            ? "auth-input-large-error"
-                            : "auth-input-large"
-                        }
-                        name="email"
-                        validate={this.validateEmail}
-                        placeholder="Email"
-                      />
-                      {errors.email && touched.email && (
-                        <p className="error-message inlineBtn-left">
-                          {errors.email}
-                        </p>
-                      )}
-                      <div className="inlineBtn-col-left">
+                      <div className="flex fdc aic jcc">
+                        <Field
+                          className={
+                            errors.email && touched.email
+                              ? "auth-input-large-error"
+                              : "auth-input-large"
+                          }
+                          name="email"
+                          validate={this.validateEmail}
+                          placeholder="Email"
+                        />
+                        <label
+                          errored={`${errors.email && touched.email}`}
+                          errinfo={errors.email}
+                        ></label>
                         <Field
                           className={
                             errors.password && touched.password
@@ -207,25 +206,22 @@ class AddCompanyFirstStep extends React.Component {
                           }
                           type="password"
                           name="password"
+                          placeholder="Password"
                           validate={this.validatePassword}
                         />
-                        {errors.password && touched.password && (
-                          <p className="error-message">{errors.password}</p>
-                        )}
+                        <label
+                          errored={`${errors.password && touched.password}`}
+                          errinfo={errors.password}
+                        ></label>
                       </div>
 
                       <div className="condition-term">
-                        <FormGroup check>
-                          <Label check>
-                            <Input type="radio" name="radio1" /> I agree to
-                            Huntease Terms and Privacy Policy.
-                          </Label>
-                        </FormGroup>
+                        <FormGroup check></FormGroup>
                       </div>
                     </FormGroup>
-                    <div className="inlineBtn-center">
-                      <Button className={"btn-get-started"}>
-                        Create your company account
+                    <div className="flex aic jcc">
+                      <Button className={"Auth-button flex aic jcc"}>
+                        <h5>Create your company account</h5>
                       </Button>
                     </div>
                   </Form>
@@ -235,61 +231,69 @@ class AddCompanyFirstStep extends React.Component {
           </Fragment>
         ) : (
           <Fragment>
-            <div className="auth-container">
+            <div className="auth-bloc-container flex fdc aic jcfs">
               {" "}
-              <h3>How many people are in your team?</h3>
-              <div className="inlineBtn-center">
-                <Button
-                  className={"btn-choice-company"}
-                  onClick={this.handleChangeMemberCount.bind(this, 1)}
-                >
-                  <h3>1</h3>
-                </Button>
-                <Button
-                  className={"btn-choice-company"}
+              <h5>How many people are in your team?</h5>
+              <div className=" fdr flex aic jcc">
+                <div
+                  className={"company-size flex aic jcc"}
                   onClick={this.handleChangeMemberCount.bind(this, "1")}
                 >
-                  <h3>5 - 10</h3>
-                </Button>
-                <Button
-                  className={"btn-choice-company"}
+                  <h4>1</h4>
+                </div>
+                <div
+                  className={"company-size flex aic jcc"}
+                  onClick={this.handleChangeMemberCount.bind(this, "2-5")}
+                >
+                  <h4>2 - 5</h4>
+                </div>
+                <div
+                  className={"company-size flex aic jcc"}
                   onClick={this.handleChangeMemberCount.bind(this, "5-10")}
                 >
-                  <h3>2 - 6</h3>
-                </Button>
-                <Button
-                  className={"btn-choice-company"}
+                  <h4>5 - 10</h4>
+                </div>
+                <div
+                  className={"company-size flex aic jcc"}
                   onClick={this.handleChangeMemberCount.bind(this, "10-50")}
                 >
-                  <h3>10 - 50</h3>
-                </Button>
-                <Button
-                  className={"btn-choice-company"}
-                  onClick={this.handleChangeMemberCount.bind(this, "+50")}
+                  <h4>10 - 50</h4>
+                </div>
+                <div
+                  className={"company-size flex aic jcc"}
+                  onClick={this.handleChangeMemberCount.bind(this, "50+")}
                 >
-                  <h3>+50</h3>
-                </Button>
+                  <h4>50+</h4>
+                </div>
               </div>
-              <input
-                className="auth-input-large"
-                placeholder="Industy"
-                type="text"
-                onChange={this.handleChangeIndustry}
-              />
-              <input
-                className="auth-input-large"
-                placeholder="Role"
-                type="text"
-                //onChange={this.handleChangeMemberCount}
-              />
+              <div className="selectOptions">
+                <select
+                  value="h"
+                  //onChange={this.handleChangeMemberCount}
+                >
+                  <option>Hello</option>
+                  <option>World</option>
+                  <option>Ho</option>
+                </select>
+              </div>
+              <div className="selectOptions">
+                <select
+                  value="h"
+                  //onChange={this.handleChangeMemberCount}
+                >
+                  <option>Hello</option>
+                  <option>Hello</option>
+                  <option>Hello</option>
+                </select>
+              </div>
               <Button
-                className={"btn-get-started"}
+                className={"Auth-button flex aic jcc"}
                 onClick={this.onUserRegister}
               >
                 {this.props.loading ? (
                   <Spinner animation="border" />
                 ) : (
-                  <h3 className="btn-get-started-text">Access my account</h3>
+                  <h5 className="btn-get-started-text">Access my account</h5>
                 )}
               </Button>
             </div>

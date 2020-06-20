@@ -37,131 +37,274 @@ class ApplicationCard extends React.Component {
             closePopup={this.togglePopup.bind(this)}
           />
         ) : null}
-
-        <Row>
-          <Col>
-            <div id="settings-card" className="no-gutters mx-0">
-              <Row>
-                <Col id="application-card">
-                  <img
-                    alt={"hubspot"}
-                    src={require("../../../assets/img/hubspot.svg")}
-                  />
+        <div className="Applications flex fdr aic jcfs">
+          <div className="App-card flex aic fdc jcc">
+            <div className="flex fdc aifs jcfs">
+              <div className="flex fdr aifs jcfs">
+                <img
+                  alt={"hubspot"}
+                  src={require("../../../assets/img/hubspot.svg")}
+                />
+                <div className="flex fdc aifs jcfs">
                   <h2>Hubspot</h2>
-                  <p>
-                    Phasellus finibus enim nulla, quis ornare odio facilisis eu.
-                    Suspendisse ornare ante sit amet arcu semper,{" "}
-                  </p>
-
-                  {this.props.call.integrationStatus == "hubspot" ? (
-                    <div
-                      className="btn-remove"
-                      onClick={this.onRemoveIntegration.bind(this)}
-                    >
-                      Remove
-                    </div>
-                  ) : (
-                    <div
-                      className="btn-integrate"
-                      onClick={this.togglePopup.bind(this)}
-                    >
-                      + Integrate
-                    </div>
-                  )}
-                </Col>
-
-                <Col id="application-card">
-                  <img
-                    alt={"zapier"}
-                    src={require("../../../assets/img/zapier.svg")}
-                  />
-                  <h2>Zapier</h2>
-                  <p>
-                    Phasellus finibus enim nulla, quis ornare odio facilisis eu.
-                    Suspendisse ornare ante sit amet arcu semper,{" "}
-                  </p>
-                  <div className="btn-integrate"> + Integrate</div>
-                </Col>
-                <Col id="application-card">
-                  <img
-                    alt={"zapier"}
-                    src={require("../../../assets/img/zapier.svg")}
-                  />
-                  <h2>Zapier</h2>
-                  <p>
-                    Phasellus finibus enim nulla, quis ornare odio facilisis eu.
-                    Suspendisse ornare ante sit amet arcu semper,{" "}
-                  </p>
-                  <div className="btn-integrate"> + Integrate</div>
-                </Col>
-                <Col id="application-card">
-                  <img
-                    alt={"calendly"}
-                    src={require("../../../assets/img/calendly.svg")}
-                  />
-                  <h2>Calendly</h2>
-                  <p>
-                    Phasellus finibus enim nulla, quis ornare odio facilisis eu.
-                    Suspendisse ornare ante sit amet arcu semper,{" "}
-                  </p>
-                  <div className="btn-integrate"> + Integrate</div>
-                </Col>
-              </Row>
-
-              <Row>
-                <Col id="application-card">
-                  <img
-                    alt={"hubspot"}
-                    src={require("../../../assets/img/hubspot.svg")}
-                  />
-                  <h2>Hubspot</h2>
-                  <p>
-                    Phasellus finibus enim nulla, quis ornare odio facilisis eu.
-                    Suspendisse ornare ante sit amet arcu semper,{" "}
-                  </p>
-                  <div className="btn-integrate"> + Integrate</div>
-                </Col>
-
-                <Col id="application-card">
-                  <img
-                    alt={"googlecalander"}
-                    src={require("../../../assets/img/googlecalander.svg")}
-                  />
-                  <h2>Google Calander</h2>
-                  <p>
-                    Phasellus finibus enim nulla, quis ornare odio facilisis eu.
-                    Suspendisse ornare ante sit amet arcu semper,{" "}
-                  </p>
-                  <div className="btn-integrate"> + Integrate</div>
-                </Col>
-                <Col id="application-card">
-                  <img
-                    alt={"zapier"}
-                    src={require("../../../assets/img/zapier.svg")}
-                  />
-                  <h2>Zapier</h2>
-                  <p>
-                    Phasellus finibus enim nulla, quis ornare odio facilisis eu.
-                    Suspendisse ornare ante sit amet arcu semper,{" "}
-                  </p>
-                  <div className="btn-integrate"> + Integrate</div>
-                </Col>
-                <Col id="application-card">
-                  <img
-                    alt={"calendly"}
-                    src={require("../../../assets/img/calendly.svg")}
-                  />
-                  <h2>Calendly</h2>
-                  <p>
-                    Phasellus finibus enim nulla, quis ornare odio facilisis eu.
-                    Suspendisse ornare ante sit amet arcu semper,{" "}
-                  </p>
-                  <div className="btn-integrate"> + Integrate</div>
-                </Col>
-              </Row>
+                  <h5>CRM</h5>
+                </div>
+              </div>
+              <p>
+                Phasellus finibus enim nulla, quis ornare odio facilisis eu.
+                Suspendisse ornare ante sit amet arcu semper,{" "}
+              </p>
             </div>
-          </Col>
-        </Row>
+            {this.props.call.integrationStatus == "hubspot" ? (
+              <div
+                className="integrate-button flex fdc aic jcc"
+                onClick={this.onRemoveIntegration.bind(this)}
+              >
+                Remove
+              </div>
+            ) : (
+              <div
+                className="integrate-button flex fdc aic jcc"
+                onClick={this.togglePopup.bind(this)}
+              >
+                + Integrate
+              </div>
+            )}
+          </div>
+          <div className="App-card flex aic fdc jcc blured">
+            <div className="flex fdc aifs jcfs">
+              <div className="flex fdr aifs jcfs">
+                <img
+                  alt={"hubspot"}
+                  src={require("../../../assets/img/pipdrive.svg")}
+                />
+                <div className="flex fdc aifs jcfs">
+                  <h2>Pipdrive</h2>
+                  <h5>CRM</h5>
+                </div>
+              </div>
+              <p>
+                Phasellus finibus enim nulla, quis ornare odio facilisis eu.
+                Suspendisse ornare ante sit amet arcu semper,{" "}
+              </p>
+            </div>
+            {this.props.call.integrationStatus == "hubspot" ? (
+              <div
+                className="integrate-button flex fdc aic jcc"
+                //onClick={this.onRemoveIntegration.bind(this)}
+              >
+                Remove
+              </div>
+            ) : (
+              <div
+                className="integrate-button flex fdc aic jcc"
+                onClick={this.togglePopup.bind(this)}
+              >
+                + Integrate
+              </div>
+            )}
+          </div>
+          <div className="App-card flex aic fdc jcc blured">
+            <div className="flex fdc aifs jcfs">
+              <div className="flex fdr aifs jcfs">
+                <img
+                  alt={"hubspot"}
+                  src={require("../../../assets/img/salesforce.svg")}
+                />
+                <div className="flex fdc aifs jcfs">
+                  <h2>Salesforce</h2>
+                  <h5>CRM</h5>
+                </div>
+              </div>
+              <p>
+                Phasellus finibus enim nulla, quis ornare odio facilisis eu.
+                Suspendisse ornare ante sit amet arcu semper,{" "}
+              </p>
+            </div>
+            {this.props.call.integrationStatus == "hubspot" ? (
+              <div
+                className="integrate-button flex fdc aic jcc"
+                // onClick={this.onRemoveIntegration.bind(this)}
+              >
+                Remove
+              </div>
+            ) : (
+              <div
+                className="integrate-button flex fdc aic jcc"
+                onClick={this.togglePopup.bind(this)}
+              >
+                + Integrate
+              </div>
+            )}
+          </div>
+          <div className="App-card flex aic fdc jcc blured">
+            <div className="flex fdc aifs jcfs">
+              <div className="flex fdr aifs jcfs">
+                <img
+                  alt={"hubspot"}
+                  src={require("../../../assets/img/gong.svg")}
+                />
+                <div className="flex fdc aifs jcfs">
+                  <h2>Gong.io</h2>
+                  <h5>CRM</h5>
+                </div>
+              </div>
+              <p>
+                Phasellus finibus enim nulla, quis ornare odio facilisis eu.
+                Suspendisse ornare ante sit amet arcu semper,{" "}
+              </p>
+            </div>
+            {this.props.call.integrationStatus == "hubspot" ? (
+              <div
+                className="integrate-button flex fdc aic jcc"
+                // onClick={this.onRemoveIntegration.bind(this)}
+              >
+                Remove
+              </div>
+            ) : (
+              <div
+                className="integrate-button flex fdc aic jcc"
+                onClick={this.togglePopup.bind(this)}
+              >
+                + Integrate
+              </div>
+            )}
+          </div>
+        </div>
+        <div className="Applications flex fdr aic jcfs">
+          <div className="App-card flex aic fdc jcc blured">
+            <div className="flex fdc aifs jcfs">
+              <div className="flex fdr aifs jcfs">
+                <img
+                  alt={"hubspot"}
+                  src={require("../../../assets/img/zapier.svg")}
+                />
+                <div className="flex fdc aifs jcfs">
+                  <h2>Zapier</h2>
+                  <h5>CRM</h5>
+                </div>
+              </div>
+              <p>
+                Phasellus finibus enim nulla, quis ornare odio facilisis eu.
+                Suspendisse ornare ante sit amet arcu semper,{" "}
+              </p>
+            </div>
+            {this.props.call.integrationStatus == "hubspot" ? (
+              <div
+                className="integrate-button flex fdc aic jcc"
+                // onClick={this.onRemoveIntegration.bind(this)}
+              >
+                Remove
+              </div>
+            ) : (
+              <div
+                className="integrate-button flex fdc aic jcc"
+                onClick={this.togglePopup.bind(this)}
+              >
+                + Integrate
+              </div>
+            )}
+          </div>
+          <div className="App-card flex aic fdc jcc blured">
+            <div className="flex fdc aifs jcfs">
+              <div className="flex fdr aifs jcfs">
+                <img
+                  alt={"hubspot"}
+                  src={require("../../../assets/img/calender.svg")}
+                />
+                <div className="flex fdc aifs jcfs">
+                  <h2>G. Calendar</h2>
+                  <h5>CRM</h5>
+                </div>
+              </div>
+              <p>
+                Phasellus finibus enim nulla, quis ornare odio facilisis eu.
+                Suspendisse ornare ante sit amet arcu semper,{" "}
+              </p>
+            </div>
+            {this.props.call.integrationStatus == "hubspot" ? (
+              <div
+                className="integrate-button flex fdc aic jcc"
+                //  onClick={this.onRemoveIntegration.bind(this)}
+              >
+                Remove
+              </div>
+            ) : (
+              <div
+                className="integrate-button flex fdc aic jcc"
+                onClick={this.togglePopup.bind(this)}
+              >
+                + Integrate
+              </div>
+            )}
+          </div>
+          <div className="App-card flex aic fdc jcc blured">
+            <div className="flex fdc aifs jcfs">
+              <div className="flex fdr aifs jcfs">
+                <img
+                  alt={"hubspot"}
+                  src={require("../../../assets/img/calandly.svg")}
+                />
+                <div className="flex fdc aifs jcfs">
+                  <h2>Calandly</h2>
+                  <h5>CRM</h5>
+                </div>
+              </div>
+              <p>
+                Phasellus finibus enim nulla, quis ornare odio facilisis eu.
+                Suspendisse ornare ante sit amet arcu semper,{" "}
+              </p>
+            </div>
+            {this.props.call.integrationStatus == "hubspot" ? (
+              <div
+                className="integrate-button flex fdc aic jcc"
+                //  onClick={this.onRemoveIntegration.bind(this)}
+              >
+                Remove
+              </div>
+            ) : (
+              <div
+                className="integrate-button flex fdc aic jcc"
+                onClick={this.togglePopup.bind(this)}
+              >
+                + Integrate
+              </div>
+            )}
+          </div>
+          <div className="App-card flex aic fdc jcc blured">
+            <div className="flex fdc aifs jcfs">
+              <div className="flex fdr aifs jcfs">
+                <img
+                  alt={"hubspot"}
+                  src={require("../../../assets/img/gtasks.svg")}
+                />
+                <div className="flex fdc aifs jcfs">
+                  <h2>Google Tasks</h2>
+                  <h5>CRM</h5>
+                </div>
+              </div>
+              <p>
+                Phasellus finibus enim nulla, quis ornare odio facilisis eu.
+                Suspendisse ornare ante sit amet arcu semper,{" "}
+              </p>
+            </div>
+            {this.props.call.integrationStatus == "hubspot" ? (
+              <div
+                className="integrate-button flex fdc aic jcc"
+                //     onClick={this.onRemoveIntegration.bind(this)}
+              >
+                Remove
+              </div>
+            ) : (
+              <div
+                className="integrate-button flex fdc aic jcc"
+                onClick={this.togglePopup.bind(this)}
+              >
+                + Integrate
+              </div>
+            )}
+          </div>
+        </div>
       </Fragment>
     );
   }

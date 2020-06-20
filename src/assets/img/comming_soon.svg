@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="74" height="27" viewBox="0 0 74 27">
+  <g id="COMING_SOON_SIGN" data-name="COMING SOON SIGN" transform="translate(2 2)">
+    <g id="Rectangle_899" data-name="Rectangle 899" fill="#f5dfd2" stroke="#fff" stroke-width="2">
+      <rect width="70" height="23" rx="5" stroke="none"/>
+      <rect x="-1" y="-1" width="72" height="25" rx="6" fill="none"/>
+    </g>
+    <text id="Coming_soon" data-name="Coming soon" transform="translate(35 15)" fill="#f7894d" font-size="10" font-family="Roboto-Regular, Roboto"><tspan x="-29.543" y="0">Coming soon</tspan></text>
+  </g>
+</svg>

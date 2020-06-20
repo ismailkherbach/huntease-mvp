@@ -19,11 +19,16 @@ class ScriptCard extends React.Component {
       guide: null,
       result: false,
       checked: false,
-      responses: [{ response: "" }],
+      responses: [{ propmt: "", response: "" }],
+      notesResponse: "",
     };
   }
   toggleWithoutGuide() {
     this.setState({ withoutGuide: true, showPopup: false });
+  }
+  toggleChooseGuide() {
+    this.setState({ withoutGuide: false, showPopup: false });
+    this.togglePopup();
   }
   toggleSchedule() {
     this.setState({
@@ -38,8 +43,15 @@ class ScriptCard extends React.Component {
       schedulePopup: false,
     });
   }
+  handleChangeNotes(e) {
+    e.preventDefault();
+    this.setState({
+      notesResponse: e.target.value,
+    });
+  }
   handleChangeResponse(i, event) {
     let responses = [...this.state.responses];
+
     responses[i] = event.target.value;
     this.setState({ responses });
     console.log(this.state.responses);
@@ -54,14 +66,17 @@ class ScriptCard extends React.Component {
   }
   guideCallback(guide) {
     this.setState({ guide: guide }, console.log(this.state.guide));
+    this.togglePopup();
+
     this.addClick(guide.length);
   }
   componentDidMount() {
     this.props.getGuide();
     console.log(this.props.guide.guides);
     if (this.props.guide.guides) {
-      if (this.props.guide.guides.length != 0) {
+      if (!this.props.guide.isGuideEmpty) {
         this.setState({ guide: this.props.guide.guides[0] });
+        console.log(this.state.guide);
       }
     }
   }
@@ -75,50 +90,197 @@ class ScriptCard extends React.Component {
     return (
       <Fragment>
         {this.state.showPopup ? (
-          <div className="popup-chooseGuide">
-            <div className="popup_inner-chooseGuide">
-              <h4 className="float-right" onClick={this.togglePopup.bind(this)}>
-                x
-              </h4>
+          <div className="popup-container flex aic jcc fdc">
+            <div className="chooseGuidePopup">
+              <h3 className="float-right" onClick={this.togglePopup.bind(this)}>
+                <img src={require("../../../assets/img/bx-plus.svg")} />
+              </h3>
 
-              <h4>Choose Guide</h4>
-              {this.props.guide.guides.length != 0 &&
-                this.props.guide.guides.map((guide, x) => {
-                  return (
-                    <div className="inlineBtn-col-left ml-4">
-                      <div
-                        className="historyCard"
-                        onClick={this.guideCallback.bind(this, guide)}
-                      >
-                        <box-icon
-                          name="notepad"
-                          type="solid"
-                          color="#091ad4"
-                        ></box-icon>
-                        <p>{guide.title}</p>{" "}
-                      </div>
-                    </div>
-                  );
-                })}
+              <h3>Choose Guide</h3>
+              <div className="popupInner flex fdc">
+                {this.props.guide.guides
+                  ? !this.props.guide.isGuideEmpty &&
+                    this.props.guide.guides.map((guide, x) => {
+                      return (
+                        <div
+                          className="guidList flex fdr aic"
+                          onClick={this.guideCallback.bind(this, guide)}
+                        >
+                          <img
+                            src={require("../../../assets/img/bx-notepad.svg")}
+                          />
 
-              {this.props.guide.guides.length == 0 && (
-                <div className="inlineBtn-col-center mt-5">
-                  <img
-                    className="empty-guide mt-5"
-                    alt="no-guide"
-                    src={require("../../../assets/img/no_guide.png")}
-                  />
-                  <p className="empty-text mt-3">
-                    You don't have guides click on add guide to create one
-                  </p>
-                </div>
-              )}
+                          <h5>{guide.title}</h5>
+                        </div>
+                      );
+                    })
+                  : ""}
+              </div>
             </div>
           </div>
         ) : null}
 
-        <div id="calls-card">
-          {!this.state.result &&
+        <div className="GuideCall">
+          {this.props.guide.isGuideEmpty && !this.state.withoutGuide ? (
+            <div className="EmptyGuide flex fdc aic jcc">
+              <img
+                alt="no-guide"
+                src={require("../../../assets/img/no_guide.png")}
+              />
+              <h3>You haven't created any conversational guides yet.</h3>
+              <h5>What's a conversational guide?</h5>
+              <Button
+                onClick={this.toggleWithoutGuide.bind(this)}
+                className="integrate-button"
+              >
+                <img src={require("../../../assets/img/bx-plus.svg")} />
+                Continue without guide
+              </Button>
+            </div>
+          ) : (
+            ""
+          )}
+
+          {this.state.withoutGuide && !this.props.guide.isGuideEmpty && (
+            <div className="ScriptCallEditor">
+              <div className="flex fdr aic jcfs">
+                <Button
+                  onClick={this.toggleChooseGuide.bind(this)}
+                  className={`integrate-button ${!this.state.withoutGuide &&
+                    "Clicked"} `}
+                >
+                  <img src={require("../../../assets/img/bxs-notepad.svg")} />
+                  Choose a guide
+                </Button>
+                <Button
+                  onClick={this.toggleWithoutGuide.bind(this)}
+                  className={`integrate-button ${this.state.withoutGuide &&
+                    "Clicked"} `}
+                >
+                  <img src={require("../../../assets/img/bxs-note.svg")} />
+                  Continue without guide
+                </Button>
+              </div>
+              <div className="withoutGuide">
+                <h3>Notes</h3>
+                <textarea
+                  type="textarea"
+                  className="notesArea"
+                  onChange={(e) => {
+                    this.handleChangeNotes(e);
+                  }}
+                />
+              </div>
+            </div>
+          )}
+          {this.props.guide.isGuideEmpty && this.state.withoutGuide ? (
+            <div className="withoutGuide">
+              <h3>Notes</h3>
+              <textarea
+                type="textarea"
+                className="notesArea"
+                onChange={(e) => {
+                  this.handleChangeNotes(e);
+                }}
+              />
+            </div>
+          ) : (
+            ""
+          )}
+
+          {!this.state.withoutGuide && !this.props.guide.isGuideEmpty && (
+            <div className="ScriptCallEditor">
+              <div className="flex fdr aic jcfs">
+                <Button
+                  onClick={this.toggleChooseGuide.bind(this)}
+                  className={`integrate-button ${!this.state.withoutGuide &&
+                    "Clicked"} `}
+                >
+                  <img src={require("../../../assets/img/bxs-notepad.svg")} />
+                  Choose a guide
+                </Button>
+                <Button
+                  onClick={this.toggleWithoutGuide.bind(this)}
+                  className={`integrate-button ${this.state.withoutGuide &&
+                    "Clicked"} `}
+                >
+                  <img src={require("../../../assets/img/bxs-note.svg")} />
+                  Continue without guide
+                </Button>
+              </div>
+
+              {this.props.guide.guides ? (
+                <div className="">
+                  {this.state.guide != null ? (
+                    <PerfectScrollbar>
+                      <div className="scroll-callScript">
+                        <h3>{this.state.guide.title}</h3>
+                        {this.state.guide.questions.map((question, x) => {
+                          return (
+                            <div>
+                              <h5>
+                                <div
+                                  dangerouslySetInnerHTML={{
+                                    __html: question,
+                                  }}
+                                />
+                              </h5>
+                              <textarea
+                                key={x}
+                                className="guide-response-text-area"
+                                placeholder="Write notes"
+                                type="text"
+                                onChange={this.handleChangeResponse.bind(
+                                  this,
+                                  x
+                                )}
+                              />
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </PerfectScrollbar>
+                  ) : (
+                    <PerfectScrollbar>
+                      {this.props.guide.guides ? (
+                        <div className="scroll-callScript">
+                          <h3>{this.state.guide.title}</h3>
+                          {this.state.guide.questions.map((question, x) => {
+                            return (
+                              <div>
+                                <h5>
+                                  <div
+                                    dangerouslySetInnerHTML={{
+                                      __html: question,
+                                    }}
+                                  />
+                                </h5>
+                                <textarea
+                                  key={x}
+                                  className="guide-response-text-area"
+                                  placeholder="Write notes"
+                                  type="text"
+                                  onChange={this.handleChangeResponse.bind(
+                                    this,
+                                    x
+                                  )}
+                                />
+                              </div>
+                            );
+                          })}
+                        </div>
+                      ) : (
+                        ""
+                      )}
+                    </PerfectScrollbar>
+                  )}
+                </div>
+              ) : (
+                ""
+              )}
+            </div>
+          )}
+          {/*!this.state.result &&
             this.props.guide.guides &&
             this.props.guide.guides.length != 0 && (
               <div>
@@ -239,7 +401,7 @@ class ScriptCard extends React.Component {
                   ) : null}
                 </div>
               </div>
-            )}
+            )*/}
 
           <div className="inlineBtn-col-center">
             {this.state.schedulePopup ? (
@@ -249,7 +411,7 @@ class ScriptCard extends React.Component {
               />
             ) : null}
           </div>
-          {!this.state.result && this.props.guide.guides ? (
+          {/*!this.state.result && this.props.guide.guides ? (
             <div>
               {this.props.guide.guides.length == 0 && !this.state.withoutGuide && (
                 <div className="inlineBtn-col-center mt-5">
@@ -270,20 +432,20 @@ class ScriptCard extends React.Component {
                   </Button>
                 </div>
               )}
-              <div className="inlineBtn-center">
+              { <div className="inlineBtn-center">
                 <Button
                   onClick={this.toggleSchedule.bind(this)}
                   className="confirm-btn"
                 >
                   Book a meeting
                 </Button>
-              </div>
+              </div>}
             </div>
           ) : (
             ""
-          )}
+          )*/}
 
-          {this.state.result && (
+          {/*this.state.result && (
             <div className="res-guide ">
               <PerfectScrollbar>
                 <div className="scroll-guide-result">
@@ -328,7 +490,44 @@ class ScriptCard extends React.Component {
                 </Button>
               </div>
             </div>
-          )}
+          )*/}
+
+          <div className="Bottom-bloc flex fdr aic jcc">
+            {this.props.guide.isGuideEmpty && (
+              <Button
+                onClick={this.toggleSchedule.bind(this)}
+                className="integrate-button"
+              >
+                <img src={require("../../../assets/img/bx-plus.svg")} />
+                New Guide
+              </Button>
+            )}
+            <Button
+              onClick={this.toggleSchedule.bind(this)}
+              className="Save-changes-btn Schedules"
+            >
+              <img src={require("../../../assets/img/bxs-calendar.svg")} />
+              Schedules
+            </Button>
+            {this.props.call.callEnded && (
+              <Button
+                onClick={this.toggleSchedule.bind(this)}
+                className="Save-changes-btn "
+              >
+                <img src={require("../../../assets/img/bxs-calendar.svg")} />
+                Looks good!
+              </Button>
+            )}
+            {this.props.call.callEnded && (
+              <Button
+                onClick={this.toggleSchedule.bind(this)}
+                className="Save-changes-btn"
+              >
+                <img src={require("../../../assets/img/bxs-calendar.svg")} />
+                Send to hubspot
+              </Button>
+            )}
+          </div>
         </div>
       </Fragment>
     );

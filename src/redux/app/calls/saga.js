@@ -17,6 +17,8 @@ import {
   deleteIntegrationSuccess,
   getIntegrationsError,
 } from "./actions";
+import { API_URL } from "../../../utils/utils";
+
 const BASIC_URL = "https://huntease-mvp.herokuapp.com/v1";
 const CREDENTIALS = {
   tokenBearer: JSON.parse(localStorage.getItem("user_id")),
@@ -24,7 +26,7 @@ const CREDENTIALS = {
 const getLeadsAsync = async () =>
   await axios({
     method: "get",
-    url: `${BASIC_URL}/lead/`,
+    url: API_URL + `lead/`,
     headers: {
       authorization: CREDENTIALS["tokenBearer"],
     },
@@ -32,7 +34,7 @@ const getLeadsAsync = async () =>
 const pullLeadsAysnc = async () =>
   await axios({
     method: "get",
-    url: `${BASIC_URL}/integration/sync`,
+    url: API_URL + `integration/sync`,
     headers: {
       authorization: CREDENTIALS["tokenBearer"],
     },
@@ -55,7 +57,7 @@ function* getLeads({ payload }) {
 const syncLeadsAsync = async () =>
   await axios({
     method: "get",
-    url: `${BASIC_URL}/integration/sync`,
+    url: API_URL + `integration/sync`,
     headers: {
       authorization: CREDENTIALS["tokenBearer"],
     },
@@ -77,7 +79,7 @@ function* syncLeads({ payload }) {
 const deleteLeadsAsync = async (lead) =>
   await axios({
     method: "delete",
-    url: `${BASIC_URL}/lead/${lead}`,
+    url: API_URL + `lead/${lead}`,
     headers: {
       authorization: CREDENTIALS["tokenBearer"],
     },
@@ -101,7 +103,7 @@ function* deleteLeads({ payload }) {
 const integrateHubspotAsync = async (apiKey) =>
   await axios({
     method: "post",
-    url: `${BASIC_URL}/integration/`,
+    url: API_URL + `integration/`,
     data: {
       key: apiKey,
     },
@@ -130,7 +132,7 @@ function* integrateHubspot({ payload }) {
 const getIntegrationAsync = async () =>
   await axios({
     method: "get",
-    url: `${BASIC_URL}/integration/`,
+    url: API_URL + `integration/`,
     headers: {
       authorization: CREDENTIALS["tokenBearer"],
     },
@@ -155,7 +157,7 @@ function* getIntegration({ payload }) {
 const deleteIntegrationAsync = async () =>
   await axios({
     method: "delete",
-    url: `${BASIC_URL}/integration`,
+    url: API_URL + `integration`,
     headers: {
       authorization: CREDENTIALS["tokenBearer"],
     },

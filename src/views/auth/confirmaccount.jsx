@@ -24,23 +24,20 @@ class ConfirmAccount extends React.Component {
   render() {
     return (
       <Fragment>
-        <main className="auth-container-align">
-          <div className="auth-container inlineBtn-col-center">
-            {" "}
-            <p className="btn-get-started-textt">Account confirmation</p>
-            {this.props.authUser.loading ? (
-              <div className="inlineBtn-center">
-                <Spinner animation="border" />
-              </div>
-            ) : null}
-            {this.props.authUser.error && <p>{this.props.authUser.error}</p>}
-            <div className="condition-term">
-              <Link to={"/user/login"}>
-                <p>Go back to Sign in</p>
-              </Link>
+        <div className="auth-bloc-container flex fdc aic jcc">
+          <h2>Account confirmation</h2>
+          {this.props.authUser.loading ? (
+            <div className="inlineBtn-center">
+              <Spinner animation="border" />
             </div>
+          ) : null}
+          {this.props.authUser.error && <p>{this.props.authUser.error}</p>}
+          <div className="condition-term">
+            <Link to={"/user/login"}>
+              <p>Go back to Sign in</p>
+            </Link>
           </div>
-        </main>
+        </div>
       </Fragment>
     );
   }

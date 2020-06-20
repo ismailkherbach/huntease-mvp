@@ -4,8 +4,8 @@ export default class Account extends React.Component {
   render() {
     return (
       <Fragment>
-        <div className="inlineBtn-center">
-          <AccountCall />{" "}
+        <div className="flex aifs jcfs fdc">
+          <AccountCall />
         </div>
       </Fragment>
     );

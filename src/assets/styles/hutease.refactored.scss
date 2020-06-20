@@ -1,0 +1,1351 @@
+@import "./colors.scss";
+@import "./fonts.scss";
+@import "./miscs.scss";
+@import "./_mixins.scss";
+
+:root {
+  --navbar-height: 41px;
+  --navbar-main-height: 65px;
+  --sidebar-width: 80px;
+  --sidebar-height: 100vh;
+}
+
+$huntease-main: #0026bc;
+$huntease-light: #e9effb;
+$huntease-medium: #8ba3ff;
+$huntease-dark: #052375;
+$huntease-accent: #ffc371;
+$huntease-green: #18f5a2;
+$huntease-red: #ff8565;
+$huntease-darkmode: #001134;
+$huntease-titles: #001c56;
+$white: #ffffff;
+$gray: #eeeeee;
+
+$font: "Roboto";
+$bold: 700;
+$regular: 400;
+$light: 300;
+$border-radius-inputs: 10px;
+$border-radius-button: 15px;
+$border-radius-auth: 20px;
+$auth-shadow: 0px 1px 10px rgba(185, 185, 185, 0.08);
+$shadow: 0px 1px 10px rgba(0, 0, 0, 0.08);
+$box-shadow: 0px 3px 17px rgba(0, 0, 0, 0.08);
+
+$height-auth-inputs: 43px;
+p {
+  font-family: $font;
+  font-size: 12px;
+  line-height: normal;
+}
+
+h5 {
+  font-family: $font;
+  font-size: 0.875em;
+  line-height: normal;
+}
+
+h4 {
+  font-family: $font;
+  font-size: 16px;
+  line-height: normal;
+}
+
+h3 {
+  font-family: $font;
+  font-size: 20px;
+  line-height: normal;
+}
+
+h2 {
+  font-family: $font;
+  font-size: 1.5em;
+  line-height: 2.5;
+}
+
+input {
+  font-size: 14px;
+  padding: 14px;
+  border-color: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: #e8edff;
+  color: $huntease-main;
+  border-radius: $border-radius-inputs;
+  border: 0;
+  outline: 0;
+}
+label {
+  font-size: 12px;
+  font-weight: $bold;
+  color: $huntease-main;
+}
+textarea {
+  font-size: 14px;
+  padding: 14px;
+  border-color: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: #e8edff;
+  color: $huntease-main;
+  border-radius: $border-radius-inputs;
+  border: 0;
+  outline: 0;
+}
+select {
+  font-size: 14px;
+  padding: 14px;
+  border-color: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: #e8edff;
+  color: $huntease-main;
+  border-radius: $border-radius-inputs;
+  border: 0;
+  outline: 0;
+}
+::placeholder {
+  color: #8ba3ff;
+}
+
+.Auth-button {
+  cursor: pointer;
+  width: 14.8125em;
+  height: $height-auth-inputs;
+  background-color: white;
+  border: 2px solid $huntease-main;
+  border-radius: $border-radius-inputs;
+  margin-bottom: 15px;
+  & h5 {
+    font-weight: 700;
+    margin: 0;
+    color: $huntease-main;
+  }
+}
+
+.integrate-button {
+  cursor: pointer;
+  width: 109px;
+  height: 39px;
+  height: $height-auth-inputs;
+  background-color: white;
+  box-shadow: 0 -1px 10px #f5f5f5;
+  border-radius: 15px;
+  font-weight: $regular;
+  font-size: 0.875em;
+  color: $huntease-main;
+}
+.Save-changes-btn {
+  width: 9.963125rem;
+  height: 2.25rem;
+  background-color: #ffb58d;
+  color: white;
+  font-family: "Roboto";
+  font-size: 0.857em;
+  font-weight: $light;
+  border-radius: $border-radius-button;
+  outline: 0;
+  border-color: white;
+  cursor: pointer;
+}
+.Change-profile-btn {
+  width: 70px;
+  height: 37px;
+  background-color: white;
+  color: $huntease-main;
+  font-family: "Roboto";
+  font-size: 0.857em;
+  font-weight: $regular;
+  border-radius: $border-radius-inputs;
+  outline: 0;
+  border-color: white;
+  cursor: pointer;
+}
+
+.Change-theme-btn {
+  width: 90px;
+  height: 39px;
+  background-color: white;
+  color: $huntease-titles;
+  font-family: "Roboto";
+  font-size: 0.857em;
+  font-weight: $bold;
+  border-radius: $border-radius-inputs;
+  outline: 0;
+  box-shadow: 0 0 7px #ff9751a1;
+  border-color: white;
+  margin: 0 20px 0 20px;
+  cursor: pointer;
+  &Dark {
+    color: $huntease-medium;
+    background-color: $huntease-titles;
+    width: 90px;
+    height: 39px;
+    font-family: "Roboto";
+    font-size: 0.857em;
+    font-weight: $bold;
+    border-radius: $border-radius-inputs;
+    outline: 0;
+    border-color: white;
+    cursor: pointer;
+    position: relative;
+    .comming-soon {
+      position: absolute;
+      top: -10px;
+      right: -60px;
+    }
+  }
+}
+.Register-type {
+  width: 10.75em;
+  height: 3.8125em;
+  background-color: #0020a0;
+  margin: 0 35px 26px 0;
+  cursor: pointer;
+  border-radius: $border-radius-button;
+  & h4 {
+    color: $huntease-medium;
+    font-weight: bold;
+    margin: 0;
+  }
+  &Active {
+    width: 10.75em;
+    height: 3.8125em;
+    background-color: white;
+    border-radius: $border-radius-button;
+    box-shadow: 0px 10px 40px #001c56;
+    margin: 0 35px 26px 0;
+    cursor: pointer;
+
+    & h4 {
+      color: $huntease-main;
+      font-weight: bold;
+      margin: 0;
+    }
+  }
+}
+
+::-webkit-scrollbar {
+  background: $huntease-light;
+  border-radius: 2px;
+  height: 8px;
+  width: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $huntease-medium;
+  border-radius: 2px;
+  background-clip: content-box;
+  border: 5px solid transparent;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: $huntease-medium;
+}
+::-webkit-scrollbar-button {
+  display: none;
+}
+
+html {
+  font-size: 16px;
+}
+html,
+body {
+  background-color: #f3f7fc;
+  font-size: 16px;
+}
+.auth-bloc {
+  background-image: url("../home_assets/login_bg.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  overflow-y: hidden;
+  .auth-contour {
+    width: 100%;
+    height: 100vh;
+
+    .auth-bloc-container {
+      width: 38.8625rem;
+      height: 25.5625rem;
+      & img {
+        width: 96px;
+      }
+      & p {
+        color: $huntease-medium;
+        font-weight: $regular;
+      }
+      & h5 {
+        color: $huntease-main;
+        font-weight: $bold;
+      }
+      & .small-inputs {
+        & input {
+          width: 15.625rem;
+          margin: 0 10px 15px 10px;
+        }
+      }
+      background-color: white;
+      border-radius: $border-radius-auth;
+      box-shadow: $auth-shadow;
+      padding: 20px;
+      // display: inline-block;
+      top: 0;
+      right: 0;
+      left: 0;
+      right: 0;
+
+      & h2 {
+        color: $huntease-main;
+      }
+      & input {
+        width: 32.0625rem;
+        height: $height-auth-inputs;
+        margin: 0px 0 5px 0;
+      }
+      .selectOptions {
+        & select {
+          width: 32.0625rem;
+          height: $height-auth-inputs;
+          margin: 0px 0 15px 0;
+        }
+      }
+      & label {
+        position: relative;
+        width: 80%;
+        // margin-right: 15px;
+        padding-bottom: 10px;
+        font-size: 14px;
+        font-weight: 500;
+        color: red;
+        &[errored="true"] {
+          & + input {
+            border-color: red;
+          }
+          &:after {
+            position: absolute;
+            bottom: 0;
+            color: red;
+            left: 0;
+            font-size: 12px;
+            content: attr(errinfo);
+          }
+        }
+      }
+
+      & .company-size {
+        height: 3.25em;
+        padding: 27px;
+        margin: 10px;
+        background-color: #e8edff;
+        border-radius: $border-radius-button;
+        margin-bottom: 40px;
+        cursor: pointer;
+        & h4 {
+          color: $huntease-main;
+          font-weight: $bold;
+          margin: 0;
+        }
+      }
+    }
+  }
+
+  .topnav {
+    height: var(--navbar-height);
+    width: 70vw;
+    position: fixed;
+    padding: 40px 0 0 60px;
+    & img {
+      width: 20%;
+    }
+  }
+}
+
+.main-bloc {
+  background-image: url("../img/mainback.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  overflow-y: hidden;
+  .main-contour {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.topnav-main {
+  height: var(--navbar-main-height);
+  width: 81.75rem;
+  //position: fixed;
+  padding-top: 25px;
+  // padding: 40px 0 0 60px;
+  & h3 {
+    font-size: 1.8125em;
+    font-weight: $light;
+    color: white;
+    margin: 0;
+    opacity: 0.3;
+    width: 71%;
+  }
+  & img {
+    width: 44px;
+    margin-right: 80px;
+  }
+  & h5 {
+    color: white;
+    font-weight: $regular;
+  }
+  .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: $border-radius-button;
+    margin: 0 0 0 20px;
+  }
+}
+
+.sidenav {
+  margin: 46px 0 0 0;
+  ul {
+    margin: 0;
+    padding: 0;
+  }
+  ul li {
+    background-color: white;
+    width: 80px;
+    height: 80px;
+    transform: translateZ(0);
+    transition: transform 0.25s ease-out;
+    list-style-type: none;
+    margin-bottom: 10px;
+    border-radius: 15px;
+    color: $huntease-medium;
+
+    box-shadow: $shadow;
+    & h5 {
+      font-weight: $regular;
+      line-height: 2;
+      margin: 0;
+    }
+  }
+  li:hover {
+    color: $huntease-accent;
+    transform: scale(1.05);
+  }
+
+  svg:hover {
+    color: $huntease-accent;
+  }
+}
+
+.Guide {
+  .Guide-editor {
+    width: 47.5em;
+    height: 27.5em;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: $box-shadow;
+    margin: 31px 25px 25px 60px;
+    padding: 25px;
+    ::-webkit-scrollbar {
+      background: $huntease-light;
+      border-radius: 2px;
+      height: 8px;
+      width: 7px;
+      display: none;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: $huntease-medium;
+      border-radius: 2px;
+      background-clip: content-box;
+      border: 5px solid transparent;
+      display: none;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: $huntease-medium;
+      display: none;
+    }
+    ::-webkit-scrollbar-button {
+      display: none;
+    }
+    .Title {
+      font-size: 1.3125em;
+      color: $huntease-medium;
+      opacity: 0.5;
+      font-weight: $light;
+      font-family: $font;
+      outline: 0;
+    }
+    .prompt-field {
+      padding: 0 0 20px 0;
+      .add-prompt {
+        width: 40px;
+        height: 40px;
+        background-color: #e8edff;
+        border-radius: $border-radius-button;
+        margin: 0 20px 0 0;
+      }
+      .prompt {
+        font-size: 1.0625em;
+        color: $huntease-medium;
+        opacity: 0.5;
+        font-weight: $regular;
+        font-family: $font;
+        margin: 0;
+        width: 90%;
+        outline: 0;
+      }
+    }
+  }
+  .Tag-picker {
+    width: 47.5em;
+    height: 10.0625em;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: $box-shadow;
+    margin: 0 25px 0 60px;
+    padding: 25px;
+    & h5 {
+      color: $huntease-medium;
+      font-weight: $bold;
+      line-height: 1.5;
+    }
+    & input {
+      width: 44.375rem;
+      height: 2.5rem;
+      margin: 0 0 15px 0;
+    }
+  }
+  .Guides {
+    width: 23.75em;
+    height: 35.75em;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: $box-shadow;
+    margin: 20px 0 0 0;
+    padding: 25px;
+    & h2 {
+      font-size: 1.3125em;
+      color: $huntease-titles;
+      font-weight: $bold;
+      line-height: 0;
+      padding: 0 0 25px 0;
+    }
+    & h5 {
+      color: $huntease-titles;
+      margin: 0;
+      width: 80%;
+      padding: 0 0 0 15px;
+    }
+  }
+  .Search-guide {
+    //padding: 25px;
+
+    & input {
+      width: 23.75rem;
+      height: 2.3125rem;
+      margin: 31px 0 0 0;
+      opacity: 0.5;
+      background-color: $huntease-dark;
+    }
+  }
+}
+
+.Settings {
+  margin: 31px 0 0 60px;
+  .Settings-container {
+    height: 36.625em;
+    width: 71.4375em;
+    background-color: white;
+    border-radius: $border-radius-button;
+    box-shadow: $box-shadow;
+    position: relative;
+
+    & .Save-changes-btn {
+      position: absolute;
+      bottom: 25px;
+      right: 25px;
+    }
+    .MyProfile {
+      padding: 30px;
+
+      & h5 {
+        font-weight: $regular;
+        color: $huntease-medium;
+      }
+      & input {
+        width: 18.75rem;
+        height: 2.6875rem;
+      }
+
+      .general-settings {
+        & h4 {
+          color: $huntease-medium;
+        }
+        & input {
+          width: 30.625rem;
+        }
+        & h5 {
+          padding: 0 15px 0 0;
+        }
+      }
+      .Change-input {
+        width: 18.75rem;
+        height: 2.6875rem;
+        background-color: #e8edff;
+        border-radius: $border-radius-inputs;
+        padding: 0 0 0 15px;
+        & h5 {
+          margin: 0;
+          width: 74.7%;
+        }
+      }
+      .Add-number {
+        margin-left: 21.3%;
+        width: 18.75rem;
+        height: 2.6875rem;
+        background-color: #e8edff;
+        border-radius: $border-radius-inputs;
+        padding: 0 0 0 15px;
+        & h5 {
+          margin: 0;
+          width: 74.7%;
+        }
+        & h4 {
+          color: $huntease-main;
+          font-weight: $regular;
+          margin: 0;
+          padding-left: 10px;
+          width: 64.7%;
+        }
+        & img {
+          width: 27px;
+          border-radius: 2px;
+        }
+      }
+      .Profil-right {
+        margin: 0 0 0 21.3%;
+        width: 300px;
+        height: 251px;
+        background-color: white;
+        box-shadow: $box-shadow;
+        border-radius: $border-radius-button;
+        .pictureUpload {
+          position: relative;
+          z-index: 10000;
+          & .profile-img {
+            z-index: 100;
+          }
+          .upload {
+            position: absolute;
+            bottom: 5px;
+            right: 40px;
+            z-index: 1000;
+            width: 14px;
+            border-radius: 0px;
+            background-color: none;
+            cursor: pointer;
+          }
+        }
+        & h3 {
+          color: $huntease-main;
+          font-weight: bold;
+          line-height: 2.3;
+          margin: 0;
+        }
+        & img {
+          width: 100px;
+          border-radius: 20px;
+        }
+      }
+    }
+  }
+  .Settings-navigation {
+    .settings-item {
+      width: 170px;
+      height: 54px;
+      border-radius: 15px 15px 0 0;
+      background-color: white;
+      margin: 0 0 -15px 5px;
+      & h5 {
+        font-weight: $regular;
+        color: $huntease-medium;
+      }
+    }
+  }
+
+  .Applications {
+    padding: 30px 0 0 30px;
+    .App-card {
+      margin: 15px 30px 30px 30px;
+      width: 13.9375rem;
+      height: 13.9375rem;
+      & img {
+        width: 50px;
+        margin: 0 20px 20px 0;
+        padding: 0;
+      }
+      & h5 {
+        color: $huntease-medium;
+        font-weight: $regular;
+        margin: 0 0 20px 0;
+      }
+      & p {
+        color: $huntease-main;
+        font-weight: $regular;
+        line-height: 2;
+        width: 90%;
+      }
+      & h2 {
+        line-height: normal;
+        color: $huntease-titles;
+        font-weight: $bold;
+        margin: 0;
+        font-size: 1.125em;
+      }
+    }
+  }
+  .Subscription {
+    padding: 25px;
+    .Top-Action-Bloc {
+      width: 100%;
+      height: 7.9375em;
+      background-image: url("../img/mainback.svg");
+      background-size: cover;
+      background-repeat: no-repeat;
+      //width: 100%;
+      border-radius: $border-radius-button;
+      //margin-right: 25px;
+      & p {
+        color: $huntease-medium;
+        margin: 0;
+        line-height: 2.5;
+      }
+      & h5 {
+        color: white;
+        font-weight: $regular;
+        margin: 0;
+      }
+      & h2 {
+        color: white;
+        font-weight: $bold;
+        font-size: 1.625em;
+        margin: 0;
+      }
+      & .Change-profile-btn {
+        width: 159px;
+        height: 49px;
+      }
+      & .leftTop {
+        width: 90%;
+      }
+      & .rightTop {
+        width: 23%;
+      }
+    }
+    .Billing-History {
+      padding: 30px 0px 30px 0px;
+      & h4 {
+        font-weight: $bold;
+        color: $huntease-main;
+      }
+      & .Change-profile-btn {
+        width: 187px;
+        height: 40px;
+        box-shadow: $box-shadow;
+      }
+      & h3 {
+        color: $huntease-titles;
+        font-weight: $regular;
+        margin: 0;
+        line-height: 2.7;
+        font-size: 1em;
+      }
+      & img {
+        margin: 0;
+      }
+      & .leftBottom {
+        width: 100%;
+      }
+      & .rightBottom {
+        width: 22%;
+      }
+
+      .History-Table {
+        width: 100%;
+        & table {
+          width: 100%;
+          & tbody {
+            & tr {
+              color: $huntease-titles;
+              font-size: 15px;
+              font-weight: $regular;
+              font-family: "Roboto";
+              padding: 15px 0 10px 0;
+            }
+            & th {
+              color: $huntease-medium;
+              font-size: 1em;
+              font-weight: $light;
+              font-family: "Roboto";
+              padding: 15px 0 10px 0;
+            }
+          }
+        }
+      }
+    }
+
+    .Plans-bloc {
+      padding: 30px;
+      & p {
+        font-weight: $bold;
+        color: $huntease-medium;
+        padding: 0 80px 0 80px;
+      }
+      .Plan {
+        margin: 20px 10px 0 10px;
+        width: 235px;
+        height: 153px;
+        background-color: #eef3ff;
+        border-radius: 40px;
+        overflow-x: hidden;
+        overflow-y: visible;
+        cursor: pointer;
+        position: relative;
+        & p {
+          padding: 0;
+        }
+        & h5 {
+          font-weight: $bold;
+          color: $huntease-main;
+          background-color: #d3e1ff;
+          border-radius: 11px 11px 0 0;
+          width: 100%;
+          text-align: center;
+          height: 25.37px;
+          margin: 10px 0 0 0;
+          padding: 0;
+        }
+        & h2 {
+          color: $huntease-main;
+          font-size: 2em;
+          font-weight: $light;
+          line-height: normal;
+          margin: 20px 0 10px 0;
+        }
+        .discount {
+          position: absolute;
+          top: -10px;
+          margin: 0;
+          padding: 0;
+          width: 130px;
+          height: 21px;
+          border-radius: 9px;
+          background-color: $huntease-medium;
+
+          & p {
+            color: white;
+            font-weight: $light;
+            margin: 0;
+            padding: 0;
+          }
+        }
+        & .AtiveDiscount {
+          background-color: #18d57d;
+        }
+      }
+      & .Choosed {
+        border: 3px solid #18d57d;
+        box-shadow: $box-shadow;
+      }
+      .PromoCode {
+        padding: 0px 0 0 0;
+        & h5 {
+          color: $huntease-main;
+          font-weight: $bold;
+        }
+        & input {
+          width: 427px;
+          height: 36px;
+        }
+        & .Change-profile-btn {
+          font-weight: $bold;
+          box-shadow: $box-shadow;
+          margin: 0 0 0 15px;
+        }
+      }
+      .Toggle {
+        & p {
+          color: $huntease-medium;
+          font-weight: $regular;
+          margin: 0;
+          padding: 0;
+        }
+        & h5 {
+          color: $huntease-main;
+          font-weight: $bold;
+          font-size: 12px;
+          margin: 0;
+          padding: 0;
+        }
+        .toggle {
+          margin: 20px 15px 20px 15px;
+        }
+      }
+    }
+    .ProccedBloc {
+      position: fixed;
+      width: 100%;
+      height: 70px;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      background-color: white;
+      box-shadow: $shadow;
+      & p {
+        font-weight: $regular;
+        font-size: 1em;
+        color: $huntease-main;
+        margin: 0;
+      }
+      & .Change-profile-btn {
+        font-weight: $regular;
+        background-color: $huntease-main;
+        width: 139px;
+        color: white;
+        margin: 0 0 0 50px;
+      }
+    }
+  }
+
+  .TeamManagment {
+    padding: 10px 20px 20px 20px;
+    .AddMember {
+      width: 100%;
+      width: 68.875rem;
+      height: 9.5625rem;
+      background-color: $huntease-main;
+      border-radius: $border-radius-button;
+      padding: 15px 20px 15px 20px;
+      margin-bottom: 30px;
+      & h5 {
+        color: $huntease-medium;
+        font-weight: $regular;
+        padding: 0 0 15px 0;
+      }
+      & h3 {
+        font-size: 21px;
+        font-weight: $bold;
+        color: white;
+      }
+      & input {
+        width: 250px;
+        color: $huntease-medium;
+        background-color: #0e33c3;
+        margin-right: 5px;
+      }
+      & .email-input {
+        width: 144px;
+        font-weight: $bold;
+      }
+      .SendInvite {
+        width: 189px;
+        height: 43px;
+        color: $huntease-main;
+        font-weight: $bold;
+        font-size: 14px;
+        border-radius: $border-radius-inputs;
+        background-color: $huntease-medium;
+        border-color: $huntease-main;
+      }
+    }
+    .TeamListing {
+      width: 100%;
+      .TeamTable {
+        width: 100%;
+        & table {
+          width: 120%;
+          & tbody {
+            & th {
+              color: $huntease-medium;
+              font-size: 0.875em;
+              font-weight: $bold;
+              font-family: "Roboto";
+              padding-left: 4px;
+              width: 10%;
+
+              // padding: 15px 0 10px 0;
+            }
+            & td {
+              color: $huntease-main;
+              font-size: 0.875em;
+              font-weight: $regular;
+              font-family: "Roboto";
+              width: 300px;
+              padding: 13px 0 13px 4px;
+              & img {
+                width: 40px;
+                height: 40px;
+                border-radius: $border-radius-button;
+                margin: 0 10px 0 0;
+              }
+            }
+          }
+        }
+        .RequestNameChange {
+          background-color: white;
+          box-shadow: $box-shadow;
+          height: 64px;
+          width: 100%;
+          border-radius: $border-radius-button;
+          padding: 12px 0 10px 4px;
+          & td {
+            width: 83%;
+            color: $huntease-medium;
+            font-size: 0.875em;
+            font-weight: $bold;
+            padding: auto;
+            margin: auto;
+            font-family: "Roboto";
+          }
+          & img {
+            width: 40px;
+            height: 40px;
+            border-radius: $border-radius-button;
+            margin: 0 10px 0 0;
+          }
+          .DeclineBtn {
+            border-radius: 10px;
+            color: #ff5773;
+            background-color: #ffeef1;
+            width: 80px;
+            height: 37px;
+            font-size: 14px;
+            font-weight: $bold;
+            font-family: "Roboto";
+            border: none;
+            margin: 0 5px 0 5px;
+          }
+          & .Accept {
+            color: #26ec82;
+            background-color: #e9fdf2;
+          }
+        }
+      }
+      .Member {
+        width: 100%;
+        & h5 {
+          color: $huntease-main;
+          padding: 0 250px 0 0px;
+          margin: 0;
+          width: 340px;
+        }
+        & img {
+          width: 40px;
+          height: 40px;
+          border-radius: $border-radius-button;
+          margin: 0 10px 0 0;
+        }
+      }
+    }
+  }
+}
+
+.Calls-bloc {
+  .GuideCall {
+    width: 42.5em;
+    height: 38.9375em;
+    border-radius: $border-radius-button;
+    box-shadow: $box-shadow;
+    background-color: white;
+    margin: 31px 0 0 60px;
+    padding: 21px;
+    position: relative;
+    .withoutGuide {
+      & h3 {
+        color: $huntease-main;
+        font-size: 21px;
+        font-weight: $bold;
+      }
+      & textarea {
+        width: 620px;
+        height: 406px;
+        margin: 10px 0 0 0;
+        border-radius: 0 15px 15px 15px;
+      }
+    }
+    .EmptyGuide {
+      width: 100%;
+      height: 100%;
+      & .integrate-button {
+        width: unset;
+        height: 37px;
+        margin: 15px 8px 15px 8px;
+        color: $huntease-medium;
+        border: 2px solid $huntease-medium;
+        & img {
+          margin: 0 4px 0 4px;
+        }
+      }
+      & h3 {
+        color: $huntease-medium;
+        font-weight: $bold;
+      }
+      & h5 {
+        font-weight: $regular;
+        color: $huntease-medium;
+      }
+      & img {
+        margin: 10px 0 10px 0;
+      }
+    }
+    .ScriptCallEditor {
+      & .integrate-button {
+        height: 40px;
+        width: unset;
+        margin: 0 8px 24px 0px;
+        border-radius: 10px;
+        color: $huntease-medium;
+        background-color: #f6f9ff;
+        border: none;
+      }
+      & img {
+        margin: 0 4px 0 4px;
+      }
+      & .Clicked {
+        color: $huntease-main;
+
+        background-color: #f6f9ff;
+        border: 2px solid $huntease-main;
+      }
+      & h3 {
+        color: $huntease-titles;
+        font-size: 21px;
+        font-weight: $bold;
+        padding: 5px 0 5px 0;
+      }
+      & textarea {
+        width: 620px;
+        height: 60px;
+        margin: 10px 0 0 0;
+        border-radius: 0 15px 15px 15px;
+      }
+
+      & .notesArea {
+        height: 406px;
+      }
+      & h5 {
+        color: $huntease-main;
+      }
+    }
+    .Bottom-bloc {
+      position: absolute;
+      bottom: 15px;
+      right: 0;
+      left: 0;
+      background-color: white;
+      padding: 10px 0 10px 0;
+
+      & .integrate-button {
+        width: unset;
+        height: 37px;
+        margin: 0 8px 0 8px;
+        & img {
+          margin: 0 4px 0 4px;
+        }
+      }
+      & .Save-changes-btn {
+        height: 37px;
+        margin: 0 8px 0 8px;
+
+        & img {
+          margin: 0 4px 0 4px;
+        }
+      }
+      & .Schedules {
+        height: 37px;
+        background-color: $huntease-main;
+        color: white;
+        width: unset;
+        padding: 0 8px 0 8px;
+        margin: 0 8px 0 8px;
+      }
+    }
+  }
+}
+.popup-container {
+  background-repeat: no-repeat;
+
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  opacity: 1;
+}
+.chooseGuidePopup {
+  padding: 30px;
+  width: 46.0625rem;
+  height: 29.5rem;
+  display: inline-block;
+  background-color: white;
+  box-shadow: $box-shadow;
+  border-radius: 15px 15px 0 0;
+  & h3 {
+    color: $huntease-main;
+    font-weight: $bold;
+  }
+  .popupInner {
+    padding: 20px 0 0 0;
+    .guidList {
+      padding: 5px 0 5px 0;
+      margin: 5px 0 5px 0;
+      width: 100%;
+      height: 45px;
+      background-color: #f7faff;
+      border-radius: 15px;
+      & h5 {
+        color: $huntease-main;
+        margin: 0;
+        padding: 0 4px 0 8px;
+        font-weight: $regular;
+      }
+      & img {
+        padding: 0 0px 0 8px;
+      }
+    }
+  }
+}
+
+.paiment-popup {
+  display: inline-block;
+  width: 37.3125rem;
+  height: 35.375rem;
+  background-color: white;
+  box-shadow: $box-shadow;
+  border-radius: 15px 15px 0 0;
+  position: relative;
+  .planChoosed {
+    border-radius: 15px 15px 0 0;
+    background-color: $huntease-main;
+    height: 121px;
+    .pleft {
+      width: 70%;
+    }
+    & h4 {
+      color: white;
+      font-weight: $regular;
+    }
+    h2 {
+      font-size: 45px;
+      font-weight: $regular;
+      color: white;
+      line-height: normal;
+      margin: 0;
+    }
+  }
+  .cb_infos {
+    padding: 25px 55px 35px 55px;
+    & h4 {
+      color: $huntease-main;
+      // padding: 15px 0 10px 0;
+      margin: 0;
+      font-size: 15px;
+      font-weight: $bold;
+    }
+    .paymentDetails {
+      & h4 {
+        margin: 0 20px 0 20px;
+      }
+    }
+    .credit_card_svg {
+      padding: 0 0 0 70px;
+    }
+    .Notice {
+      width: 493.9px;
+      height: 36.5px;
+      background-color: #fbfcff;
+      border-radius: 10px;
+      padding-left: 5px;
+      margin: 10px 0 20px 0;
+      & h5 {
+        font-weight: $bold;
+        color: $huntease-medium;
+        margin: 0;
+        padding-left: 5px;
+      }
+    }
+    .full-input {
+      display: inline-block;
+      width: 493.9px;
+      margin: 0;
+      background-color: #e8edff;
+      border-radius: $border-radius-inputs;
+    }
+    & input {
+      height: 36.5px;
+      width: 490.9px;
+      outline: none;
+      border: none;
+      display: block;
+      margin: 0;
+      padding: 0 0 5px 15px;
+    }
+
+    & label {
+      display: block;
+      margin: 0;
+      padding: 5px 0 0px 15px;
+    }
+    .cardNumber {
+      width: 494px;
+      height: 36.5px;
+      background-color: #eef3ff;
+      color: $huntease-medium;
+      border-radius: 5px;
+      padding: 10px;
+      margin: 15px 0 10px 0;
+    }
+    .cardCVV {
+      width: 235.5px;
+      height: 36.5px;
+      background-color: #eef3ff;
+      color: $huntease-medium;
+      border-radius: 5px;
+      padding: 10px;
+      border-radius: 5px;
+      margin: 15px 25px 0px 0;
+    }
+    & .Change-profile-btn {
+      font-weight: $regular;
+      background-color: $huntease-main;
+      width: 494px;
+      color: white;
+      margin: 10px 0 10px 0;
+    }
+    & h5 {
+      color: $huntease-medium;
+      font-weight: $regular;
+      margin: 0 5px 0 5px;
+    }
+  }
+}

@@ -46,70 +46,61 @@ class ResetPassword extends React.Component {
 
     return (
       <Fragment>
-        <main className="auth-container-align">
-          <div className="auth-container inlineBtn-col-center">
-            {" "}
-            <h3 className="btn-get-started-textt">Change your password</h3>
-            <Formik
-              initialValues={initialValues}
-              onSubmit={this.onResetPassword}
-            >
-              {({ errors, touched }) => (
-                <Form class>
-                  <FormGroup>
+        <div className="auth-bloc-container flex fdc aic jcc">
+          {" "}
+          <h3 className="btn-get-started-textt">Change your password</h3>
+          <Formik initialValues={initialValues} onSubmit={this.onResetPassword}>
+            {({ errors, touched }) => (
+              <Form className="flex fdc aic jcc">
+                <FormGroup>
+                  <Field
+                    className={
+                      errors.password && touched.password
+                        ? "auth-input-large-error"
+                        : "auth-input-large"
+                    }
+                    type="password"
+                    name="password"
+                    validate={this.validatePassword}
+                    placeholder="New password"
+                  />
+                  <div className="inlineBtn-col-left">
                     <Field
                       className={
-                        errors.password && touched.password
+                        errors.confirmPassword && touched.confirmPassword
                           ? "auth-input-large-error"
                           : "auth-input-large"
                       }
                       type="password"
-                      name="password"
+                      name="confirmPassword"
+                      placeholder="Confirm new password"
                       validate={this.validatePassword}
-                      placeholder="New password"
                     />
-                    <div className="inlineBtn-col-left">
-                      <Field
-                        className={
-                          errors.confirmPassword && touched.confirmPassword
-                            ? "auth-input-large-error"
-                            : "auth-input-large"
-                        }
-                        type="password"
-                        name="confirmPassword"
-                        placeholder="Confirm new password"
-                        validate={this.validatePassword}
-                      />
-                      {errors.password && touched.password && (
-                        <p className="error-message">{errors.password}</p>
-                      )}
-                    </div>
-
-                    {this.props.authUser.error && (
-                      <div className="inlineBtn-center">
-                        <div className="error-block">
-                          {this.props.authUser.error}
-                        </div>
-                      </div>
+                    {errors.password && touched.password && (
+                      <p className="error-message">{errors.password}</p>
                     )}
-                  </FormGroup>
-                  <div className="inlineBtn-center">
-                    <Button className="btn-get-started">
-                      <div className="btn-get-started-text">
-                        Change your password
-                      </div>
-                    </Button>
                   </div>
-                </Form>
-              )}
-            </Formik>{" "}
-            <div className="condition-term">
-              <Link to={"/user/login"}>
-                <p>Go back to Sign in</p>
-              </Link>
-            </div>
+
+                  {this.props.authUser.error && (
+                    <div className="inlineBtn-center">
+                      <div className="error-block">
+                        {this.props.authUser.error}
+                      </div>
+                    </div>
+                  )}
+                </FormGroup>
+                <Button className="Auth-button flex aic jcc">
+                  <h5> Change your password</h5>
+                </Button>
+              </Form>
+            )}
+          </Formik>{" "}
+          <div className="condition-term">
+            <Link to={"/user/login"}>
+              <p>Go back to Sign in</p>
+            </Link>
           </div>
-        </main>
+        </div>
       </Fragment>
     );
   }

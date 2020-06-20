@@ -47,7 +47,7 @@ class IntegrationHubspotPopup extends React.Component {
           <div className="inlineBtn-center">
             <Formik initialValues={initialValues} onSubmit={this.onIntegrate}>
               {({ errors, touched }) => (
-                <Form class>
+                <Form>
                   <FormGroup>
                     <Field
                       className={

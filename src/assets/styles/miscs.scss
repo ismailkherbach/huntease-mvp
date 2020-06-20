@@ -1,0 +1,118 @@
+.fdc {
+  flex-direction: column;
+}
+.fdcr {
+  flex-direction: column-reverse;
+}
+.fdr {
+  flex-direction: row;
+}
+.fdrr {
+  flex-direction: row-reverse;
+}
+.jcc {
+  justify-content: center;
+}
+.jcfs {
+  justify-content: flex-start;
+}
+.jcfe {
+  justify-content: flex-end;
+}
+.jcsb {
+  justify-content: space-between;
+}
+.jcsa {
+  justify-content: space-around;
+}
+.jcse {
+  justify-content: space-evenly;
+}
+.aic {
+  align-items: center;
+}
+.aifs {
+  align-items: flex-start;
+}
+.aife {
+  align-items: flex-end;
+}
+.ais {
+  align-items: stretch;
+}
+.aib {
+  align-items: baseline;
+}
+.fww {
+  flex-wrap: wrap;
+}
+
+.flex {
+  display: flex;
+}
+
+@for $i from 0 through 100 {
+  .forder#{$i} {
+    order: #{$i};
+  }
+  .margin-top#{5 * $i} {
+    margin-top: #{5 * $i}px;
+  }
+  .margin-left#{5 * $i} {
+    margin-left: #{5 * $i}px;
+  }
+  .margin-right#{5 * $i} {
+    margin-right: #{5 * $i}px;
+  }
+  .margin-bottom#{5 * $i} {
+    margin-bottom: #{5 * $i}px;
+  }
+  .padding-left#{5 * $i} {
+    padding-left: #{5 * $i}px;
+  }
+  .padding-right#{5 * $i} {
+    padding-right: #{5 * $i}px;
+  }
+}
+
+.blured {
+  filter: blur(4px);
+}
+
+.floatLeft {
+  float: left;
+}
+.floatRight {
+  float: right;
+}
+
+.Clight {
+  color: #8ba3ff;
+}
+.Cmain {
+  color: #0026bc;
+}
+.Corange {
+  color: #ff8565;
+}
+
+.scroll-team {
+  margin-right: unset;
+  height: 370px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.scroll-guide {
+  margin-right: unset;
+  height: 93%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.scroll-callScript {
+  margin-right: unset;
+  height: 480px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}

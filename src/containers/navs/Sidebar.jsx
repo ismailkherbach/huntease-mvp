@@ -44,6 +44,7 @@ class Sidebar extends React.Component {
                   key={item.id}
                   onMouseEnter={this.handleHoverOn.bind(this, x)}
                   onMouseLeave={this.handleHoverOff.bind(this)}
+                  className="flex fdc aic jcc"
                 >
                   <box-icon
                     name={item.icon}
@@ -51,17 +52,17 @@ class Sidebar extends React.Component {
                     color={
                       this.state.menuHover && this.state.menuOn == x
                         ? "#ffc371"
-                        : "#8ba2ff96"
+                        : "#8BA3FF"
                     }
                   ></box-icon>
 
-                  <IntlMessages id={item.id} />
+                  <h5>{item.id} </h5>
                 </li>
               </Link>
             );
           })}
           <li
-            id="logout"
+            className="flex fdc aic jcc margin-top180"
             onClick={() => this.handleLogout()}
             key="logoutItem"
             onMouseEnter={this.handleHoverOn.bind(this, "logoutItem")}
@@ -74,10 +75,10 @@ class Sidebar extends React.Component {
               color={
                 this.state.menuHover && this.state.menuOn == "logoutItem"
                   ? "#ffc371"
-                  : "#8ba2ff96"
+                  : "#8BA3FF"
               }
             ></box-icon>
-            <IntlMessages id="logout" />
+            <h5>{"Logout"} </h5>
           </li>
         </ul>
       </div>

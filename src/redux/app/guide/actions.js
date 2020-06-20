@@ -8,6 +8,9 @@ import {
   DELETE_GUIDE,
   DELETE_GUIDE_SUCCESS,
   DELETE_GUIDE_ERROR,
+  UPDATE_GUIDE,
+  UPDATE_GUIDE_SUCCESS,
+  UPDATE_GUIDE_ERROR,
 } from "../../actions";
 
 export const getGuide = () => ({
@@ -36,6 +39,21 @@ export const addGuideSuccess = (guide) => ({
 
 export const addGuideError = (error) => ({
   type: ADD_GUIDE_ERROR,
+  payload: error,
+});
+
+export const updateGuide = (guide) => ({
+  type: UPDATE_GUIDE,
+  payload: guide,
+});
+
+export const updateGuideSuccess = (guide) => ({
+  type: UPDATE_GUIDE_SUCCESS,
+  payload: guide,
+});
+
+export const updateGuideError = (error) => ({
+  type: UPDATE_GUIDE_ERROR,
   payload: error,
 });
 

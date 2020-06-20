@@ -5,11 +5,11 @@ import Topnav from "../containers/navs/Topav";
 export default class AppLayout extends Component {
   render() {
     return (
-      <div>
+      <div className="flex fdc aic jcfs">
         <Topnav />
-        <Sidebar />
-        <main>
-          <div className="container-fluid">{this.props.children}</div>
+        <main className="main-contour flex fdr aifs jcc">
+          <Sidebar />
+          <div className="">{this.props.children}</div>
         </main>
       </div>
     );

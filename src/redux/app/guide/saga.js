@@ -10,12 +10,15 @@ import {
   addGuideSuccess,
   getGuideSuccess,
   deleteGuideSuccess,
+  updateGuideSuccess,
 } from "./actions";
+import { API_URL } from "../../../utils/utils";
+
 const BASIC_URL = "https://huntease-mvp.herokuapp.com/v1";
 const addGuideAsync = async (title, questions) =>
   await axios({
     method: "post",
-    url: `${BASIC_URL}/guide/`,
+    url: API_URL + `guide/`,
     data: {
       title,
       questions,
@@ -46,7 +49,7 @@ function* addGuideNew({ payload }) {
 const getGuideAsync = async () =>
   await axios({
     method: "get",
-    url: `${BASIC_URL}/guide/`,
+    url: API_URL + `guide/`,
 
     headers: {
       authorization: JSON.parse(localStorage.getItem("user_id")),
@@ -71,7 +74,7 @@ function* getGuideList({}) {
 const updateGuideAsync = async (title, questions, id) =>
   await axios({
     method: "put",
-    url: `${BASIC_URL}/guide/${id}`,
+    url: API_URL + `guide/${id}`,
     data: {
       title,
       questions,
@@ -86,9 +89,9 @@ function* updateGuide({ payload }) {
   const { title, questions, id } = payload;
   console.log(payload);
   try {
-    const updateResponse = yield call(updateGuideAsync, title, questions);
-    if (updateResponse.status == 201) {
-      yield put(addGuideSuccess(updateResponse));
+    const updateResponse = yield call(updateGuideAsync, title, questions, id);
+    if (updateResponse.status == 200) {
+      yield put(updateGuideSuccess(updateResponse));
     } else {
       console.log("update failed :", updateResponse);
     }

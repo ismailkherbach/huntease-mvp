@@ -1,29 +1,23 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Col,Row } from "reactstrap";
+import { Col, Row } from "reactstrap";
 export default class TopNavUser extends React.Component {
   constructor() {
     super();
     this.state = {
-      buttonText: "Sign in"
+      buttonText: "Sign in",
     };
   }
   render() {
     return (
       <div className="topnav">
-          <Row className="inlineBtn-left">
-          <Col>
-          <Link to={"/user/login"}>
-            <img
-              alt={"logo"}
-              className="login-logo"
-              src={require("../../assets/img/huntease_logo_line_white.png")}
-            />
-            <div className="login-signup-input">{this.state.buttonText}</div>
-          </Link>
-          </Col>
-        </Row>
-
+        <Link to={"/user/login"}>
+          <img
+            alt={"logo"}
+            className="login-logo"
+            src={require("../../assets/img/huntease_logo_line_white.png")}
+          />
+        </Link>
       </div>
     );
   }

@@ -27,11 +27,13 @@ import {
   confirmAccountError,
   resetPasswordError,
 } from "./actions";
+import { API_URL } from "../../utils/utils";
 const credentials = ["token", "twilioToken", "user", "user_id"];
+
 const loginWithEmailPasswordAsync = async (email, password) =>
   await axios({
     method: "post",
-    url: "https://huntease-mvp.herokuapp.com/v1/account/login",
+    url: API_URL + "account/login",
     data: {
       email,
       password,
@@ -75,7 +77,7 @@ function* loginWithEmailPassword({ payload }) {
 const forgotPasswordAsync = async (email) =>
   await axios({
     method: "post",
-    url: "https://huntease-mvp.herokuapp.com/v1/account/forgot-password",
+    url: API_URL + "account/forgot-password",
     data: {
       email,
     },
@@ -96,7 +98,7 @@ function* forgotPassword({ payload }) {
 const resetPasswordAsync = async (resetPasswordCode, newPassword) =>
   await axios({
     method: "post",
-    url: "https://huntease-mvp.herokuapp.com/v1/account/reset-password",
+    url: API_URL + "account/reset-password",
     data: {
       password: newPassword,
       token: resetPasswordCode,
@@ -126,7 +128,7 @@ function* resetNewPassword({ payload }) {
 const registerSimpleUserAsync = async (email, password, role, token) =>
   await axios({
     method: "post",
-    url: "https://huntease-mvp.herokuapp.com/v1/account/register",
+    url: API_URL + "account/register",
     data: {
       email,
       password,
@@ -168,7 +170,7 @@ const registerWithEmailPasswordAsync = async (
 ) =>
   await axios({
     method: "post",
-    url: "https://huntease-mvp.herokuapp.com/v1/account/register",
+    url: API_URL + "account/register",
     data: {
       email,
       password,
@@ -247,7 +249,7 @@ function* confirmAccount({ payload }) {
 const joinTeamAsync = async (teamJoinCode) =>
   await axios({
     method: "post",
-    url: "https://huntease-mvp.herokuapp.com/v1/account/check-token",
+    url: API_URL + "account/check-token",
     data: {
       email: "gi_kherbach@esi.dz",
       token: teamJoinCode,
@@ -292,7 +294,7 @@ export function* watchLogoutUser() {
 const logoutAsync = async () =>
   await axios({
     method: "post",
-    url: "https://huntease-mvp.herokuapp.com/v1/account/logout",
+    url: API_URL + "account/logout",
     headers: {
       authorization: JSON.parse(localStorage.getItem("user_id")),
     },
