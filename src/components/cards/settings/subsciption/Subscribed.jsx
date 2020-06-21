@@ -3,6 +3,14 @@ import React, { Fragment } from "react";
 import { Row, Col, Button } from "reactstrap";
 import { connect } from "react-redux";
 import { getPaimentHistory, getCardInfo } from "../../../../redux/actions";
+import { StripeProvider, Elements } from "react-stripe-elements";
+import { loadStripe } from "@stripe/stripe-js";
+import CancelSubscriptionPopup from "../../../popup/CancelSubscriptionPopup";
+import ChangeAddressPopup from "../../../popup/ChangeAddress";
+import ChangeCardPopup from "../../../popup/ChangeCard";
+const stripePromise = loadStripe(
+  "pk_test_51GqdyRBXLsKUPQbHXGJsCSA9tJYHPpXDa8Y8dChs4dW20yeQh3HT55oiMNmysRhogzBHWKSHvfCWr5DF9KlkKyfk00CQF8DBeX"
+);
 class Subscribed extends React.Component {
   constructor(props) {
     super(props);
@@ -23,6 +31,9 @@ class Subscribed extends React.Component {
           Invoice: "PDF",
         },
       ],
+      changeAddress: false,
+      changeCard: false,
+      cancelSubscription: false,
     };
   }
 
@@ -47,15 +58,57 @@ class Subscribed extends React.Component {
       return <th key={index}>{key.toUpperCase()}</th>;
     });
   }
-
+  togglePopup() {
+    this.setState({
+      changeAddress: !this.state.changeAddress,
+    });
+  }
+  togglePopupCard() {
+    this.setState({
+      changeCard: !this.state.changeCard,
+    });
+  }
+  togglePopupCancel() {
+    this.setState({
+      cancelSubscription: !this.state.cancelSubscription,
+    });
+  }
   componentDidMount() {
     this.props.getPaimentHistory();
     this.props.getCardInfo();
+    console.log(this.props.payment.cardInfo);
   }
 
   render() {
     return (
       <Fragment>
+        {this.state.changeCard ? (
+          <StripeProvider
+            apiKey={
+              "pk_test_51GqdyRBXLsKUPQbHXGJsCSA9tJYHPpXDa8Y8dChs4dW20yeQh3HT55oiMNmysRhogzBHWKSHvfCWr5DF9KlkKyfk00CQF8DBeX"
+            }
+          >
+            <Elements id="cardElement" stripe={stripePromise}>
+              <ChangeCardPopup
+                text='Click "Close Button" to hide popup'
+                closePopup={this.togglePopupCard.bind(this)}
+              />
+            </Elements>
+          </StripeProvider>
+        ) : null}
+        {this.state.changeAddress ? (
+          <ChangeAddressPopup
+            text='Click "Close Button" to hide popup'
+            closePopup={this.togglePopup.bind(this)}
+          />
+        ) : null}
+
+        {this.state.cancelSubscription ? (
+          <CancelSubscriptionPopup
+            text='Click "Close Button" to hide popup'
+            closePopup={this.togglePopupCancel.bind(this)}
+          />
+        ) : null}
         <div className="Top-Action-Bloc flex fdr aic jcfs">
           <div className="leftTop margin-left30 floatLeft">
             <h5>Current plan</h5>
@@ -63,7 +116,9 @@ class Subscribed extends React.Component {
           </div>
           <div className="rightTop floatRight flex aic jcc fdc">
             <Button className="Change-profile-btn">Change plan </Button>
-            <p>Cancel Subscription</p>{" "}
+            <p onClick={this.togglePopupCancel.bind(this)}>
+              Cancel Subscription
+            </p>{" "}
           </div>
         </div>
         <div className="Billing-History">
@@ -75,7 +130,10 @@ class Subscribed extends React.Component {
               </h3>
             </div>
             <div className="rightBottom ">
-              <Button className="Change-profile-btn flex aic jcc">
+              <Button
+                className="Change-profile-btn flex aic jcc"
+                onClick={this.togglePopup.bind(this)}
+              >
                 Change address
               </Button>
             </div>{" "}
@@ -88,13 +146,20 @@ class Subscribed extends React.Component {
                   src={require("../../../../assets/img/billing_master.png")}
                 />
                 <h3 className="padding-left10 padding-right30">
-                  Master Card ending with ****0814
+                  {this.props.payment.cardInfo
+                    ? this.props.payment.cardInfo.brand +
+                      " ending with ****" +
+                      this.props.payment.cardInfo.last4
+                    : ""}
                 </h3>
                 <img src={require("../../../../assets/img/bxs-lock.svg")} />
               </div>
             </div>
             <div className="rightBottom ">
-              <Button className="Change-profile-btn flex aic jcc">
+              <Button
+                className="Change-profile-btn flex aic jcc"
+                onClick={this.togglePopupCard.bind(this)}
+              >
                 Change payment
               </Button>
             </div>

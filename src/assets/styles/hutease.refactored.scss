@@ -1235,36 +1235,90 @@ body {
     }
   }
 }
+.paySuccess {
+  width: 338px;
+  height: 433px;
+  padding: 40px;
+  display: inline-block;
+  box-shadow: $box-shadow;
+  background-color: white;
+  border-radius: 20px;
+  h4 {
+    font-weight: $bold;
+    color: $huntease-main;
+    line-height: normal;
+    margin: 0 0 20px 0;
+    text-align: center;
+  }
+  .payTicket {
+    min-width: 252px;
+    min-height: 316px;
+    background: url("../img/success_ticket.svg") no-repeat;
+    background-size: 100%;
+    & h5 {
+      color: white;
+      font-weight: $bold;
+      margin: 0 0 10px 0;
+    }
+    & p {
+      font-weight: $regular;
+      color: $huntease-medium;
+      margin: 10px 0 0 0;
+    }
+    h2 {
+      font-size: 31px;
+      font-weight: $bold;
+      color: white;
+      line-height: normal;
+      margin: 0 0 10px 0;
+    }
+  }
+}
 
 .paiment-popup {
   display: inline-block;
-  width: 37.3125rem;
-  height: 35.375rem;
+  width: 36.5rem;
+  min-height: 35.8125rem;
   background-color: white;
   box-shadow: $box-shadow;
-  border-radius: 15px 15px 0 0;
+  border-radius: 15px;
   position: relative;
+  padding: 15px 0 0 0;
+
   .planChoosed {
-    border-radius: 15px 15px 0 0;
-    background-color: $huntease-main;
-    height: 121px;
+    border-radius: 20px;
+    background: url("../img/circle_ticket.svg");
+    height: 93px;
+    width: 546px;
+    margin: auto;
+    position: relative;
+
     .pleft {
       width: 70%;
     }
-    & h4 {
+    .top-width {
+      margin: 0 30px 0 30px;
+    }
+    & h5 {
       color: white;
+      font-weight: $bold;
+    }
+    & p {
       font-weight: $regular;
+      color: $huntease-medium;
+      margin: 5px;
     }
     h2 {
-      font-size: 45px;
-      font-weight: $regular;
+      font-size: 31px;
+      font-weight: $bold;
       color: white;
       line-height: normal;
       margin: 0;
     }
   }
+
   .cb_infos {
-    padding: 25px 55px 35px 55px;
+    padding: 25px 30px 35px 30px;
     & h4 {
       color: $huntease-main;
       // padding: 15px 0 10px 0;
@@ -1273,8 +1327,19 @@ body {
       font-weight: $bold;
     }
     .paymentDetails {
+      margin: 5px 0 15px 0;
       & h4 {
         margin: 0 20px 0 20px;
+      }
+      & img {
+        margin: 0;
+      }
+    }
+    .billingAddress {
+      & p {
+        font-weight: $bold;
+        color: $huntease-medium;
+        margin: 10px 0 0 0;
       }
     }
     .credit_card_svg {
@@ -1294,58 +1359,333 @@ body {
         padding-left: 5px;
       }
     }
+    .inputsPay {
+      width: 100%;
+    }
     .full-input {
       display: inline-block;
-      width: 493.9px;
-      margin: 0;
-      background-color: #e8edff;
+      width: 538px;
+      //margin: auto;
+      background-color: #eef3ff;
       border-radius: $border-radius-inputs;
+      margin: 5px 5px 15px 5px;
     }
     & input {
       height: 36.5px;
-      width: 490.9px;
+      width: 538px;
       outline: none;
       border: none;
       display: block;
       margin: 0;
       padding: 0 0 5px 15px;
+      background-color: #eef3ff;
     }
-
+    & .small-input {
+      width: 264px;
+    }
     & label {
       display: block;
       margin: 0;
       padding: 5px 0 0px 15px;
     }
     .cardNumber {
-      width: 494px;
+      width: 538px;
       height: 36.5px;
       background-color: #eef3ff;
       color: $huntease-medium;
       border-radius: 5px;
-      padding: 10px;
-      margin: 15px 0 10px 0;
+      padding: 5px 15px 0 15px;
+      //   margin: 15px 0 10px 0;
     }
     .cardCVV {
-      width: 235.5px;
+      width: 264px;
       height: 36.5px;
       background-color: #eef3ff;
       color: $huntease-medium;
       border-radius: 5px;
-      padding: 10px;
-      border-radius: 5px;
-      margin: 15px 25px 0px 0;
+      padding: 5px 15px 0 15px;
     }
     & .Change-profile-btn {
-      font-weight: $regular;
+      font-weight: $bold;
+      background-color: white;
+      width: 129px;
+      height: 49px;
+      color: $huntease-main;
+      // margin: 20px 0 10px 0;
+      font-size: 16px;
+
+      box-shadow: $box-shadow;
+      & img {
+        margin: 0 10px 0 10px;
+      }
+    }
+    & .previous {
+      margin: 20px 0 30px 0;
+    }
+
+    & .pay {
       background-color: $huntease-main;
-      width: 494px;
       color: white;
-      margin: 10px 0 10px 0;
+      width: 244px;
+      height: 49px;
+      margin: 60px 0 0 0;
     }
     & h5 {
       color: $huntease-medium;
       font-weight: $regular;
       margin: 0 5px 0 5px;
+      padding: 0;
     }
+    & img {
+      margin: 0;
+    }
+  }
+}
+.ChangeAddressPopup {
+  width: 584px;
+  height: 352px;
+  // display: inline-block;
+  background-color: white;
+  box-shadow: $box-shadow;
+  border-radius: 15px;
+  position: relative;
+  padding: 30px 0 0 0;
+
+  .cb_infos {
+    padding: 0px 30px 35px 30px;
+    & h4 {
+      color: $huntease-main;
+      padding: 15px 0 10px 10px;
+      margin: 0 0 10px 0;
+      font-size: 18px;
+      font-weight: $bold;
+    }
+
+    .billingAddress {
+      & p {
+        font-weight: $bold;
+        color: $huntease-medium;
+        margin: 10px 0 0 0;
+      }
+    }
+
+    .inputsPay {
+      width: 100%;
+    }
+    .full-input {
+      display: inline-block;
+      width: 538px;
+      //margin: auto;
+      background-color: #eef3ff;
+      border-radius: $border-radius-inputs;
+      margin: 5px 5px 5px 5px;
+    }
+    & input {
+      height: 36.5px;
+      width: 538px;
+      outline: none;
+      border: none;
+      display: block;
+      margin: 0;
+      padding: 0 0 5px 15px;
+      background-color: #eef3ff;
+    }
+    & .small-input {
+      width: 264px;
+    }
+    & label {
+      display: block;
+      margin: 0;
+      padding: 5px 0 0px 15px;
+    }
+
+    & .Change-profile-btn {
+      font-weight: $regular;
+      background-color: white;
+      width: 249px;
+      height: 46px;
+      color: $huntease-main;
+      margin: 20px 0 10px 0;
+      font-size: 16px;
+      box-shadow: $box-shadow;
+      & img {
+        margin: 0 10px 0 10px;
+      }
+    }
+    .cardNumber {
+      width: 538px;
+      height: 36.5px;
+      background-color: #eef3ff;
+      color: $huntease-medium;
+      border-radius: 5px;
+      padding: 5px 15px 0 15px;
+      //   margin: 15px 0 10px 0;
+    }
+    .cardCVV {
+      width: 264px;
+      height: 36.5px;
+      background-color: #eef3ff;
+      color: $huntease-medium;
+      border-radius: 5px;
+      padding: 5px 15px 0 15px;
+    }
+    & .pay {
+      background-color: $huntease-main;
+      color: white;
+      width: 244px;
+      height: 49px;
+      margin: 60px 0 0 0;
+    }
+    & h5 {
+      color: $huntease-medium;
+      font-weight: $regular;
+      margin: 0 5px 0 5px;
+      padding: 0;
+    }
+    & img {
+      margin: 0;
+    }
+  }
+}
+
+.ChangeCardPopup {
+  width: 584px;
+  height: 352px;
+  // display: inline-block;
+  background-color: white;
+  box-shadow: $box-shadow;
+  border-radius: 15px;
+  position: relative;
+  // padding: 50px 15px 15px 15px;
+
+  .cb_infos {
+    //  padding: 0px 30px 30px 30px;
+    & h4 {
+      color: $huntease-main;
+      // padding: 15px 0 10px 0;
+      margin: 0 0 20px 0;
+      font-size: 18px;
+      font-weight: $bold;
+    }
+
+    .billingAddress {
+      & p {
+        font-weight: $bold;
+        color: $huntease-medium;
+        margin: 10px 0 0 0;
+      }
+    }
+
+    .inputsPay {
+      width: 100%;
+    }
+    .full-input {
+      display: inline-block;
+      width: 538px;
+      //margin: auto;
+      background-color: #eef3ff;
+      border-radius: $border-radius-inputs;
+      margin: 5px 5px 5px 5px;
+    }
+    & input {
+      height: 36.5px;
+      width: 538px;
+      outline: none;
+      border: none;
+      display: block;
+      margin: 0;
+      padding: 0 0 5px 15px;
+      background-color: #eef3ff;
+    }
+    & .small-input {
+      width: 264px;
+    }
+    & label {
+      display: block;
+      margin: 0;
+      padding: 5px 0 0px 15px;
+    }
+
+    & .Change-profile-btn {
+      font-weight: $regular;
+      background-color: white;
+      width: 249px;
+      height: 46px;
+      color: $huntease-main;
+      margin: 20px 0 10px 0;
+      font-size: 16px;
+      box-shadow: $box-shadow;
+      & img {
+        margin: 0 10px 0 10px;
+      }
+    }
+    .cardNumber {
+      width: 538px;
+      height: 36.5px;
+      background-color: #eef3ff;
+      color: $huntease-medium;
+      border-radius: 5px;
+      padding: 5px 15px 0 15px;
+      //   margin: 15px 0 10px 0;
+    }
+    .cardCVV {
+      width: 264px;
+      height: 36.5px;
+      background-color: #eef3ff;
+      color: $huntease-medium;
+      border-radius: 5px;
+      padding: 5px 15px 0 15px;
+    }
+    & .pay {
+      background-color: $huntease-main;
+      color: white;
+      width: 244px;
+      height: 49px;
+      margin: 60px 0 0 0;
+    }
+    & h5 {
+      color: $huntease-medium;
+      font-weight: $regular;
+      margin: 0 5px 0 5px;
+      padding: 0;
+    }
+    & img {
+      margin: 0;
+    }
+  }
+}
+
+.canceSubscriptionPopup {
+  width: 288px;
+  min-height: 226px;
+  background-color: white;
+  box-shadow: $box-shadow;
+  border-radius: 15px;
+  position: relative;
+  padding: 30px;
+  & h4 {
+    color: $huntease-titles;
+    font-weight: $bold;
+    text-align: center;
+  }
+  & p {
+    color: $huntease-medium;
+    font-weight: $regular;
+    text-align: center;
+  }
+
+  & .Change-profile-btn {
+    font-weight: $regular;
+    background-color: white;
+    width: 212px;
+    height: 41px;
+    color: $huntease-main;
+    margin: 5px 0 5px 0;
+    font-size: 14px;
+    box-shadow: $box-shadow;
+  }
+  & .decline {
+    color: white;
+    background-color: #f64c6f;
   }
 }

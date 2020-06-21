@@ -5,7 +5,7 @@ import { StripeProvider, Elements } from "react-stripe-elements";
 import { loadStripe } from "@stripe/stripe-js";
 import { Button } from "reactstrap";
 import { connect } from "react-redux";
-import { applyDiscount } from "../../../../redux/actions";
+import { applyDiscount, getPlans } from "../../../../redux/actions";
 import Switch from "react-switch";
 
 const stripePromise = loadStripe(
@@ -58,7 +58,9 @@ class ChoosePlan extends React.Component {
   SetChecked() {
     this.setState({ checked: !this.state.checked });
   }
-  componentDidMount() {}
+  componentDidMount() {
+    this.props.getPlans();
+  }
 
   render() {
     return (
@@ -69,10 +71,16 @@ class ChoosePlan extends React.Component {
               "pk_test_51GqdyRBXLsKUPQbHXGJsCSA9tJYHPpXDa8Y8dChs4dW20yeQh3HT55oiMNmysRhogzBHWKSHvfCWr5DF9KlkKyfk00CQF8DBeX"
             }
           >
-            <Elements stripe={stripePromise}>
+            <Elements id="cardElement" stripe={stripePromise}>
               <PaimentPopup
                 text='Click "Close Button" to hide popup'
                 closePopup={this.togglePopup.bind(this)}
+                plan={this.props.payment.plans[0]}
+                discount={
+                  this.props.payment.discount != null
+                    ? this.props.payment.discount
+                    : false
+                }
               />
             </Elements>
           </StripeProvider>
@@ -102,8 +110,18 @@ class ChoosePlan extends React.Component {
               }
               onClick={this.handleChoosePlan.bind(this, 1)}
             >
-              <h5 className="flex aic jcc">Huntease Growth</h5>
-              <h2 className="Price">€59/mo</h2>
+              <h5 className="flex aic jcc">
+                {this.props.payment.plans
+                  ? this.props.payment.plans[0].name
+                  : ""}
+              </h5>
+              <h2 className="Price">
+                €
+                {this.props.payment.plans
+                  ? this.props.payment.plans[0].price
+                  : ""}
+                /mo
+              </h2>
               <p>Learn more about this plan</p>
               <div
                 className={
@@ -176,4 +194,5 @@ const mapStateToProps = ({ payment }) => {
 
 export default connect(mapStateToProps, {
   applyDiscount,
+  getPlans,
 })(ChoosePlan);

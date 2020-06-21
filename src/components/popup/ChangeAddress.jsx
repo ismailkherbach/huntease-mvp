@@ -18,7 +18,7 @@ const stripePromise = loadStripe(
   "pk_test_51GqdyRBXLsKUPQbHXGJsCSA9tJYHPpXDa8Y8dChs4dW20yeQh3HT55oiMNmysRhogzBHWKSHvfCWr5DF9KlkKyfk00CQF8DBeX"
 );
 
-class PaimentPopup extends React.Component {
+class ChangeAddressPopup extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -173,66 +173,13 @@ class PaimentPopup extends React.Component {
           </div>
         )}
         {!this.state.success && (
-          <div className="paiment-popup flex fdc aic jcc">
+          <div className="ChangeAddressPopup  flex fdc aic jcc">
             {!this.state.success && (
-              <div className="planChoosed flex fdr aic jcc">
-                <div className="top-width flex fdc aic jcc">
-                  <p>PLAN</p>
-                  <h5>{this.props.plan.name}</h5>
-                </div>
-                <div className="top-width flex fdc aic jcc">
-                  <p>SEATS</p>
-                  <h5>5</h5>
-                </div>
-                <div className=" top-width flex fdc aic jcc">
-                  <p>BILLING</p>
-                  <h5>ANNUAL</h5>
-                </div>
-                <img src={require("../../assets/img/divider.svg")} />
-
-                <div className="top-width flex fdc aic jcc">
-                  <p>TOTAL</p>
-                  <h2>
-                    €
-                    {this.props.discount != false
-                      ? this.props.plan.price - this.props.discount
-                      : this.props.pla.price}
-                  </h2>
-                </div>
-              </div>
-            )}
-
-            {!this.state.success && (
-              <div className="cb_infos flex fdc aic jcc">
+              <div className="cb_infos  flex fdc aic jcc">
                 {!this.state.secondStep && (
                   <div className="inputsPay flex fdc">
                     <div className="paymentDetails flex fdr aifs jcfs">
-                      <img src={require("../../assets/img/paiement_1.svg")} />
-                      <h4>PERSONAL INFORMATION</h4>
-                      <img src={require("../../assets/img/kadna_blue.png")} />
-                    </div>
-                    <div className="flex fdc aic jcc">
-                      <div className="flex fdr aic jcc">
-                        <div className="full-input small-input">
-                          <label>First name</label>
-                          <input
-                            className="small-input"
-                            type="text"
-                            placeholder="Kherbach"
-                          />
-                        </div>
-                        <div className="full-input small-input">
-                          <label>Last name</label>
-                          <input
-                            className="small-input"
-                            type="text"
-                            placeholder="Ismail"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <div className="billingAddress flex fdr aifs jcfs">
-                      <p>BILLING ADDRESS</p>
+                      <h4>You're updating your billing address:</h4>
                     </div>
                     <div className="flex fdc aic jcc">
                       <div className="full-input">
@@ -271,82 +218,12 @@ class PaimentPopup extends React.Component {
                           onChange={this.handleCountryChange}
                         />
                       </div>
-                      {this.props.stripe ? (
-                        <Button
-                          className="Change-profile-btn flex aic jcc"
-                          onClick={this.toggleSecondStep.bind(this)}
-                        >
-                          NEXT
-                          <img
-                            src={require("../../assets/img/awesome-arrow-right.svg")}
-                          />
-                        </Button>
-                      ) : (
-                        ""
-                      )}
-                    </div>
-                  </div>
-                )}{" "}
-                {this.state.secondStep && (
-                  <div className="flex fdc">
-                    <div className="flex fdc aic jcc">
                       <Button
-                        className="Change-profile-btn  previous flex aic jcc"
+                        className="Change-profile-btn flex aic jcc"
                         onClick={this.toggleSecondStep.bind(this)}
                       >
-                        <img
-                          src={require("../../assets/img/awesome-arrow-right.svg")}
-                        />
-                        PREVIOUS
+                        Update my billing address
                       </Button>
-                    </div>
-                    <div className="paymentDetails flex fdr aifs jcfs">
-                      <img src={require("../../assets/img/paiement_2.svg")} />
-                      <h4>PAYMENT DETAILS</h4>
-                      <img src={require("../../assets/img/kadna_blue.png")} />
-                    </div>
-
-                    <div className="full-input">
-                      <label>Credit Card Number</label>
-                      <CardNumberElement
-                        className="cardNumber"
-                        {...createOptions()}
-                        onChange={this.handleChange}
-                      />
-                    </div>
-
-                    <div className="flex cvv fdr aic">
-                      <div className="full-input small-input">
-                        <label>Security Code</label>
-                        <CardCVCElement
-                          className="cardCVV"
-                          {...createOptions()}
-                          onChange={this.handleChange}
-                        />
-                      </div>
-                      <div className="full-input small-input">
-                        <label>Expiration date</label>
-                        <CardExpiryElement
-                          className="cardCVV small-input"
-                          {...createOptions()}
-                          onChange={this.handleChange}
-                        />{" "}
-                      </div>
-                    </div>
-                    <div className="alert-danger" role="alert">
-                      {this.state.errorMessage}
-                    </div>
-                    <div className="flex fdc aic jcc">
-                      {this.props.stripe ? (
-                        <Button
-                          className="Change-profile-btn pay flex aic jcc"
-                          onClick={this.handleSubmitWithSource.bind(this)}
-                        >
-                          COMPLETE PAYMENT
-                        </Button>
-                      ) : (
-                        ""
-                      )}
                     </div>
                   </div>
                 )}
@@ -367,7 +244,7 @@ const mapStateToProps = ({ payment }) => {
 
 export default connect(mapStateToProps, {
   pay,
-})(injectStripe(PaimentPopup));
+})(ChangeAddressPopup);
 
 const createOptions = () => {
   return {

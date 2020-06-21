@@ -11,6 +11,9 @@ import {
   GET_CARD_INFO,
   GET_CARD_INFO_SUCCESS,
   GET_CARD_INFO_ERROR,
+  GET_PLAN,
+  GET_PLAN_SUCCESS,
+  GET_PLAN_ERROR,
 } from "../../actions";
 
 const INIT_STATE = {
@@ -19,6 +22,7 @@ const INIT_STATE = {
   paymentHistory: null,
   discount: null,
   cardInfo: null,
+  plans: null,
 };
 
 export default (state = INIT_STATE, action) => {
@@ -55,13 +59,30 @@ export default (state = INIT_STATE, action) => {
         paymentHistory: "",
       };
 
+    case GET_PLAN:
+      return { ...state, loading: true, error: "" };
+    case GET_PLAN_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        plans: action.payload,
+        error: "",
+      };
+    case GET_PLAN_ERROR:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+        plans: "",
+      };
+
     case GET_CARD_INFO:
       return { ...state, loading: true, error: "" };
     case GET_CARD_INFO_SUCCESS:
       return {
         ...state,
         loading: false,
-        cardInfo: action.payload.last4,
+        cardInfo: action.payload,
         error: "",
       };
     case GET_CARD_INFO_ERROR:

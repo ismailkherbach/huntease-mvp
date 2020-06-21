@@ -116,6 +116,9 @@ export const PAY_SUCCESS = "PAY_SUCCESS";
 export const PAY_ERROR = "PAY_ERROR";
 
 export const GET_PLAN = "GET_PLAN";
+export const GET_PLAN_SUCCESS = "GET_PLAN_SUCCESS";
+export const GET_PLAN_ERROR = "GET_PLAN_ERROR";
+
 export const CHANGE_PLAN = "CHANGE_PLAN";
 export const CANCEL_SUBSCRIPTION = "CANCEL_SUBSCRIPTION";
 export const MODIFY_CARD_INFO = "MODIFY_CARD_INFO";

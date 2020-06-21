@@ -11,6 +11,9 @@ import {
   GET_CARD_INFO,
   GET_CARD_INFO_SUCCESS,
   GET_CARD_INFO_ERROR,
+  GET_PLAN,
+  GET_PLAN_SUCCESS,
+  GET_PLAN_ERROR,
 } from "../../actions";
 
 export const getPaimentHistory = () => ({
@@ -24,6 +27,20 @@ export const getPaimentHistorySuccess = (paimentHistory) => ({
 
 export const getPaimentHistoryError = (error) => ({
   type: GET_PAIMENT_HISTORY_ERROR,
+  payload: error,
+});
+
+export const getPlans = () => ({
+  type: GET_PLAN,
+});
+
+export const getPlansSuccess = (plans) => ({
+  type: GET_PLAN_SUCCESS,
+  payload: plans,
+});
+
+export const getPlansError = (error) => ({
+  type: GET_PLAN_ERROR,
   payload: error,
 });
 

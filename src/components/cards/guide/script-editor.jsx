@@ -39,6 +39,7 @@ class ScriptEditor extends React.Component {
       searchField: "",
       displayGuide: [{ question: "" }],
       title: "Give this guide a title",
+      text: "Write something",
       questionsGuide: { questions: [""] },
       updatedGuide: null,
     };
@@ -104,14 +105,14 @@ class ScriptEditor extends React.Component {
       return;
     }
 
-    const items = reorder(
+    const itemsNew = reorder(
       this.state.questionsGuide.questions,
       result.source.index,
       result.destination.index
     );
 
     this.setState({
-      questionsGuide: { ...this.state.questionsGuide, questions: items },
+      questionsGuide: { ...this.state.questionsGuide, questions: itemsNew },
     });
     console.log(this.state.questions);
   }
@@ -137,8 +138,8 @@ class ScriptEditor extends React.Component {
             >
               {this.state.questionsGuide.questions.map((item, index) => (
                 <Draggable
-                  key={`item-${index}`}
-                  draggableId={`item-${index}`}
+                  key={`item1-${index}`}
+                  draggableId={`item1-${index}`}
                   index={index}
                 >
                   {(provided, snapshot) => (
@@ -158,13 +159,14 @@ class ScriptEditor extends React.Component {
                         key={index}
                         className="prompt"
                         tag="pre"
-                        text={"Write something"}
+                        text={this.state.text}
                         value={item || ""}
                         name="question"
                         onChange={this.handleChange.bind(this, index)}
                         options={{
                           toolbar: { buttons: ["bold", "italic", "underline"] },
                         }}
+                        onClick={() => this.setState({ text: "" })}
                       />
                       <img src={require("../../../assets/img/drag.svg")} />
                     </div>

@@ -17,7 +17,7 @@ class ScriptCard extends React.Component {
       withoutGuide: false,
       schedulePopup: false,
       guide: null,
-      result: false,
+      result: true,
       checked: false,
       responses: [{ propmt: "", response: "" }],
       notesResponse: "",
@@ -48,6 +48,20 @@ class ScriptCard extends React.Component {
     this.setState({
       notesResponse: e.target.value,
     });
+    console.log(this.state.notesResponse);
+  }
+
+  extracNote() {
+    var notes = "";
+    let responses = [...this.state.responses];
+    for (let j = 0; j < responses.length; j++) {
+      if (responses[j] != undefined) {
+        notes =
+          notes + this.state.guide.questions[j] + "\n" + responses[j] + "\n";
+      }
+    }
+    this.setState({ notesResponse: notes });
+    console.log(notes);
   }
   handleChangeResponse(i, event) {
     let responses = [...this.state.responses];
@@ -80,7 +94,14 @@ class ScriptCard extends React.Component {
       }
     }
   }
+
   componentDidUpdate() {
+    if (this.props.guide.guides && this.state.guide === null) {
+      if (!this.props.guide.isGuideEmpty) {
+        this.setState({ guide: this.props.guide.guides[0] });
+        console.log(this.state.guide);
+      }
+    }
     if (this.props.call.callEnded && !this.state.checked) {
       this.setState({ result: true, checked: true });
       console.log("hidhfsdjfhdskjfhsjkd");
@@ -141,38 +162,6 @@ class ScriptCard extends React.Component {
             ""
           )}
 
-          {this.state.withoutGuide && !this.props.guide.isGuideEmpty && (
-            <div className="ScriptCallEditor">
-              <div className="flex fdr aic jcfs">
-                <Button
-                  onClick={this.toggleChooseGuide.bind(this)}
-                  className={`integrate-button ${!this.state.withoutGuide &&
-                    "Clicked"} `}
-                >
-                  <img src={require("../../../assets/img/bxs-notepad.svg")} />
-                  Choose a guide
-                </Button>
-                <Button
-                  onClick={this.toggleWithoutGuide.bind(this)}
-                  className={`integrate-button ${this.state.withoutGuide &&
-                    "Clicked"} `}
-                >
-                  <img src={require("../../../assets/img/bxs-note.svg")} />
-                  Continue without guide
-                </Button>
-              </div>
-              <div className="withoutGuide">
-                <h3>Notes</h3>
-                <textarea
-                  type="textarea"
-                  className="notesArea"
-                  onChange={(e) => {
-                    this.handleChangeNotes(e);
-                  }}
-                />
-              </div>
-            </div>
-          )}
           {this.props.guide.isGuideEmpty && this.state.withoutGuide ? (
             <div className="withoutGuide">
               <h3>Notes</h3>
@@ -188,96 +177,139 @@ class ScriptCard extends React.Component {
             ""
           )}
 
-          {!this.state.withoutGuide && !this.props.guide.isGuideEmpty && (
-            <div className="ScriptCallEditor">
-              <div className="flex fdr aic jcfs">
-                <Button
-                  onClick={this.toggleChooseGuide.bind(this)}
-                  className={`integrate-button ${!this.state.withoutGuide &&
-                    "Clicked"} `}
-                >
-                  <img src={require("../../../assets/img/bxs-notepad.svg")} />
-                  Choose a guide
-                </Button>
-                <Button
-                  onClick={this.toggleWithoutGuide.bind(this)}
-                  className={`integrate-button ${this.state.withoutGuide &&
-                    "Clicked"} `}
-                >
-                  <img src={require("../../../assets/img/bxs-note.svg")} />
-                  Continue without guide
-                </Button>
-              </div>
+          {this.state.result ? (
+            ""
+          ) : (
+            <div>
+              {" "}
+              {this.state.withoutGuide && !this.props.guide.isGuideEmpty && (
+                <div className="ScriptCallEditor">
+                  <div className="flex fdr aic jcfs">
+                    <Button
+                      onClick={this.toggleChooseGuide.bind(this)}
+                      className={`integrate-button ${!this.state.withoutGuide &&
+                        "Clicked"} `}
+                    >
+                      <img
+                        src={require("../../../assets/img/bxs-notepad.svg")}
+                      />
+                      Choose a guide
+                    </Button>
+                    <Button
+                      onClick={this.toggleWithoutGuide.bind(this)}
+                      className={`integrate-button ${this.state.withoutGuide &&
+                        "Clicked"} `}
+                    >
+                      <img src={require("../../../assets/img/bxs-note.svg")} />
+                      Continue without guide
+                    </Button>
+                  </div>
+                  <div className="withoutGuide">
+                    <h3>Notes</h3>
+                    <textarea
+                      type="textarea"
+                      className="notesArea"
+                      onChange={(e) => {
+                        this.handleChangeNotes(e);
+                      }}
+                    />
+                  </div>
+                </div>
+              )}
+              {!this.state.withoutGuide && !this.props.guide.isGuideEmpty && (
+                <div className="ScriptCallEditor">
+                  <div className="flex fdr aic jcfs">
+                    <Button
+                      onClick={this.toggleChooseGuide.bind(this)}
+                      className={`integrate-button ${!this.state.withoutGuide &&
+                        "Clicked"} `}
+                    >
+                      <img
+                        src={require("../../../assets/img/bxs-notepad.svg")}
+                      />
+                      Choose a guide
+                    </Button>
+                    <Button
+                      onClick={this.toggleWithoutGuide.bind(this)}
+                      className={`integrate-button ${this.state.withoutGuide &&
+                        "Clicked"} `}
+                    >
+                      <img src={require("../../../assets/img/bxs-note.svg")} />
+                      Continue without guide
+                    </Button>
+                  </div>
 
-              {this.props.guide.guides ? (
-                <div className="">
-                  {this.state.guide != null ? (
-                    <PerfectScrollbar>
-                      <div className="scroll-callScript">
-                        <h3>{this.state.guide.title}</h3>
-                        {this.state.guide.questions.map((question, x) => {
-                          return (
-                            <div>
-                              <h5>
-                                <div
-                                  dangerouslySetInnerHTML={{
-                                    __html: question,
-                                  }}
-                                />
-                              </h5>
-                              <textarea
-                                key={x}
-                                className="guide-response-text-area"
-                                placeholder="Write notes"
-                                type="text"
-                                onChange={this.handleChangeResponse.bind(
-                                  this,
-                                  x
-                                )}
-                              />
-                            </div>
-                          );
-                        })}
-                      </div>
-                    </PerfectScrollbar>
-                  ) : (
-                    <PerfectScrollbar>
-                      {this.props.guide.guides ? (
-                        <div className="scroll-callScript">
-                          <h3>{this.state.guide.title}</h3>
-                          {this.state.guide.questions.map((question, x) => {
-                            return (
-                              <div>
-                                <h5>
-                                  <div
-                                    dangerouslySetInnerHTML={{
-                                      __html: question,
-                                    }}
+                  {this.props.guide.guides && this.state.guide != null ? (
+                    <div className="">
+                      {this.state.guide != null ? (
+                        <PerfectScrollbar>
+                          <div className="scroll-callScript">
+                            <h3>{this.state.guide.title}</h3>
+                            {this.state.guide.questions.map((question, x) => {
+                              return (
+                                <div>
+                                  <h5>
+                                    <div
+                                      dangerouslySetInnerHTML={{
+                                        __html: question,
+                                      }}
+                                    />
+                                  </h5>
+                                  <textarea
+                                    key={x}
+                                    className="guide-response-text-area"
+                                    placeholder="Write notes"
+                                    type="text"
+                                    onChange={this.handleChangeResponse.bind(
+                                      this,
+                                      x
+                                    )}
                                   />
-                                </h5>
-                                <textarea
-                                  key={x}
-                                  className="guide-response-text-area"
-                                  placeholder="Write notes"
-                                  type="text"
-                                  onChange={this.handleChangeResponse.bind(
-                                    this,
-                                    x
-                                  )}
-                                />
-                              </div>
-                            );
-                          })}
-                        </div>
+                                </div>
+                              );
+                            })}
+                          </div>
+                        </PerfectScrollbar>
                       ) : (
-                        ""
+                        <PerfectScrollbar>
+                          {this.props.guide.guides ? (
+                            <div className="scroll-callScript">
+                              <h3>{this.state.guide.title}</h3>
+                              {this.state.guide.questions.map((question, x) => {
+                                return (
+                                  <div>
+                                    <h5>
+                                      <div
+                                        dangerouslySetInnerHTML={{
+                                          __html: question,
+                                        }}
+                                      />
+                                    </h5>
+                                    <textarea
+                                      key={x}
+                                      className="guide-response-text-area"
+                                      placeholder="Write notes"
+                                      type="text"
+                                      onChange={this.handleChangeResponse.bind(
+                                        this,
+                                        x
+                                      )}
+                                    />
+                                  </div>
+                                );
+                              })}
+                            </div>
+                          ) : (
+                            ""
+                          )}
+                        </PerfectScrollbar>
                       )}
-                    </PerfectScrollbar>
+                    </div>
+                  ) : (
+                    ""
                   )}
                 </div>
-              ) : (
-                ""
-              )}
+              )}{" "}
             </div>
           )}
           {/*!this.state.result &&
@@ -509,16 +541,16 @@ class ScriptCard extends React.Component {
               <img src={require("../../../assets/img/bxs-calendar.svg")} />
               Schedules
             </Button>
-            {this.props.call.callEnded && (
-              <Button
-                onClick={this.toggleSchedule.bind(this)}
-                className="Save-changes-btn "
-              >
-                <img src={require("../../../assets/img/bxs-calendar.svg")} />
-                Looks good!
-              </Button>
-            )}
-            {this.props.call.callEnded && (
+
+            <Button
+              onClick={this.extracNote.bind(this)}
+              className="Save-changes-btn "
+            >
+              <img src={require("../../../assets/img/bxs-calendar.svg")} />
+              Looks good!
+            </Button>
+
+            {!this.props.call.callEnded && this.state.result && (
               <Button
                 onClick={this.toggleSchedule.bind(this)}
                 className="Save-changes-btn"

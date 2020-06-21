@@ -4,6 +4,7 @@ import {
   GET_PAIMENT_HISTORY,
   APPLY_DISCOUNT,
   GET_CARD_INFO,
+  GET_PLAN,
 } from "../../actions";
 import axios from "axios";
 import {
@@ -11,6 +12,7 @@ import {
   getPaimentHistorySuccess,
   applyDiscountSuccess,
   getCardInfoSuccess,
+  getPlansSuccess,
 } from "./actions";
 import { API_URL } from "../../../utils/utils";
 
@@ -68,6 +70,31 @@ function* getPaymnetHistory({ payload }) {
   }
 }
 
+const getPlansAsync = async () =>
+  await axios({
+    method: "get",
+    url: API_URL + `plans/`,
+    headers: {
+      authorization: JSON.parse(localStorage.getItem("user_id")),
+    },
+  })
+    .then((authUser) => authUser)
+    .catch((error) => error);
+
+function* getPlans({ payload }) {
+  try {
+    const getPlansResponse = yield call(getPlansAsync);
+    if (getPlansResponse.status == 200) {
+      yield put(getPlansSuccess(getPlansResponse.data.plans));
+      console.log(getPlansResponse.data);
+    } else {
+      console.log("get failed :", getPlansResponse);
+    }
+  } catch (error) {
+    console.log("get error : ", error);
+  }
+}
+
 const getCardInfoAsync = async () =>
   await axios({
     method: "get",
@@ -83,7 +110,8 @@ function* getCardInfo({ payload }) {
   try {
     const getcardResponse = yield call(getCardInfoAsync);
     if (getcardResponse.status == 200) {
-      yield put(getCardInfoSuccess(getcardResponse));
+      yield put(getCardInfoSuccess(getcardResponse.data));
+      console.log(getcardResponse.data);
     } else {
       console.log("get failed :", getcardResponse);
     }
@@ -111,7 +139,7 @@ function* discount({ payload }) {
   console.log(promoCode);
   try {
     const discountResponse = yield call(discountAsync, promoCode);
-    if (discountResponse.status == 200) {
+    if (discountResponse.status == 200 && discountResponse.data.valid) {
       yield put(applyDiscountSuccess(discountResponse.data.discount));
     } else {
       console.log("add failed :", discountResponse);
@@ -137,11 +165,16 @@ export function* watchGetCardInfo() {
   yield takeEvery(GET_CARD_INFO, getCardInfo);
 }
 
+export function* watchGetPlans() {
+  yield takeEvery(GET_PLAN, getPlans);
+}
+
 export default function* rootSaga() {
   yield all([
     fork(watchPay),
     fork(watchDiscount),
     fork(watchGetHistory),
     fork(watchGetCardInfo),
+    fork(watchGetPlans),
   ]);
 }
