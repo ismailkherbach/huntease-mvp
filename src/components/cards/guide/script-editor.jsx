@@ -22,7 +22,7 @@ import { InstalledAddOnExtensionPage } from "twilio/lib/rest/preview/marketplace
 
 // load theme styles with webpack
 require("medium-editor/dist/css/medium-editor.css");
-require("medium-editor/dist/css/themes/default.css");
+//require("medium-editor/dist/css/themes/default.css");
 const reorder = (list, startIndex, endIndex) => {
   const result = Array.from(list);
   const [removed] = result.splice(startIndex, 1);
@@ -56,13 +56,6 @@ class ScriptEditor extends React.Component {
     this.setState({ contenu: contenu });
   }
 
-  handleChange(i, event) {
-    let values = [...this.state.values];
-    console.log(values);
-    values[i] = event.target.value;
-    this.setState({ values });
-  }
-
   addClick() {
     this.setState((prevState) => ({
       questions: [...prevState.questions, { question: "" }],
@@ -76,10 +69,6 @@ class ScriptEditor extends React.Component {
       displayGuide: [...prevState.displayGuide, { question: "" }],
     }));
     console.log(this.state.displayGuide);
-  }
-
-  handleClick() {
-    this.setState({ text: "" });
   }
 
   onAddGuide = () => {
@@ -100,6 +89,8 @@ class ScriptEditor extends React.Component {
   };
 
   onDragEndNew(result) {
+    console.log(this.state.questionsGuide.questions);
+
     // dropped outside the list
     if (!result.destination) {
       return;
@@ -111,21 +102,37 @@ class ScriptEditor extends React.Component {
       result.destination.index
     );
 
-    this.setState({
-      questionsGuide: { ...this.state.questionsGuide, questions: itemsNew },
-    });
-    console.log(this.state.questions);
+    this.setState(
+      {
+        questionsGuide: {
+          ...this.state.questionsGuide,
+          questions: [...itemsNew],
+        },
+      },
+      () => {
+        console.log(this.state.questionsGuide.questions);
+      }
+    );
+
+    console.log(itemsNew);
   }
 
   modifyClickNew() {
-    this.setState((prevState) => ({
+    this.setState({
       questionsGuide: {
         ...this.state.questionsGuide,
-        questions: [...prevState.questionsGuide.questions, "Write something"],
+        questions: [...this.state.questionsGuide.questions, ""],
       },
-    }));
-    console.log(this.state.displayGuide);
+    });
   }
+  handleChange(i, event) {
+    let questions = [...this.state.questionsGuide.questions];
+    questions[i] = event;
+    this.setState({
+      questionsGuide: { ...this.state.questionsGuide, questions: questions },
+    });
+  }
+
   createUI() {
     return (
       <DragDropContext onDragEnd={this.onDragEndNew}>
@@ -136,43 +143,54 @@ class ScriptEditor extends React.Component {
               ref={provided.innerRef}
               //style={getListStyle(snapshot.isDraggingOver)}
             >
-              {this.state.questionsGuide.questions.map((item, index) => (
-                <Draggable
-                  key={`item1-${index}`}
-                  draggableId={`item1-${index}`}
-                  index={index}
-                >
-                  {(provided, snapshot) => (
-                    <div
-                      className="prompt-field flex fdr aic jcfs"
-                      ref={provided.innerRef}
-                      {...provided.draggableProps}
-                      {...provided.dragHandleProps}
-                    >
+              {this.state.questionsGuide.questions.map((item, index) => {
+                console.log(item);
+                return (
+                  <Draggable
+                    key={`item1-${index}`}
+                    draggableId={`item1-${index}`}
+                    index={index}
+                  >
+                    {(provided, snapshot) => (
                       <div
-                        className="add-prompt flex fdc aic jcc"
-                        onClick={this.modifyClickNew.bind(this)}
+                        className="prompt-field flex fdr aic jcfs"
+                        ref={provided.innerRef}
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}
                       >
-                        <img src={require("../../../assets/img/bx-plus.svg")} />
+                        <div
+                          className="add-prompt flex fdc aic jcc"
+                          onClick={this.modifyClickNew.bind(this)}
+                        >
+                          <img
+                            src={require("../../../assets/img/bx-plus.svg")}
+                          />
+                        </div>
+                        <Editor
+                          key={index}
+                          className="prompt"
+                          tag="pre"
+                          //text={this.state.text}
+
+                          /* These are the default options for anchor form,
+                             if nothing is passed this is what it used */
+                          placeholder
+                          value={item || ""}
+                          name="question"
+                          onChange={this.handleChange.bind(this, index)}
+                          placeholder="hhhhh"
+                          options={{
+                            toolbar: {
+                              buttons: ["bold", "italic", "underline"],
+                            },
+                          }}
+                        />
+                        <img src={require("../../../assets/img/drag.svg")} />
                       </div>
-                      <Editor
-                        key={index}
-                        className="prompt"
-                        tag="pre"
-                        text={this.state.text}
-                        value={item || ""}
-                        name="question"
-                        onChange={this.handleChange.bind(this, index)}
-                        options={{
-                          toolbar: { buttons: ["bold", "italic", "underline"] },
-                        }}
-                        onClick={() => this.setState({ text: "" })}
-                      />
-                      <img src={require("../../../assets/img/drag.svg")} />
-                    </div>
-                  )}
-                </Draggable>
-              ))}
+                    )}
+                  </Draggable>
+                );
+              })}
               {provided.placeholder}
             </div>
           )}
@@ -213,7 +231,7 @@ class ScriptEditor extends React.Component {
     this.setState((prevState) => ({
       displayGuide: {
         ...this.state.displayGuide,
-        questions: [...prevState.displayGuide.questions, "Write something"],
+        questions: [...prevState.displayGuide.questions, ""],
       },
     }));
   }
@@ -262,6 +280,7 @@ class ScriptEditor extends React.Component {
                         key={index}
                         className="prompt"
                         tag="pre"
+                        placeholder="write something"
                         text={
                           this.props.guide.guides
                             ? item
@@ -289,12 +308,6 @@ class ScriptEditor extends React.Component {
   onDeleteGuide(id) {
     this.props.deleteGuide({ id });
     //this.props.getGuide();
-  }
-
-  handleChange(i, event) {
-    let questions = [...this.state.questionsGuide.questions];
-    questions[i] = event;
-    this.setState({ questions });
   }
 
   handleSearchChange(e) {

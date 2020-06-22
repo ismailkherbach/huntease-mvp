@@ -17,9 +17,13 @@ class ScriptCard extends React.Component {
       withoutGuide: false,
       schedulePopup: false,
       guide: null,
-      result: true,
+      result: false,
       checked: false,
       responses: [{ propmt: "", response: "" }],
+
+      answers: [],
+      responsesSet: { questions: [], responses: [] },
+
       notesResponse: "",
     };
   }
@@ -53,22 +57,31 @@ class ScriptCard extends React.Component {
 
   extracNote() {
     var notes = "";
-    let responses = [...this.state.responses];
-    for (let j = 0; j < responses.length; j++) {
-      if (responses[j] != undefined) {
-        notes =
-          notes + this.state.guide.questions[j] + "\n" + responses[j] + "\n";
-      }
+    let answers = this.state.answers;
+
+    for (let j = 0; j < answers.length; j++) {
+      notes =
+        notes +
+        this.state.guide.questions[answers[j].questionId] +
+        "\n" +
+        answers[j].answer +
+        "\n";
     }
     this.setState({ notesResponse: notes });
     console.log(notes);
   }
   handleChangeResponse(i, event) {
+    let answers = this.state.answers;
+    const id = answers.findIndex((e) => e.questionId == i);
+    if (id >= 0) {
+      answers[id] = { questionId: i, answer: "jdsjsgsdj" };
+    } else answers.push({ questionId: i, answer: "sfsdfsg" });
+
     let responses = [...this.state.responses];
 
     responses[i] = event.target.value;
-    this.setState({ responses });
-    console.log(this.state.responses);
+    this.setState({ responses, answers });
+    console.log(this.state.answers);
   }
 
   addClick(i) {

@@ -111,18 +111,30 @@ class PaimentPopup extends React.Component {
 
   handleSubmitWithSource = async (ev) => {
     ev.preventDefault();
+    console.log(ev);
+    const billing_details = {
+      name: this.state.user.firstName + " " + this.state.user.lastName,
+      address_line1: this.state.billing_details.address_line1,
+      address_city: this.state.billing_details.address_city,
+      address_zip: this.state.billing_details.address_zip,
+      address_country: this.state.billing_details.address_country,
+    };
+    const cardElement = this.props.elements.getElement("card");
+    console.log(this.props.elements);
+    console.log(cardElement);
     this.props.stripe.confirmCardPayment(
       "pi_1GqjhbBXLsKUPQbHOLR4S9Zc_secret_faU0lf4aRNUonj2MJ9Hy43LDc",
       {
         payment_method: {
-          card: CardNumberElement,
+          card: cardElement,
+          billing_details: billing_details,
         },
       }
     );
     const tokenize3D = await this.props.stripe.createSource({
       type: "card",
       currency: "eur",
-      amount: 100000,
+      amount: 100,
     });
     const cardSource = tokenize3D.source;
     const tokenize3Dresponse = await this.props.stripe.createSource({
@@ -196,7 +208,7 @@ class PaimentPopup extends React.Component {
                     €
                     {this.props.discount != false
                       ? this.props.plan.price - this.props.discount
-                      : this.props.pla.price}
+                      : this.props.plan.price}
                   </h2>
                 </div>
               </div>
@@ -288,7 +300,7 @@ class PaimentPopup extends React.Component {
                   </div>
                 )}{" "}
                 {this.state.secondStep && (
-                  <div className="flex fdc">
+                  <div className="flex fdc" ref="">
                     <div className="flex fdc aic jcc">
                       <Button
                         className="Change-profile-btn  previous flex aic jcc"

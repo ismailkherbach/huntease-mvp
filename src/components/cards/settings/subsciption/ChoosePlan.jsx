@@ -71,7 +71,7 @@ class ChoosePlan extends React.Component {
               "pk_test_51GqdyRBXLsKUPQbHXGJsCSA9tJYHPpXDa8Y8dChs4dW20yeQh3HT55oiMNmysRhogzBHWKSHvfCWr5DF9KlkKyfk00CQF8DBeX"
             }
           >
-            <Elements id="cardElement" stripe={stripePromise}>
+            <Elements id="card" stripe={stripePromise}>
               <PaimentPopup
                 text='Click "Close Button" to hide popup'
                 closePopup={this.togglePopup.bind(this)}
