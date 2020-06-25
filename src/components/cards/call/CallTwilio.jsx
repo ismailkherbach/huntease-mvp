@@ -136,15 +136,10 @@ class CallTwilio extends React.Component {
         this.setState({ log: "Could not fetch token, see console.log" });
       });
 */
-    //  this.getMicrophone();
+    this.getMicrophone();
 
     await this.handleToggleCall();
-    Twilio.Device.ready(function() {
-      self.setState({
-        onPhone: true,
-        log: "Connected.",
-      });
-    });
+
     Twilio.Device.disconnect(function() {
       self.setState({
         onPhone: false,
@@ -152,13 +147,17 @@ class CallTwilio extends React.Component {
         log: "Call ended.",
       });
     });
+
+    Twilio.Device.ready(function() {
+      self.log = "Connected";
+    });
   };
   componentDidUpdate() {
     //  this.getMicrophone();
     //this.fetchToken();
   }
-  async componentDidMount() {
-    await this.getMicrophone();
+  componentDidMount() {
+    this.getMicrophone();
     this.fetchToken();
     console.log(this.props.visibleLeadId);
 
