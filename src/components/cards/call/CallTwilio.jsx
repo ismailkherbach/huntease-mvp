@@ -152,13 +152,13 @@ class CallTwilio extends React.Component {
       self.log = "Connected";
     });
   };
-  async componentDidUpdate() {
+  componentDidUpdate() {
     //  this.getMicrophone();
     //this.fetchToken();
-    await this.getMicrophone();
-    await this.fetchToken();
   }
-  ascomponentDidMount() {
+  componentDidMount() {
+    this.getMicrophone();
+    this.fetchToken();
     console.log(this.props.visibleLeadId);
 
     client.onopen = () => {
