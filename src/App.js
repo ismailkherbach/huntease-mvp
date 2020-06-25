@@ -5,6 +5,7 @@ import {
   Route,
   Switch,
   Redirect,
+  withRouter,
 } from "react-router-dom";
 import app from "./views/app";
 import main from "./views";

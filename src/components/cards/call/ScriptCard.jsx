@@ -3,7 +3,7 @@ import Btn from "../../small.componenets/Btn";
 import { Button, Input } from "reactstrap";
 import ChooseGuidePopup from "../../popup/ChooseGuidePopup";
 import { connect } from "react-redux";
-import { getGuide } from "../../../redux/actions";
+import { getGuide, getSchedules, addSchedules } from "../../../redux/actions";
 import { Link } from "react-router-dom";
 import PerfectScrollbar from "react-perfect-scrollbar";
 
@@ -20,12 +20,32 @@ class ScriptCard extends React.Component {
       result: false,
       checked: false,
       responses: [{ propmt: "", response: "" }],
-
       answers: [],
-      responsesSet: { questions: [], responses: [] },
-
+      meetingBooked: false,
       notesResponse: "",
+      emptySchedule: false,
+      addSchedule: false,
+      link: "",
+      name: "",
     };
+  }
+
+  toggleBackSchedule() {
+    this.setState({
+      addSchedule: false,
+    });
+  }
+
+  toggleAddSchedule() {
+    this.setState({
+      addSchedule: true,
+    });
+  }
+  handleChangeLink(e) {
+    this.setState({ link: e.target.value });
+  }
+  handleChangeName(e) {
+    this.setState({ name: e.target.value });
   }
   toggleWithoutGuide() {
     this.setState({ withoutGuide: true, showPopup: false });
@@ -47,6 +67,13 @@ class ScriptCard extends React.Component {
       schedulePopup: false,
     });
   }
+  meetingsStatus(status) {
+    if (status) {
+      this.setState({ meetingBooked: false });
+    } else {
+      this.setState({ meetingBooked: true });
+    }
+  }
   handleChangeNotes(e) {
     e.preventDefault();
     this.setState({
@@ -55,27 +82,38 @@ class ScriptCard extends React.Component {
     console.log(this.state.notesResponse);
   }
 
+  onAddSchedule() {
+    let name = this.state.name;
+    let link = this.state.link;
+    this.props.addSchedules({ name, link });
+  }
   extracNote() {
-    var notes = "";
-    let answers = this.state.answers;
-
-    for (let j = 0; j < answers.length; j++) {
-      notes =
-        notes +
-        this.state.guide.questions[answers[j].questionId] +
-        "\n" +
-        answers[j].answer +
-        "\n";
+    if (!this.state.withoutGuide) {
+      var notes = "";
+      let answers = this.state.answers;
+      for (let j = 0; j < answers.length; j++) {
+        notes =
+          notes +
+          this.state.guide.questions[answers[j].questionId] +
+          "\n" +
+          answers[j].answer +
+          "\n";
+      }
+      this.setState(
+        { notesResponse: notes, result: true },
+        console.log(this.state.notesResponse)
+      );
+    } else {
+      this.setState({ result: true });
     }
-    this.setState({ notesResponse: notes });
-    console.log(notes);
+    //  this.setState({ result: true });
   }
   handleChangeResponse(i, event) {
     let answers = this.state.answers;
     const id = answers.findIndex((e) => e.questionId == i);
     if (id >= 0) {
-      answers[id] = { questionId: i, answer: "jdsjsgsdj" };
-    } else answers.push({ questionId: i, answer: "sfsdfsg" });
+      answers[id] = { questionId: i, answer: event.target.value };
+    } else answers.push({ questionId: i, answer: event.target.value });
 
     let responses = [...this.state.responses];
 
@@ -99,7 +137,8 @@ class ScriptCard extends React.Component {
   }
   componentDidMount() {
     this.props.getGuide();
-    console.log(this.props.guide.guides);
+    this.props.getSchedules();
+    console.log(this.props.call.schedules);
     if (this.props.guide.guides) {
       if (!this.props.guide.isGuideEmpty) {
         this.setState({ guide: this.props.guide.guides[0] });
@@ -191,7 +230,67 @@ class ScriptCard extends React.Component {
           )}
 
           {this.state.result ? (
-            ""
+            <div className="ScriptCallEditor ">
+              {this.state.withoutGuide ? (
+                <div className="flex fdc aifs jcfs">
+                  <h3 className="guideResTitle">Notes</h3>
+
+                  <textarea
+                    type="textarea"
+                    className="guideResArea"
+                    value={this.state.notesResponse}
+                    onChange={(e) => {
+                      this.handleChangeNotes(e);
+                    }}
+                  />
+                </div>
+              ) : (
+                <div className="flex fdc aifs jcfs">
+                  <h3 className="guideResTitle">{this.state.guide.title}</h3>
+                  <PerfectScrollbar>
+                    <div className="GuideResponse scroll-callScriptRes">
+                      {this.state.answers.map((ans, index) => {
+                        return (
+                          <div>
+                            <h5>
+                              <div
+                                dangerouslySetInnerHTML={{
+                                  __html: this.state.guide.questions[
+                                    ans.questionId
+                                  ],
+                                }}
+                              />
+                            </h5>
+                            <h4>{ans.answer}</h4>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </PerfectScrollbar>
+                </div>
+              )}
+              <div className="DidyouBook flex aic jcc fdc">
+                <h3>Did you book a meeting with Sara?</h3>
+                <div className="flex fdr aic jcc">
+                  <Button
+                    className="Change-profile-btn"
+                    onClick={() => {
+                      this.meetingsStatus(true);
+                    }}
+                  >
+                    Yes
+                  </Button>
+                  <Button
+                    className="decline Change-profile-btn"
+                    onClick={() => {
+                      this.meetingsStatus(false);
+                    }}
+                  >
+                    No
+                  </Button>
+                </div>
+              </div>
+            </div>
           ) : (
             <div>
               {" "}
@@ -325,253 +424,140 @@ class ScriptCard extends React.Component {
               )}{" "}
             </div>
           )}
-          {/*!this.state.result &&
-            this.props.guide.guides &&
-            this.props.guide.guides.length != 0 && (
-              <div>
-                <div className="inlineBtn-left">
-                  <Button
-                    className={
-                      this.state.withoutGuide ? "btn-clicked" : "btn-unclicked"
-                    }
-                    onClick={this.togglePopup.bind(this)}
-                  >
-                    <box-icon
-                      name="notepad"
-                      type="solid"
-                      color={this.state.withoutGuide ? "#8BA3FF" : "#254ebe"}
-                    ></box-icon>
-                    <h3
-                      className={
-                        this.state.withoutGuide
-                          ? "btn-text-clicked"
-                          : "btn-text-unclicked"
-                      }
-                    >
-                      Choose a guide
-                    </h3>
-                  </Button>
-                  <Button
-                    className={
-                      this.state.withoutGuide ? "btn-unclicked" : "btn-clicked"
-                    }
-                    onClick={this.toggleWithoutGuide.bind(this)}
-                  >
-                    <box-icon
-                      name="note"
-                      type="solid"
-                      color={this.state.withoutGuide ? "#254ebe" : "#8BA3FF"}
-                    ></box-icon>
-                    <h3
-                      className={
-                        this.state.withoutGuide
-                          ? "btn-text-unclicked"
-                          : "btn-text-clicked"
-                      }
-                    >
-                      Continue without guide
-                    </h3>
-                  </Button>
-                </div>
-                <div className="notes inlineBtn-col-center">
-                  {this.state.withoutGuide && (
-                    <Input
-                      className="notes-text-area"
-                      placeholder="Notes"
-                      type="textarea"
-                      name="text"
-                    />
+          {this.state.schedulePopup ? (
+            <div className=" Bottom-bloc Schedules flex jcc">
+              {this.props.call.schedules ? (
+                <div className="inner">
+                  {this.props.call.isEmptyschedules &&
+                  !this.state.addSchedule ? (
+                    <div className="emptySchedules flex fdc aic jcc">
+                      <img
+                        className=""
+                        alt="no-guide"
+                        src={require("../../../assets/img/calendar.svg")}
+                      />
+                      <h5>You have no schedules saved</h5>
+                      <Button
+                        className="integrate-button"
+                        onClick={this.toggleAddSchedule.bind(this)}
+                      >
+                        <img
+                          className=""
+                          alt="no-guide"
+                          src={require("../../../assets/img/bxs-calendar-plus.svg")}
+                        />
+                        Add a schedule
+                      </Button>
+                    </div>
+                  ) : (
+                    ""
                   )}
-                </div>{" "}
-                <div className="guide-response inlineBtn-col-center">
-                  {!this.state.result &&
-                  !this.state.withoutGuide &&
-                  !this.state.guide &&
-                  this.props.guide.guides.length != 0 ? (
-                    <div>
-                      <h3>{this.props.guide.guides[0].title}</h3>
-                      {this.props.guide.guides[0].questions.map(
-                        (question, x) => {
+                  {this.state.addSchedule && (
+                    <div className="AddSchedule">
+                      <div className="flex fdr aic jcfs margin-bottom25">
+                        <img
+                          onClick={this.toggleBackSchedule.bind(this)}
+                          className=""
+                          alt="no-guide"
+                          src={require("../../../assets/img/bx-left-arrow-alt.svg")}
+                        />
+                        <h4>Add a schedule</h4>
+                      </div>
+                      <div className="flex fdc">
+                        <h5>Calendar owner</h5>
+                        <input
+                          placeholder="Ismail kherbach"
+                          onChange={this.handleChangeName.bind(this)}
+                        />
+                        <h5>Calendar link</h5>
+                        <input
+                          placeholder="https://.."
+                          onChange={this.handleChangeLink.bind(this)}
+                        />
+                      </div>
+                      <div className="flex fdc aic jcc">
+                        <Button
+                          className="integrate-button"
+                          onClick={this.onAddSchedule.bind(this)}
+                        >
+                          Save schedule{" "}
+                          <img
+                            className=""
+                            alt="no-guide"
+                            src={require("../../../assets/img/bx-check.svg")}
+                          />
+                        </Button>
+                      </div>
+                    </div>
+                  )}
+
+                  {!this.props.call.isEmptyschedules &&
+                    !this.state.addSchedule && (
+                      <div className="SchedulesList flex fdc aifs jcfs">
+                        <div className="blocList flex fdr aic margin-bottom25">
+                          <h4>Add a schedule</h4>
+                          <img
+                            onClick={this.toggleAddSchedule.bind(this)}
+                            className=""
+                            alt="no-guide"
+                            src={require("../../../assets/img/addSchedule.svg")}
+                          />
+                        </div>
+                        {this.props.call.schedules.map((schedule) => {
                           return (
-                            <div>
-                              <h5>
-                                <div
-                                  dangerouslySetInnerHTML={{
-                                    __html: question,
-                                  }}
-                                />
-                              </h5>
-                              <input
-                                key={x}
-                                className="guide-response-text-area"
-                                placeholder="Guide response"
-                                type="text"
-                                onChange={this.handleChangeResponse.bind(
-                                  this,
-                                  x
-                                )}
-                              />
+                            <div className="blocListSchedule flex fdc aifs jcc">
+                              <a target="_blank" href={schedule.link}>
+                                {schedule.name}
+                              </a>
                             </div>
                           );
-                        }
-                      )}
-                    </div>
-                  ) : null}
+                        })}
+                      </div>
+                    )}
                 </div>
-                <div className="guide-response inlineBtn-col-center">
-                  {!this.state.withoutGuide && this.state.guide ? (
-                    <div>
-                      <h3>{this.state.guide.title}</h3>
-                      {this.state.guide.questions.map((question, x) => {
-                        return (
-                          <div>
-                            <h5>
-                              <div
-                                dangerouslySetInnerHTML={{
-                                  __html: question,
-                                }}
-                              />
-                            </h5>
-                            <input
-                              key={x}
-                              className="guide-response-text-area"
-                              placeholder="Guide response"
-                              type="text"
-                              onChange={this.handleChangeResponse.bind(this, x)}
-                            />
-                          </div>
-                        );
-                      })}
-                    </div>
-                  ) : null}
-                </div>
-              </div>
-            )*/}
-
-          <div className="inlineBtn-col-center">
-            {this.state.schedulePopup ? (
-              <SchedulesPopup
-                text='Click "Close Button" to hide popup'
-                closePopup={this.toggleSchedule.bind(this)}
-              />
-            ) : null}
-          </div>
-          {/*!this.state.result && this.props.guide.guides ? (
-            <div>
-              {this.props.guide.guides.length == 0 && !this.state.withoutGuide && (
-                <div className="inlineBtn-col-center mt-5">
-                  <img
-                    className="empty-guide mt-5"
-                    alt="no-guide"
-                    src={require("../../../assets/img/no_guide.png")}
-                  />
-                  <p className="empty-text mt-3">
-                    You don't have guides click on add guide to create one
-                  </p>
-
-                  <Button
-                    className="btn-unclicked"
-                    onClick={this.toggleWithoutGuide.bind(this)}
-                  >
-                    Continue without guide
-                  </Button>
-                </div>
+              ) : (
+                ""
               )}
-              { <div className="inlineBtn-center">
-                <Button
-                  onClick={this.toggleSchedule.bind(this)}
-                  className="confirm-btn"
-                >
-                  Book a meeting
-                </Button>
-              </div>}
             </div>
-          ) : (
-            ""
-          )*/}
-
-          {/*this.state.result && (
-            <div className="res-guide ">
-              <PerfectScrollbar>
-                <div className="scroll-guide-result">
-                  <div className="guide-result">
-                    <h3 id="card-title">Guide N°1</h3>
-                    <p>Question 1</p>
-                    <h4>Did you book a meeting with Sara?</h4> <p>Question 1</p>
-                    <h4>Did you book a meeting with Sara?</h4> <p>Question 1</p>
-                    <h4>Did you book a meeting with Sara?</h4> <p>Question 1</p>
-                    <h4>Did you book a meeting with Sara?</h4> <p>Question 1</p>
-                    <h4>Did you book a meeting with Sara?</h4> <p>Question 1</p>
-                    <h4>Did you book a meeting with Sara?</h4> <p>Question 1</p>
-                    <h4>Did you book a meeting with Sara?</h4>
-                    <p> {this.props.call.callEnded ? "Ended" : "On call"}</p>
-                  </div>
-                </div>
-              </PerfectScrollbar>
-
-              <div className="inlineBtn-center">
-                <div className="inlineBtn-col-center meeting-verification">
-                  <h3>Did you book a meeting with Sara?</h3>
-                  <div>
-                    <Button id="accept">Yes</Button>
-                    <Button id="decline">No</Button>
-                  </div>
-                </div>
-              </div>
-
-              <div className="inlineBtn-center">
+          ) : null}
+          <div className="Bottom-bloc">
+            <div className=" flex fdr aic jcc">
+              {this.props.guide.isGuideEmpty && (
                 <Button
                   onClick={this.toggleSchedule.bind(this)}
-                  className="guideRes"
+                  className="integrate-button"
                 >
-                  Book a meeting
+                  <img src={require("../../../assets/img/bx-plus.svg")} />
+                  New Guide
                 </Button>
-
-                <Button
-                  onClick={this.toggleSchedule.bind(this)}
-                  className="guideRes"
-                >
-                  Looks good
-                </Button>
-              </div>
-            </div>
-          )*/}
-
-          <div className="Bottom-bloc flex fdr aic jcc">
-            {this.props.guide.isGuideEmpty && (
+              )}
               <Button
                 onClick={this.toggleSchedule.bind(this)}
-                className="integrate-button"
-              >
-                <img src={require("../../../assets/img/bx-plus.svg")} />
-                New Guide
-              </Button>
-            )}
-            <Button
-              onClick={this.toggleSchedule.bind(this)}
-              className="Save-changes-btn Schedules"
-            >
-              <img src={require("../../../assets/img/bxs-calendar.svg")} />
-              Schedules
-            </Button>
-
-            <Button
-              onClick={this.extracNote.bind(this)}
-              className="Save-changes-btn "
-            >
-              <img src={require("../../../assets/img/bxs-calendar.svg")} />
-              Looks good!
-            </Button>
-
-            {!this.props.call.callEnded && this.state.result && (
-              <Button
-                onClick={this.toggleSchedule.bind(this)}
-                className="Save-changes-btn"
+                className="Save-changes-btn Schedules"
               >
                 <img src={require("../../../assets/img/bxs-calendar.svg")} />
-                Send to hubspot
+                Schedules
               </Button>
-            )}
+
+              {this.props.call.callEnded && !this.state.result && (
+                <Button
+                  onClick={this.extracNote.bind(this)}
+                  className="Save-changes-btn "
+                >
+                  <img src={require("../../../assets/img/bxs-calendar.svg")} />
+                  Looks good!
+                </Button>
+              )}
+              {!this.props.call.callEnded && this.state.result && (
+                <Button
+                  onClick={this.toggleSchedule.bind(this)}
+                  className="Save-changes-btn"
+                >
+                  <img src={require("../../../assets/img/bxs-calendar.svg")} />
+                  Send to hubspot
+                </Button>
+              )}
+            </div>
           </div>
         </div>
       </Fragment>
@@ -587,6 +573,8 @@ const mapStateToProps = ({ call, guide }) => {
 
 export default connect(mapStateToProps, {
   getGuide,
+  getSchedules,
+  addSchedules,
 })(ScriptCard);
 
 /*

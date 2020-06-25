@@ -19,6 +19,12 @@ import {
   DELETE_INTEGRATION_SUCCESS,
   LEADS_LIST_SELECTED_ITEMS_CHANGE,
   ENDING_CALL,
+  GET_SCHEDULES,
+  GET_SCHEDULES_SUCCESS,
+  GET_SCHEDULES_ERROR,
+  ADD_SCHEDULES,
+  ADD_SCHEDULES_SUCCESS,
+  ADD_SCHEDULES_ERROR,
 } from "../../actions";
 
 const INIT_STATE = {
@@ -31,6 +37,9 @@ const INIT_STATE = {
   message: "",
   selectedItems: [],
   callEnded: false,
+  isEmptyLeads: null,
+  schedules: null,
+  isEmptyschedules: null,
 };
 
 export default (state = INIT_STATE, action) => {
@@ -42,6 +51,8 @@ export default (state = INIT_STATE, action) => {
         ...state,
         loading: false,
         leads: action.payload,
+        isEmptyLeads: action.payload.length === 0 ? true : false,
+
         error: "",
       };
     case GET_LEADS_ERROR:
@@ -51,6 +62,41 @@ export default (state = INIT_STATE, action) => {
         leads: "",
         error: action.payload,
       };
+    case GET_SCHEDULES:
+      return { ...state, loading: true, error: "" };
+    case GET_SCHEDULES_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        schedules: action.payload,
+        isEmptyschedules: action.payload.length === 0 ? true : false,
+        error: "",
+      };
+    case GET_SCHEDULES_ERROR:
+      return {
+        ...state,
+        loading: false,
+        schedules: "",
+        error: action.payload,
+      };
+
+    case ADD_SCHEDULES:
+      return { ...state, loading: true, error: "" };
+    case ADD_SCHEDULES_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        schedule: action.payload,
+        error: "",
+      };
+    case ADD_SCHEDULES_ERROR:
+      return {
+        ...state,
+        loading: false,
+        schedule: "",
+        error: action.payload,
+      };
+
     case SYNC_LEADS:
       return { ...state, loading: true, error: "" };
     case SYNC_LEADS_SUCCESS:

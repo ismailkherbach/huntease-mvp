@@ -8,6 +8,12 @@ import {
   GET_PROFILE,
   GET_PROFILE_ERROR,
   GET_PROFILE_SUCCESS,
+  ADD_PHONE_NUMBER,
+  ADD_PHONE_NUMBER_SUCCESS,
+  ADD_PHONE_NUMBER_ERROR,
+  UPDATE_PASSWORD,
+  UPDATE_PASSWORD_SUCCESS,
+  UPDATE_PASSWORD_ERROR,
 } from "../actions";
 
 export const getProfile = () => ({
@@ -36,6 +42,36 @@ export const editProfileSuccess = (profile) => ({
 
 export const editProfileError = (error) => ({
   type: EDIT_PROFILE_ERROR,
+  payload: error,
+});
+
+export const updatePassword = (password) => ({
+  type: UPDATE_PASSWORD,
+  payload: password,
+});
+
+export const updatePasswordSuccess = (password) => ({
+  type: UPDATE_PASSWORD_SUCCESS,
+  payload: password,
+});
+
+export const updatePasswordError = (error) => ({
+  type: UPDATE_PASSWORD_ERROR,
+  payload: error,
+});
+
+export const addPhoneNumber = (phone) => ({
+  type: ADD_PHONE_NUMBER,
+  payload: phone,
+});
+
+export const addPhoneNumberSuccess = (code) => ({
+  type: ADD_PHONE_NUMBER_SUCCESS,
+  payload: code,
+});
+
+export const addPhoneNumberError = (error) => ({
+  type: ADD_PHONE_NUMBER_ERROR,
   payload: error,
 });
 

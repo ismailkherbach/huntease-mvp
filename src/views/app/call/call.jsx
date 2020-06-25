@@ -8,7 +8,7 @@ export default class Call extends React.Component {
       <Fragment>
         <div className="Calls-bloc flex fdr aic jcc">
           <ScriptCard />
-          {/*  <CallCard />*/}
+          {<CallCard />}
         </div>
       </Fragment>
     );

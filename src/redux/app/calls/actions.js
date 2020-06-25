@@ -19,6 +19,12 @@ import {
   DELETE_INTEGRATION_SUCCESS,
   LEADS_LIST_SELECTED_ITEMS_CHANGE,
   ENDING_CALL,
+  GET_SCHEDULES,
+  GET_SCHEDULES_SUCCESS,
+  GET_SCHEDULES_ERROR,
+  ADD_SCHEDULES,
+  ADD_SCHEDULES_SUCCESS,
+  ADD_SCHEDULES_ERROR,
 } from "../../actions";
 
 export const endCall = (callSid) => ({
@@ -37,6 +43,35 @@ export const getLeadsSuccess = (leads) => ({
 
 export const getLeadsError = (error) => ({
   type: GET_LEADS_ERROR,
+  payload: error,
+});
+
+export const getSchedules = () => ({
+  type: GET_SCHEDULES,
+});
+
+export const getSchedulesSuccess = (schedules) => ({
+  type: GET_SCHEDULES_SUCCESS,
+  payload: schedules,
+});
+
+export const ggetSchedulesError = (error) => ({
+  type: GET_SCHEDULES_ERROR,
+  payload: error,
+});
+
+export const addSchedules = (guide) => ({
+  type: ADD_SCHEDULES,
+  payload: guide,
+});
+
+export const addSchedulesSuccess = (guide) => ({
+  type: ADD_SCHEDULES_SUCCESS,
+  payload: guide,
+});
+
+export const addSchedulesError = (error) => ({
+  type: ADD_SCHEDULES_ERROR,
   payload: error,
 });
 

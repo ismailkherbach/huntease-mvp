@@ -17,6 +17,7 @@ import {
   changeNameResponse,
 } from "../../../redux/actions";
 import "boxicons";
+import DeleteTeamMemberPopup from "../../popup/DeleteTeamMemberPopup";
 
 class TeamManagement extends React.Component {
   constructor(props) {
@@ -25,6 +26,8 @@ class TeamManagement extends React.Component {
       newMember: { firstName: "", lastName: "", email: "" },
 
       domain: "@" + JSON.parse(localStorage.getItem("domain")),
+      teamMemberId: null,
+      showPopup: false,
     };
     this.handleChangeEmail = this.handleChangeEmail.bind(this);
     this.handleChangeFirst = this.handleChangeFirst.bind(this);
@@ -72,9 +75,23 @@ class TeamManagement extends React.Component {
     console.log(this.props.team.teamMembers);
   }
 
+  togglePopup(id) {
+    this.setState({
+      teamMemberId: id,
+      showPopup: !this.state.showPopup,
+    });
+  }
   render() {
     return (
       <Fragment>
+        {this.state.showPopup ? (
+          <DeleteTeamMemberPopup
+            closePopup={this.togglePopup.bind(this)}
+            id={this.state.teamMemberId}
+          />
+        ) : (
+          ""
+        )}
         <div className="AddMember">
           <h3>Add your team members</h3>
           <h5>
@@ -234,7 +251,14 @@ class TeamManagement extends React.Component {
                                       </DropdownToggle>
                                       <DropdownMenu className="btn" right>
                                         <DropdownItem>Edit</DropdownItem>
-                                        <DropdownItem>Delete</DropdownItem>
+                                        <DropdownItem
+                                          onClick={this.togglePopup.bind(
+                                            this,
+                                            user.user._id
+                                          )}
+                                        >
+                                          Delete
+                                        </DropdownItem>
                                       </DropdownMenu>
                                     </UncontrolledDropdown>
                                   </td>

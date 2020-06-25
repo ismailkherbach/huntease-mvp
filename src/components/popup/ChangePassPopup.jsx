@@ -1,48 +1,68 @@
 import React from "react";
 import { Button } from "reactstrap";
-
+import { connect } from "react-redux";
+import { updatePassword } from "../../redux/actions";
 class ChangePassPopup extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      old: null,
+      new: null,
+    };
+  }
+
+  handleChangeNew(e) {
+    this.setState({
+      new: e.target.value,
+    });
+  }
+  handleChangeOld(e) {
+    this.setState({
+      old: e.target.value,
+    });
+  }
+
+  onUpdatePassword() {
+    let old = this.state.old;
+    let newPass = this.state.new;
+    this.props.updatePassword({ old, newPass });
+  }
   render() {
     return (
-      <div className="popup-change-password">
-        <div className="popup_inner-change-password">
-          <h4 className="float-right" onClick={this.props.closePopup}>
-            x
-          </h4>
+      <div className="popup-container flex aic jcc fdc">
+        <div className="popup_inner-change-password flex fdc aic jcc">
+          <h3>Change password</h3>
+          <div className="fdc flex aifs jcfs margin-top25">
+            <h5>Current password</h5>
 
-          <h4>Change password</h4>
-          <div className="inlineBtn-col-center">
-            <div className="inlinBtn-col-center">
-              <div id="field-top">Current password</div>
-
-              <input
-                className="profile-input"
-                placeholder=""
-                type="text"
-                onChange={this.handleChangeEmail}
-              />
-            </div>
-            <div className="inlinBtn-col-center">
-              <div id="field-top">New password</div>
-
-              <input
-                className="profile-input"
-                placeholder=""
-                type="text"
-                onChange={this.handleChangeEmail}
-              />
-            </div>
-            <div className="inlinBtn-col-center">
-              <div id="field-top">Confirm new password</div>
-
-              <input
-                className="profile-input"
-                placeholder=""
-                type="text"
-                onChange={this.handleChangeEmail}
-              />
-            </div>
-            <Button className="confirm-btn">Confim changes</Button>
+            <input
+              className="profile-input"
+              placeholder=""
+              type="password"
+              onChange={this.handleChangeOld.bind(this)}
+            />
+          </div>
+          <h5>New password</h5>
+          <input
+            className="profile-input"
+            placeholder=""
+            type="password"
+            onChange={this.handleChangeNew.bind(this)}
+          />
+          <h5>Confirm password</h5>
+          <input
+            className="profile-input"
+            placeholder=""
+            type="password"
+            onChange={this.handleChangeNew.bind(this)}
+          />
+          <div className=" flex fdc aic jcc">
+            <Button
+              onClick={this.onUpdatePassword.bind(this)}
+              className="Change-profile-btn"
+            >
+              Confim changes
+            </Button>
           </div>
         </div>
       </div>
@@ -50,4 +70,12 @@ class ChangePassPopup extends React.Component {
   }
 }
 
-export default ChangePassPopup;
+const mapStateToProps = ({ settings }) => {
+  return {
+    settings,
+  };
+};
+
+export default connect(mapStateToProps, {
+  updatePassword,
+})(ChangePassPopup);

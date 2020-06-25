@@ -9,12 +9,17 @@ import {
   darkMode,
   editProfile,
   getProfile,
+  addPhoneNumber,
 } from "../../../redux/actions";
 import { localeOptions } from "../../../constants/defaultValues";
 import ChangePassPopup from "../../popup/ChangePassPopup";
 import ChangeNumberPopup from "../../popup/ChangeNumberPopup";
 import { API_URL } from "../../../utils/utils";
 import axios from "axios";
+import { w3cwebsocket as W3CWebSocket } from "websocket";
+const user = JSON.parse(localStorage.getItem("user"));
+
+const client = new W3CWebSocket(`wss://39478e93b552.ngrok.io/${user.id}`);
 class AccountCall extends React.Component {
   constructor(props) {
     super(props);
@@ -25,6 +30,7 @@ class AccountCall extends React.Component {
       domain: JSON.parse(localStorage.getItem("domain")).split(".")[0],
       userData: { firstName: "", lastName: "" },
       image: null,
+      phone: null,
     };
     this.handleImageChange = this.handleImageChange.bind(this);
     this.uploadPicture = this.uploadPicture.bind(this);
@@ -106,8 +112,25 @@ class AccountCall extends React.Component {
     this.props.editProfile(this.state.userData);
     console.log(this.state.userData);
   }
+  onAddPhoneNumber() {
+    let phone = this.state.phone;
+    this.props.addPhoneNumber({ phone });
+  }
+  handleChangePhone(e) {
+    this.setState({
+      phone: e.target.value,
+    });
+  }
   componentDidMount() {
     this.props.getProfile();
+    client.onopen = () => {
+      console.log("WebSocket Client Connected");
+    };
+    client.onmessage = (phone) => {
+      console.log(phone.data);
+
+      //this.handleChangeEmotion(emotionPacket.data)
+    };
   }
   render() {
     const { email, lastName, firstName, picture, phone } = this.props.profile;
@@ -193,12 +216,12 @@ class AccountCall extends React.Component {
                       closePopup={this.togglePopup.bind(this)}
                     />
                   ) : null}
-                  {this.state.showPopup ? (
+                  {/*this.state.showPopup ? (
                     <ChangeNumberPopup
                       text='Click "Close Button" to hide popup'
                       closePopup={this.togglePopup.bind(this)}
                     />
-                  ) : null}
+                  ) : null*/}
                 </div>
               </div>
             </div>
@@ -278,14 +301,18 @@ class AccountCall extends React.Component {
                 src={require("../../../assets/img/indicatif/flag-fr.png")}
                 alt={"profile"}
               />
-              <h4>+{phone}</h4>{" "}
+              <h4>+{phone}</h4>
               <Button
                 className="Change-profile-btn"
-                onClick={this.togglePopup.bind(this)}
+                onClick={this.onAddPhoneNumber.bind(this)}
               >
                 Change
               </Button>
             </div>
+            <input
+              placeholder="054213798"
+              onChange={this.handleChangePhone.bind(this)}
+            />
           </div>
           {this.state.userData.firstName != "" &&
             this.state.userData.lastName != "" && (
@@ -316,6 +343,7 @@ export default injectIntl(
     darkMode,
     editProfile,
     getProfile,
+    addPhoneNumber,
   })(AccountCall)
 );
 

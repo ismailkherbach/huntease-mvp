@@ -1,5 +1,5 @@
 import React, { Suspense } from "react";
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Route, Switch, Redirect, withRouter } from "react-router-dom";
 
 import AppLayout from "../../layout/AppLayout";
 import Fullscreen from "react-full-screen";

@@ -30,15 +30,18 @@ class CallCard extends React.Component {
       visibleLeadInfos: {},
       shownLead: false,
       callSection: false,
-      leadListing: true,
       shownLeadInfos: false,
       noLeads: false,
-      callIcon: false,
-      onPhone: false,
+
       muted: false,
       visibleIconId: null,
       lastChecked: null,
       delecteAction: false,
+
+      leadListing: true,
+      emptyLead: true,
+      callIcon: false,
+      onPhone: false,
     };
     this.handleHoverOn = this.handleHoverOn.bind(this);
     this.handleHoverOff = this.handleHoverOff.bind(this);
@@ -149,7 +152,290 @@ class CallCard extends React.Component {
   render() {
     return (
       <Fragment>
-        <div id="calls-list-card">
+        <div className="CallLead">
+          {this.props.call.isEmptyLeads ? (
+            <div className="noLeads flex fdc">
+              <div className="flex fdr aic jcfs">
+                <h3>Leads</h3>
+              </div>
+              <div className="flex fdc aic jcc">
+                <img
+                  alt="empty-leads"
+                  src={require("../../../assets/img/emptyLeads.svg")}
+                />
+                <h2>You have no leads</h2>
+              </div>
+              <div className="importLeads flex fdc aic jcc">
+                <Button className="Save-changes-btn">
+                  <img
+                    alt="empty-leads"
+                    src={require("../../../assets/img/hubspotLogo.svg")}
+                  />
+                  Import contacts from Hubspot
+                </Button>
+              </div>
+            </div>
+          ) : (
+            <div>
+              {!this.state.callSection && (
+                <div>
+                  {this.state.leadListing ? (
+                    <div className="LeadListing flex fdc">
+                      <div className="flex fdr aic jcfs">
+                        {this.props.call.leads && this.state.delecteAction ? (
+                          <CustomInput
+                            className="custom-checkbox"
+                            type="checkbox"
+                            id="checkAll"
+                            checked={
+                              this.props.call.selectedItems.length >=
+                              this.props.call.leads.length
+                            }
+                            onClick={() => this.handleChangeSelectAll()}
+                            onChange={() => this.handleChangeSelectAll()}
+                            label=""
+                          />
+                        ) : null}
+                        <h3>
+                          Your leads (
+                          {this.props.call.leads
+                            ? this.props.call.leads.length
+                            : "..."}
+                          )
+                        </h3>
+                        <div className="edit flex fdc aic jcc">
+                          <box-icon name="search" color="#0026bc"></box-icon>
+                        </div>
+                        <UncontrolledDropdown>
+                          <DropdownToggle
+                            color="empty"
+                            className="dropdown-toggle-split"
+                          >
+                            <div className="edit flex fdc aic jcc">
+                              <box-icon
+                                name="pencil"
+                                color="#0026bc"
+                              ></box-icon>
+                            </div>
+                          </DropdownToggle>
+                          <DropdownMenu className="btn" right>
+                            <DropdownItem
+                              onClick={this.deleteCheckBox.bind(this)}
+                            >
+                              Edit
+                            </DropdownItem>
+                            <DropdownItem>Delete</DropdownItem>
+                          </DropdownMenu>
+                        </UncontrolledDropdown>
+                      </div>
+                      {this.props.call.leads ? (
+                        <PerfectScrollbar>
+                          <div className="scroll-leads">
+                            {this.props.call.leads.map((lead, i) => {
+                              return (
+                                <div
+                                  className="LeadList flex fdr aic jcfs"
+                                  onMouseEnter={this.handleHoverOn.bind(
+                                    this,
+                                    i
+                                  )}
+                                  onMouseLeave={this.handleHoverOff}
+                                  key={i}
+                                >
+                                  {this.state.delecteAction && (
+                                    <CustomInput
+                                      className="custom-checkbox mb-0 d-inline-block"
+                                      type="checkbox"
+                                      key={i}
+                                      id={lead.id}
+                                      checked={
+                                        this.props.call.loading
+                                          ? this.props.call.selectedItems.includes(
+                                              lead.id
+                                            )
+                                          : false
+                                      }
+                                      onChange={(event) =>
+                                        this.handleCheckChange(event, lead.id)
+                                      }
+                                      label=""
+                                    />
+                                  )}
+
+                                  <img
+                                    src={lead.picture}
+                                    onClick={this.handleLeadClick.bind(
+                                      this,
+                                      lead
+                                    )}
+                                  />
+                                  <div
+                                    className="SubInfos flex fdc aifs jcc"
+                                    onClick={this.handleLeadClick.bind(
+                                      this,
+                                      lead
+                                    )}
+                                  >
+                                    <h4>
+                                      {lead.firstName +
+                                        " " +
+                                        lead.lastName.split("(")[0]}
+                                    </h4>
+                                    <h5>{lead.jobtitle}</h5>
+                                  </div>
+                                  {this.state.callIcon &&
+                                    this.state.visibleIconId == i && (
+                                      <div
+                                        className="directCall flex fdc aic jcc"
+                                        onClick={this.handleCallClick.bind(
+                                          this,
+                                          lead
+                                        )}
+                                      >
+                                        <box-icon
+                                          name="phone"
+                                          type="solid"
+                                          color="white"
+                                        ></box-icon>{" "}
+                                      </div>
+                                    )}
+                                </div>
+                              );
+                            })}
+                          </div>
+                        </PerfectScrollbar>
+                      ) : (
+                        ""
+                      )}
+                    </div>
+                  ) : (
+                    <div className="leadDisplay flex fdc aic jcc">
+                      <div className="topBloc flex fdc ">
+                        <div className="cancelInfos flex fdr aifs jcfs">
+                          <h4>Contact infos</h4>
+                          <img
+                            onClick={this.toogleLead.bind(this)}
+                            className="float-right curs_pointer"
+                            alt="empty-leads"
+                            src={require("../../../assets/img/bx-x.svg")}
+                          />
+                        </div>
+                        <div className="leadDetailTop flex fdr aic jcc">
+                          <img src={this.state.visibleLeadId.picture} />
+                          <div className="middleTop flex fdc aifs jcc">
+                            <h2>
+                              {this.state.visibleLeadId.firstName +
+                                " " +
+                                this.state.visibleLeadId.lastName.split("(")[0]}
+                            </h2>
+                            <h5>{this.state.visibleLeadId.jobtitle}</h5>
+                          </div>
+                          <div
+                            className="directCall flex fdc aic jcc"
+                            onClick={this.handleCallClick.bind(
+                              this,
+                              this.state.visibleLeadId
+                            )}
+                          >
+                            <box-icon
+                              name="phone"
+                              type="solid"
+                              color="white"
+                            ></box-icon>{" "}
+                          </div>
+                        </div>
+
+                        <div className="toggleWindow flex fdr aic jcc">
+                          <h5>General info</h5>
+                          <h5>|</h5>
+                          <h5>Activity</h5>
+                        </div>
+                      </div>
+                      <div className="social flex fdr aic jcc">
+                        <img
+                          className="float-right"
+                          alt="empty-leads"
+                          src={require("../../../assets/img/bxl-linkedin-square.svg")}
+                        />
+                        <h5>Linkedin</h5>
+                        <img
+                          className="float-right"
+                          alt="empty-leads"
+                          src={require("../../../assets/img/feather-globe.svg")}
+                        />
+                        <h5>Website</h5>
+                        <Button className="Save-changes-btn">
+                          View in Hubspot
+                        </Button>
+                      </div>
+                      <div className="full-input flex fdr aic jcc">
+                        <img
+                          className="float-right"
+                          alt="empty-leads"
+                          src={require("../../../assets/img/bxs-phone.svg")}
+                        />
+
+                        <select>
+                          {this.state.visibleLeadId.phones.fixe.map((phone) => {
+                            if (phone != null) {
+                              return <option>{phone}</option>;
+                            } else return;
+                          })}
+                          {this.state.visibleLeadId.phones.other.map(
+                            (phone) => {
+                              if (phone != null) {
+                                return <option>{phone}</option>;
+                              } else return;
+                            }
+                          )}
+                        </select>
+                      </div>
+                      <div className="full-input flex fdr aic jcc">
+                        <img
+                          className="float-right"
+                          alt="empty-leads"
+                          src={require("../../../assets/img/bxs-envelope.svg")}
+                        />
+
+                        <select>
+                          {this.state.visibleLeadId.emails.map((email) => {
+                            return <option>{email}</option>;
+                          })}
+                        </select>
+                      </div>
+                      <div className="leadStatus flex fdc aifs jcc">
+                        <h4>Lead status</h4>
+                      </div>
+
+                      <div className="Status flex fdr aifs jcfs">
+                        {leadStatus.map((status, i) => {
+                          return (
+                            <div
+                              className={`StatusOne ${
+                                this.state.visibleLeadId.status === leadKey[i]
+                                  ? "activeStatus"
+                                  : ""
+                              } flex fdr aic jcc`}
+                            >
+                              {status}
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
+              {this.state.callSection && (
+                <CallTwilio
+                  muted={this.state.muted}
+                  visibleLeadId={this.state.visibleLeadId}
+                />
+              )}
+            </div>
+          )}
+        </div>
+        {/*   <div id="calls-list-card">
           {this.state.leadListing && (
             <div className="inlineBtn-center">
               {this.props.call.leads && this.state.delecteAction ? (
@@ -476,6 +762,7 @@ class CallCard extends React.Component {
 
           <div></div>
         </div>
+          */}{" "}
       </Fragment>
     );
   }
@@ -558,3 +845,25 @@ export default connect(mapStateToProps, {
                       </div>
                     )}
                   </div>{" "}*/
+
+const leadStatus = [
+  "New",
+  "Open",
+  "Unqualified",
+  "Connected",
+  "Open deal",
+  "In progress",
+  "Attempted to contact",
+  "Bad timing",
+];
+
+const leadKey = [
+  "NEW",
+  "OPEN",
+  "UNQUALIFIED",
+  "CONNECTED",
+  "OPEN_DEAL",
+  "IN_PROGRESS",
+  "ATTEMPTED_TO_CONTACT",
+  "BAD_TIMING",
+];

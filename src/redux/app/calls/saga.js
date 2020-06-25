@@ -6,6 +6,8 @@ import {
   INTEGRATE_HUBSPOT,
   GET_INTEGRATION,
   DELETE_INTEGRATION,
+  GET_SCHEDULES,
+  ADD_SCHEDULES,
 } from "../../actions";
 import axios from "axios";
 import {
@@ -16,6 +18,8 @@ import {
   getIntegrationsSuccess,
   deleteIntegrationSuccess,
   getIntegrationsError,
+  getSchedulesSuccess,
+  addSchedulesSuccess,
 } from "./actions";
 import { API_URL } from "../../../utils/utils";
 
@@ -48,6 +52,59 @@ function* getLeads({ payload }) {
       yield put(getLeadsSuccess(getResponse.data.leads));
     } else {
       console.log("get failed :", getResponse);
+    }
+  } catch (error) {
+    console.log("get error : ", error);
+  }
+}
+
+const getSchedulesAsync = async () =>
+  await axios({
+    method: "get",
+    url: API_URL + `schedules/`,
+    headers: {
+      authorization: CREDENTIALS["tokenBearer"],
+    },
+  });
+function* getSchedules({ payload }) {
+  try {
+    const getResponse = yield call(getSchedulesAsync);
+    //yield call(pullLeadsAysnc);
+
+    if (getResponse.status == 200) {
+      yield put(getSchedulesSuccess(getResponse.data.data));
+      console.log(getResponse.data);
+    } else {
+      console.log("get failed :", getResponse);
+    }
+  } catch (error) {
+    console.log("get error : ", error);
+  }
+}
+
+const addSchedulesAsync = async (name, link) =>
+  await axios({
+    method: "post",
+    url: API_URL + `schedules/`,
+    data: {
+      name: name,
+      link: link,
+    },
+    headers: {
+      authorization: CREDENTIALS["tokenBearer"],
+    },
+  });
+function* addSchedules({ payload }) {
+  const { name, link } = payload;
+  try {
+    const addResponse = yield call(addSchedulesAsync, name, link);
+    //yield call(pullLeadsAysnc);
+
+    if (addResponse.status == 201) {
+      yield put(addSchedulesSuccess(addResponse));
+      console.log(addResponse);
+    } else {
+      console.log("get failed :", addResponse);
     }
   } catch (error) {
     console.log("get error : ", error);
@@ -180,6 +237,12 @@ function* deleteIntegration({ payload }) {
 export function* watchGetLeads() {
   yield takeEvery(GET_LEADS, getLeads);
 }
+export function* watchGetSchedules() {
+  yield takeEvery(GET_SCHEDULES, getSchedules);
+}
+export function* watchAddSchedules() {
+  yield takeEvery(ADD_SCHEDULES, addSchedules);
+}
 export function* watchSyncLeads() {
   yield takeEvery(SYNC_LEADS, syncLeads);
 }
@@ -205,5 +268,7 @@ export default function* rootSaga() {
     fork(watchIntegrationHubspot),
     fork(watchGetIntegration),
     fork(watchDeleteIntegration),
+    fork(watchGetSchedules),
+    fork(watchAddSchedules),
   ]);
 }

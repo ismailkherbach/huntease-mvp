@@ -1,7 +1,17 @@
 import { all, call, fork, put, takeEvery } from "redux-saga/effects";
-import { GET_PROFILE, EDIT_PROFILE } from "../actions";
+import {
+  GET_PROFILE,
+  EDIT_PROFILE,
+  ADD_PHONE_NUMBER,
+  UPDATE_PASSWORD,
+} from "../actions";
 import axios from "axios";
-import { getProfileSuccess, editProfileSuccess } from "./actions";
+import {
+  getProfileSuccess,
+  editProfileSuccess,
+  addPhoneNumberSuccess,
+  updatePasswordSuccess,
+} from "./actions";
 import { API_URL } from "../../utils/utils";
 
 const BASIC_URL = "https://huntease-mvp.herokuapp.com/v1";
@@ -60,14 +70,84 @@ function* getUser({}) {
   }
 }
 
+const addPhoneNumberAsync = async (phone) =>
+  await axios({
+    method: "post",
+    url: `https://huntease-mvp.herokuapp.com/v1/calling/addNumber`,
+    data: { phone: phone },
+    headers: {
+      authorization: JSON.parse(localStorage.getItem("user_id")),
+    },
+  });
+
+function* addPhoneNumber({ payload }) {
+  const { phone } = payload;
+
+  try {
+    const addResponse = yield call(addPhoneNumberAsync, phone);
+    if (addResponse.status == 200) {
+      yield put(addPhoneNumberSuccess(addResponse));
+      console.log(console.log(addResponse.data));
+    } else {
+      console.log("add failed :", addResponse);
+    }
+  } catch (error) {
+    console.log("add error : ", error);
+  }
+}
+
+const updatePasswordAsync = async (old, newPass) =>
+  await axios({
+    method: "put",
+    url: API_URL + `user/`,
+    data: {
+      password: {
+        old: old,
+        new: newPass,
+      },
+    },
+    headers: {
+      authorization: JSON.parse(localStorage.getItem("user_id")),
+    },
+  });
+
+function* updatePassword({ payload }) {
+  const { old, newPass } = payload;
+
+  try {
+    const updateResponse = yield call(updatePasswordAsync, old, newPass);
+    if (updateResponse.status == 200) {
+      yield put(updatePasswordSuccess(updateResponse));
+      console.log(console.log(updateResponse.data));
+    } else {
+      console.log("update failed :", updateResponse);
+    }
+  } catch (error) {
+    console.log("update error : ", error);
+  }
+}
+
 export function* watchGetProfile() {
   yield takeEvery(GET_PROFILE, getUser);
+}
+
+export function* watchUpdatePassword() {
+  yield takeEvery(UPDATE_PASSWORD, updatePassword);
 }
 
 export function* watchEditProfile() {
   yield takeEvery(EDIT_PROFILE, editProfile);
 }
 
+export function* watchAddNumber() {
+  yield takeEvery(ADD_PHONE_NUMBER, addPhoneNumber);
+}
+
 export default function* rootSaga() {
-  yield all([fork(watchEditProfile), fork(watchGetProfile)]);
+  yield all([
+    fork(watchEditProfile),
+    fork(watchGetProfile),
+    fork(watchAddNumber),
+    fork(watchUpdatePassword),
+  ]);
 }

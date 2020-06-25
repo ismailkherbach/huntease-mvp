@@ -22,7 +22,7 @@ class CallTwilio extends React.Component {
       currentNumber: "550207141",
       onPhone: false,
       emotionAnalytics: true,
-      general: false,
+      general: true,
       endOfCall: false,
       audio: null,
       emotions: {
@@ -31,6 +31,18 @@ class CallTwilio extends React.Component {
         Sadness: "",
         Anger: "",
         Neutrality: "",
+      },
+      visibleLeadId: {
+        emails: ["nazim.zidi23@gmail.com"],
+        firstName: "nazim",
+        id: "5ecd0f9b2fb22200171d7014",
+        jobtitle: "CEO",
+        lastName: "zidi",
+        phones: { fixe: [], other: [] },
+        picture:
+          "https://huntease-mvp.herokuapp.com/v1/uploads/5ecd0f9a2fb22200171d7011",
+        status: "NEW",
+        website: null,
       },
     };
     this.handleToggleCall = this.handleToggleCall.bind(this);
@@ -136,7 +148,9 @@ class CallTwilio extends React.Component {
     });
   };
   componentDidMount() {
-    console.log(this.props.visibleLeadId);
+    this.getMicrophone();
+
+    /* console.log(this.props.visibleLeadId);
     this.fetchToken();
     client.onopen = () => {
       console.log("WebSocket Client Connected");
@@ -151,7 +165,7 @@ class CallTwilio extends React.Component {
       }
 
       //this.handleChangeEmotion(emotionPacket.data)
-    };
+    };*/
   }
 
   // Handle country code selection
@@ -213,489 +227,149 @@ class CallTwilio extends React.Component {
     }
   };
   render() {
-    const Sadness = this.state.emotions.Sadness;
-    let emotionsSmily = (
-      <div className="inlineBtn-center-emotion">
-        {" "}
-        <div className="inlineBtn-col-center mx-2">
-          {" "}
-          <svg
-            class="sad"
-            width="15px"
-            height="15px"
-            viewBox="0 0 44 44"
-            version="1.1"
-            xmlns="http://www.w3.org/2000/svg"
-            xlink="http://www.w3.org/1999/xlink"
-          >
-            <g
-              id="sad"
-              stroke="none"
-              stroke-width="1"
-              fill="none"
-              fill-rule="evenodd"
-              transform="translate(0, 0)"
-            >
-              <circle id="body" fill="#E23D18" cx="22" cy="22" r="22"></circle>
-              <g id="face" transform="translate(13.000000, 20.000000)">
-                <g class="face">
-                  <path
-                    d="M7,4 C7,5.1045695 7.8954305,6 9,6 C10.1045695,6 11,5.1045695 11,4"
-                    class="mouth"
-                    stroke="#2C0E0F"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    transform="translate(9.000000, 5.000000) rotate(-180.000000) translate(-9.000000, -5.000000) "
-                  ></path>
-                  <ellipse
-                    class="right-eye"
-                    fill="#2C0E0F"
-                    cx="16.0941176"
-                    cy="1.75609756"
-                    rx="1.90588235"
-                    ry="1.75609756"
-                  ></ellipse>
-                  <ellipse
-                    class="left-eye"
-                    fill="#2C0E0F"
-                    cx="1.90588235"
-                    cy="1.75609756"
-                    rx="1.90588235"
-                    ry="1.75609756"
-                  ></ellipse>
-                </g>
-              </g>
-            </g>
-          </svg>
-          <h5 className="emo-result">
-            {" "}
-            {this.state.emotions.Anger == ""
-              ? "..."
-              : this.state.emotions.Anger + " %"}
-          </h5>{" "}
-        </div>
-        <div className="inlineBtn-col-center mx-2">
-          {" "}
-          <svg
-            class="neutral"
-            width="15px"
-            height="15px"
-            viewBox="0 0 44 44"
-            version="1.1"
-            xmlns="http://www.w3.org/2000/svg"
-            xlink="http://www.w3.org/1999/xlink"
-          >
-            <g>
-              <circle id="body" fill="#F9AC1B" cx="22" cy="22" r="22"></circle>
-              <g class="face">
-                <g transform="translate(13.000000, 20.000000)" fill="#2C0E0F">
-                  <g class="mouth">
-                    <g transform="translate(9, 5)">
-                      <rect x="-2" y="0" width="4" height="2" rx="2"></rect>
-                    </g>
-                  </g>
-                  <ellipse
-                    class="right-eye"
-                    cx="16.0941176"
-                    cy="1.75"
-                    rx="1.90588235"
-                    ry="1.75"
-                  ></ellipse>
-                  <ellipse
-                    class="left-eye"
-                    cx="1.90588235"
-                    cy="1.75"
-                    rx="1.90588235"
-                    ry="1.75"
-                  ></ellipse>
-                </g>
-              </g>
-            </g>
-          </svg>
-          <h5 className="emo-result">
-            {" "}
-            {this.state.emotions.Sadness == ""
-              ? "..."
-              : this.state.emotions.Sadness + " %"}
-          </h5>
-        </div>
-        <div className="inlineBtn-col-center mx-2">
-          {" "}
-          <svg
-            class="fine"
-            width="15px"
-            height="15px"
-            viewBox="0 0 44 44"
-            version="1.1"
-            xmlns="http://www.w3.org/2000/svg"
-            xlink="http://www.w3.org/1999/xlink"
-          >
-            <g
-              id="fine-emotion"
-              stroke="none"
-              stroke-width="1"
-              fill="none"
-              fill-rule="evenodd"
-            >
-              <g id="fine">
-                <circle
-                  id="body"
-                  fill="#1988E3"
-                  cx="22"
-                  cy="22"
-                  r="22"
-                ></circle>
-                <g class="matrix" transform="translate(22.000000, 32.000000)">
-                  <g class="face-container">
-                    <g class="face" transform="translate(-9, -12)">
-                      <g class="face-upAndDown">
-                        <g class="eyes">
-                          <ellipse
-                            class="right-eye"
-                            fill="#2C0E0F"
-                            cx="16.0941176"
-                            cy="1.75609756"
-                            rx="1.90588235"
-                            ry="1.75609756"
-                          ></ellipse>
-                          <ellipse
-                            class="left-eye"
-                            fill="#2C0E0F"
-                            cx="1.90588235"
-                            cy="1.75609756"
-                            rx="1.90588235"
-                            ry="1.75609756"
-                          ></ellipse>
-                        </g>
-                        <path
-                          d="M6.18823529,4.90499997 C6.18823529,5.95249999 7.48721095,7 9.08957864,7 C10.6919463,7 11.990922,5.95249999 11.990922,4.90499997"
-                          id="mouth"
-                          stroke="#2C0E0F"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        ></path>
-                      </g>
-                    </g>
-                  </g>
-                </g>
-              </g>
-            </g>
-          </svg>
-          <h5 className="emo-result">
-            {" "}
-            {this.state.emotions.Fear == ""
-              ? "..."
-              : this.state.emotions.Fear + " %"}
-          </h5>
-        </div>
-        <div className="inlineBtn-col-center mx-2">
-          {" "}
-          <svg
-            class="happy"
-            width="44px"
-            height="44px"
-            viewBox="0 0 44 44"
-            version="1.1"
-            xmlns="http://www.w3.org/2000/svg"
-            xlink="http://www.w3.org/1999/xlink"
-          >
-            <g
-              id="Happy"
-              stroke="none"
-              stroke-width="1"
-              fill="none"
-              fill-rule="evenodd"
-              transform="translate(0, 0)"
-            >
-              <circle id="Body" fill="#248C37" cx="22" cy="22" r="22"></circle>
-              <g class="scaleFace">
-                <g class="face">
-                  <ellipse
-                    id="Eye-right"
-                    fill="#2C0E0F"
-                    cx="29.0875"
-                    cy="21.75"
-                    rx="1.89926471"
-                    ry="1.75"
-                  ></ellipse>
-                  <ellipse
-                    id="Eye-left"
-                    fill="#2C0E0F"
-                    cx="14.8992647"
-                    cy="21.75"
-                    rx="1.89926471"
-                    ry="1.75"
-                  ></ellipse>
-                  <path
-                    d="M21.8941176,27.8819633 C24.8588235,27.8819632 25.4941176,25.5404999 25.4941176,24.5648901 C25.4941176,23.5892803 24.4352941,23.9795242 22.1058824,23.9795242 C19.7764706,23.9795242 18.2941176,23.5892803 18.2941176,24.5648901 C18.2941176,25.5404999 18.9294118,27.8819633 21.8941176,27.8819633 Z"
-                    id="Mouth"
-                    fill="#2C0E0F"
-                  ></path>
-                  <ellipse
-                    id="Tung"
-                    fill="#E23D18"
-                    cx="21.8941176"
-                    cy="26.4390244"
-                    rx="1.69411765"
-                    ry="0.780487805"
-                  ></ellipse>
-                </g>
-              </g>
-            </g>
-          </svg>
-          <h5 className="emo-result">
-            {" "}
-            {this.state.emotions.Happiness == ""
-              ? "..."
-              : this.state.emotions.Happiness + " %"}
-          </h5>
-        </div>
-      </div>
-    );
-    let bloc;
-    if (Sadness == "") {
-      bloc = (
-        <div className="icon-call-section" onClick={this.handleToggleGeneral}>
-          <box-icon name="face" type="solid" color="#8BA3FF"></box-icon>
-        </div>
-      );
-    } else {
-      if (Sadness < 40) {
-        bloc = (
-          <div
-            className="icon-call-section-emotion-sad-law"
-            onClick={this.handleToggleGeneral}
-          >
-            <box-icon name="face" type="solid" color="white"></box-icon>
-          </div>
-        );
-      }
-      if (Sadness > 40 && Sadness < 65) {
-        bloc = (
-          <div
-            className="icon-call-section-emotion-sad-medium "
-            onClick={this.handleToggleGeneral}
-          >
-            <box-icon name="face" type="solid" color="white"></box-icon>
-          </div>
-        );
-      }
-      if (Sadness > 65) {
-        bloc = (
-          <div
-            className="icon-call-section-emotion-sad-high"
-            onClick={this.handleToggleGeneral}
-          >
-            <box-icon name="face" type="solid" color="white"></box-icon>
-          </div>
-        );
-      }
-    }
     return (
-      <div>
-        <div className="firstBlock">
-          <h5>{this.state.log}</h5>
+      <div className="leadDisplay flex fdc aic jcc">
+        <div className="inCallTopBloc flex fdc aic jcc ">
+          <p>IN A CALL</p>
           {this.state.audio ? (
             <AudioAnalyser audio={this.state.audio} />
           ) : (
-            <div className="emptyAudio">{"Hello"}</div>
+            <div className="emptyAudio">{""}</div>
           )}
-          <img alt="avatar" src={this.props.visibleLeadId.picture} />
-          <h3>
-            {" "}
+          <img src={this.props.visibleLeadId.picture} />
+          <h2>
             {this.props.visibleLeadId.firstName +
               " " +
               this.props.visibleLeadId.lastName.split("(")[0]}
-          </h3>
-          <p>{this.props.visibleLeadId.jobtitle}</p>
-          <h2>{this.state.log}</h2>
-
-          <div className="inlineBtn-center">
-            <p onClick={this.handleToggleGeneral}>General</p>
-            <p> | </p>
-            <p>Activity</p>
+          </h2>
+          <h5>{this.props.visibleLeadId.jobtitle}</h5>
+          <h3>00:22</h3>
+          <div className="toggleWindow flex fdr aic jcc">
+            <h5 className="curs_pointer" onClick={this.handleToggleGeneral}>
+              General info
+            </h5>
+            <h5>|</h5>
+            <h5>Activity</h5>
           </div>
         </div>
-        <div>
-          {this.state.general && (
-            <PerfectScrollbar>
-              <div className="scroll-lead">
-                <div className="inlineBtn-center mt-4">
-                  <div className="inlineBtn-center">
-                    <box-icon
-                      name="linkedin-square"
-                      type="logo"
-                      color="#091ad4"
-                    ></box-icon>
-                    <h4>LinkedIn</h4>
-                  </div>
-                  <div className="inlineBtn-center">
-                    <box-icon name="world" color="#091ad4"></box-icon>
-                    <h4>Website</h4>
-                  </div>
-                  <Button className="hubspot">View in hubspot</Button>
+        {this.state.general ? (
+          <PerfectScrollbar>
+            <div className="scroll-lead ">
+              <div className="flex fdc aic jcc">
+                <div className="social flex fdr aic jcc">
+                  <img
+                    className="float-right"
+                    alt="empty-leads"
+                    src={require("../../../assets/img/bxl-linkedin-square.svg")}
+                  />
+                  <h5>Linkedin</h5>
+                  <img
+                    className="float-right"
+                    alt="empty-leads"
+                    src={require("../../../assets/img/feather-globe.svg")}
+                  />
+                  <h5>Website</h5>
+                  <Button className="Save-changes-btn">View in Hubspot</Button>
                 </div>
-                <div className="inlineBtn-col-center mt-2">
-                  <div className="email-dropdown inlineBtn-center">
-                    <img src={require("../../../assets/img/bxs-phone.png")} />
-                    <input
-                      className="lead-input"
-                      placeholder={this.props.visibleLeadId.phones.fixe[1]}
-                      type="text"
-                      disabled
-                    />{" "}
-                  </div>
+                <div className="full-input flex fdr aic jcc">
+                  <img
+                    className="float-right"
+                    alt="empty-leads"
+                    src={require("../../../assets/img/bxs-phone.svg")}
+                  />
 
-                  <div className="email-dropdown inlineBtn-center">
-                    <img
-                      src={require("../../../assets/img/bxs-envelope.png")}
-                    />
-
-                    <input
-                      className="lead-input"
-                      placeholder={this.props.visibleLeadId.emails[0]}
-                      type="text"
-                      disabled
-                    />
-                  </div>
+                  <select>
+                    {this.props.visibleLeadId.phones.fixe.map((phone) => {
+                      if (phone != null) {
+                        return <option>{phone}</option>;
+                      } else return;
+                    })}
+                    {this.props.visibleLeadId.phones.other.map((phone) => {
+                      if (phone != null) {
+                        return <option>{phone}</option>;
+                      } else return;
+                    })}
+                  </select>
                 </div>
-                <div className="leadStatus">
+                <div className="full-input flex fdr aic jcc">
+                  <img
+                    className="float-right"
+                    alt="empty-leads"
+                    src={require("../../../assets/img/bxs-envelope.svg")}
+                  />
+
+                  <select>
+                    {this.props.visibleLeadId.emails.map((email) => {
+                      return <option>{email}</option>;
+                    })}
+                  </select>
+                </div>
+                <div className="leadStatus flex fdc aifs jcc">
                   <h4>Lead status</h4>
-                  <div className="inlineBtn-left">
-                    <div className="lead-status">New</div>
-                    <div className="lead-status">Open</div>
-                    <div className="lead-status">Unqualified</div>
-                    <div className="lead-status">Connected</div>{" "}
-                    <div className="lead-status">Open deal</div>{" "}
-                  </div>
-                  <div className="inlineBtn-left">
-                    <div className="lead-status">In progress</div>
-                    <div className="lead-status-active">
-                      Attempted to contact
-                    </div>
-                    <div className="lead-status">Bad time</div>
-                  </div>
                 </div>
-              </div>
-            </PerfectScrollbar>
-          )}
 
-          {this.state.endOfCall && (
-            <div className="inlineBtn-col-center mt-4">
-              <img src={require("../../../assets/img/hand_shake.png")} />
-              <h3 className="mt-1">You did well</h3>
-              <div className="leadStatus">
-                <h4>Lead status</h4>
-                <div className="inlineBtn-left">
-                  <div className="lead-status">New</div>
-                  <div className="lead-status">Open</div>
-                  <div className="lead-status">Unqualified</div>
-                  <div className="lead-status">Connected</div>{" "}
-                  <div className="lead-status">Open deal</div>{" "}
-                </div>
-                <div className="inlineBtn-left">
-                  <div className="lead-status">In progress</div>
-                  <div className="lead-status-active">Attempted to contact</div>
-                  <div className="lead-status">Bad time</div>
+                <div className="Status flex fdr aifs jcfs">
+                  {leadStatus.map((status, i) => {
+                    return (
+                      <div
+                        className={`StatusOne ${
+                          this.props.visibleLeadId.status === leadKey[i]
+                            ? "activeStatus"
+                            : ""
+                        } flex fdr aic jcc`}
+                      >
+                        {status}
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
             </div>
-          )}
-
-          {this.state.emotionAnalytics && (
-            <div>
-              <div className="inlineBtn-center mt-5 mb-5">
-                <div className="inlineBtn-col-center mt-1">
-                  <div className="emotion-block">
-                    {/*<h4 className="mb-3">Lead emotions</h4>*/}
-
-                    {emotionsSmily}
-                    {/*  <img
-                    alt="emotion"
-                    src={require("../../../assets/img/emotion-green.svg")}
-                  />*/}
-                  </div>
-                </div>
-              </div>
-              <div className="call-section inlineBtn-center">
-                <div className="inline-col-center">
-                  {bloc}
-                  <p>
-                    {" "}
-                    {this.state.emotions.Sadness == ""
-                      ? "..."
-                      : this.state.emotions.Sadness + " %"}
-                  </p>
-                </div>
-                <div className="inline-col-center">
-                  <div className="icon-call-section">
-                    <box-icon
-                      name="video-recording"
-                      type="solid"
-                      color="#8BA3FF"
-                    ></box-icon>
-                  </div>
-                  <p>Record</p>
-                </div>
-                <div className="inline-col-center">
-                  <div
-                    className="icon-call-section"
-                    onClick={this.handleToggleMute}
-                  >
-                    <box-icon
-                      name={!this.state.audio ? "microphone-off" : "microphone"}
-                      type="solid"
-                      color="#8BA3FF"
-                    ></box-icon>
-                  </div>
-                  <p>Mute</p>
-                </div>
-                <div className="inline-col-center">
-                  <div className="icon-call-section">
-                    <box-icon
-                      name="time-five"
-                      type="solid"
-                      color="#8BA3FF"
-                    ></box-icon>
-                  </div>
-                  <p>Later</p>
-                </div>
-
-                {this.state.onPhone && (
-                  <div className="inline-col-center">
-                    <div
-                      onClick={this.handleEndCall.bind(this)}
-                      className="icon-call-section-off"
-                    >
-                      <box-icon
-                        name="phone"
-                        type="solid"
-                        color="white"
-                      ></box-icon>
-                    </div>
-                    <p>End</p>
-                  </div>
-                )}
-
-                {!this.state.onPhone && (
-                  <div className="inline-col-center">
-                    <div
-                      onClick={this.handleToggleCall}
-                      className="icon-call-section-start"
-                    >
-                      <box-icon
-                        name="phone"
-                        type="solid"
-                        color="white"
-                      ></box-icon>
-                    </div>
-                    <p>End</p>
-                  </div>
-                )}
-              </div>
+          </PerfectScrollbar>
+        ) : (
+          ""
+        )}
+        <div className="callSection flex fdr aic jcc">
+          <div className="callBloc flex fdc aic jcc">
+            <div className="callIcon flex fdc aic jcc">
+              <img
+                className="float-right"
+                alt="empty-leads"
+                src={require("../../../assets/img/callRecord.svg")}
+              />
             </div>
-          )}
+            <p>Record</p>
+          </div>
+          <div className="callBloc flex fdc aic jcc">
+            <div className="callIcon flex fdc aic jcc">
+              <img
+                className="float-right"
+                alt="empty-leads"
+                src={require("../../../assets/img/bxs-microphone-off.svg")}
+              />
+            </div>
+            <p>Mute</p>
+          </div>
+          <div className="callBloc flex fdc aic jcc">
+            <div className="callIcon flex fdc aic jcc">
+              <img
+                className="float-right"
+                alt="empty-leads"
+                src={require("../../../assets/img/bxs-time-five.svg")}
+              />
+            </div>
+            <p>Later</p>
+          </div>
+          <div className="callBloc flex fdc aic jcc">
+            <div className="callIcon callIconEnd flex fdc aic jcc">
+              <img
+                className="float-right"
+                alt="empty-leads"
+                src={require("../../../assets/img/bxs-phone-end.svg")}
+              />
+            </div>
+            <p>End</p>
+          </div>
         </div>
       </div>
     );
@@ -711,3 +385,25 @@ const mapStateToProps = ({ call }) => {
 export default connect(mapStateToProps, {
   endCall,
 })(CallTwilio);
+
+const leadStatus = [
+  "New",
+  "Open",
+  "Unqualified",
+  "Connected",
+  "Open deal",
+  "In progress",
+  "Attempted to contact",
+  "Bad timing",
+];
+
+const leadKey = [
+  "NEW",
+  "OPEN",
+  "UNQUALIFIED",
+  "CONNECTED",
+  "OPEN_DEAL",
+  "IN_PROGRESS",
+  "ATTEMPTED_TO_CONTACT",
+  "BAD_TIMING",
+];

@@ -105,6 +105,33 @@ function* getTeamMember({}) {
   }
 }
 
+const deleteMemberAsync = async (id, password) =>
+  await axios({
+    method: "DELETE",
+    url: `https://huntease-mvp.herokuapp.com/v1/user/${id}`,
+    data: { password: password },
+    headers: {
+      authorization: JSON.parse(localStorage.getItem("user_id")),
+    },
+  });
+
+function* deleteMember({ payload }) {
+  const { id, password, history } = payload;
+
+  try {
+    const deleteResponse = yield call(deleteMemberAsync, id, password);
+    if (deleteResponse.status == 200) {
+      yield put(deleteTeamSuccess(deleteResponse));
+      console.log(deleteResponse.data);
+      history.go();
+    } else {
+      console.log("delete failed :", deleteResponse);
+    }
+  } catch (error) {
+    console.log("delete error : ", error);
+  }
+}
+
 export function* watchAddMember() {
   yield takeEvery(ADD_TEAM_MEMBER, addTeamMember);
 }
@@ -116,11 +143,15 @@ export function* watchChangeResponse() {
 export function* watchGetMember() {
   yield takeEvery(GET_TEAM_MEMBER, getTeamMember);
 }
+export function* watchDeleteMember() {
+  yield takeEvery(DELETE_TEAM_MEMBER, deleteMember);
+}
 
 export default function* rootSaga() {
   yield all([
     fork(watchAddMember),
     fork(watchGetMember),
     fork(watchChangeResponse),
+    fork(watchDeleteMember),
   ]);
 }
