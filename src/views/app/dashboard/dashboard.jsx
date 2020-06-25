@@ -14,7 +14,10 @@ export default class Dashboard extends React.Component {
   render() {
     return (
       <Fragment>
-        <div className="inlineBtn-center">
+        <div className="Settings">
+          <div className="Settings-container"></div>
+        </div>
+        {/*  <div className="inlineBtn-center">
           <Performance />
           <Calls />
           <Meetings />
@@ -22,7 +25,7 @@ export default class Dashboard extends React.Component {
         <div className="inlineBtn-center">
           <Engagement />
           <TopSales />
-        </div>
+    </div>*/}
       </Fragment>
     );
   }

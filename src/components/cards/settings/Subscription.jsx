@@ -6,24 +6,38 @@ import styled from "styled-components";
 import Subscribed from "./subsciption/Subscribed";
 import ChoosePlan from "./subsciption/ChoosePlan";
 import DND from "./DND";
-
+import { connect } from "react-redux";
+import { getProfile } from "../../../redux/actions";
 class SubscriptionContent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
 
-  componentDidMount() {}
-
+  componentDidMount() {
+    this.props.getProfile();
+  }
   render() {
     return (
       <Fragment>
-        {/*<ChoosePlan />*/}
-        {<Subscribed />}
-        {/*<DND />*/}
+        {this.props.profile ? (
+          <div>
+            {this.props.profile.isPaid ? <Subscribed /> : <ChoosePlan />}
+          </div>
+        ) : (
+          ""
+        )}
       </Fragment>
     );
   }
 }
 
-export default SubscriptionContent;
+const mapStateToProps = ({ settings }) => {
+  const { profile } = settings;
+  return {
+    profile,
+  };
+};
+export default connect(mapStateToProps, {
+  getProfile,
+})(SubscriptionContent);
