@@ -14,6 +14,15 @@ import {
   GET_PLAN,
   GET_PLAN_SUCCESS,
   GET_PLAN_ERROR,
+  UPDATE_CARD,
+  UPDATE_CARD_SUCCESS,
+  UPDATE_CARD_ERROR,
+  UPDATE_ADDRESS,
+  UPDATE_ADDRESS_SUCCESS,
+  UPDATE_ADDRESS_ERROR,
+  CANCEL_SUBSCRIPTION,
+  CANCEL_SUBSCRIPTION_SUCCESS,
+  CANCEL_SUBSCRIPTION_ERROR,
 } from "../../actions";
 
 export const getPaimentHistory = () => ({
@@ -44,6 +53,20 @@ export const getPlansError = (error) => ({
   payload: error,
 });
 
+export const cancelSubscription = () => ({
+  type: CANCEL_SUBSCRIPTION,
+});
+
+export const cancelSubscriptionSuccess = (plans) => ({
+  type: CANCEL_SUBSCRIPTION_SUCCESS,
+  payload: plans,
+});
+
+export const cancelSubscriptionError = (error) => ({
+  type: CANCEL_SUBSCRIPTION_ERROR,
+  payload: error,
+});
+
 export const getCardInfo = () => ({
   type: GET_CARD_INFO,
 });
@@ -70,6 +93,36 @@ export const paySuccess = (item) => ({
 
 export const payError = (error) => ({
   type: PAY_ERROR,
+  payload: error,
+});
+
+export const updateCard = (billing) => ({
+  type: UPDATE_CARD,
+  payload: billing,
+});
+
+export const updateCardSuccess = (item) => ({
+  type: UPDATE_CARD_SUCCESS,
+  payload: item,
+});
+
+export const updateCardError = (error) => ({
+  type: UPDATE_CARD_ERROR,
+  payload: error,
+});
+
+export const updateAddress = (billing) => ({
+  type: UPDATE_ADDRESS,
+  payload: billing,
+});
+
+export const updateAddressSuccess = (item) => ({
+  type: UPDATE_ADDRESS_SUCCESS,
+  payload: item,
+});
+
+export const updateAddressError = (error) => ({
+  type: UPDATE_ADDRESS_ERROR,
   payload: error,
 });
 

@@ -75,7 +75,7 @@ export default (state = INIT_STATE, action) => {
       return {
         ...state,
         loading: false,
-        code: action.payload,
+        code: action.payload.code,
         error: "",
       };
     case ADD_PHONE_NUMBER_ERROR:

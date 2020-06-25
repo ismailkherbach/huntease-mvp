@@ -8,6 +8,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import CancelSubscriptionPopup from "../../../popup/CancelSubscriptionPopup";
 import ChangeAddressPopup from "../../../popup/ChangeAddress";
 import ChangeCardPopup from "../../../popup/ChangeCard";
+
 const stripePromise = loadStripe(
   "pk_test_51GqdyRBXLsKUPQbHXGJsCSA9tJYHPpXDa8Y8dChs4dW20yeQh3HT55oiMNmysRhogzBHWKSHvfCWr5DF9KlkKyfk00CQF8DBeX"
 );

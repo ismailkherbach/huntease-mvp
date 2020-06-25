@@ -49,7 +49,7 @@ function* editProfile({ payload }) {
 const getUserAsync = async () =>
   await axios({
     method: "get",
-    url: API_URL + `user/`,
+    url: API_URL + `user/profile`,
 
     headers: {
       authorization: JSON.parse(localStorage.getItem("user_id")),
@@ -86,8 +86,8 @@ function* addPhoneNumber({ payload }) {
   try {
     const addResponse = yield call(addPhoneNumberAsync, phone);
     if (addResponse.status == 200) {
-      yield put(addPhoneNumberSuccess(addResponse));
-      console.log(console.log(addResponse.data));
+      yield put(addPhoneNumberSuccess(addResponse.data));
+      console.log(addResponse.data);
     } else {
       console.log("add failed :", addResponse);
     }

@@ -352,7 +352,7 @@ class PaimentPopup extends React.Component {
                       {this.props.stripe ? (
                         <Button
                           className="Change-profile-btn pay flex aic jcc"
-                          onClick={this.handleSubmitWithSource.bind(this)}
+                          onClick={this.handleSubmit.bind(this)}
                         >
                           COMPLETE PAYMENT
                         </Button>

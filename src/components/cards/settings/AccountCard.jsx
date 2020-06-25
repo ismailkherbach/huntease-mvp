@@ -17,9 +17,15 @@ import ChangeNumberPopup from "../../popup/ChangeNumberPopup";
 import { API_URL } from "../../../utils/utils";
 import axios from "axios";
 import { w3cwebsocket as W3CWebSocket } from "websocket";
-const user = JSON.parse(localStorage.getItem("user"));
 
-const client = new W3CWebSocket(`wss://39478e93b552.ngrok.io/${user.id}`);
+const user = JSON.parse(localStorage.getItem("user"));
+let client = undefined;
+
+if (user) {
+  client = new W3CWebSocket(
+    `wss://radiant-bastion-46195.herokuapp.com/${user.id}`
+  );
+}
 class AccountCall extends React.Component {
   constructor(props) {
     super(props);
@@ -31,6 +37,8 @@ class AccountCall extends React.Component {
       userData: { firstName: "", lastName: "" },
       image: null,
       phone: null,
+      verifictionBloc: false,
+      verifictionSuccess: false,
     };
     this.handleImageChange = this.handleImageChange.bind(this);
     this.uploadPicture = this.uploadPicture.bind(this);
@@ -115,11 +123,22 @@ class AccountCall extends React.Component {
   onAddPhoneNumber() {
     let phone = this.state.phone;
     this.props.addPhoneNumber({ phone });
+    //  this.setState({ verifictionBloc: true });
   }
   handleChangePhone(e) {
     this.setState({
       phone: e.target.value,
     });
+  }
+  toggleVerification() {
+    this.setState({
+      verifictionBloc: true,
+    });
+    setTimeout(() => {
+      this.setState({
+        verifictionBloc: false,
+      });
+    }, 3000);
   }
   componentDidMount() {
     this.props.getProfile();
@@ -128,6 +147,9 @@ class AccountCall extends React.Component {
     };
     client.onmessage = (phone) => {
       console.log(phone.data);
+      if (phone.data === "verification_success") {
+        this.setState({ verifictionSuccess: true });
+      }
 
       //this.handleChangeEmotion(emotionPacket.data)
     };
@@ -296,23 +318,32 @@ class AccountCall extends React.Component {
                   this.state.domain.slice(1)}
               </h5>
             </div>
-            <div className="Add-number { flex fdr aic jcfs margin-top20">
-              <img
-                src={require("../../../assets/img/indicatif/flag-fr.png")}
-                alt={"profile"}
-              />
-              <h4>+{phone}</h4>
-              <Button
-                className="Change-profile-btn"
-                onClick={this.onAddPhoneNumber.bind(this)}
-              >
-                Change
-              </Button>
+            <div className="Add-number-bloc flex fdc aic jcc margin-top20">
+              <div className="flex fdr aic jcc">
+                {" "}
+                <img
+                  src={require("../../../assets/img/notice.svg")}
+                  alt={"profile"}
+                />
+                <h4>Please add your phone number</h4>
+              </div>
+              <p>
+                Huntease allows you to make cold-calls directly using your phone
+                number.
+              </p>
+              <div className="full-input flex fdr aic jcc">
+                <input
+                  placeholder="054213798"
+                  onChange={this.handleChangePhone.bind(this)}
+                />{" "}
+                <Button
+                  className="Change-profile-btn"
+                  onClick={this.onAddPhoneNumber.bind(this)}
+                >
+                  Change
+                </Button>
+              </div>
             </div>
-            <input
-              placeholder="054213798"
-              onChange={this.handleChangePhone.bind(this)}
-            />
           </div>
           {this.state.userData.firstName != "" &&
             this.state.userData.lastName != "" && (
@@ -324,17 +355,51 @@ class AccountCall extends React.Component {
               </Button>
             )}
         </div>
-        <div className=""> </div>
+        {this.state.verifictionBloc && (
+          <div className="popup-container flex fdc aic jcc">
+            {!this.state.verifictionSuccess && (
+              <div className="verificationBloc flex fdc aic jcc">
+                <div className="flex fdr aic jcc">
+                  <img
+                    src={require("../../../assets/img/ionic-ios-call.svg")}
+                  />
+                  <h5>Verification code</h5>
+                </div>
+                <p>
+                  Please type the verification code into your dialer when you
+                  receive the verification call.
+                </p>
+                {this.props.code ? <h2>{this.props.code}</h2> : ""}
+              </div>
+            )}
+            {this.state.verifictionSuccess && (
+              <div className="verificationBloc  flex fdc aic jcc">
+                <div className="flex success fdc aic jcc">
+                  <h2>WOO-HOO!</h2>
+                  <p>
+                    You now can use{" "}
+                    <span className="Cmain">+1 787 623 1455</span> to perform
+                    calls with Huntease.
+                  </p>
+                  <Button className="Change-profile-btn">
+                    Start making calls
+                  </Button>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
       </Fragment>
     );
   }
 }
 
 const mapStateToProps = ({ settings }) => {
-  const { locale, profile } = settings;
+  const { locale, profile, code } = settings;
   return {
     locale,
     profile,
+    code,
   };
 };
 export default injectIntl(

@@ -18,8 +18,8 @@ class SubscriptionContent extends React.Component {
   render() {
     return (
       <Fragment>
-        {<ChoosePlan />}
-        {/*<Subscribed />*/}
+        {/*<ChoosePlan />*/}
+        {<Subscribed />}
         {/*<DND />*/}
       </Fragment>
     );

@@ -8,10 +8,15 @@ import { endCall } from "../../../redux/actions";
 import { connect } from "react-redux";
 
 const Twilio = require("twilio-client");
+
 const user = JSON.parse(localStorage.getItem("user"));
-const client = new W3CWebSocket(
-  `wss://radiant-bastion-46195.herokuapp.com/${user.id}`
-);
+let client = undefined;
+if (user) {
+  client = new W3CWebSocket(
+    `wss://radiant-bastion-46195.herokuapp.com/${user.id}`
+  );
+}
+
 class CallTwilio extends React.Component {
   constructor(props) {
     super(props);
@@ -147,11 +152,15 @@ class CallTwilio extends React.Component {
       self.log = "Connected";
     });
   };
+  componentDidUpdate() {
+    //  this.getMicrophone();
+    //this.fetchToken();
+  }
   componentDidMount() {
     this.getMicrophone();
-
-    /* console.log(this.props.visibleLeadId);
     this.fetchToken();
+    console.log(this.props.visibleLeadId);
+
     client.onopen = () => {
       console.log("WebSocket Client Connected");
     };
@@ -165,7 +174,7 @@ class CallTwilio extends React.Component {
       }
 
       //this.handleChangeEmotion(emotionPacket.data)
-    };*/
+    };
   }
 
   // Handle country code selection
@@ -198,7 +207,6 @@ class CallTwilio extends React.Component {
   // or hang up the current call
   handleToggleCall = async () => {
     const user = JSON.parse(localStorage.getItem("user"));
-
     var constraints = { audio: true, video: false };
     navigator.mediaDevices.getUserMedia(constraints).catch(function(err) {
       console.log(err.name + ": " + err.message);

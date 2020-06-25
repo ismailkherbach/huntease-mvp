@@ -2,7 +2,7 @@ import React from "react";
 import { Button } from "reactstrap";
 import "boxicons";
 import { connect } from "react-redux";
-import { pay } from "../../redux/actions";
+import { cancelSubscription } from "../../redux/actions";
 
 class CancelSubscriptionPopup extends React.Component {
   constructor(props) {
@@ -13,6 +13,10 @@ class CancelSubscriptionPopup extends React.Component {
       secondStep: false,
       success: false,
     };
+  }
+
+  onCancelSubscription() {
+    this.props.cancelSubscription();
   }
 
   render() {
@@ -29,7 +33,7 @@ class CancelSubscriptionPopup extends React.Component {
           </Button>
           <Button
             className="Change-profile-btn decline flex aic jcc"
-            // onClick={this.toggleSecondStep.bind(this)}
+            onClick={this.onCancelSubscription.bind(this)}
           >
             Cancel my plan
           </Button>
@@ -46,5 +50,5 @@ const mapStateToProps = ({ payment }) => {
 };
 
 export default connect(mapStateToProps, {
-  pay,
+  cancelSubscription,
 })(CancelSubscriptionPopup);

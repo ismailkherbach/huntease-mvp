@@ -505,7 +505,13 @@ class ScriptCard extends React.Component {
                         </div>
                         {this.props.call.schedules.map((schedule) => {
                           return (
-                            <div className="blocListSchedule flex fdc aifs jcc">
+                            <div className="blocListSchedule flex fdr aic jcfs">
+                              <img
+                                // onClick={this.toggleAddSchedule.bind(this)}
+                                className=""
+                                alt="no-guide"
+                                src={require("../../../assets/img/male.svg")}
+                              />
                               <a target="_blank" href={schedule.link}>
                                 {schedule.name}
                               </a>

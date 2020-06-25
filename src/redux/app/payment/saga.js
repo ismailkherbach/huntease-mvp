@@ -5,14 +5,20 @@ import {
   APPLY_DISCOUNT,
   GET_CARD_INFO,
   GET_PLAN,
+  UPDATE_CARD,
+  UPDATE_ADDRESS,
+  CANCEL_SUBSCRIPTION,
 } from "../../actions";
 import axios from "axios";
 import {
   paySuccess,
+  updateCardSuccess,
   getPaimentHistorySuccess,
   applyDiscountSuccess,
   getCardInfoSuccess,
   getPlansSuccess,
+  updateAddressSuccess,
+  cancelSubscriptionSuccess,
 } from "./actions";
 import { API_URL } from "../../../utils/utils";
 
@@ -43,6 +49,79 @@ function* paymnetSubscription({ payload }) {
     }
   } catch (error) {
     console.log("add error : ", error);
+  }
+}
+
+const updateCardAsync = async (token) =>
+  await axios({
+    method: "put",
+    url: API_URL + `payments/`,
+    data: {
+      token,
+    },
+    headers: {
+      authorization: JSON.parse(localStorage.getItem("user_id")),
+    },
+  })
+    .then((authUser) => authUser)
+    .catch((error) => error);
+
+function* updateCard({ payload }) {
+  const { token } = payload;
+  console.log(payload);
+  try {
+    const updateResponse = yield call(updateCardAsync, token);
+    if (updateResponse.status == 200) {
+      yield put(updateCardSuccess("Success"));
+    } else {
+      console.log("update failed :", updateResponse);
+    }
+  } catch (error) {
+    console.log("update error : ", error);
+  }
+}
+
+const updateAddressAsync = async (
+  address_line1,
+  address_city,
+  address_country,
+  address_zip
+) =>
+  await axios({
+    method: "put",
+    url: API_URL + `payments/address`,
+    data: {
+      line1: address_line1,
+      city: address_city,
+      country: address_country,
+      postal_code: address_zip,
+      state: address_city,
+    },
+    headers: {
+      authorization: JSON.parse(localStorage.getItem("user_id")),
+    },
+  })
+    .then((authUser) => authUser)
+    .catch((error) => error);
+
+function* updateAddress({ payload }) {
+  const { address_line1, address_city, address_country, address_zip } = payload;
+  console.log(payload);
+  try {
+    const updateResponse = yield call(
+      updateAddressAsync,
+      address_line1,
+      address_city,
+      address_country,
+      address_zip
+    );
+    if (updateResponse.status == 200) {
+      yield put(updateAddressSuccess("Success"));
+    } else {
+      console.log("update failed :", updateResponse);
+    }
+  } catch (error) {
+    console.log("update error : ", error);
   }
 }
 
@@ -92,6 +171,31 @@ function* getPlans({ payload }) {
     }
   } catch (error) {
     console.log("get error : ", error);
+  }
+}
+
+const cancelSubscriptionAsync = async () =>
+  await axios({
+    method: "delete",
+    url: API_URL + `payments/cancel`,
+    headers: {
+      authorization: JSON.parse(localStorage.getItem("user_id")),
+    },
+  })
+    .then((authUser) => authUser)
+    .catch((error) => error);
+
+function* cancelSubscription({ payload }) {
+  try {
+    const cancelSubscriptionResponse = yield call(cancelSubscriptionAsync);
+    if (cancelSubscriptionResponse.status == 200) {
+      yield put(cancelSubscriptionSuccess("success"));
+      console.log(cancelSubscriptionResponse);
+    } else {
+      console.log("cancel failed :", cancelSubscriptionResponse);
+    }
+  } catch (error) {
+    console.log("cancel error : ", error);
   }
 }
 
@@ -153,6 +257,15 @@ export function* watchPay() {
   yield takeEvery(PAY, paymnetSubscription);
 }
 
+export function* watchUpdateCard() {
+  yield takeEvery(UPDATE_CARD, updateCard);
+}
+export function* watchCancelSubscription() {
+  yield takeEvery(CANCEL_SUBSCRIPTION, cancelSubscription);
+}
+export function* watchUpdateAddress() {
+  yield takeEvery(UPDATE_ADDRESS, updateAddress);
+}
 export function* watchDiscount() {
   yield takeEvery(APPLY_DISCOUNT, discount);
 }
@@ -176,5 +289,8 @@ export default function* rootSaga() {
     fork(watchGetHistory),
     fork(watchGetCardInfo),
     fork(watchGetPlans),
+    fork(watchUpdateCard),
+    fork(watchUpdateAddress),
+    fork(watchCancelSubscription),
   ]);
 }

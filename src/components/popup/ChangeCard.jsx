@@ -12,7 +12,7 @@ import {
 import { loadStripe } from "@stripe/stripe-js";
 import axios from "axios";
 import { connect } from "react-redux";
-import { pay } from "../../redux/actions";
+import { updateCard } from "../../redux/actions";
 
 const stripePromise = loadStripe(
   "pk_test_51GqdyRBXLsKUPQbHXGJsCSA9tJYHPpXDa8Y8dChs4dW20yeQh3HT55oiMNmysRhogzBHWKSHvfCWr5DF9KlkKyfk00CQF8DBeX"
@@ -102,8 +102,8 @@ class ChangeCardPopup extends React.Component {
       console.log(tokenize);
       let selectedPlan = 1;
       let token = tokenize.token.id;
-      let billing = { token, selectedPlan };
-      this.props.pay(billing);
+      let billing = { token };
+      this.props.updateCard(billing);
     } else {
       console.log("Stripe.js hasn't loaded yet.");
     }
@@ -144,32 +144,7 @@ class ChangeCardPopup extends React.Component {
       <div className="popup-container flex aic jcc">
         {this.state.success && (
           <div className="paySuccess flex fdc aic jcc">
-            <h4>CONGRATULATIONS!</h4>
-
-            <div className="payTicket flex fdc aic jcc">
-              <div className="top-width flex fdc aic jcc">
-                <p>SUBSCRIPTION DATE</p>
-                <h5>21 June, 2020</h5>
-              </div>
-              <div className="top-width flex fdc aic jcc">
-                <p>PLAN</p>
-                <h5>GROWTH</h5>
-              </div>
-              <div className="top-width flex fdc aic jcc">
-                <p>SEATS</p>
-                <h5>5</h5>
-              </div>
-              <div className=" top-width flex fdc aic jcc">
-                <p>BILLING</p>
-                <h5>ANNUAL</h5>
-              </div>
-              <img src={require("../../assets/img/divider_v.svg")} />
-
-              <div className="top-width flex fdc aic jcc">
-                <p>TOTAL</p>
-                <h2>€3540</h2>
-              </div>
-            </div>
+            <h4>CONGRATULATIONS! your card is up to date</h4>
           </div>
         )}
         {!this.state.success && (
@@ -212,7 +187,7 @@ class ChangeCardPopup extends React.Component {
                 {this.props.stripe ? (
                   <Button
                     className="Change-profile-btn flex aic jcc"
-                    onClick={this.handleSubmitWithSource.bind(this)}
+                    onClick={this.handleSubmit.bind(this)}
                   >
                     Update my payment method
                   </Button>
@@ -235,7 +210,7 @@ const mapStateToProps = ({ payment }) => {
 };
 
 export default connect(mapStateToProps, {
-  pay,
+  updateCard,
 })(injectStripe(ChangeCardPopup));
 
 const createOptions = () => {

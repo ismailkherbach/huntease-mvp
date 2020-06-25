@@ -12,11 +12,7 @@ import {
 import { loadStripe } from "@stripe/stripe-js";
 import axios from "axios";
 import { connect } from "react-redux";
-import { pay } from "../../redux/actions";
-
-const stripePromise = loadStripe(
-  "pk_test_51GqdyRBXLsKUPQbHXGJsCSA9tJYHPpXDa8Y8dChs4dW20yeQh3HT55oiMNmysRhogzBHWKSHvfCWr5DF9KlkKyfk00CQF8DBeX"
-);
+import { updateAddress } from "../../redux/actions";
 
 class ChangeAddressPopup extends React.Component {
   constructor(props) {
@@ -85,28 +81,18 @@ class ChangeAddressPopup extends React.Component {
   handleSubmit = async (evt) => {
     evt.preventDefault();
     console.log(this.state.billing_details);
-    const billing_details = {
-      name: this.state.user.firstName + " " + this.state.user.lastName,
+
+    const billing_address = {
       address_line1: this.state.billing_details.address_line1,
       address_city: this.state.billing_details.address_city,
       address_zip: this.state.billing_details.address_zip,
       address_country: this.state.billing_details.address_country,
     };
-    if (this.props.stripe) {
-      const tokenize = await this.props.stripe.createToken(billing_details);
-      this.setState({ success: true });
-      setTimeout(() => {
-        this.props.closePopup();
-      }, 2000);
 
-      console.log(tokenize);
-      let selectedPlan = 1;
-      let token = tokenize.token.id;
-      let billing = { token, selectedPlan };
-      this.props.pay(billing);
-    } else {
-      console.log("Stripe.js hasn't loaded yet.");
-    }
+    this.props.updateAddress(billing_address);
+    setTimeout(() => {
+      this.props.closePopup();
+    }, 4000);
   };
 
   handleSubmitWithSource = async (ev) => {
@@ -145,31 +131,6 @@ class ChangeAddressPopup extends React.Component {
         {this.state.success && (
           <div className="paySuccess flex fdc aic jcc">
             <h4>CONGRATULATIONS!</h4>
-
-            <div className="payTicket flex fdc aic jcc">
-              <div className="top-width flex fdc aic jcc">
-                <p>SUBSCRIPTION DATE</p>
-                <h5>21 June, 2020</h5>
-              </div>
-              <div className="top-width flex fdc aic jcc">
-                <p>PLAN</p>
-                <h5>GROWTH</h5>
-              </div>
-              <div className="top-width flex fdc aic jcc">
-                <p>SEATS</p>
-                <h5>5</h5>
-              </div>
-              <div className=" top-width flex fdc aic jcc">
-                <p>BILLING</p>
-                <h5>ANNUAL</h5>
-              </div>
-              <img src={require("../../assets/img/divider_v.svg")} />
-
-              <div className="top-width flex fdc aic jcc">
-                <p>TOTAL</p>
-                <h2>€3540</h2>
-              </div>
-            </div>
           </div>
         )}
         {!this.state.success && (
@@ -220,7 +181,7 @@ class ChangeAddressPopup extends React.Component {
                       </div>
                       <Button
                         className="Change-profile-btn flex aic jcc"
-                        onClick={this.toggleSecondStep.bind(this)}
+                        onClick={this.handleSubmit.bind(this)}
                       >
                         Update my billing address
                       </Button>
@@ -243,7 +204,7 @@ const mapStateToProps = ({ payment }) => {
 };
 
 export default connect(mapStateToProps, {
-  pay,
+  updateAddress,
 })(ChangeAddressPopup);
 
 const createOptions = () => {

@@ -14,6 +14,15 @@ import {
   GET_PLAN,
   GET_PLAN_SUCCESS,
   GET_PLAN_ERROR,
+  UPDATE_CARD,
+  UPDATE_CARD_SUCCESS,
+  UPDATE_CARD_ERROR,
+  UPDATE_ADDRESS,
+  UPDATE_ADDRESS_SUCCESS,
+  UPDATE_ADDRESS_ERROR,
+  CANCEL_SUBSCRIPTION,
+  CANCEL_SUBSCRIPTION_SUCCESS,
+  CANCEL_SUBSCRIPTION_ERROR,
 } from "../../actions";
 
 const INIT_STATE = {
@@ -36,6 +45,51 @@ export default (state = INIT_STATE, action) => {
         error: "",
       };
     case PAY_ERROR:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+
+    case UPDATE_CARD:
+      return { ...state, loading: true, error: "" };
+    case UPDATE_CARD_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: "",
+      };
+    case UPDATE_CARD_ERROR:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+
+    case UPDATE_ADDRESS:
+      return { ...state, loading: true, error: "" };
+    case UPDATE_ADDRESS_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: "",
+      };
+    case UPDATE_ADDRESS_ERROR:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+
+    case CANCEL_SUBSCRIPTION:
+      return { ...state, loading: true, error: "" };
+    case CANCEL_SUBSCRIPTION_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: "",
+      };
+    case CANCEL_SUBSCRIPTION_ERROR:
       return {
         ...state,
         loading: false,
