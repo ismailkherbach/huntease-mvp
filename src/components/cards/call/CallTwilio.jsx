@@ -31,11 +31,11 @@ class CallTwilio extends React.Component {
       endOfCall: false,
       audio: null,
       emotions: {
-        Happiness: "",
-        Fear: "",
-        Sadness: "",
-        Anger: "",
-        Neutrality: "",
+        Happiness: "_ _",
+        Fear: "_ _",
+        Sadness: "_ _",
+        Anger: "_ _",
+        Neutrality: "_ _",
       },
       visibleLeadId: {
         emails: ["nazim.zidi23@gmail.com"],
@@ -58,7 +58,6 @@ class CallTwilio extends React.Component {
   }
 
   handleEndCall() {
-    this.props.endCall("hello");
     this.setState({ onPhone: !this.state.onPhone });
     Twilio.Device.disconnectAll();
     this.setState({
@@ -66,17 +65,28 @@ class CallTwilio extends React.Component {
       emotionAnalytics: false,
     });
   }
+
+  handleCallSsid(ssid) {
+    let callSid = ssid;
+    let leadId = this.props.visibleLeadId.id;
+    this.props.endCall({ callSid, leadId });
+    console.log(ssid);
+  }
   handleChangeEmotion(emotion) {
-    this.setState({
-      emotions: {
-        Happiness: Math.round(emotion.Happiness.toFixed(4) * 100 * 10) / 10,
-        Fear: Math.round(emotion.Fear.toFixed(4) * 100 * 10) / 10,
-        Sadness: Math.round(emotion.Sadness.toFixed(4) * 100 * 10) / 10,
-        Anger: Math.round(emotion.Anger.toFixed(4) * 100 * 10) / 10,
-        Neutrality: Math.round(emotion.Neutrality.toFixed(4) * 100 * 10) / 10,
-      },
-    });
-    console.log(this.state.emotions);
+    if (emotion != undefined) {
+      this.setState({
+        emotions: {
+          Happiness:
+            Math.round(emotion.Happiness.toFixed(4) * 100 * 10) / 10 + "%",
+          Fear: Math.round(emotion.Fear.toFixed(4) * 100 * 10) / 10 + "%",
+          Sadness: Math.round(emotion.Sadness.toFixed(4) * 100 * 10) / 10 + "%",
+          Anger: Math.round(emotion.Anger.toFixed(4) * 100 * 10) / 10 + "%",
+          Neutrality:
+            Math.round(emotion.Neutrality.toFixed(4) * 100 * 10) / 10 + "%",
+        },
+      });
+      console.log(this.state.emotions);
+    }
   }
   async getMicrophone() {
     const audio = await navigator.mediaDevices.getUserMedia({
@@ -236,7 +246,11 @@ class CallTwilio extends React.Component {
       audioHelper: true,
       pstream: true,
     });
-
+    this.getMicrophone();
+    this.handleToggleCall();
+    Twilio.Device.ready(function() {
+      self.log = "Connected";
+    });
     // Configure event handlers for Twilio Device
     Twilio.Device.disconnect(function() {
       self.setState({
@@ -245,11 +259,6 @@ class CallTwilio extends React.Component {
       });
     });
 
-    Twilio.Device.ready(function() {
-      self.log = "Connected";
-    });
-
-    this.handleToggleCall();
     console.log(this.props.visibleLeadId);
     Twilio.Device.on("error", function(error) {
       console.log(error);
@@ -263,7 +272,13 @@ class CallTwilio extends React.Component {
       let response = JSON.parse(emotionPacket.data);
       console.log(emotionPacket);
       if (response.type == "call_emotions") {
-        if (response.data == null) this.handleChangeEmotion(response.data);
+        if (response.data != undefined) this.handleChangeEmotion(response.data);
+      }
+      if (response.type === "recording_ready") {
+        this.handleCallSsid(response.data.callSid);
+      }
+      if (response.type === "call_failed") {
+        this.handleCallSsid(response.data.callSid);
       }
 
       //this.handleChangeEmotion(emotionPacket.data)
@@ -431,12 +446,47 @@ class CallTwilio extends React.Component {
             </div>
           </PerfectScrollbar>
         ) : (
-          <div className="fdr">
-            <h5>Happiness : {this.state.emotions.Happiness}</h5>
-            <h5>Frear: {this.state.emotions.Fear}</h5>
-            <h5>Sadness : {this.state.emotions.Sadness}</h5>
-            <h5>Anger : {this.state.emotions.Anger}</h5>
-            <h5>Neutral : {this.state.emotions.Neutrality}</h5>
+          <div className="emotions flex fdr aic jcc">
+            <div className="emotion flex fdr aic jcfs">
+              <img
+                alt="empty-leads"
+                src={require("../../../assets/img/ishappy.svg")}
+              />
+              <div className="emoText flex fdc aic jcfs">
+                <h2> {this.state.emotions.Happiness}</h2>
+                <h5>Is happy</h5>
+              </div>
+            </div>
+            <div className="emotion flex fdr aic jcfs">
+              <img
+                alt="empty-leads"
+                src={require("../../../assets/img/isafraid.svg")}
+              />
+              <div className="emoText flex fdc aic jcfs">
+                <h2> {this.state.emotions.Fear}</h2>
+                <h5>Is afraid</h5>
+              </div>
+            </div>
+            <div className="emotion flex fdr aic jcfs">
+              <img
+                alt="empty-leads"
+                src={require("../../../assets/img/isneutral.svg")}
+              />
+              <div className="emoText flex fdc aic jcfs">
+                <h2> {this.state.emotions.Neutrality}</h2>
+                <h5>Is neutral</h5>
+              </div>
+            </div>
+            <div className="emotion flex fdr aic jcfs">
+              <img
+                alt="empty-leads"
+                src={require("../../../assets/img/isangry.svg")}
+              />
+              <div className="emoText flex fdc aic jcfs">
+                <h2> {this.state.emotions.Anger}</h2>
+                <h5>Is angry</h5>
+              </div>
+            </div>
           </div>
         )}
         <div className="callSection flex fdr aic jcc">

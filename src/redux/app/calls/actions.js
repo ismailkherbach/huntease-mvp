@@ -27,9 +27,9 @@ import {
   ADD_SCHEDULES_ERROR,
 } from "../../actions";
 
-export const endCall = (callSid) => ({
+export const endCall = (callInfos) => ({
   type: ENDING_CALL,
-  payload: { callSid },
+  payload: callInfos,
 });
 
 export const getLeads = () => ({

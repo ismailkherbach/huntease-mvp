@@ -187,7 +187,8 @@ export default (state = INIT_STATE, action) => {
         ...state,
         callEnded: true,
         loading: false,
-        callSid: action.payload,
+        callSid: action.payload.callSid,
+        leadId: action.payload.leadId,
         error: "",
       };
     default:

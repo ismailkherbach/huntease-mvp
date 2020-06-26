@@ -146,7 +146,12 @@ class ScriptCard extends React.Component {
       }
     }
   }
-
+  sendToHubspot() {
+    console.log(this.props.call.callSid);
+    console.log(this.props.call.leadId);
+    console.log(this.state.notesResponse);
+    console.log(this.state.meetingBooked);
+  }
   componentDidUpdate() {
     if (this.props.guide.guides && this.state.guide === null) {
       if (!this.props.guide.isGuideEmpty) {
@@ -550,9 +555,9 @@ class ScriptCard extends React.Component {
                   Looks good!
                 </Button>
               )}
-              {!this.props.call.callEnded && this.state.result && (
+              {this.props.call.callEnded && this.state.result && (
                 <Button
-                  onClick={this.toggleSchedule.bind(this)}
+                  onClick={this.sendToHubspot.bind(this)}
                   className="Save-changes-btn"
                 >
                   <img src={require("../../../assets/img/bxs-calendar.svg")} />

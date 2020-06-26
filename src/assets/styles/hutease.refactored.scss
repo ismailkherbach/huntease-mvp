@@ -1170,7 +1170,7 @@ body {
         color: $huntease-main;
       }
       .GuideResponse {
-        width: 640px;
+        width: 40rem;
         height: 342px;
         padding: 20px 15px 20px 15px;
         border-radius: 10px;
@@ -1219,7 +1219,7 @@ body {
       }
       .DidyouBook {
         width: 100%;
-        height: 125px;
+        height: 7.8125rem;
         border-radius: $border-radius-button;
         background-color: #f6f9ff;
         margin: 5px 0 0 0;
@@ -1381,6 +1381,39 @@ body {
     //  padding: 21px;
     position: relative;
     .leadDisplay {
+      .emotions {
+        width: 100%;
+        flex-wrap: wrap;
+        margin: 35px;
+        .emotion {
+          margin: 10px;
+          width: 12.0625rem;
+          height: 4.4375rem;
+          border: 1px solid $huntease-medium;
+          border-radius: 20px;
+          .emoText {
+            margin: 0;
+            width: 60%;
+            padding: 10px 20px 10px 20px;
+            & img {
+              margin: 0;
+            }
+            & h5 {
+              font-weight: $light;
+              color: $huntease-medium;
+              margin: 0;
+              padding: 0 0 10px 0;
+            }
+            & h2 {
+              line-height: normal;
+              color: $huntease-medium;
+              font-weight: $light;
+              font-size: 34px;
+              margin: 0;
+            }
+          }
+        }
+      }
       .topBloc {
         & .inCallTopBloc {
           height: 270px;
