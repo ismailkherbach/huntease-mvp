@@ -389,11 +389,11 @@ class CallTwilio extends React.Component {
           </PerfectScrollbar>
         ) : (
           <div className="fdr">
-            <h5>Happiness :{this.state.Happiness}</h5>
-            <h5>Frear:{this.state.Fear}</h5>
-            <h5>Sadness:{this.state.Sadness}</h5>
-            <h5>Anger:{this.state.Anger}</h5>
-            <h5>Neutral:{this.state.Neutrality}</h5>
+            <h5>Happiness : {this.state.emotions.Happiness}</h5>
+            <h5>Frear: {this.state.emotions.Fear}</h5>
+            <h5>Sadness : {this.state.emotions.Sadness}</h5>
+            <h5>Anger : {this.state.emotions.Anger}</h5>
+            <h5>Neutral : {this.state.emotions.Neutrality}</h5>
           </div>
         )}
         <div className="callSection flex fdr aic jcc">
