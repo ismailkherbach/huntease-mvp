@@ -14,7 +14,12 @@ import {
   UPDATE_PASSWORD,
   UPDATE_PASSWORD_SUCCESS,
   UPDATE_PASSWORD_ERROR,
+  SHOULD_BLUR,
 } from "../actions";
+
+export const shouldBlur = () => ({
+  type: SHOULD_BLUR,
+});
 
 export const getProfile = () => ({
   type: GET_PROFILE,

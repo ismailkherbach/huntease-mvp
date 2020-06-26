@@ -3,6 +3,9 @@ import { Route, Switch, Redirect, withRouter } from "react-router-dom";
 
 import AppLayout from "../../layout/AppLayout";
 import Fullscreen from "react-full-screen";
+
+import { connect } from "react-redux";
+import { shouldBlur } from "../../redux/actions";
 const Dashboard = React.lazy(() =>
   import(/* webpackChunkName: "Dashboard" */ "./dashboard/dashboard")
 );
@@ -16,7 +19,7 @@ const Settings = React.lazy(() =>
   import(/* webpackChunkName: "Settings" */ "./settings")
 );
 
-export default class App extends React.Component {
+class App extends React.Component {
   constructor(props) {
     super();
 
@@ -37,7 +40,9 @@ export default class App extends React.Component {
         enabled={this.state.isFull}
         onChange={(isFull) => this.setState({ isFull })}
       >
-        <div className="main-bloc">
+        <div
+          className={`main-bloc ${this.props.settings.shouldBlur ? "" : ""} `}
+        >
           <Suspense fallback={<div className="loading" />}>
             <AppLayout>
               <Switch>
@@ -72,3 +77,13 @@ export default class App extends React.Component {
     );
   }
 }
+
+const mapStateToProps = ({ settings }) => {
+  return { settings };
+};
+
+export default withRouter(
+  connect(mapStateToProps, {
+    shouldBlur,
+  })(App)
+);

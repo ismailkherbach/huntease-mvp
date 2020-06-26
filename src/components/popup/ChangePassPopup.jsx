@@ -31,7 +31,15 @@ class ChangePassPopup extends React.Component {
     return (
       <div className="popup-container flex aic jcc fdc">
         <div className="popup_inner-change-password flex fdc aic jcc">
-          <h3>Change password</h3>
+          <div className="flex fdr aic">
+            <h3>Change password</h3>
+            <img
+              className="curs_pointer"
+              onClick={this.props.closePopup}
+              src={require("../../assets/img/bx-x.svg")}
+            />
+          </div>
+
           <div className="fdc flex aifs jcfs margin-top25">
             <h5>Current password</h5>
 

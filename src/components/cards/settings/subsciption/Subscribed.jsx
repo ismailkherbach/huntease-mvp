@@ -2,7 +2,11 @@ import React, { Fragment } from "react";
 
 import { Row, Col, Button } from "reactstrap";
 import { connect } from "react-redux";
-import { getPaimentHistory, getCardInfo } from "../../../../redux/actions";
+import {
+  getPaimentHistory,
+  getCardInfo,
+  shouldBlur,
+} from "../../../../redux/actions";
 import { StripeProvider, Elements } from "react-stripe-elements";
 import { loadStripe } from "@stripe/stripe-js";
 import CancelSubscriptionPopup from "../../../popup/CancelSubscriptionPopup";
@@ -68,11 +72,13 @@ class Subscribed extends React.Component {
     this.setState({
       changeCard: !this.state.changeCard,
     });
+    this.props.shouldBlur();
   }
   togglePopupCancel() {
     this.setState({
       cancelSubscription: !this.state.cancelSubscription,
     });
+    this.props.shouldBlur();
   }
   componentDidMount() {
     this.props.getPaimentHistory();
@@ -193,4 +199,5 @@ const mapStateToProps = ({ payment }) => {
 export default connect(mapStateToProps, {
   getPaimentHistory,
   getCardInfo,
+  shouldBlur,
 })(Subscribed);

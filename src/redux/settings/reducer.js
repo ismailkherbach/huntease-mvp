@@ -16,6 +16,7 @@ import {
   UPDATE_PASSWORD,
   UPDATE_PASSWORD_SUCCESS,
   UPDATE_PASSWORD_ERROR,
+  SHOULD_BLUR,
 } from "../actions";
 
 const INIT_STATE = {
@@ -33,6 +34,7 @@ const INIT_STATE = {
   error: "",
   message: "",
   code: null,
+  shouldBlur: false,
 };
 
 export default (state = INIT_STATE, action) => {
@@ -109,6 +111,14 @@ export default (state = INIT_STATE, action) => {
       return { ...state, dark_mode: action.payload };
     case WHITE_MODE:
       return { ...state, dark_mode: action.payload };
+
+    case SHOULD_BLUR:
+      return {
+        ...state,
+        loading: false,
+        shouldBlur: !state.shouldBlur,
+        error: "",
+      };
     default:
       return { ...state };
   }

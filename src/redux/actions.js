@@ -169,6 +169,8 @@ export const ADD_PHONE_NUMBER_ERROR = "ADD_PHONE_NUMBER_ERROR";
 export const UPDATE_PASSWORD = "UPDATE_PASSWORD";
 export const UPDATE_PASSWORD_SUCCESS = "UPDATE_PASSWORD_SUCCESS";
 export const UPDATE_PASSWORD_ERROR = "UPDATE_PASSWORD_ERROR";
+
+export const SHOULD_BLUR = "SHOULD_BLUR";
 export * from "./settings/actions";
 export * from "./auth/actions";
 export * from "./app/dashboard/actions";
