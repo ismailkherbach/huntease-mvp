@@ -640,15 +640,15 @@ body {
 
       .Add-number-bloc {
         margin-left: 21.3%;
-        width: 300px;
-        height: 154px;
+        width: 18.75rem;
+        height: 9.625rem;
         background-color: white;
         border-radius: $border-radius-inputs;
         box-shadow: $box-shadow;
         padding: 10px 20px 10px 20px;
         .full-input {
-          width: 258px;
-          height: 41px;
+          width: 16.125rem;
+          height: 2.5625rem;
           margin: 0;
           //margin: auto;
           background-color: #ebefff;
@@ -675,8 +675,8 @@ body {
       }
       .Profil-right {
         margin: 0 0 0 21.3%;
-        width: 300px;
-        height: 251px;
+        width: 18.75rem;
+        height: 15.6875rem;
         background-color: white;
         box-shadow: $box-shadow;
         border-radius: $border-radius-button;
@@ -1197,7 +1197,7 @@ body {
         padding: 5px 0 5px 0;
       }
       & textarea {
-        width: 620px;
+        width: 40rem;
         height: 60px;
         margin: 10px 0 0 0;
         border-radius: 0 15px 15px 15px;
@@ -1537,7 +1537,7 @@ body {
           margin: 0 60px 0 5px;
         }
         & .Save-changes-btn {
-          width: 115px;
+          width: 7.1875rem;
           height: 34px;
           border-radius: $border-radius-inputs;
           color: #f7894d;
@@ -1548,7 +1548,7 @@ body {
       }
 
       .full-input {
-        width: 410px;
+        width: 25.625rem;
         height: 45px;
         margin: 0;
         //margin: auto;
