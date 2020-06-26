@@ -23,8 +23,8 @@ class CallTwilio extends React.Component {
     this.state = {
       muted: false,
       log: "Waiting for call",
-      countryCode: "213",
-      currentNumber: "550207141",
+      countryCode: "33",
+      currentNumber: "160045015",
       onPhone: false,
       emotionAnalytics: true,
       general: true,
@@ -59,6 +59,7 @@ class CallTwilio extends React.Component {
 
   handleEndCall() {
     this.props.endCall("hello");
+    this.setState({ onPhone: !this.state.onPhone });
     Twilio.Device.disconnectAll();
     this.setState({
       endOfCall: true,
@@ -82,7 +83,7 @@ class CallTwilio extends React.Component {
       audio: true,
       video: false,
     });
-    await this.setState({ audio });
+    this.setState({ audio });
   }
   async stopIt() {
     const audio = await navigator.mediaDevices.getUserMedia({
@@ -155,18 +156,23 @@ class CallTwilio extends React.Component {
     //  this.getMicrophone();
     //this.fetchToken();
   }
+
   handleToggleCall() {
+    var constraints = { audio: true, video: false };
+    navigator.mediaDevices.getUserMedia(constraints).catch(function(err) {
+      console.log(err.name + ": " + err.message);
+    });
+
+    //  this.getMicrophone();
+
     if (!this.state.onPhone) {
       this.setState({
         muted: false,
         onPhone: true,
       });
       // make outbound call with current number
-      var n =
-        "+" +
-        this.state.countryCode +
-        this.state.currentNumber.replace(/\D/g, "");
-      Twilio.Device.connect({ number: n, id: user.id });
+      var n = "+" + this.props.number;
+      Twilio.Device.connect({ number: this.props.number, id: user.id });
       this.setState({ log: "Calling " + n });
     } else {
       // hang up call in progress
@@ -174,13 +180,12 @@ class CallTwilio extends React.Component {
     }
   }
   componentDidMount() {
-    //this.getMicrophone();
     //await this.fetchToken();
     //await this.handleToggleCall();
 
     var self = this;
 
-    //console.log(localStorage.getItem("twilioToken"));
+    console.log(this.props.number);
 
     Twilio.Device.setup(JSON.parse(localStorage.getItem("twilioToken")), {
       debug: true,
@@ -278,6 +283,7 @@ class CallTwilio extends React.Component {
 
   toggleEndCall() {
     // hang up call in progress
+    this.setState({ onPhone: !this.state.onPhone });
     Twilio.Device.disconnectAll();
   }
 
@@ -382,7 +388,13 @@ class CallTwilio extends React.Component {
             </div>
           </PerfectScrollbar>
         ) : (
-          ""
+          <div className="fdr">
+            <h5>Happiness :{this.state.Happiness}</h5>
+            <h5>Frear:{this.state.Fear}</h5>
+            <h5>Sadness:{this.state.Sadness}</h5>
+            <h5>Anger:{this.state.Anger}</h5>
+            <h5>Neutral:{this.state.Neutrality}</h5>
+          </div>
         )}
         <div className="callSection flex fdr aic jcc">
           <div className="callBloc flex fdc aic jcc">
@@ -416,7 +428,10 @@ class CallTwilio extends React.Component {
             <p>Later</p>
           </div>
           <div className="callBloc flex fdc aic jcc">
-            <div className="callIcon callIconEnd flex fdc aic jcc">
+            <div
+              className="callIcon callIconEnd flex fdc aic jcc"
+              onClick={this.handleEndCall.bind(this)}
+            >
               <img
                 className="float-right"
                 alt="empty-leads"

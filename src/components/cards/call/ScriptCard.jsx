@@ -154,10 +154,6 @@ class ScriptCard extends React.Component {
         console.log(this.state.guide);
       }
     }
-    if (this.props.call.callEnded && !this.state.checked) {
-      this.setState({ result: true, checked: true });
-      console.log("hidhfsdjfhdskjfhsjkd");
-    }
   }
   render() {
     return (

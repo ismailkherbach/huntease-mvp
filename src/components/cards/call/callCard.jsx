@@ -42,6 +42,7 @@ class CallCard extends React.Component {
       emptyLead: true,
       callIcon: false,
       onPhone: false,
+      number: "",
     };
     this.handleHoverOn = this.handleHoverOn.bind(this);
     this.handleHoverOff = this.handleHoverOff.bind(this);
@@ -144,7 +145,12 @@ class CallCard extends React.Component {
   deleteCheckBox() {
     this.setState({ delecteAction: !this.state.delecteAction });
   }
-
+  handleChangeNumber(e) {
+    console.log(this.state.number);
+    this.setState({
+      number: e.target.value,
+    });
+  }
   componentDidMount() {
     this.props.getLeads();
     console.log(this.props.call.leads);
@@ -374,8 +380,11 @@ class CallCard extends React.Component {
                           alt="empty-leads"
                           src={require("../../../assets/img/bxs-phone.svg")}
                         />
-
-                        <select>
+                        <input
+                          placeholder="type number"
+                          onChange={this.handleChangeNumber.bind(this)}
+                        />
+                        {/*    <select>
                           {this.state.visibleLeadId.phones.fixe.map((phone) => {
                             if (phone != null) {
                               return <option>{phone}</option>;
@@ -388,7 +397,7 @@ class CallCard extends React.Component {
                               } else return;
                             }
                           )}
-                        </select>
+                        </select>*/}
                       </div>
                       <div className="full-input flex fdr aic jcc">
                         <img
@@ -430,6 +439,7 @@ class CallCard extends React.Component {
                 <CallTwilio
                   muted={this.state.muted}
                   visibleLeadId={this.state.visibleLeadId}
+                  number={this.state.number}
                 />
               )}
             </div>
