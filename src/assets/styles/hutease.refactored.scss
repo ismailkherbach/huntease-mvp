@@ -253,7 +253,7 @@ body {
   font-size: 16px;
 }
 .auth-bloc {
-  background-image: url("../home_assets/login_bg.svg");
+  background-image: url("../img/authback_test.svg");
   background-size: cover;
   background-repeat: no-repeat;
   height: 100vh;
@@ -375,8 +375,7 @@ body {
   position: fixed;
   left: 0;
   right: 0;
-  top: 0;
-  bottom: 0;
+  //
   overflow-y: hidden;
   .main-contour {
     width: 100%;

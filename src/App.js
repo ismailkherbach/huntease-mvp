@@ -17,7 +17,7 @@ import AppLocale from "./lang";
 import axios from "axios";
 import NotificationContainer from "./components/common/react-notifications/NotificationContainer";
 
-const UNAUTHORIZED = 401;
+/*const UNAUTHORIZED = 401;
 axios.interceptors.response.use(
   (response) => response,
   (error) => {
@@ -28,7 +28,7 @@ axios.interceptors.response.use(
     }
     return Promise.reject(error);
   }
-);
+);*/
 
 const FORBIDDEN = 403;
 axios.interceptors.response.use(
