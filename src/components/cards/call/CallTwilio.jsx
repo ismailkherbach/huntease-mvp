@@ -148,6 +148,49 @@ class CallTwilio extends React.Component {
       });
     });
 
+    Twilio.Device.on("ready", () => {
+      // Subscribe to the event for when the list of devices changes
+      Twilio.Device.audio.on("deviceChange", () => updateMicOptions());
+      self.log = "Connected";
+
+      // Now it's time to Call getUserMedia to get the input device names.
+      // This is needed to get the labels. Otherwise, we will only have device IDs.
+      // It's also recommended to ensure we know which mic to use when the call comes in.
+      // Furthermore, performing this action here, allows for capturing gUM errors early
+      // before accepting/receiving a call and it's possible to create a much better user experience
+      navigator.mediaDevices
+        .getUserMedia({ audio: true })
+        .then((stream) => {
+          updateMicOptions();
+
+          // Calling getUserMedia will start the media track selected.
+          // This is not desired as the user may get the impression the mic is in use.
+          // Therefore, we want to avoid having tracks started when they're not needed.
+          // We only wanted to get the input device list so we stop the tracks immediately.
+          stream.getTracks().forEach((track) => track.stop());
+        })
+        .catch((error) => {
+          // Handle error. Tell the user there's a a mic issue. You could also tell
+          // your backend or raise an alert for the system admin to resolve this issue.
+          console.log(error);
+        });
+
+      // When handling incoming calls, use the device that was selected earlier
+      Twilio.Device.on("incoming", (connection) => {
+        // Now we can set the input device that we read in updateMicOptions.
+        // `Device` will store this internally. This will avoid getUserMedia calls.
+        Twilio.Device.audio
+          .setInputDevice(micOptions.value)
+          .then(() => connection.accept())
+          .catch((error) => {
+            // The audio device could not be set. Something has failed,
+            // possibly a hardware (headset) failure.
+            // Inform the user and try again or hang up the call.
+            // Here you can also report this to your backend or system admin to help with the issue
+          });
+      });
+    });
+
     Twilio.Device.ready(function() {
       self.log = "Connected";
     });
@@ -220,7 +263,7 @@ class CallTwilio extends React.Component {
       let response = JSON.parse(emotionPacket.data);
       console.log(emotionPacket);
       if (response.type == "call_emotions") {
-        this.handleChangeEmotion(response.data);
+        if (response.data == null) this.handleChangeEmotion(response.data);
       }
 
       //this.handleChangeEmotion(emotionPacket.data)
@@ -477,3 +520,19 @@ const leadKey = [
   "ATTEMPTED_TO_CONTACT",
   "BAD_TIMING",
 ];
+
+const micOptions = document.createElement("select");
+micOptions.addEventListener("change", () => {
+  Twilio.Device.audio.setInputDevice(micOptions.value);
+});
+
+// Update UI with the updated list of available devices
+const updateMicOptions = () => {
+  micOptions.innerHTML = "";
+  Twilio.Device.audio.availableInputDevices.forEach((d) => {
+    const option = document.createElement("option");
+    option.value = d.deviceId;
+    option.innerText = d.label;
+    micOptions.appendChild(option);
+  });
+};
