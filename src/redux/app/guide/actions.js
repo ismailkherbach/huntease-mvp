@@ -57,9 +57,9 @@ export const updateGuideError = (error) => ({
   payload: error,
 });
 
-export const deleteGuide = ({ id }) => ({
+export const deleteGuide = ({ id, history }) => ({
   type: DELETE_GUIDE,
-  payload: { id },
+  payload: { id, history },
 });
 
 export const deleteGuideSuccess = (guide) => ({

@@ -16,6 +16,8 @@ import {
   getGuide,
   deleteGuide,
 } from "../../../redux/actions";
+import { Link, withRouter } from "react-router-dom";
+
 import PerfectScrollbar from "react-perfect-scrollbar";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { InstalledAddOnExtensionPage } from "twilio/lib/rest/preview/marketplace/installedAddOn/installedAddOnExtension";
@@ -79,6 +81,7 @@ class ScriptEditor extends React.Component {
     this.props.addGuide({
       title: this.state.title,
       questions: this.state.questionsGuide.questions,
+      history: this.props.history,
     });
   };
 
@@ -463,9 +466,11 @@ const mapStateToProps = ({ guide }) => {
   };
 };
 
-export default connect(mapStateToProps, {
-  addGuide,
-  getGuide,
-  deleteGuide,
-  updateGuide,
-})(ScriptEditor);
+export default withRouter(
+  connect(mapStateToProps, {
+    addGuide,
+    getGuide,
+    deleteGuide,
+    updateGuide,
+  })(ScriptEditor)
+);

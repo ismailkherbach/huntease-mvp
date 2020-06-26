@@ -32,12 +32,13 @@ const addGuideAsync = async (title, questions) =>
     .catch((error) => error);
 
 function* addGuideNew({ payload }) {
-  const { title, questions } = payload;
+  const { title, questions, history } = payload;
   console.log(payload);
   try {
     const addResponse = yield call(addGuideAsync, title, questions);
     if (addResponse.status == 201) {
       yield put(addGuideSuccess(addResponse));
+      history.go();
     } else {
       console.log("add failed :", addResponse);
     }
@@ -111,12 +112,13 @@ const deleteGuideAsync = async (id) =>
   });
 
 function* deleteGuide({ payload }) {
-  const { id } = payload;
+  const { id, history } = payload;
 
   try {
     const deleteResponse = yield call(deleteGuideAsync, id);
     if (deleteResponse.status == 204) {
       yield put(deleteGuideSuccess(deleteResponse));
+      history.go();
     } else {
       console.log("delete failed :", deleteResponse);
     }

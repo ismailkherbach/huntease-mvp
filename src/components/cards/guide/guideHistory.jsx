@@ -9,6 +9,8 @@ import {
 } from "reactstrap";
 import { connect } from "react-redux";
 import { getGuide, deleteGuide } from "../../../redux/actions";
+import { Link, withRouter } from "react-router-dom";
+
 import "boxicons";
 class GuideHistory extends React.Component {
   constructor(props) {
@@ -16,13 +18,17 @@ class GuideHistory extends React.Component {
     this.state = {};
   }
   onDeleteGuide(id) {
-    this.props.deleteGuide({ id });
+    let history = this.props.history;
+    console.log(history);
+    this.props.deleteGuide({ id, history });
   }
 
   componentDidMount() {
     this.props.getGuide();
   }
-  componentWillUpdate() {}
+  componentWillUpdate() {
+    console.log(this.props.history);
+  }
   render() {
     return (
       <Fragment>
@@ -82,7 +88,9 @@ const mapStateToProps = ({ guide }) => {
   };
 };
 
-export default connect(mapStateToProps, {
-  getGuide,
-  deleteGuide,
-})(GuideHistory);
+export default withRouter(
+  connect(mapStateToProps, {
+    getGuide,
+    deleteGuide,
+  })(GuideHistory)
+);
