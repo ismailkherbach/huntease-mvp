@@ -155,53 +155,11 @@ class CallTwilio extends React.Component {
     //  this.getMicrophone();
     //this.fetchToken();
   }
-  handleToggleCall() {
-    if (!this.state.onPhone) {
-      this.setState({
-        muted: false,
-        onPhone: true,
-      });
-      // make outbound call with current number
-      var n =
-        "+" +
-        this.state.countryCode +
-        this.state.currentNumber.replace(/\D/g, "");
-      Twilio.Device.connect({ number: n, id: user.id });
-      this.setState({ log: "Calling " + n });
-    } else {
-      // hang up call in progress
-      Twilio.Device.disconnectAll();
-    }
-  }
-  componentDidMount() {
-    //this.getMicrophone();
-    //await this.fetchToken();
-    //await this.handleToggleCall();
+  async componentDidMount() {
+    this.getMicrophone();
+    await this.fetchToken();
+    await this.handleToggleCall();
 
-    var self = this;
-
-    //console.log(localStorage.getItem("twilioToken"));
-
-    Twilio.Device.setup(JSON.parse(localStorage.getItem("twilioToken")), {
-      debug: true,
-      audioConstraints: true,
-      audioHelper: true,
-      pstream: true,
-    });
-
-    // Configure event handlers for Twilio Device
-    Twilio.Device.disconnect(function() {
-      self.setState({
-        onPhone: false,
-        log: "Call ended.",
-      });
-    });
-
-    Twilio.Device.ready(function() {
-      self.log = "Connected";
-    });
-
-    this.handleToggleCall();
     console.log(this.props.visibleLeadId);
     Twilio.Device.on("error", function(error) {
       console.log(error);
@@ -251,7 +209,7 @@ class CallTwilio extends React.Component {
   // Make an outbound call with the current number,
   // or hang up the current call
 
-  /*handleToggleCall() {
+  handleToggleCall() {
     const user = JSON.parse(localStorage.getItem("user"));
     var constraints = { audio: true, video: false };
     navigator.mediaDevices.getUserMedia(constraints).catch(function(err) {
@@ -274,7 +232,7 @@ class CallTwilio extends React.Component {
     });
 
     this.setState({ log: "Calling" });
-  }*/
+  }
 
   toggleEndCall() {
     // hang up call in progress
