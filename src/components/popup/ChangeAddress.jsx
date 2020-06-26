@@ -139,8 +139,13 @@ class ChangeAddressPopup extends React.Component {
               <div className="cb_infos  flex fdc aic jcc">
                 {!this.state.secondStep && (
                   <div className="inputsPay flex fdc">
-                    <div className="paymentDetails flex fdr aifs jcfs">
+                    <div className="paymentDetails flex fdr aic jcfs">
                       <h4>You're updating your billing address:</h4>
+                      <img
+                        className="curs_pointer"
+                        onClick={this.props.closePopup}
+                        src={require("../../assets/img/bx-x.svg")}
+                      />
                     </div>
                     <div className="flex fdc aic jcc">
                       <div className="full-input">

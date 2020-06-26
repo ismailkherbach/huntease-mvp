@@ -150,8 +150,13 @@ class ChangeCardPopup extends React.Component {
         {!this.state.success && (
           <div className="ChangeCardPopup flex fdc aic jcc">
             <div className="cb_infos flex fdc jcc">
-              <div className="paymentDetails flex fdr aifs jcfs">
+              <div className="paymentDetails flex fdr aic jcfs">
                 <h4>You're updating your payment method:</h4>
+                <img
+                  className="curs_pointer"
+                  onClick={this.props.closePopup}
+                  src={require("../../assets/img/bx-x.svg")}
+                />
               </div>
               <div className="full-input">
                 <label>Credit Card Number</label>

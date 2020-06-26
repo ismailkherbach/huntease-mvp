@@ -27,7 +27,7 @@ class CancelSubscriptionPopup extends React.Component {
           <p>Your team will no longer be able to use this workspace.</p>
           <Button
             className="Change-profile-btn flex aic jcc"
-            //  onClick={this.toggleSecondStep.bind(this)}
+            onClick={this.props.closePopup}
           >
             Keep my plan
           </Button>
