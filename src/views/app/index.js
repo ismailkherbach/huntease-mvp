@@ -37,8 +37,8 @@ export default class App extends React.Component {
         onChange={(isFull) => this.setState({ isFull })}
       >
         <div className="main-bloc">
-          <AppLayout>
-            <Suspense fallback={<div className="loading" />}>
+          <Suspense fallback={<div className="loading" />}>
+            <AppLayout>
               <Switch>
                 <Redirect
                   exact
@@ -63,8 +63,8 @@ export default class App extends React.Component {
                 />
                 <Redirect to="/error" />
               </Switch>
-            </Suspense>
-          </AppLayout>
+            </AppLayout>
+          </Suspense>
         </div>
       </Fullscreen>
     );
