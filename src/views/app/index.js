@@ -15,6 +15,7 @@ const Call = React.lazy(() =>
 const Settings = React.lazy(() =>
   import(/* webpackChunkName: "Settings" */ "./settings")
 );
+
 export default class App extends React.Component {
   constructor(props) {
     super();
@@ -61,6 +62,7 @@ export default class App extends React.Component {
                   path={`${match.url}/settings`}
                   render={(props) => <Settings {...props} />}
                 />
+
                 <Redirect to="/error" />
               </Switch>
             </AppLayout>

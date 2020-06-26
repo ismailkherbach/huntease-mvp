@@ -2266,3 +2266,15 @@ body {
     background-color: #f64c6f;
   }
 }
+.error {
+  background-image: url("../img/mainback.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  // position: fixed;
+  left: 0;
+  right: 0;
+}
