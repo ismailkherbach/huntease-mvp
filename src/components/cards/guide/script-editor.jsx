@@ -72,10 +72,13 @@ class ScriptEditor extends React.Component {
   }
 
   onAddGuide = () => {
-    console.log({ title: this.state.title, questions: this.state.questions });
+    console.log({
+      title: this.state.title,
+      questions: this.state.questionsGuide.questions,
+    });
     this.props.addGuide({
       title: this.state.title,
-      questions: this.state.questions,
+      questions: this.state.questionsGuide.questions,
     });
   };
 
