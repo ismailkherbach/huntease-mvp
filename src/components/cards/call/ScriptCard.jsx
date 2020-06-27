@@ -68,7 +68,7 @@ class ScriptCard extends React.Component {
     });
   }
   meetingsStatus(status) {
-    if (status) {
+    if ((status = true)) {
       this.setState({ meetingBooked: false });
     } else {
       this.setState({ meetingBooked: true });
@@ -276,7 +276,7 @@ class ScriptCard extends React.Component {
                   <Button
                     className="Change-profile-btn"
                     onClick={() => {
-                      this.meetingsStatus(true);
+                      this.meetingsStatus.bind(this, true);
                     }}
                   >
                     Yes
@@ -284,7 +284,7 @@ class ScriptCard extends React.Component {
                   <Button
                     className="decline Change-profile-btn"
                     onClick={() => {
-                      this.meetingsStatus(false);
+                      this.meetingsStatus.bind(this, false);
                     }}
                   >
                     No
