@@ -357,7 +357,7 @@ class CallCard extends React.Component {
                           <h5>Activity</h5>
                         </div>
                       </div>
-                      <div className="social flex fdr aic jcc">
+                      <div className="social flex fdr aic jcc curs_pointer">
                         <img
                           className="float-right"
                           alt="empty-leads"

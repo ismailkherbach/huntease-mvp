@@ -123,7 +123,10 @@ class Subscribed extends React.Component {
           </div>
           <div className="rightTop floatRight flex aic jcc fdc">
             <Button className="Change-profile-btn">Change plan </Button>
-            <p onClick={this.togglePopupCancel.bind(this)}>
+            <p
+              onClick={this.togglePopupCancel.bind(this)}
+              className="curs_pointer"
+            >
               Cancel Subscription
             </p>{" "}
           </div>

@@ -140,9 +140,11 @@ $height-auth-inputs: 43px;
 
 .scroll-guide {
   margin-right: unset;
-  height: 93%;
+  height: 89%;
   overflow-y: scroll;
   overflow-x: hidden;
+  scrollbar-color: red green;
+  scrollbar-width: thin;
 }
 
 .scroll-callScript {

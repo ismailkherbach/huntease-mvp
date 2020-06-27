@@ -166,8 +166,11 @@ class ScriptCard extends React.Component {
         {this.state.showPopup ? (
           <div className="popup-container flex aic jcc fdc">
             <div className="chooseGuidePopup">
-              <h3 className="float-right" onClick={this.togglePopup.bind(this)}>
-                <img src={require("../../../assets/img/bx-plus.svg")} />
+              <h3
+                className="float-right curs_pointer"
+                onClick={this.togglePopup.bind(this)}
+              >
+                <img src={require("../../../assets/img/bx-x.svg")} />
               </h3>
 
               <h3>Choose Guide</h3>
@@ -177,7 +180,7 @@ class ScriptCard extends React.Component {
                     this.props.guide.guides.map((guide, x) => {
                       return (
                         <div
-                          className="guidList flex fdr aic"
+                          className="guidList flex fdr aic curs_pointer"
                           onClick={this.guideCallback.bind(this, guide)}
                         >
                           <img

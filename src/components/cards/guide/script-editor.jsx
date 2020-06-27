@@ -196,7 +196,6 @@ class ScriptEditor extends React.Component {
                           value={item || ""}
                           name="question"
                           onChange={this.handleChange.bind(this, index)}
-                          placeholder="hhhhh"
                           options={{
                             toolbar: {
                               buttons: ["bold", "italic", "underline"],
@@ -228,6 +227,7 @@ class ScriptEditor extends React.Component {
     console.log(this.props.guide.guides);
   }
   showGuide(guide) {
+    this.onResetGuide();
     this.setState({ showStatus: true, displayGuide: guide });
     console.log(this.state.questionsGuide);
     console.log(this.state.displayGuide);
@@ -320,6 +320,7 @@ class ScriptEditor extends React.Component {
                       />
 
                       <img
+                        className="optionDrag"
                         src={require("../../../assets/img/delete.svg")}
                         onClick={this.removeItemUpdate.bind(this, index)}
                       />
@@ -375,7 +376,7 @@ class ScriptEditor extends React.Component {
                 <Editor
                   className="Title"
                   tag="pre"
-                  text={this.state.title}
+                  // text={this.state.title}
                   onChange={this.handleChangeTitle}
                   options={{
                     toolbar: { buttons: ["bold", "italic", "underline"] },
@@ -394,7 +395,7 @@ class ScriptEditor extends React.Component {
                 <Editor
                   className="Title"
                   tag="pre"
-                  text={this.state.title}
+                  // text={this.state.title}
                   onChange={this.handleChangeTitle}
                   options={{
                     toolbar: { buttons: ["bold", "italic", "underline"] },
@@ -471,22 +472,19 @@ class ScriptEditor extends React.Component {
                     )
                     .map((guide, x) => {
                       return (
-                        <div className="flex fdr aic jcc">
+                        <div
+                          className="flex fdr aic jcc curs_pointer"
+                          onClick={
+                            this.showGuide.bind(this, guide)
+                            /*this.showGuide.bind(this, guide)*/
+                          }
+                        >
                           <box-icon
                             name="notepad"
                             type="solid"
                             color="#091ad4"
                           ></box-icon>
-                          <h5
-                            key={x}
-                            onClick={
-                              this.showGuide.bind(this, guide)
-                              /*this.showGuide.bind(this, guide)*/
-                            }
-                          >
-                            {" "}
-                            {guide.title}
-                          </h5>
+                          <h5 key={x}> {guide.title}</h5>
                           <UncontrolledDropdown>
                             <DropdownToggle
                               color="empty"

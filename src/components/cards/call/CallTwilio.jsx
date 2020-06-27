@@ -375,7 +375,7 @@ class CallTwilio extends React.Component {
           <PerfectScrollbar>
             <div className="scroll-lead ">
               <div className="flex fdc aic jcc">
-                <div className="social flex fdr aic jcc">
+                <div className="social flex fdr aic jcc curs_pointer">
                   <img
                     className="float-right"
                     alt="empty-leads"
