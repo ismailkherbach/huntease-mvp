@@ -282,66 +282,67 @@ class AccountCall extends React.Component {
             </div>
           </div>
           <div className="flex fdc">
-            {" "}
-            <div className="Profil-right flex fdc aic jcc">
-              <div className="pictureUpload">
-                <img
-                  src={`https://huntease-mvp.herokuapp.com/v1/uploads/${picture}`}
-                  alt={"profile"}
-                  className="profile-img"
-                />
+            <div className="rightBloc flex fdc aic jcc">
+              <div className="Profil-right flex fdc aic jcc">
+                <div className="pictureUpload">
+                  <img
+                    src={`https://huntease-mvp.herokuapp.com/v1/uploads/${picture}`}
+                    alt={"profile"}
+                    className="profile-img"
+                  />
 
-                <img
-                  className="upload"
-                  src={require("../../../assets/img/bxs-camera.svg")}
-                  onClick={() => {
-                    document.getElementById(clickId).click();
-                  }}
-                />
-                <input
-                  type="file"
-                  id={clickId}
-                  onChange={this.handleImageChange}
-                  style={{ display: "none" }}
-                />
-              </div>
+                  <img
+                    className="upload"
+                    src={require("../../../assets/img/bxs-camera.svg")}
+                    onClick={() => {
+                      document.getElementById(clickId).click();
+                    }}
+                  />
+                  <input
+                    type="file"
+                    id={clickId}
+                    onChange={this.handleImageChange}
+                    style={{ display: "none" }}
+                  />
+                </div>
 
-              <h3>
-                {this.state.user.firstName.charAt(0).toUpperCase() +
-                  this.state.user.firstName.slice(1) +
-                  " " +
-                  this.state.user.lastName}
-              </h3>
-              <h5>Sales Development Representative</h5>
-              <h5>
-                {this.state.domain.charAt(0).toUpperCase() +
-                  this.state.domain.slice(1)}
-              </h5>
-            </div>
-            <div className="Add-number-bloc flex fdc aic jcc margin-top20">
-              <div className="flex fdr aic jcc">
-                {" "}
-                <img
-                  src={require("../../../assets/img/notice.svg")}
-                  alt={"profile"}
-                />
-                <h4>Please add your phone number</h4>
+                <h3>
+                  {this.state.user.firstName.charAt(0).toUpperCase() +
+                    this.state.user.firstName.slice(1) +
+                    " " +
+                    this.state.user.lastName}
+                </h3>
+                <h5>Sales Development Representative</h5>
+                <h5>
+                  {this.state.domain.charAt(0).toUpperCase() +
+                    this.state.domain.slice(1)}
+                </h5>
               </div>
-              <p>
-                Huntease allows you to make cold-calls directly using your phone
-                number.
-              </p>
-              <div className="full-input flex fdr aic jcc">
-                <input
-                  placeholder="054213798"
-                  onChange={this.handleChangePhone.bind(this)}
-                />{" "}
-                <Button
-                  className="Change-profile-btn"
-                  onClick={this.onAddPhoneNumber.bind(this)}
-                >
-                  Change
-                </Button>
+              <div className="Add-number-bloc flex fdc aic jcc margin-top20">
+                <div className="flex fdr aic jcc">
+                  {" "}
+                  <img
+                    src={require("../../../assets/img/notice.svg")}
+                    alt={"profile"}
+                  />
+                  <h4>Please add your phone number</h4>
+                </div>
+                <p>
+                  Huntease allows you to make cold-calls directly using your
+                  phone number.
+                </p>
+                <div className="full-input flex fdr aic jcc">
+                  <input
+                    placeholder="054213798"
+                    onChange={this.handleChangePhone.bind(this)}
+                  />{" "}
+                  <Button
+                    className="Change-profile-btn"
+                    onClick={this.onAddPhoneNumber.bind(this)}
+                  >
+                    Change
+                  </Button>
+                </div>
               </div>
             </div>
           </div>
