@@ -518,7 +518,10 @@ class ScriptCard extends React.Component {
                                     alt="no-guide"
                                     src={require("../../../assets/img/male.svg")}
                                   />
-                                  <a target="_blank" href={schedule.link}>
+                                  <a
+                                    target="_blank"
+                                    href={"https://" + schedule.link}
+                                  >
                                     {schedule.name}
                                   </a>
                                 </div>
