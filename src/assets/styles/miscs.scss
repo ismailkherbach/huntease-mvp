@@ -1,3 +1,34 @@
+:root {
+  --navbar-height: 41px;
+  --navbar-main-height: 65px;
+  --sidebar-width: 80px;
+  --sidebar-height: 100vh;
+}
+
+$huntease-main: #0026bc;
+$huntease-light: #e9effb;
+$huntease-medium: #8ba3ff;
+$huntease-dark: #052375;
+$huntease-accent: #ffc371;
+$huntease-green: #18f5a2;
+$huntease-red: #ff8565;
+$huntease-darkmode: #001134;
+$huntease-titles: #001c56;
+$white: #ffffff;
+$gray: #eeeeee;
+
+$font: "Roboto";
+$bold: 700;
+$regular: 400;
+$light: 300;
+$border-radius-inputs: 10px;
+$border-radius-button: 15px;
+$border-radius-auth: 20px;
+$auth-shadow: 0px 1px 10px rgba(185, 185, 185, 0.08);
+$shadow: 0px 1px 10px rgba(0, 0, 0, 0.08);
+$box-shadow: 0px 3px 17px rgba(0, 0, 0, 0.08);
+
+$height-auth-inputs: 43px;
 .fdc {
   flex-direction: column;
 }
@@ -217,5 +248,269 @@
 @-webkit-keyframes spin {
   to {
     -webkit-transform: rotate(360deg);
+  }
+}
+
+.Auth-button {
+  cursor: pointer;
+  width: 14.8125em;
+  height: $height-auth-inputs;
+  background-color: white;
+  border: 2px solid $huntease-main;
+  border-radius: $border-radius-inputs;
+  margin-bottom: 15px;
+  & h5 {
+    font-weight: 700;
+    margin: 0;
+    color: $huntease-main;
+  }
+}
+.Auth-button:hover {
+  cursor: pointer;
+  width: 14.8125em;
+  height: $height-auth-inputs;
+  background-color: $huntease-main;
+  border: 2px solid $huntease-main;
+  border-radius: $border-radius-inputs;
+  margin-bottom: 15px;
+  & h5 {
+    font-weight: 700;
+    margin: 0;
+    color: white;
+  }
+}
+
+.Auth-button:focus {
+  cursor: pointer;
+  width: 14.8125em;
+  height: $height-auth-inputs;
+  background-color: $huntease-main;
+  border: 2px solid $huntease-main;
+  border-radius: $border-radius-inputs;
+  margin-bottom: 15px;
+  & h5 {
+    font-weight: 700;
+    margin: 0;
+    color: white;
+  }
+}
+
+.integrate-button {
+  cursor: pointer;
+  width: 109px;
+  height: 39px;
+  height: $height-auth-inputs;
+  background-color: white;
+  box-shadow: 0 -1px 10px #f5f5f5;
+  border-radius: 15px;
+  font-weight: $regular;
+  font-size: 0.875em;
+  color: $huntease-main;
+}
+
+.integrate-button:hover {
+  cursor: pointer;
+  width: 109px;
+  height: 39px;
+  height: $height-auth-inputs;
+  background-color: $huntease-main;
+  box-shadow: 0 -1px 10px #f5f5f5;
+  border-radius: 15px;
+  font-weight: $regular;
+  font-size: 0.875em;
+  color: white;
+}
+
+.integrate-button:focus {
+  cursor: pointer;
+  width: 109px;
+  height: 39px;
+  height: $height-auth-inputs;
+  background-color: $huntease-main;
+  box-shadow: 0 -1px 10px #f5f5f5;
+  border-radius: 15px;
+  font-weight: $regular;
+  font-size: 0.875em;
+  color: white;
+}
+
+.Save-changes-btn {
+  width: 9.963125rem;
+  height: 2.25rem;
+  background-color: #ffb58d;
+  color: white;
+  font-family: "Roboto";
+  font-size: 0.857em;
+  font-weight: $light;
+  border-radius: $border-radius-button;
+  outline: 0;
+  border-color: white;
+  cursor: pointer;
+}
+.Save-changes-btn:hover {
+  width: 9.963125rem;
+  height: 2.25rem;
+  background-color: #ffb58d;
+  color: white;
+  font-family: "Roboto";
+  font-size: 0.857em;
+  font-weight: $light;
+  border-radius: $border-radius-button;
+  outline: 0;
+  border-color: white;
+  cursor: pointer;
+}
+.Save-changes-btn:focus {
+  width: 9.963125rem;
+  height: 2.25rem;
+  background-color: #ffb58d;
+  color: white;
+  font-family: "Roboto";
+  font-size: 0.857em;
+  font-weight: $light;
+  border-radius: $border-radius-button;
+  outline: 0;
+  border-color: white;
+  cursor: pointer;
+}
+.Change-profile-btn {
+  width: 70px;
+  height: 37px;
+  background-color: white;
+  color: $huntease-main;
+  font-family: "Roboto";
+  font-size: 0.857em;
+  font-weight: $regular;
+  border-radius: $border-radius-inputs;
+  outline: 0;
+  border-color: white;
+  cursor: pointer;
+}
+.Change-profile-btn:hover {
+  width: 70px;
+  height: 37px;
+  background-color: $huntease-main;
+  color: white;
+  font-family: "Roboto";
+  font-size: 0.857em;
+  font-weight: $regular;
+  border-radius: $border-radius-inputs;
+  outline: 0;
+  border-color: white;
+  cursor: pointer;
+}
+.Change-profile-btn:focus {
+  width: 70px;
+  height: 37px;
+  background-color: $huntease-main;
+  color: white;
+  font-family: "Roboto";
+  font-size: 0.857em;
+  font-weight: $regular;
+  border-radius: $border-radius-inputs;
+  outline: 0;
+  border-color: white;
+  cursor: pointer;
+}
+.Change-theme-btn:focus {
+  width: 90px;
+  height: 39px;
+  background-color: white;
+  color: $huntease-titles;
+  font-family: "Roboto";
+  font-size: 0.857em;
+  font-weight: $bold;
+  border-radius: $border-radius-inputs;
+  outline: 0;
+  box-shadow: 0 0 7px #ff9751a1;
+  border-color: white;
+  margin: 0 20px 0 20px;
+  cursor: pointer;
+  &Dark {
+    color: $huntease-medium;
+    background-color: $huntease-titles;
+    width: 90px;
+    height: 39px;
+    font-family: "Roboto";
+    font-size: 0.857em;
+    font-weight: $bold;
+    border-radius: $border-radius-inputs;
+    outline: 0;
+    border-color: white;
+    cursor: pointer;
+    position: relative;
+    .comming-soon {
+      position: absolute;
+      top: -10px;
+      right: -60px;
+    }
+  }
+}
+.Change-theme-btn:hover {
+  width: 90px;
+  height: 39px;
+  background-color: white;
+  color: $huntease-titles;
+  font-family: "Roboto";
+  font-size: 0.857em;
+  font-weight: $bold;
+  border-radius: $border-radius-inputs;
+  outline: 0;
+  box-shadow: 0 0 7px #ff9751a1;
+  border-color: white;
+  margin: 0 20px 0 20px;
+  cursor: pointer;
+  &Dark {
+    color: $huntease-medium;
+    background-color: $huntease-titles;
+    width: 90px;
+    height: 39px;
+    font-family: "Roboto";
+    font-size: 0.857em;
+    font-weight: $bold;
+    border-radius: $border-radius-inputs;
+    outline: 0;
+    border-color: white;
+    cursor: pointer;
+    position: relative;
+    .comming-soon {
+      position: absolute;
+      top: -10px;
+      right: -60px;
+    }
+  }
+}
+.Change-theme-btn {
+  width: 90px;
+  height: 39px;
+  background-color: white;
+  color: $huntease-titles;
+  font-family: "Roboto";
+  font-size: 0.857em;
+  font-weight: $bold;
+  border-radius: $border-radius-inputs;
+  outline: 0;
+  box-shadow: 0 0 7px #ff9751a1;
+  border-color: white;
+  margin: 0 20px 0 20px;
+  cursor: pointer;
+  &Dark {
+    color: $huntease-medium;
+    background-color: $huntease-titles;
+    width: 90px;
+    height: 39px;
+    font-family: "Roboto";
+    font-size: 0.857em;
+    font-weight: $bold;
+    border-radius: $border-radius-inputs;
+    outline: 0;
+    border-color: white;
+    cursor: pointer;
+    position: relative;
+    .comming-soon {
+      position: absolute;
+      top: -10px;
+      right: -60px;
+    }
   }
 }

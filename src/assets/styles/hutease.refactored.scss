@@ -107,94 +107,6 @@ select {
   color: #8ba3ff;
 }
 
-.Auth-button {
-  cursor: pointer;
-  width: 14.8125em;
-  height: $height-auth-inputs;
-  background-color: white;
-  border: 2px solid $huntease-main;
-  border-radius: $border-radius-inputs;
-  margin-bottom: 15px;
-  & h5 {
-    font-weight: 700;
-    margin: 0;
-    color: $huntease-main;
-  }
-}
-
-.integrate-button {
-  cursor: pointer;
-  width: 109px;
-  height: 39px;
-  height: $height-auth-inputs;
-  background-color: white;
-  box-shadow: 0 -1px 10px #f5f5f5;
-  border-radius: 15px;
-  font-weight: $regular;
-  font-size: 0.875em;
-  color: $huntease-main;
-}
-.Save-changes-btn {
-  width: 9.963125rem;
-  height: 2.25rem;
-  background-color: #ffb58d;
-  color: white;
-  font-family: "Roboto";
-  font-size: 0.857em;
-  font-weight: $light;
-  border-radius: $border-radius-button;
-  outline: 0;
-  border-color: white;
-  cursor: pointer;
-}
-.Change-profile-btn {
-  width: 70px;
-  height: 37px;
-  background-color: white;
-  color: $huntease-main;
-  font-family: "Roboto";
-  font-size: 0.857em;
-  font-weight: $regular;
-  border-radius: $border-radius-inputs;
-  outline: 0;
-  border-color: white;
-  cursor: pointer;
-}
-
-.Change-theme-btn {
-  width: 90px;
-  height: 39px;
-  background-color: white;
-  color: $huntease-titles;
-  font-family: "Roboto";
-  font-size: 0.857em;
-  font-weight: $bold;
-  border-radius: $border-radius-inputs;
-  outline: 0;
-  box-shadow: 0 0 7px #ff9751a1;
-  border-color: white;
-  margin: 0 20px 0 20px;
-  cursor: pointer;
-  &Dark {
-    color: $huntease-medium;
-    background-color: $huntease-titles;
-    width: 90px;
-    height: 39px;
-    font-family: "Roboto";
-    font-size: 0.857em;
-    font-weight: $bold;
-    border-radius: $border-radius-inputs;
-    outline: 0;
-    border-color: white;
-    cursor: pointer;
-    position: relative;
-    .comming-soon {
-      position: absolute;
-      top: -10px;
-      right: -60px;
-    }
-  }
-}
 .Register-type {
   width: 10.75em;
   height: 3.8125em;
@@ -275,6 +187,14 @@ body {
     .auth-bloc-container {
       width: 38.8625rem;
       height: 25.5625rem;
+      & .Auth-button {
+        & h5 {
+          color: $huntease-main;
+        }
+        & h5:hover {
+          color: white;
+        }
+      }
       & img {
         width: 96px;
       }
