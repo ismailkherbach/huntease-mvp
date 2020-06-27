@@ -133,7 +133,7 @@ $height-auth-inputs: 43px;
 
 .scroll-team {
   margin-right: unset;
-  height: 370px;
+  height: 23.125rem;
   overflow-y: scroll;
   overflow-x: hidden;
 }
@@ -147,14 +147,14 @@ $height-auth-inputs: 43px;
 
 .scroll-callScript {
   margin-right: unset;
-  height: 480px;
+  height: 30rem;
   overflow-y: scroll;
   overflow-x: hidden;
 }
 
 .scroll-callScriptRes {
   margin-right: unset;
-  height: 480px;
+  height: 30rem;
 
   overflow-y: scroll;
   overflow-x: hidden;
@@ -162,15 +162,22 @@ $height-auth-inputs: 43px;
 
 .scroll-leads {
   margin-right: unset;
-  height: 550px;
+  height: 34.375rem;
 
   overflow-y: scroll;
   overflow-x: hidden;
 }
 .scroll-lead {
   margin-right: unset;
-  height: 260px;
+  height: 16.25rem;
 
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.scroll-schedule {
+  margin-right: unset;
+  height: 16.2rem;
   overflow-y: scroll;
   overflow-x: hidden;
 }

@@ -307,10 +307,10 @@ class AccountCall extends React.Component {
                 </div>
 
                 <h3>
-                  {this.state.user.firstName.charAt(0).toUpperCase() +
-                    this.state.user.firstName.slice(1) +
+                  {firstName.charAt(0).toUpperCase() +
+                    firstName.slice(1) +
                     " " +
-                    this.state.user.lastName}
+                    lastName}
                 </h3>
                 <h5>Sales Development Representative</h5>
                 <h5>

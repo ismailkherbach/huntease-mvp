@@ -504,21 +504,25 @@ class ScriptCard extends React.Component {
                             src={require("../../../assets/img/addSchedule.svg")}
                           />
                         </div>
-                        {this.props.call.schedules.map((schedule) => {
-                          return (
-                            <div className="blocListSchedule flex fdr aic jcfs">
-                              <img
-                                // onClick={this.toggleAddSchedule.bind(this)}
-                                className=""
-                                alt="no-guide"
-                                src={require("../../../assets/img/male.svg")}
-                              />
-                              <a target="_blank" href={schedule.link}>
-                                {schedule.name}
-                              </a>
-                            </div>
-                          );
-                        })}
+                        <PerfectScrollbar>
+                          <div className="scroll-schedule">
+                            {this.props.call.schedules.map((schedule) => {
+                              return (
+                                <div className="blocListSchedule flex fdr aic jcfs">
+                                  <img
+                                    // onClick={this.toggleAddSchedule.bind(this)}
+                                    className=""
+                                    alt="no-guide"
+                                    src={require("../../../assets/img/male.svg")}
+                                  />
+                                  <a target="_blank" href={schedule.link}>
+                                    {schedule.name}
+                                  </a>
+                                </div>
+                              );
+                            })}
+                          </div>
+                        </PerfectScrollbar>
                       </div>
                     )}
                 </div>
