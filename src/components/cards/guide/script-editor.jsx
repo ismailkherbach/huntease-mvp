@@ -93,7 +93,19 @@ class ScriptEditor extends React.Component {
       id: this.state.displayGuide._id,
     });
   };
+  removeItem(i) {
+    let arr = this.state.questionsGuide.questions;
+    arr.splice(i, 1);
+    console.log(arr);
+    this.setState({ arr });
+  }
 
+  removeItemUpdate(i) {
+    let arr = this.state.displayGuide.questions;
+    arr.splice(i, 1);
+    console.log(arr);
+    this.setState({ arr });
+  }
   onDragEndNew(result) {
     console.log(this.state.questionsGuide.questions);
 
@@ -191,7 +203,14 @@ class ScriptEditor extends React.Component {
                             },
                           }}
                         />
-                        <img src={require("../../../assets/img/drag.svg")} />
+                        <img
+                          src={require("../../../assets/img/delete.svg")}
+                          onClick={this.removeItem.bind(this, index)}
+                        />
+                        <img
+                          className="option"
+                          src={require("../../../assets/img/drag.svg")}
+                        />
                       </div>
                     )}
                   </Draggable>
@@ -299,7 +318,15 @@ class ScriptEditor extends React.Component {
                           toolbar: { buttons: ["bold", "italic", "underline"] },
                         }}
                       />
-                      <img src={require("../../../assets/img/drag.svg")} />
+
+                      <img
+                        src={require("../../../assets/img/delete.svg")}
+                        onClick={this.removeItemUpdate.bind(this, index)}
+                      />
+                      <img
+                        className="option"
+                        src={require("../../../assets/img/drag.svg")}
+                      />
                     </div>
                   )}
                 </Draggable>
@@ -314,6 +341,18 @@ class ScriptEditor extends React.Component {
   onDeleteGuide(id) {
     this.props.deleteGuide({ id });
     //this.props.getGuide();
+  }
+
+  onResetGuide() {
+    this.setState({
+      questionsGuide: { questions: [""] },
+    });
+  }
+  onNewGuide() {
+    this.setState({
+      displayGuide: { questions: [""] },
+      showStatus: false,
+    });
   }
 
   handleSearchChange(e) {
@@ -331,15 +370,45 @@ class ScriptEditor extends React.Component {
       <Fragment>
         <div className="flex fdc aic jcc">
           <div className="Guide-editor">
-            <Editor
-              className="Title"
-              tag="pre"
-              text={this.state.title}
-              onChange={this.handleChangeTitle}
-              options={{
-                toolbar: { buttons: ["bold", "italic", "underline"] },
-              }}
-            />
+            {this.state.showStatus ? (
+              <div className="guideTitle flex fdr aic">
+                <Editor
+                  className="Title"
+                  tag="pre"
+                  text={this.state.title}
+                  onChange={this.handleChangeTitle}
+                  options={{
+                    toolbar: { buttons: ["bold", "italic", "underline"] },
+                  }}
+                />
+
+                <Button
+                  className="Change-profile-btn"
+                  onClick={this.onNewGuide.bind(this)}
+                >
+                  New guide
+                </Button>
+              </div>
+            ) : (
+              <div className="guideTitle flex fdr aic">
+                <Editor
+                  className="Title"
+                  tag="pre"
+                  text={this.state.title}
+                  onChange={this.handleChangeTitle}
+                  options={{
+                    toolbar: { buttons: ["bold", "italic", "underline"] },
+                  }}
+                />
+
+                <Button
+                  className="Change-profile-btn"
+                  onClick={this.onResetGuide.bind(this)}
+                >
+                  Reset guide
+                </Button>
+              </div>
+            )}
             <PerfectScrollbar>
               <div className="scroll-guide">
                 {this.state.showStatus ? this.displayGuide() : this.createUI()}
