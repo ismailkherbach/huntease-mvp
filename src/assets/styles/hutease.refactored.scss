@@ -1698,6 +1698,7 @@ body {
   top: 0;
   bottom: 0;
   opacity: 1;
+  background: rgba(black, 0.47);
 }
 .verificationBloc {
   padding: 20px;
@@ -1748,7 +1749,76 @@ body {
     }
   }
 }
+.popup_inner-integration {
+  padding: 10px;
+  width: 30.5rem;
+  height: 17.875rem;
+  //display: inline-block;
+  background-color: white;
+  box-shadow: $box-shadow;
+  border-radius: 15px;
 
+  .topBloc {
+    width: 95%;
+    & h4 {
+      color: $huntease-titles;
+      font-size: 18px;
+      font-weight: $bold;
+      margin: 0;
+    }
+    & h5 {
+      color: $huntease-medium;
+      font-weight: $regular;
+      margin: 0;
+      padding: 0;
+    }
+    & img {
+      margin: 0 10px 0 0;
+    }
+  }
+  & h3 {
+    font-weight: $bold;
+    color: $huntease-titles;
+    margin: 0;
+    width: 90%;
+  }
+  & h5 {
+    color: $huntease-main;
+    text-align: center;
+    font-weight: $bold;
+    margin: 0;
+    padding: 25px 0 5px 0;
+  }
+  & input {
+    width: 28.6875rem;
+    height: 2.75rem;
+    //margin: 5px 0 15px 0;
+    background-color: #eff4ff;
+  }
+  & .Change-profile-btn {
+    width: 9.75rem;
+    height: 2.75rem;
+    font-size: 12px;
+    font-weight: $bold;
+    color: $huntease-medium;
+    background-color: white;
+    box-shadow: $box-shadow;
+    margin: 5px 8px 30px 8px;
+  }
+
+  & .generateApi {
+    color: #ff7a59;
+    background-color: #fff3f0;
+    box-shadow: 0;
+    padding: 13px;
+  }
+  & p {
+    color: $huntease-medium;
+    margin: 0;
+    font-weight: $regular;
+    text-align: center;
+  }
+}
 .popup_inner-change-password {
   padding: 30px;
   width: 23.4375rem;
