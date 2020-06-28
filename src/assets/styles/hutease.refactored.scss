@@ -1645,8 +1645,8 @@ body {
         background-color: #eaedf6;
       }
       .LeadList {
-        width: 460px;
-        height: 60px;
+        width: 28.75em;
+        height: 3.75em;
         margin: 0px 0 0 0;
         // background-color: #eaedf6;
         padding: 21px;
@@ -1881,11 +1881,14 @@ body {
   & input {
     margin: 5px 0 15px 0;
   }
-  & .Change-profile-btn {
-    width: 9.375rem;
-    height: 39px;
-    color: white;
-    background-color: $huntease-main;
+  .Button-changes {
+    & .integrate-button {
+      width: 9.375rem;
+      height: 2.3125rem;
+      color: white;
+      font-weight: $regular;
+      background-color: $huntease-main;
+    }
   }
 }
 .chooseGuidePopup {

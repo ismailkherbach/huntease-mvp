@@ -68,13 +68,14 @@ class ChangePassPopup extends React.Component {
               onChange={this.handleChangeNew.bind(this)}
             />
           </div>
-
-          <Button
-            onClick={this.onUpdatePassword.bind(this)}
-            className="Change-profile-btn"
-          >
-            Confim changes
-          </Button>
+          <div className="Button-changes fdc flex aic jcc">
+            <Button
+              onClick={this.onUpdatePassword.bind(this)}
+              className="integrate-button"
+            >
+              Confim changes
+            </Button>
+          </div>
         </div>
       </div>
     );
