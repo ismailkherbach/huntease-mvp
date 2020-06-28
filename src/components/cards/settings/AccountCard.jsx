@@ -285,6 +285,8 @@ class AccountCall extends React.Component {
             <div className="rightBloc flex fdc aic jcc">
               <div className="Profil-right flex fdc aic jcc">
                 <div className="pictureUpload">
+                  <div className="mask"></div>
+
                   <img
                     src={`https://huntease-mvp.herokuapp.com/v1/uploads/${picture}`}
                     alt={"profile"}
@@ -306,12 +308,16 @@ class AccountCall extends React.Component {
                   />
                 </div>
 
-                <h3>
-                  {firstName.charAt(0).toUpperCase() +
-                    firstName.slice(1) +
-                    " " +
-                    lastName}
-                </h3>
+                {this.props.profile ? (
+                  <h3>
+                    {firstName.charAt(0).toUpperCase() +
+                      firstName.slice(1) +
+                      " " +
+                      lastName}
+                  </h3>
+                ) : (
+                  ""
+                )}
                 <h5>Sales Development Representative</h5>
                 <h5>
                   {this.state.domain.charAt(0).toUpperCase() +

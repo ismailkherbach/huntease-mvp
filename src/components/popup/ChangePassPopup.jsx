@@ -31,7 +31,7 @@ class ChangePassPopup extends React.Component {
     return (
       <div className="popup-container flex aic jcc fdc">
         <div className="popup_inner-change-password flex fdc aic jcc">
-          <div className="flex fdr aic">
+          <div className="topBloc flex fdr aic jcfs">
             <h3>Change password</h3>
             <img
               className="curs_pointer"
@@ -50,28 +50,31 @@ class ChangePassPopup extends React.Component {
               onChange={this.handleChangeOld.bind(this)}
             />
           </div>
-          <h5>New password</h5>
-          <input
-            className="profile-input"
-            placeholder=""
-            type="password"
-            onChange={this.handleChangeNew.bind(this)}
-          />
-          <h5>Confirm password</h5>
-          <input
-            className="profile-input"
-            placeholder=""
-            type="password"
-            onChange={this.handleChangeNew.bind(this)}
-          />
-          <div className=" flex fdc aic jcc">
-            <Button
-              onClick={this.onUpdatePassword.bind(this)}
-              className="Change-profile-btn"
-            >
-              Confim changes
-            </Button>
+          <div className="fdc flex aifs jcfs">
+            <h5>New password</h5>
+            <input
+              className="profile-input"
+              placeholder=""
+              type="password"
+              onChange={this.handleChangeNew.bind(this)}
+            />
           </div>
+          <div className="fdc flex aifs jcfs">
+            <h5>Confirm password</h5>
+            <input
+              className="profile-input"
+              placeholder=""
+              type="password"
+              onChange={this.handleChangeNew.bind(this)}
+            />
+          </div>
+
+          <Button
+            onClick={this.onUpdatePassword.bind(this)}
+            className="Change-profile-btn"
+          >
+            Confim changes
+          </Button>
         </div>
       </div>
     );

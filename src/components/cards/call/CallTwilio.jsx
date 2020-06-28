@@ -490,8 +490,8 @@ class CallTwilio extends React.Component {
           </div>
         )}
         <div className="callSection flex fdr aic jcc">
-          <div className="callBloc flex fdc aic jcc">
-            <div className="callIcon flex fdc aic jcc">
+          <div className="callBloc flex fdc aic jcc ">
+            <div className="callIcon flex fdc aic jcc curs_pointer">
               <img
                 className="float-right"
                 alt="empty-leads"
@@ -501,7 +501,7 @@ class CallTwilio extends React.Component {
             <p>Record</p>
           </div>
           <div className="callBloc flex fdc aic jcc">
-            <div className="callIcon flex fdc aic jcc">
+            <div className="callIcon flex fdc aic jcc curs_pointer">
               <img
                 className="float-right"
                 alt="empty-leads"
@@ -511,7 +511,7 @@ class CallTwilio extends React.Component {
             <p>Mute</p>
           </div>
           <div className="callBloc flex fdc aic jcc">
-            <div className="callIcon flex fdc aic jcc">
+            <div className="callIcon flex fdc aic jcc curs_pointer">
               <img
                 className="float-right"
                 alt="empty-leads"
@@ -522,7 +522,7 @@ class CallTwilio extends React.Component {
           </div>
           <div className="callBloc flex fdc aic jcc">
             <div
-              className="callIcon callIconEnd flex fdc aic jcc"
+              className="callIcon callIconEnd flex fdc aic jcc curs_pointer"
               onClick={this.handleEndCall.bind(this)}
             >
               <img

@@ -276,7 +276,7 @@ class CallCard extends React.Component {
                                     )}
                                   />
                                   <div
-                                    className="SubInfos flex fdc aifs jcc"
+                                    className="SubInfos flex fdc aifs jcc curs_pointer"
                                     onClick={this.handleLeadClick.bind(
                                       this,
                                       lead
@@ -292,7 +292,7 @@ class CallCard extends React.Component {
                                   {this.state.callIcon &&
                                     this.state.visibleIconId == i && (
                                       <div
-                                        className="directCall flex fdc aic jcc"
+                                        className="directCall flex fdc aic jcc curs_pointer"
                                         onClick={this.handleCallClick.bind(
                                           this,
                                           lead
@@ -337,7 +337,7 @@ class CallCard extends React.Component {
                             <h5>{this.state.visibleLeadId.jobtitle}</h5>
                           </div>
                           <div
-                            className="directCall flex fdc aic jcc"
+                            className="directCall flex fdc aic jcc curs_pointer"
                             onClick={this.handleCallClick.bind(
                               this,
                               this.state.visibleLeadId
@@ -351,7 +351,7 @@ class CallCard extends React.Component {
                           </div>
                         </div>
 
-                        <div className="toggleWindow flex fdr aic jcc">
+                        <div className="toggleWindow flex fdr aic jcc curs_pointer">
                           <h5>General info</h5>
                           <h5>|</h5>
                           <h5>Activity</h5>

@@ -549,6 +549,13 @@ body {
         width: 18.75rem;
         height: 2.6875rem;
       }
+      & .Change-profile-btn {
+        //padding: 5px;
+        width: 4.3125rem;
+        height: 2.06rem;
+        font-weight: $bold;
+        margin: 0 3px 0 3px;
+      }
 
       .general-settings {
         & h4 {
@@ -632,6 +639,14 @@ body {
           }
           & input {
             width: 258px;
+            height: 2.5625rem;
+          }
+          & .Change-profile-btn {
+            //padding: 5px;
+            width: 4.3125rem;
+            height: 2.06rem;
+            font-weight: $bold;
+            margin: 0 3px 0 3px;
           }
         }
         .Profil-right {
@@ -640,23 +655,40 @@ body {
           background-color: white;
           box-shadow: $box-shadow;
           border-radius: $border-radius-button;
+
           .pictureUpload {
             position: relative;
-            z-index: 10000;
+            z-index: 100;
             & .profile-img {
-              z-index: 100;
+              width: 100px;
+              height: 100px;
             }
-            .upload {
+            & .mask {
+              position: absolute;
+              width: 100px;
+              height: 100px;
+              border-radius: $border-radius-button;
+              left: 0;
+              right: 0;
+              background: linear-gradient(
+                209deg,
+                rgba(0, 0, 0, 0) 0%,
+                rgba(0, 0, 0, 0.1) 100%
+              );
+              z-index: 10000;
+            }
+            & .upload {
               position: absolute;
               bottom: 5px;
               right: 40px;
-              z-index: 1000;
+              z-index: 10000;
               width: 14px;
               border-radius: 0px;
-              background-color: none;
+              //background-color: none;
               cursor: pointer;
             }
           }
+
           & h3 {
             color: $huntease-main;
             font-weight: bold;
@@ -1823,15 +1855,24 @@ body {
   padding: 30px;
   width: 23.4375rem;
   height: 26rem;
-  display: inline-block;
+  //display: inline-block;
   background-color: white;
   box-shadow: $box-shadow;
   border-radius: 15px 15px 0 0;
+  .topBloc {
+    width: 100%;
+    & h3 {
+      font-weight: $bold;
+      color: $huntease-titles;
+      margin: 0;
+      width: 90%;
+    }
+  }
   & h3 {
     font-weight: $bold;
     color: $huntease-titles;
     margin: 0;
-    width: 90%;
+    width: 100%;
   }
   & h5 {
     color: $huntease-medium;
@@ -1841,7 +1882,7 @@ body {
     margin: 5px 0 15px 0;
   }
   & .Change-profile-btn {
-    width: 146px;
+    width: 9.375rem;
     height: 39px;
     color: white;
     background-color: $huntease-main;
