@@ -37,18 +37,25 @@ class CallCard extends React.Component {
       visibleIconId: null,
       lastChecked: null,
       delecteAction: false,
+      searchField: "",
 
       leadListing: true,
       emptyLead: true,
       callIcon: false,
       onPhone: false,
       number: "",
+      search: false,
     };
     this.handleHoverOn = this.handleHoverOn.bind(this);
     this.handleHoverOff = this.handleHoverOff.bind(this);
     this.handleCallClick = this.handleCallClick.bind(this);
   }
-
+  toggleSearch() {
+    this.setState({ search: !this.state.search });
+  }
+  handleSearchChange(e) {
+    this.setState({ searchField: e.target.value });
+  }
   handleHoverOn(id) {
     this.setState({ callIcon: true, visibleIconId: id });
   }
@@ -156,6 +163,8 @@ class CallCard extends React.Component {
     console.log(this.props.call.leads);
   }
   render() {
+    const { searchField } = this.state;
+
     return (
       <Fragment>
         <div className="CallLead">
@@ -202,16 +211,35 @@ class CallCard extends React.Component {
                             label=""
                           />
                         ) : null}
-                        <h3>
-                          Your leads (
-                          {this.props.call.leads
-                            ? this.props.call.leads.length
-                            : "..."}
-                          )
-                        </h3>
-                        <div className="edit flex fdc aic jcc">
-                          <box-icon name="search" color="#0026bc"></box-icon>
-                        </div>
+                        {!this.state.search ? (
+                          <div className="topLeft flex fdr aic ">
+                            <h3>
+                              Your leads (
+                              {this.props.call.leads
+                                ? this.props.call.leads.length
+                                : "..."}
+                              )
+                            </h3>
+
+                            <div
+                              className="edit flex fdc aic jcc"
+                              onClick={this.toggleSearch.bind(this)}
+                            >
+                              <box-icon
+                                name="search"
+                                color="#0026bc"
+                              ></box-icon>
+                            </div>
+                          </div>
+                        ) : (
+                          <input
+                            alt={"search"}
+                            placeholder="Enter your search here"
+                            type="text"
+                            src={require("../../../assets/img/search.svg")}
+                            onChange={this.handleSearchChange.bind(this)}
+                          />
+                        )}
                         <UncontrolledDropdown>
                           <DropdownToggle
                             color="empty"
@@ -237,77 +265,83 @@ class CallCard extends React.Component {
                       {this.props.call.leads ? (
                         <PerfectScrollbar>
                           <div className="scroll-leads">
-                            {this.props.call.leads.map((lead, i) => {
-                              return (
-                                <div
-                                  className="LeadList flex fdr aic jcfs"
-                                  onMouseEnter={this.handleHoverOn.bind(
-                                    this,
-                                    i
-                                  )}
-                                  onMouseLeave={this.handleHoverOff}
-                                  key={i}
-                                >
-                                  {this.state.delecteAction && (
-                                    <CustomInput
-                                      className="custom-checkbox mb-0 d-inline-block"
-                                      type="checkbox"
-                                      key={i}
-                                      id={lead.id}
-                                      checked={
-                                        this.props.call.loading
-                                          ? this.props.call.selectedItems.includes(
-                                              lead.id
-                                            )
-                                          : false
-                                      }
-                                      onChange={(event) =>
-                                        this.handleCheckChange(event, lead.id)
-                                      }
-                                      label=""
-                                    />
-                                  )}
-
-                                  <img
-                                    src={lead.picture}
-                                    onClick={this.handleLeadClick.bind(
-                                      this,
-                                      lead
-                                    )}
-                                  />
+                            {this.props.call.leads
+                              .filter((x) =>
+                                x.firstName
+                                  .toLowerCase()
+                                  .includes(searchField.toLowerCase())
+                              )
+                              .map((lead, i) => {
+                                return (
                                   <div
-                                    className="SubInfos flex fdc aifs jcc curs_pointer"
-                                    onClick={this.handleLeadClick.bind(
+                                    className="LeadList flex fdr aic jcfs"
+                                    onMouseEnter={this.handleHoverOn.bind(
                                       this,
-                                      lead
+                                      i
                                     )}
+                                    onMouseLeave={this.handleHoverOff}
+                                    key={i}
                                   >
-                                    <h4>
-                                      {lead.firstName +
-                                        " " +
-                                        lead.lastName.split("(")[0]}
-                                    </h4>
-                                    <h5>{lead.jobtitle}</h5>
-                                  </div>
-                                  {this.state.callIcon &&
-                                    this.state.visibleIconId == i && (
-                                      <div
-                                        className="directCall flex fdc aic jcc curs_pointer"
-                                        onClick={this.handleCallClick.bind(
-                                          this,
-                                          lead
-                                        )}
-                                      >
-                                        <box-icon
-                                          name="phone"
-                                          type="solid"
-                                          color="white"
-                                        ></box-icon>{" "}
-                                      </div>
+                                    {this.state.delecteAction && (
+                                      <CustomInput
+                                        className="custom-checkbox mb-0 d-inline-block"
+                                        type="checkbox"
+                                        key={i}
+                                        id={lead.id}
+                                        checked={
+                                          this.props.call.loading
+                                            ? this.props.call.selectedItems.includes(
+                                                lead.id
+                                              )
+                                            : false
+                                        }
+                                        onChange={(event) =>
+                                          this.handleCheckChange(event, lead.id)
+                                        }
+                                        label=""
+                                      />
                                     )}
-                                </div>
-                              );
-                            })}
+
+                                    <img
+                                      src={lead.picture}
+                                      onClick={this.handleLeadClick.bind(
+                                        this,
+                                        lead
+                                      )}
+                                    />
+                                    <div
+                                      className="SubInfos flex fdc aifs jcc curs_pointer"
+                                      onClick={this.handleLeadClick.bind(
+                                        this,
+                                        lead
+                                      )}
+                                    >
+                                      <h4>
+                                        {lead.firstName +
+                                          " " +
+                                          lead.lastName.split("(")[0]}
+                                      </h4>
+                                      <h5>{lead.jobtitle}</h5>
+                                    </div>
+                                    {this.state.callIcon &&
+                                      this.state.visibleIconId == i && (
+                                        <div
+                                          className="directCall flex fdc aic jcc curs_pointer"
+                                          onClick={this.handleCallClick.bind(
+                                            this,
+                                            lead
+                                          )}
+                                        >
+                                          <box-icon
+                                            name="phone"
+                                            type="solid"
+                                            color="white"
+                                          ></box-icon>{" "}
+                                        </div>
+                                      )}
+                                  </div>
+                                );
+                              })}
                           </div>
                         </PerfectScrollbar>
                       ) : (
