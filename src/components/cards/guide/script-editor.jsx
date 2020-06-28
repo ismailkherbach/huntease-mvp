@@ -203,6 +203,7 @@ class ScriptEditor extends React.Component {
                           }}
                         />
                         <img
+                          className="curs_pointer"
                           src={require("../../../assets/img/delete.svg")}
                           onClick={this.removeItem.bind(this, index)}
                         />
@@ -320,7 +321,7 @@ class ScriptEditor extends React.Component {
                       />
 
                       <img
-                        className="optionDrag"
+                        className="optionDrag curs_pointer"
                         src={require("../../../assets/img/delete.svg")}
                         onClick={this.removeItemUpdate.bind(this, index)}
                       />
