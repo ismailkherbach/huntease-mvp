@@ -68,10 +68,10 @@ class ScriptCard extends React.Component {
     });
   }
   meetingsStatus(status) {
-    if ((status = true)) {
-      this.setState({ meetingBooked: false });
-    } else {
+    if (status) {
       this.setState({ meetingBooked: true });
+    } else {
+      this.setState({ meetingBooked: false });
     }
   }
   handleChangeNotes(e) {
@@ -278,17 +278,13 @@ class ScriptCard extends React.Component {
                 <div className="flex fdr aic jcc">
                   <Button
                     className="Change-profile-btn"
-                    onClick={() => {
-                      this.meetingsStatus.bind(this, true);
-                    }}
+                    onClick={this.meetingsStatus.bind(this, true)}
                   >
                     Yes
                   </Button>
                   <Button
                     className="decline Change-profile-btn"
-                    onClick={() => {
-                      this.meetingsStatus.bind(this, false);
-                    }}
+                    onClick={this.meetingsStatus.bind(this, false)}
                   >
                     No
                   </Button>

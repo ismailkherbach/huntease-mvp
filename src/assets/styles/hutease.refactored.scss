@@ -166,6 +166,12 @@ body {
   @include desktop-xl {
     font-size: 19px;
   }
+  @include desktop-sm {
+    font-size: 14.5px;
+  }
+  @include desktop-xs {
+    font-size: 11.5px;
+  }
 }
 .auth-bloc {
   background-image: url("../img/authback_test.svg");
@@ -373,7 +379,9 @@ body {
     color: $huntease-accent;
   }
 }
-
+.Loggout {
+  margin-top: 11.25rem;
+}
 .Guide {
   .Guide-editor {
     width: 47.5em;

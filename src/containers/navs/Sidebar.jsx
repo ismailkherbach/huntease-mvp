@@ -62,7 +62,7 @@ class Sidebar extends React.Component {
             );
           })}
           <li
-            className="flex fdc aic jcc margin-top180"
+            className="flex fdc aic jcc Loggout"
             onClick={() => this.handleLogout()}
             key="logoutItem"
             onMouseEnter={this.handleHoverOn.bind(this, "logoutItem")}
