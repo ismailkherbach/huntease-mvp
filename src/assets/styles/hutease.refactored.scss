@@ -1218,6 +1218,8 @@ body {
       & h5 {
         color: $huntease-main;
         margin: 0;
+        height: 15px;
+        line-break: strict;
       }
       .DidyouBook {
         width: 100%;
