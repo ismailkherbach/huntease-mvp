@@ -7,7 +7,11 @@ import { Spinner } from "reactstrap";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-import { getLeads, selectedLeadsItemsChange } from "../../../redux/actions";
+import {
+  getLeads,
+  selectedLeadsItemsChange,
+  syncLeads,
+} from "../../../redux/actions";
 import {
   UncontrolledDropdown,
   DropdownToggle,
@@ -59,7 +63,11 @@ class CallCard extends React.Component {
   handleHoverOn(id) {
     this.setState({ callIcon: true, visibleIconId: id });
   }
-
+  handleKeyPress(target) {
+    if (target.charCode == 13) {
+      this.toggleSearch();
+    }
+  }
   handleHoverOff() {
     this.setState({ callIcon: false });
   }
@@ -158,6 +166,9 @@ class CallCard extends React.Component {
       number: e.target.value,
     });
   }
+  onSyncLeads() {
+    this.props.syncLeads();
+  }
   componentDidMount() {
     this.props.getLeads();
     console.log(this.props.call.leads);
@@ -248,6 +259,11 @@ class CallCard extends React.Component {
                                 >
                                   Edit
                                 </DropdownItem>
+                                <DropdownItem
+                                  onClick={this.onSyncLeads.bind(this)}
+                                >
+                                  Sync leads
+                                </DropdownItem>
                                 <DropdownItem>Delete</DropdownItem>
                               </DropdownMenu>
                             </UncontrolledDropdown>
@@ -260,6 +276,7 @@ class CallCard extends React.Component {
                               type="text"
                               src={require("../../../assets/img/search.svg")}
                               onChange={this.handleSearchChange.bind(this)}
+                              onKeyPress={this.handleKeyPress.bind(this)}
                             />
                             <UncontrolledDropdown>
                               <DropdownToggle
@@ -844,6 +861,7 @@ const mapStateToProps = ({ call }) => {
 export default connect(mapStateToProps, {
   getLeads,
   selectedLeadsItemsChange,
+  syncLeads,
 })(CallCard);
 
 /*

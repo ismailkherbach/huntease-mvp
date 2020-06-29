@@ -47,6 +47,7 @@ class ScriptEditor extends React.Component {
       deletePopup: false,
       propmtIndex: null,
       deletePopupNew: false,
+      deletePopupGuide: false,
     };
     this.handleChangeTitle = this.handleChangeTitle.bind(this);
     this.handleChangeContenu = this.handleChangeContenu.bind(this);
@@ -87,6 +88,20 @@ class ScriptEditor extends React.Component {
       });
     }
   }
+
+  toggleDeletePopupGuide(propmtIndex) {
+    if (!this.state.deletePopupGuide) {
+      this.setState({
+        deletePopupGuide: !this.state.deletePopupGuide,
+        propmtIndex: propmtIndex,
+      });
+    } else {
+      this.setState({
+        deletePopupGuide: !this.state.deletePopupGuide,
+        propmtIndex: null,
+      });
+    }
+  }
   deletePromptUpdate() {
     this.removeItemUpdate(this.state.propmtIndex);
     this.setState({ deletePopup: !this.state.deletePopup });
@@ -94,6 +109,10 @@ class ScriptEditor extends React.Component {
   deletePrompt() {
     this.removeItem(this.state.propmtIndex);
     this.setState({ deletePopupNew: !this.state.deletePopupNew });
+  }
+  deleteGuide() {
+    this.onDeleteGuide(this.state.propmtIndex);
+    this.setState({ deletePopupGuide: !this.state.deletePopupGuide });
   }
   addClick() {
     this.setState((prevState) => ({
@@ -432,7 +451,7 @@ class ScriptEditor extends React.Component {
         {this.state.deletePopup && (
           <div className="popup-container flex fdc aic jcc">
             <div className="deleteGuidePopup flex fdc aic jcc">
-              <h4>🤚 You're deleting all your prompts </h4>
+              <h4>🤚 You're deleting this prompt. </h4>
               <div className="flex fdr aic jcc">
                 <Button
                   className="Change-profile-btn flex aic jcc"
@@ -454,7 +473,7 @@ class ScriptEditor extends React.Component {
         {this.state.deletePopupNew && (
           <div className="popup-container flex fdc aic jcc">
             <div className="deleteGuidePopup flex fdc aic jcc">
-              <h4>🤚 You're deleting all your prompts </h4>
+              <h4>🤚 You're deleting this prompt. </h4>
               <div className="flex fdr aic jcc">
                 <Button
                   className="Change-profile-btn flex aic jcc"
@@ -465,6 +484,28 @@ class ScriptEditor extends React.Component {
                 <Button
                   className="Change-profile-btn decline flex aic jcc"
                   onClick={this.toggleDeletePopupNew.bind(this)}
+                >
+                  Take me back
+                </Button>
+              </div>
+            </div>{" "}
+          </div>
+        )}
+
+        {this.state.deletePopupGuide && (
+          <div className="popup-container flex fdc aic jcc">
+            <div className="deleteGuidePopup flex fdc aic jcc">
+              <h4>🤚 You're deleting all your prompts </h4>
+              <div className="flex fdr aic jcc">
+                <Button
+                  className="Change-profile-btn flex aic jcc"
+                  onClick={this.deleteGuide.bind(this)}
+                >
+                  I'm aware
+                </Button>
+                <Button
+                  className="Change-profile-btn decline flex aic jcc"
+                  onClick={this.toggleDeletePopupGuide.bind(this)}
                 >
                   Take me back
                 </Button>
@@ -601,7 +642,7 @@ class ScriptEditor extends React.Component {
                             <DropdownMenu className="btn mt-1" right>
                               <DropdownItem>Edit</DropdownItem>
                               <DropdownItem
-                                onClick={this.onDeleteGuide.bind(
+                                onClick={this.toggleDeletePopupGuide.bind(
                                   this,
                                   guide._id
                                 )}

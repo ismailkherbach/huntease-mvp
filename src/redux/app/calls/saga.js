@@ -19,6 +19,7 @@ import {
   deleteIntegrationSuccess,
   getIntegrationsError,
   getSchedulesSuccess,
+  integrateHubspotError,
   addSchedulesSuccess,
 } from "./actions";
 import { API_URL } from "../../../utils/utils";
@@ -177,11 +178,15 @@ function* integrateHubspot({ payload }) {
     const integrationResponse = yield call(integrateHubspotAsync, apiKey);
     if (integrationResponse.status == 201) {
       yield put(integrateHubspotSuccess("success"));
-      yield call(pullLeadsAysnc);
+      // yield call(pullLeadsAysnc);
     } else {
       console.log("integration failed :", integrationResponse);
     }
   } catch (error) {
+    if (error.response.status == 422) {
+      console.log("You don't have any integrations");
+      yield put(integrateHubspotError("You don't have any integrations"));
+    }
     console.log("integration error : ", error);
   }
 }
@@ -198,7 +203,7 @@ const getIntegrationAsync = async () =>
 function* getIntegration({ payload }) {
   try {
     const getIntegrationResponse = yield call(getIntegrationAsync);
-    //console.log(getIntegrationResponse.data.type);
+    console.log(getIntegrationResponse.data);
     if (getIntegrationResponse.status == 200) {
       yield put(getIntegrationsSuccess(getIntegrationResponse.data.type));
     }
@@ -207,6 +212,9 @@ function* getIntegration({ payload }) {
       console.log("You don't have any integrations");
       yield put(getIntegrationsError("You don't have any integrations"));
     }
+
+    yield put(getIntegrationsError("You don't have any integrations"));
+
     console.log(" getintegration error : ", error.response);
   }
 }
