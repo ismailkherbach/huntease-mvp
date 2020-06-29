@@ -149,6 +149,7 @@ class ScriptEditor extends React.Component {
       questions: this.state.questionsGuide.questions,
       history: this.props.history,
     });
+    this.props.getGuide();
   };
 
   onUpdateGuide = () => {
@@ -420,7 +421,7 @@ class ScriptEditor extends React.Component {
   }
   onDeleteGuide(id) {
     this.props.deleteGuide({ id });
-    //this.props.getGuide();
+    this.props.getGuide();
   }
 
   onResetGuide() {
@@ -437,6 +438,9 @@ class ScriptEditor extends React.Component {
 
   handleSearchChange(e) {
     this.setState({ searchField: e.target.value });
+  }
+  static getDerivedStateFromProps(props, state) {
+    // props.getProfile();
   }
   componentDidMount() {
     this.props.getGuide();

@@ -38,7 +38,7 @@ function* addGuideNew({ payload }) {
     const addResponse = yield call(addGuideAsync, title, questions);
     if (addResponse.status == 201) {
       yield put(addGuideSuccess(addResponse));
-      history.go();
+      //history.go();
     } else {
       console.log("add failed :", addResponse);
     }

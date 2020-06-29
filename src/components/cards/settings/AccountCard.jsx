@@ -130,6 +130,9 @@ class AccountCall extends React.Component {
       phone: e.target.value,
     });
   }
+  static getDerivedStateFromProps(props, state) {
+    props.getProfile();
+  }
   toggleVerification() {
     this.setState({
       verifictionBloc: true,
