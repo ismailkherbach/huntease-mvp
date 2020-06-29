@@ -102,7 +102,17 @@ class ScriptEditor extends React.Component {
     console.log(this.state.questions);
     console.log(this.state.displayGuide);
   }
+  handleKeyPressNew(target) {
+    if (target.charCode == 13) {
+      this.modifyClickNew();
+    }
+  }
 
+  handleKeyPress(target) {
+    if (target.charCode == 13) {
+      this.modifyClick();
+    }
+  }
   updateAddClick() {
     this.setState((prevState) => ({
       displayGuide: [...prevState.displayGuide, { question: "" }],
@@ -233,6 +243,7 @@ class ScriptEditor extends React.Component {
                           value={item || ""}
                           name="question"
                           onChange={this.handleChange.bind(this, index)}
+                          onKeyPress={this.handleKeyPressNew.bind(this)}
                           options={{
                             toolbar: {
                               buttons: ["bold", "italic", "underline"],
@@ -357,6 +368,7 @@ class ScriptEditor extends React.Component {
                         value={item || ""}
                         name="question"
                         onChange={this.handleChangeUpdate.bind(this, index)}
+                        onKeyPress={this.handleKeyPress.bind(this)}
                         options={{
                           toolbar: { buttons: ["bold", "italic", "underline"] },
                         }}
