@@ -230,37 +230,60 @@ class CallCard extends React.Component {
                                 color="#0026bc"
                               ></box-icon>
                             </div>
+                            <UncontrolledDropdown>
+                              <DropdownToggle
+                                color="empty"
+                                className="dropdown-toggle-split"
+                              >
+                                <div className="edit flex fdc aic jcc">
+                                  <box-icon
+                                    name="pencil"
+                                    color="#0026bc"
+                                  ></box-icon>
+                                </div>
+                              </DropdownToggle>
+                              <DropdownMenu className="btn" right>
+                                <DropdownItem
+                                  onClick={this.deleteCheckBox.bind(this)}
+                                >
+                                  Edit
+                                </DropdownItem>
+                                <DropdownItem>Delete</DropdownItem>
+                              </DropdownMenu>
+                            </UncontrolledDropdown>
                           </div>
                         ) : (
-                          <input
-                            alt={"search"}
-                            placeholder="Enter your search here"
-                            type="text"
-                            src={require("../../../assets/img/search.svg")}
-                            onChange={this.handleSearchChange.bind(this)}
-                          />
+                          <div className="searchBar flex fdr aic">
+                            <input
+                              alt={"search"}
+                              placeholder="Enter your search here"
+                              type="text"
+                              src={require("../../../assets/img/search.svg")}
+                              onChange={this.handleSearchChange.bind(this)}
+                            />
+                            <UncontrolledDropdown>
+                              <DropdownToggle
+                                color="empty"
+                                className="dropdown-toggle-split"
+                              >
+                                <div className="edit flex fdc aic jcc">
+                                  <box-icon
+                                    name="pencil"
+                                    color="#0026bc"
+                                  ></box-icon>
+                                </div>
+                              </DropdownToggle>
+                              <DropdownMenu className="btn" right>
+                                <DropdownItem
+                                  onClick={this.deleteCheckBox.bind(this)}
+                                >
+                                  Edit
+                                </DropdownItem>
+                                <DropdownItem>Delete</DropdownItem>
+                              </DropdownMenu>
+                            </UncontrolledDropdown>
+                          </div>
                         )}
-                        <UncontrolledDropdown>
-                          <DropdownToggle
-                            color="empty"
-                            className="dropdown-toggle-split"
-                          >
-                            <div className="edit flex fdc aic jcc">
-                              <box-icon
-                                name="pencil"
-                                color="#0026bc"
-                              ></box-icon>
-                            </div>
-                          </DropdownToggle>
-                          <DropdownMenu className="btn" right>
-                            <DropdownItem
-                              onClick={this.deleteCheckBox.bind(this)}
-                            >
-                              Edit
-                            </DropdownItem>
-                            <DropdownItem>Delete</DropdownItem>
-                          </DropdownMenu>
-                        </UncontrolledDropdown>
                       </div>
                       {this.props.call.leads ? (
                         <PerfectScrollbar>

@@ -1647,11 +1647,14 @@ body {
           border-radius: 10px;
         }
       }
-      & input {
-        margin: 15px 5px 14px 15px;
-        width: 400px;
-        height: 37px;
+      .searchBar {
+        & input {
+          margin: 15px 5px 14px 15px;
+          width: 23.6rem;
+          height: 2.3125rem;
+        }
       }
+
       & h3 {
         font-size: 18px;
         font-weight: $bold;
@@ -2382,6 +2385,46 @@ body {
     & img {
       margin: 0;
     }
+  }
+}
+
+.deleteGuidePopup {
+  min-width: 18.875rem;
+  height: 6.5625rem;
+  background-color: white;
+  box-shadow: $box-shadow;
+  border-radius: 15px;
+  position: relative;
+  padding: 30px;
+  z-index: 100;
+
+  & h4 {
+    color: $huntease-titles;
+    font-weight: $bold;
+    text-align: center;
+  }
+  & p {
+    color: $huntease-medium;
+    font-weight: $regular;
+    text-align: center;
+  }
+
+  & .Change-profile-btn {
+    font-weight: $bold;
+    background-color: #d7e0fe;
+    width: unset;
+    height: 2.25rem;
+    color: $huntease-main;
+    margin: 5px 5px 5px 5px;
+    padding: 0 7px 0 7px;
+    font-size: 14px;
+    box-shadow: $box-shadow;
+    border: none;
+  }
+  & .decline {
+    color: $huntease-main;
+    background-color: #eaeffe;
+    border: 2px solid #d7e0fe;
   }
 }
 

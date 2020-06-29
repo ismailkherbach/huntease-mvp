@@ -44,6 +44,9 @@ class ScriptEditor extends React.Component {
       text: "Write something",
       questionsGuide: { questions: [""] },
       updatedGuide: null,
+      deletePopup: false,
+      propmtIndex: null,
+      deletePopupNew: false,
     };
     this.handleChangeTitle = this.handleChangeTitle.bind(this);
     this.handleChangeContenu = this.handleChangeContenu.bind(this);
@@ -57,7 +60,41 @@ class ScriptEditor extends React.Component {
   handleChangeContenu(contenu) {
     this.setState({ contenu: contenu });
   }
+  toggleDeletePopup(propmtIndex) {
+    if (!this.state.deletePopup) {
+      this.setState({
+        deletePopup: !this.state.deletePopup,
+        propmtIndex: propmtIndex,
+      });
+    } else {
+      this.setState({
+        deletePopup: !this.state.deletePopup,
+        propmtIndex: null,
+      });
+    }
+  }
 
+  toggleDeletePopupNew(propmtIndex) {
+    if (!this.state.deletePopupNew) {
+      this.setState({
+        deletePopupNew: !this.state.deletePopupNew,
+        propmtIndex: propmtIndex,
+      });
+    } else {
+      this.setState({
+        deletePopupNew: !this.state.deletePopupNew,
+        propmtIndex: null,
+      });
+    }
+  }
+  deletePromptUpdate() {
+    this.removeItemUpdate(this.state.propmtIndex);
+    this.setState({ deletePopup: !this.state.deletePopup });
+  }
+  deletePrompt() {
+    this.removeItem(this.state.propmtIndex);
+    this.setState({ deletePopupNew: !this.state.deletePopupNew });
+  }
   addClick() {
     this.setState((prevState) => ({
       questions: [...prevState.questions, { question: "" }],
@@ -204,8 +241,13 @@ class ScriptEditor extends React.Component {
                         />
                         <img
                           className="curs_pointer"
-                          src={require("../../../assets/img/delete.svg")}
-                          onClick={this.removeItem.bind(this, index)}
+                          src={require(`../../../assets/img/${
+                            this.state.deletePopupNew &&
+                            index === this.state.propmtIndex
+                              ? "deleteRed"
+                              : "delete"
+                          }.svg`)}
+                          onClick={this.toggleDeletePopupNew.bind(this, index)}
                         />
                         <img
                           className="option"
@@ -322,8 +364,13 @@ class ScriptEditor extends React.Component {
 
                       <img
                         className="optionDrag curs_pointer"
-                        src={require("../../../assets/img/delete.svg")}
-                        onClick={this.removeItemUpdate.bind(this, index)}
+                        src={require(`../../../assets/img/${
+                          this.state.deletePopup &&
+                          index === this.state.propmtIndex
+                            ? "deleteRed"
+                            : "delete"
+                        }.svg`)}
+                        onClick={this.toggleDeletePopup.bind(this, index)}
                       />
                       <img
                         className="option"
@@ -370,6 +417,49 @@ class ScriptEditor extends React.Component {
     const { searchField } = this.state;
     return (
       <Fragment>
+        {this.state.deletePopup && (
+          <div className="popup-container flex fdc aic jcc">
+            <div className="deleteGuidePopup flex fdc aic jcc">
+              <h4>🤚 You're deleting all your prompts </h4>
+              <div className="flex fdr aic jcc">
+                <Button
+                  className="Change-profile-btn flex aic jcc"
+                  onClick={this.deletePromptUpdate.bind(this)}
+                >
+                  I'm aware
+                </Button>
+                <Button
+                  className="Change-profile-btn decline flex aic jcc"
+                  onClick={this.toggleDeletePopup.bind(this)}
+                >
+                  Take me back
+                </Button>
+              </div>
+            </div>{" "}
+          </div>
+        )}
+
+        {this.state.deletePopupNew && (
+          <div className="popup-container flex fdc aic jcc">
+            <div className="deleteGuidePopup flex fdc aic jcc">
+              <h4>🤚 You're deleting all your prompts </h4>
+              <div className="flex fdr aic jcc">
+                <Button
+                  className="Change-profile-btn flex aic jcc"
+                  onClick={this.deletePrompt.bind(this)}
+                >
+                  I'm aware
+                </Button>
+                <Button
+                  className="Change-profile-btn decline flex aic jcc"
+                  onClick={this.toggleDeletePopupNew.bind(this)}
+                >
+                  Take me back
+                </Button>
+              </div>
+            </div>{" "}
+          </div>
+        )}
         <div className="flex fdc aic jcc">
           <div className="Guide-editor">
             {this.state.showStatus ? (
