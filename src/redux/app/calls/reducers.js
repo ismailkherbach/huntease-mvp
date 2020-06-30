@@ -40,6 +40,10 @@ const INIT_STATE = {
   isEmptyLeads: null,
   schedules: null,
   isEmptyschedules: null,
+  callSid: null,
+  leadId: null,
+  save_recording: null,
+  lead_status: null,
 };
 
 export default (state = INIT_STATE, action) => {

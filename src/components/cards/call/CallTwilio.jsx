@@ -62,6 +62,7 @@ class CallTwilio extends React.Component {
   handleChangeLeadStatus(leadStatus) {
     this.setState({ lead_status: leadStatus });
     let lead_status = leadStatus;
+    console.log(lead_status);
     this.props.endCall({ lead_status });
   }
   handleEndCall() {
@@ -442,6 +443,7 @@ class CallTwilio extends React.Component {
                             ? "activeStatus"
                             : ""
                         } flex fdr aic jcc`}
+                        onClick={this.handleChangeLeadStatus.bind(this, status)}
                       >
                         {status}
                       </div>
@@ -517,6 +519,7 @@ class CallTwilio extends React.Component {
                         ? "activeStatus"
                         : ""
                     } flex fdr aic jcc`}
+                    onClick={this.handleChangeLeadStatus.bind(this, leadKey[i])}
                   >
                     {status}
                   </div>
