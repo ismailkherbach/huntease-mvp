@@ -456,7 +456,9 @@ class ScriptEditor extends React.Component {
         {this.state.deletePopup && (
           <div className="popup-container flex fdc aic jcc">
             <div className="deleteGuidePopup flex fdc aic jcc">
-              <h4>🤚 You're deleting this prompt. </h4>
+              <h4>
+                🤚 <span className="Cred">You're deleting this prompt.</span>{" "}
+              </h4>
               <div className="flex fdr aic jcc">
                 <Button
                   className="Change-profile-btn flex aic jcc"
@@ -478,7 +480,12 @@ class ScriptEditor extends React.Component {
         {this.state.deletePopupNew && (
           <div className="popup-container flex fdc aic jcc">
             <div className="deleteGuidePopup flex fdc aic jcc">
-              <h4>🤚 You're deleting this prompt. </h4>
+              <h4>
+                {" "}
+                🤚 <span className="Cred">
+                  You're deleting this prompt.
+                </span>{" "}
+              </h4>
               <div className="flex fdr aic jcc">
                 <Button
                   className="Change-profile-btn flex aic jcc"
@@ -500,7 +507,10 @@ class ScriptEditor extends React.Component {
         {this.state.deletePopupGuide && (
           <div className="popup-container flex fdc aic jcc">
             <div className="deleteGuidePopup flex fdc aic jcc">
-              <h4>🤚 You're deleting all your prompts </h4>
+              <h4>
+                🤚{" "}
+                <span className="Cred">You're deleting all your prompts </span>
+              </h4>
               <div className="flex fdr aic jcc">
                 <Button
                   className="Change-profile-btn flex aic jcc"

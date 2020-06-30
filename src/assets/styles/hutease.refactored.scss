@@ -1183,7 +1183,7 @@ body {
         border-radius: 10px;
         color: $huntease-medium;
         background-color: #f6f9ff;
-        border: none;
+        border: 2px solid white;
       }
       & .guideResTitle {
         padding: 0 0 10px 10px;
@@ -1210,7 +1210,6 @@ body {
       }
       & .Clicked {
         color: $huntease-main;
-
         background-color: #f6f9ff;
         border: 2px solid $huntease-main;
       }
@@ -1382,26 +1381,26 @@ body {
       }
       & .integrate-button {
         width: unset;
-        height: 37px;
+        height: 40px;
         margin: 0 8px 0 8px;
         & img {
           margin: 0 4px 0 4px;
         }
       }
       & .Save-changes-btn {
-        height: 37px;
+        height: 40px;
         margin: 0 8px 0 8px;
-
         & img {
-          margin: 0 4px 0 4px;
+          margin: 8px;
+          padding: 0;
         }
       }
       & .Schedules {
-        height: 37px;
+        height: 40px;
         background-color: $huntease-main;
         color: white;
         width: unset;
-        padding: 0 8px 0 8px;
+        padding: 0 12px 0 12px;
         margin: 0 8px 0 8px;
       }
     }
@@ -1689,6 +1688,7 @@ body {
           width: 90%;
           padding-left: 5px;
           padding: 21px;
+          margin: 0;
         }
         .edit {
           width: 37px;

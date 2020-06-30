@@ -327,8 +327,8 @@ class ScriptCard extends React.Component {
                   <div className="flex fdr aic jcfs">
                     <Button
                       onClick={this.toggleChooseGuide.bind(this)}
-                      className={`integrate-button ${!this.state.withoutGuide &&
-                        "Clicked"} `}
+                      className={`integrate-button flex fdr aic jcc ${!this
+                        .state.withoutGuide && "Clicked"} `}
                     >
                       <img
                         src={require("../../../assets/img/bxs-notepad.svg")}
@@ -337,8 +337,8 @@ class ScriptCard extends React.Component {
                     </Button>
                     <Button
                       onClick={this.toggleWithoutGuide.bind(this)}
-                      className={`integrate-button ${this.state.withoutGuide &&
-                        "Clicked"} `}
+                      className={`integrate-button flex fdr aic jcc ${this.state
+                        .withoutGuide && "Clicked"} `}
                     >
                       <img src={require("../../../assets/img/bxs-note.svg")} />
                       Continue without guide
@@ -566,7 +566,7 @@ class ScriptCard extends React.Component {
               {this.props.guide.isGuideEmpty && (
                 <Button
                   onClick={this.toggleSchedule.bind(this)}
-                  className="integrate-button"
+                  className="integrate-button flex fdr aic jcc"
                 >
                   <img src={require("../../../assets/img/bx-plus.svg")} />
                   New Guide
@@ -574,7 +574,7 @@ class ScriptCard extends React.Component {
               )}
               <Button
                 onClick={this.toggleSchedule.bind(this)}
-                className="Save-changes-btn Schedules"
+                className="Save-changes-btn Schedules flex fdr aic jcc"
               >
                 <img src={require("../../../assets/img/bxs-calendar.svg")} />
                 Schedules
@@ -583,7 +583,7 @@ class ScriptCard extends React.Component {
               {this.props.call.callEnded && !this.state.result && (
                 <Button
                   onClick={this.extracNote.bind(this)}
-                  className="Save-changes-btn "
+                  className="Save-changes-btn flex fdr aic jcc"
                 >
                   <img src={require("../../../assets/img/bxs-calendar.svg")} />
                   Looks good!
@@ -592,7 +592,7 @@ class ScriptCard extends React.Component {
               {this.props.call.callEnded && this.state.result && (
                 <Button
                   onClick={this.sendToHubspot.bind(this)}
-                  className="Save-changes-btn"
+                  className="Save-changes-btn flex fdr aic jcc"
                 >
                   <img src={require("../../../assets/img/bxs-calendar.svg")} />
                   Send to hubspot
