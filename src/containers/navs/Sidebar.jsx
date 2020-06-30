@@ -14,6 +14,7 @@ class Sidebar extends React.Component {
       menuItems,
       menuHover: false,
       menuOn: null,
+      x: null,
     };
   }
 
@@ -27,6 +28,11 @@ class Sidebar extends React.Component {
 
   handleHoverOff() {
     this.setState({ menuHover: false });
+  }
+  handleClick(x) {
+    this.setState({
+      clicked: x,
+    });
   }
 
   render() {
@@ -44,13 +50,17 @@ class Sidebar extends React.Component {
                   key={item.id}
                   onMouseEnter={this.handleHoverOn.bind(this, x)}
                   onMouseLeave={this.handleHoverOff.bind(this)}
-                  className="flex fdc aic jcc"
+                  onClick={this.handleClick.bind(this, x)}
+                  className={`flex fdc aic jcc ${
+                    this.state.clicked === x ? "clicked" : ""
+                  }`}
                 >
                   <box-icon
                     name={item.icon}
                     type="solid"
                     color={
-                      this.state.menuHover && this.state.menuOn == x
+                      (this.state.menuHover && this.state.menuOn == x) ||
+                      this.state.clicked === x
                         ? "#ffc371"
                         : "#8BA3FF"
                     }

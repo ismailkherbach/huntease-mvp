@@ -374,7 +374,9 @@ body {
     color: $huntease-accent;
     transform: scale(1.05);
   }
-
+  & .clicked {
+    color: $huntease-accent;
+  }
   svg:hover {
     color: $huntease-accent;
   }
