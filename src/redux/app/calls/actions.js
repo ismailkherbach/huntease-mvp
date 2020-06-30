@@ -25,11 +25,20 @@ import {
   ADD_SCHEDULES,
   ADD_SCHEDULES_SUCCESS,
   ADD_SCHEDULES_ERROR,
+  DISPATCH_LEAD_STATUS,
+  EXPORT_CALL,
+  EXPORT_CALL_SUCCESS,
+  EXPORT_CALL_ERROR,
 } from "../../actions";
 
 export const endCall = (callInfos) => ({
   type: ENDING_CALL,
   payload: callInfos,
+});
+
+export const changeLeadStatus = (leadStatus) => ({
+  type: DISPATCH_LEAD_STATUS,
+  payload: leadStatus,
 });
 
 export const getLeads = () => ({
@@ -55,7 +64,7 @@ export const getSchedulesSuccess = (schedules) => ({
   payload: schedules,
 });
 
-export const ggetSchedulesError = (error) => ({
+export const getSchedulesError = (error) => ({
   type: GET_SCHEDULES_ERROR,
   payload: error,
 });
@@ -72,6 +81,21 @@ export const addSchedulesSuccess = (guide) => ({
 
 export const addSchedulesError = (error) => ({
   type: ADD_SCHEDULES_ERROR,
+  payload: error,
+});
+
+export const sendToHubspot = (callInfos) => ({
+  type: EXPORT_CALL,
+  payload: callInfos,
+});
+
+export const sendToHubspotSuccess = (callInfos) => ({
+  type: EXPORT_CALL_SUCCESS,
+  payload: callInfos,
+});
+
+export const sendToHubspotError = (error) => ({
+  type: EXPORT_CALL_ERROR,
   payload: error,
 });
 

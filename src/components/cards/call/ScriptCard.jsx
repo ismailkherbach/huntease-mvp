@@ -3,7 +3,12 @@ import Btn from "../../small.componenets/Btn";
 import { Button, Input } from "reactstrap";
 import ChooseGuidePopup from "../../popup/ChooseGuidePopup";
 import { connect } from "react-redux";
-import { getGuide, getSchedules, addSchedules } from "../../../redux/actions";
+import {
+  getGuide,
+  getSchedules,
+  addSchedules,
+  sendToHubspot,
+} from "../../../redux/actions";
 import { Link } from "react-router-dom";
 import PerfectScrollbar from "react-perfect-scrollbar";
 
@@ -27,6 +32,7 @@ class ScriptCard extends React.Component {
       addSchedule: false,
       link: "",
       name: "",
+      bookResponse: false,
     };
   }
 
@@ -73,6 +79,7 @@ class ScriptCard extends React.Component {
     } else {
       this.setState({ meetingBooked: false });
     }
+    this.setState({ bookResponse: true });
   }
   handleChangeNotes(e) {
     e.preventDefault();
@@ -152,6 +159,19 @@ class ScriptCard extends React.Component {
     console.log(this.props.call.save_recording);
     console.log(this.props.call.lead_status);
     console.log(this.state.notesResponse);
+
+    let CallSid = this.props.call.callSid;
+    let leadId = this.props.call.leadId;
+    let notes = this.state.notesResponse;
+    let save_recording = this.props.call.save_recording;
+    let lead_status = this.props.call.lead_status;
+    this.props.sendToHubspot({
+      CallSid,
+      leadId,
+      notes,
+      save_recording,
+      lead_status,
+    });
     console.log(this.state.meetingBooked);
   }
   componentDidUpdate() {
@@ -275,23 +295,29 @@ class ScriptCard extends React.Component {
                   </PerfectScrollbar>
                 </div>
               )}
-              <div className="DidyouBook flex aic jcc fdc">
-                <h3>Did you book a meeting with Sara?</h3>
-                <div className="flex fdr aic jcc">
-                  <Button
-                    className="Change-profile-btn"
-                    onClick={this.meetingsStatus.bind(this, true)}
-                  >
-                    Yes
-                  </Button>
-                  <Button
-                    className="decline Change-profile-btn"
-                    onClick={this.meetingsStatus.bind(this, false)}
-                  >
-                    No
-                  </Button>
+              {this.state.bookResponse ? (
+                <div className="DidyouBook flex aic jcc fdc">
+                  <h3>Congratulation!</h3>
                 </div>
-              </div>
+              ) : (
+                <div className="DidyouBook flex aic jcc fdc">
+                  <h3>Did you book a meeting with Sara?</h3>
+                  <div className="flex fdr aic jcc">
+                    <Button
+                      className="Change-profile-btn"
+                      onClick={this.meetingsStatus.bind(this, true)}
+                    >
+                      Yes
+                    </Button>
+                    <Button
+                      className="decline Change-profile-btn"
+                      onClick={this.meetingsStatus.bind(this, false)}
+                    >
+                      No
+                    </Button>
+                  </div>
+                </div>
+              )}
             </div>
           ) : (
             <div>
@@ -590,6 +616,7 @@ export default connect(mapStateToProps, {
   getGuide,
   getSchedules,
   addSchedules,
+  sendToHubspot,
 })(ScriptCard);
 
 /*

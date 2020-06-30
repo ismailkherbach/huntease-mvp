@@ -8,6 +8,7 @@ import {
   DELETE_INTEGRATION,
   GET_SCHEDULES,
   ADD_SCHEDULES,
+  EXPORT_CALL,
 } from "../../actions";
 import axios from "axios";
 import {
@@ -21,6 +22,8 @@ import {
   getSchedulesSuccess,
   integrateHubspotError,
   addSchedulesSuccess,
+  sendToHubspotSuccess,
+  sendToHubspotError,
 } from "./actions";
 import { API_URL } from "../../../utils/utils";
 
@@ -109,6 +112,53 @@ function* addSchedules({ payload }) {
     }
   } catch (error) {
     console.log("get error : ", error);
+  }
+}
+
+const exportCallAsync = async ({
+  CallSid,
+  leadId,
+  notes,
+  save_recording,
+  lead_status,
+}) =>
+  await axios({
+    method: "post",
+    url: API_URL + `integration/postCall`,
+    data: {
+      CallSid: CallSid,
+      leadId: leadId,
+      notes: notes,
+      save_recording: save_recording,
+      lead_status: lead_status,
+    },
+    headers: {
+      authorization: CREDENTIALS["tokenBearer"],
+    },
+  });
+function* exportCall({ payload }) {
+  const { CallSid, leadId, notes, save_recording, lead_status } = payload;
+  try {
+    const addResponse = yield call(
+      exportCallAsync,
+      CallSid,
+      leadId,
+      notes,
+      save_recording,
+      lead_status
+    );
+    console.log(addResponse);
+
+    //yield call(pullLeadsAysnc);
+
+    if (addResponse.status == 201) {
+      yield put(addSchedulesSuccess(addResponse));
+      console.log(addResponse);
+    } else {
+      console.log("add failed :", addResponse);
+    }
+  } catch (error) {
+    console.log("add error : ", error);
   }
 }
 
@@ -245,6 +295,9 @@ function* deleteIntegration({ payload }) {
 export function* watchGetLeads() {
   yield takeEvery(GET_LEADS, getLeads);
 }
+export function* watchExportCall() {
+  yield takeEvery(EXPORT_CALL, exportCall);
+}
 export function* watchGetSchedules() {
   yield takeEvery(GET_SCHEDULES, getSchedules);
 }
@@ -278,5 +331,6 @@ export default function* rootSaga() {
     fork(watchDeleteIntegration),
     fork(watchGetSchedules),
     fork(watchAddSchedules),
+    fork(watchExportCall),
   ]);
 }

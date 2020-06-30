@@ -19,12 +19,16 @@ import {
   DELETE_INTEGRATION_SUCCESS,
   LEADS_LIST_SELECTED_ITEMS_CHANGE,
   ENDING_CALL,
+  DISPATCH_LEAD_STATUS,
   GET_SCHEDULES,
   GET_SCHEDULES_SUCCESS,
   GET_SCHEDULES_ERROR,
   ADD_SCHEDULES,
   ADD_SCHEDULES_SUCCESS,
   ADD_SCHEDULES_ERROR,
+  EXPORT_CALL,
+  EXPORT_CALL_SUCCESS,
+  EXPORT_CALL_ERROR,
 } from "../../actions";
 
 const INIT_STATE = {
@@ -44,6 +48,7 @@ const INIT_STATE = {
   leadId: null,
   save_recording: null,
   lead_status: null,
+  callInfos: null,
 };
 
 export default (state = INIT_STATE, action) => {
@@ -98,6 +103,23 @@ export default (state = INIT_STATE, action) => {
         ...state,
         loading: false,
         schedule: "",
+        error: action.payload,
+      };
+
+    case EXPORT_CALL:
+      return { ...state, loading: true, error: "" };
+    case EXPORT_CALL_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        callInfos: action.payload,
+        error: "",
+      };
+    case EXPORT_CALL_ERROR:
+      return {
+        ...state,
+        loading: false,
+        callInfos: "",
         error: action.payload,
       };
 
@@ -194,8 +216,14 @@ export default (state = INIT_STATE, action) => {
         callSid: action.payload.callSid,
         leadId: action.payload.leadId,
         save_recording: action.payload.save_recording,
-        lead_status: action.payload.lead_status,
         //  { CallSid, leadId, notes, save_recording, lead_status }
+        error: "",
+      };
+
+    case DISPATCH_LEAD_STATUS:
+      return {
+        ...state,
+        lead_status: action.payload.lead_status,
         error: "",
       };
     default:

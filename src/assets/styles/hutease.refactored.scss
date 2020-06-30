@@ -585,6 +585,18 @@ body {
         & h5 {
           padding: 0 15px 0 0;
         }
+
+        & select {
+          height: 40.5px;
+          width: 30.625rem;
+          outline: none;
+          border: none;
+          margin: 0 10px 0 10px;
+          padding: 0 15px 0 15px;
+          background-color: #eef3ff;
+          color: $huntease-main;
+          font-weight: $regular;
+        }
       }
       .Change-input {
         width: 18.75rem;
@@ -1241,12 +1253,25 @@ body {
         }
         & .Change-profile-btn {
           color: $huntease-green;
+          background-color: white;
+          width: 68px;
+          height: 35px;
+          margin: 0 5px 0 5px;
+        }
+        & .Change-profile-btn:hover {
+          color: white;
+          background-color: $huntease-green;
           width: 68px;
           height: 35px;
           margin: 0 5px 0 5px;
         }
         & .decline {
           color: #d85050;
+          background-color: white;
+        }
+        & .decline:hover {
+          background-color: #d85050;
+          color: white;
         }
       }
     }

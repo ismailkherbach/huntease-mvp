@@ -17,6 +17,7 @@ import ChangeNumberPopup from "../../popup/ChangeNumberPopup";
 import { API_URL } from "../../../utils/utils";
 import axios from "axios";
 import { w3cwebsocket as W3CWebSocket } from "websocket";
+import moment from "moment";
 
 const user = JSON.parse(localStorage.getItem("user"));
 let client = undefined;
@@ -39,6 +40,7 @@ class AccountCall extends React.Component {
       phone: null,
       verifictionBloc: false,
       verifictionSuccess: false,
+      timeZones: null,
     };
     this.handleImageChange = this.handleImageChange.bind(this);
     this.uploadPicture = this.uploadPicture.bind(this);
@@ -147,6 +149,21 @@ class AccountCall extends React.Component {
   }
   componentDidMount() {
     this.props.getProfile();
+    var momentTimezone = require("moment-timezone");
+
+    var timeZones = momentTimezone.tz.names();
+    let offsetTmz = [];
+
+    for (let i in timeZones) {
+      offsetTmz.push(
+        `(GMT${moment.tz(timeZones[i]).format("Z")}) ${timeZones[i]}`
+      );
+    }
+
+    this.timeZoneNames = offsetTmz.sort();
+
+    this.setState({ timeZones: offsetTmz });
+    console.log();
     client.onopen = () => {
       console.log("WebSocket Client Connected");
     };
@@ -262,12 +279,13 @@ class AccountCall extends React.Component {
               </h4>
               <div className="flex fdr aic jcfs margin-top25 margin-bottom25">
                 <h5>Time Zone</h5>
-                <input
-                  className="profile-input-large"
-                  placeholder="+1 GMT, Paris France"
-                  type="text"
-                  onChange={this.handleChangeEmail}
-                />{" "}
+
+                <select>
+                  {this.state.timeZones != null &&
+                    this.state.timeZones.map((timeZone) => {
+                      return <option>{timeZone}</option>;
+                    })}
+                </select>
               </div>
               <div className="flex fdr aic jcfs">
                 <h5>Theme</h5>

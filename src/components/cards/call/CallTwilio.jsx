@@ -4,7 +4,7 @@ import { Button } from "reactstrap";
 import PerfectScrollbar from "react-perfect-scrollbar";
 import AudioAnalyser from "./AudioAnalyser";
 import { w3cwebsocket as W3CWebSocket } from "websocket";
-import { endCall } from "../../../redux/actions";
+import { endCall, changeLeadStatus } from "../../../redux/actions";
 import { connect } from "react-redux";
 
 const Twilio = require("twilio-client");
@@ -60,10 +60,10 @@ class CallTwilio extends React.Component {
   }
 
   handleChangeLeadStatus(leadStatus) {
-    this.setState({ lead_status: leadStatus });
+    this.setState({ leadStatus: leadStatus });
     let lead_status = leadStatus;
     console.log(lead_status);
-    this.props.endCall({ lead_status });
+    this.props.changeLeadStatus({ lead_status });
   }
   handleEndCall() {
     this.setState({ onPhone: !this.state.onPhone });
@@ -248,7 +248,7 @@ class CallTwilio extends React.Component {
   componentDidMount() {
     //await this.fetchToken();
     //await this.handleToggleCall();
-
+    this.setState({ leadStatus: this.props.visibleLeadId.status });
     var self = this;
 
     console.log(this.props.number);
@@ -515,9 +515,7 @@ class CallTwilio extends React.Component {
                 return (
                   <div
                     className={`StatusOne ${
-                      this.props.visibleLeadId.status === leadKey[i]
-                        ? "activeStatus"
-                        : ""
+                      this.state.leadStatus === leadKey[i] ? "activeStatus" : ""
                     } flex fdr aic jcc`}
                     onClick={this.handleChangeLeadStatus.bind(this, leadKey[i])}
                   >
@@ -597,6 +595,7 @@ const mapStateToProps = ({ call }) => {
 
 export default connect(mapStateToProps, {
   endCall,
+  changeLeadStatus,
 })(CallTwilio);
 
 const leadStatus = [
