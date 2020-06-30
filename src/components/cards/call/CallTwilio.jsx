@@ -60,7 +60,9 @@ class CallTwilio extends React.Component {
   }
 
   handleChangeLeadStatus(leadStatus) {
-    this.setState();
+    this.setState({ lead_status: leadStatus });
+    let lead_status = leadStatus;
+    this.props.endCall({ lead_status });
   }
   handleEndCall() {
     this.setState({ onPhone: !this.state.onPhone });
@@ -103,6 +105,7 @@ class CallTwilio extends React.Component {
       video: false,
     });
     this.setState({ audio });
+    console.log(audio);
   }
   async stopIt() {
     const audio = await navigator.mediaDevices.getUserMedia({
@@ -249,12 +252,6 @@ class CallTwilio extends React.Component {
 
     console.log(this.props.number);
 
-    Twilio.Device.setup(JSON.parse(localStorage.getItem("twilioToken")), {
-      debug: true,
-      audioConstraints: true,
-      audioHelper: true,
-      pstream: true,
-    });
     this.getMicrophone();
     this.handleToggleCall();
     Twilio.Device.ready(function() {

@@ -150,6 +150,7 @@ class ScriptCard extends React.Component {
     console.log(this.props.call.callSid);
     console.log(this.props.call.leadId);
     console.log(this.props.call.save_recording);
+    console.log(this.props.call.lead_status);
     console.log(this.state.notesResponse);
     console.log(this.state.meetingBooked);
   }

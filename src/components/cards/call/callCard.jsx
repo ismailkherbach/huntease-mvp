@@ -25,6 +25,7 @@ import "boxicons";
 
 import Button from "reactstrap/lib/Button";
 import CallTwilio from "./CallTwilio";
+const Twilio = require("twilio-client");
 
 class CallCard extends React.Component {
   constructor() {
@@ -172,6 +173,12 @@ class CallCard extends React.Component {
   componentDidMount() {
     this.props.getLeads();
     console.log(this.props.call.leads);
+    Twilio.Device.setup(JSON.parse(localStorage.getItem("twilioToken")), {
+      debug: true,
+      audioConstraints: true,
+      audioHelper: true,
+      pstream: true,
+    });
   }
   render() {
     const { searchField } = this.state;
