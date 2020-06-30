@@ -87,6 +87,7 @@ class AccountCall extends React.Component {
     });
     console.log(response);
     console.log(newItem.file);
+    await this.getProfile();
   }
   handleChangeFirst(e) {
     this.setState({
@@ -116,9 +117,10 @@ class AccountCall extends React.Component {
   handleDarkMode = (color) => {
     this.props.darkMode(color);
   };
-  onEditProfile() {
+  async onEditProfile() {
     this.props.editProfile(this.state.userData);
     console.log(this.state.userData);
+    await this.props.getProfile();
   }
   onAddPhoneNumber() {
     let phone = this.state.phone;
@@ -130,9 +132,9 @@ class AccountCall extends React.Component {
       phone: e.target.value,
     });
   }
-  static getDerivedStateFromProps(props, state) {
+  /* static getDerivedStateFromProps(props, state) {
     props.getProfile();
-  }
+  }*/
   toggleVerification() {
     this.setState({
       verifictionBloc: true,

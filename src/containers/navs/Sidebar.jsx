@@ -15,6 +15,7 @@ class Sidebar extends React.Component {
       menuHover: false,
       menuOn: null,
       x: null,
+      link: null,
     };
   }
 
@@ -31,7 +32,7 @@ class Sidebar extends React.Component {
   }
   handleClick(x) {
     this.setState({
-      clicked: x,
+      x: x,
     });
   }
 
@@ -52,7 +53,7 @@ class Sidebar extends React.Component {
                   onMouseLeave={this.handleHoverOff.bind(this)}
                   onClick={this.handleClick.bind(this, x)}
                   className={`flex fdc aic jcc ${
-                    this.state.clicked === x ? "clicked" : ""
+                    this.state.x === x ? "clicked" : ""
                   }`}
                 >
                   <box-icon
@@ -60,7 +61,7 @@ class Sidebar extends React.Component {
                     type="solid"
                     color={
                       (this.state.menuHover && this.state.menuOn == x) ||
-                      this.state.clicked === x
+                      this.state.x === x
                         ? "#ffc371"
                         : "#8BA3FF"
                     }

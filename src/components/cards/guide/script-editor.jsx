@@ -139,7 +139,7 @@ class ScriptEditor extends React.Component {
     console.log(this.state.displayGuide);
   }
 
-  onAddGuide = () => {
+  onAddGuide = async () => {
     console.log({
       title: this.state.title,
       questions: this.state.questionsGuide.questions,
@@ -149,16 +149,17 @@ class ScriptEditor extends React.Component {
       questions: this.state.questionsGuide.questions,
       history: this.props.history,
     });
-    this.props.getGuide();
+    await this.props.getGuide();
   };
 
-  onUpdateGuide = () => {
+  onUpdateGuide = async () => {
     console.log(this.state.displayGuide);
     this.props.updateGuide({
       title: this.state.displayGuide.title,
       questions: this.state.displayGuide.questions,
       id: this.state.displayGuide._id,
     });
+    await this.props.getGuide();
   };
   removeItem(i) {
     let arr = this.state.questionsGuide.questions;
