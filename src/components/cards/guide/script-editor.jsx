@@ -24,7 +24,7 @@ import { InstalledAddOnExtensionPage } from "twilio/lib/rest/preview/marketplace
 
 // load theme styles with webpack
 require("medium-editor/dist/css/medium-editor.css");
-//require("medium-editor/dist/css/themes/default.css");
+require("medium-editor/dist/css/themes/beagle.css");
 const reorder = (list, startIndex, endIndex) => {
   const result = Array.from(list);
   const [removed] = result.splice(startIndex, 1);
