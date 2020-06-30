@@ -149,6 +149,7 @@ class ScriptCard extends React.Component {
   sendToHubspot() {
     console.log(this.props.call.callSid);
     console.log(this.props.call.leadId);
+    console.log(this.props.call.save_recording);
     console.log(this.state.notesResponse);
     console.log(this.state.meetingBooked);
   }

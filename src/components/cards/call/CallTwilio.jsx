@@ -30,6 +30,8 @@ class CallTwilio extends React.Component {
       general: true,
       endOfCall: false,
       audio: null,
+      leadStatus: null,
+      save_recording: false,
       emotions: {
         Happiness: "_ _",
         Fear: "_ _",
@@ -57,6 +59,9 @@ class CallTwilio extends React.Component {
     this.stopIt = this.stopIt.bind(this);
   }
 
+  handleChangeLeadStatus(leadStatus) {
+    this.setState();
+  }
   handleEndCall() {
     this.setState({ onPhone: !this.state.onPhone });
     Twilio.Device.disconnectAll();
@@ -69,8 +74,12 @@ class CallTwilio extends React.Component {
   handleCallSsid(ssid) {
     let callSid = ssid;
     let leadId = this.props.visibleLeadId.id;
-    this.props.endCall({ callSid, leadId });
+    let save_recording = this.state.save_recording;
+    this.props.endCall({ callSid, leadId, save_recording });
     console.log(ssid);
+  }
+  handlRecordCall() {
+    this.setState({ save_recording: !this.state.save_recording });
   }
   handleChangeEmotion(emotion) {
     if (emotion != undefined) {
@@ -371,7 +380,7 @@ class CallTwilio extends React.Component {
             <h5>Activity</h5>
           </div>
         </div>
-        {this.state.general ? (
+        {this.state.general && !this.props.call.callEnded && (
           <PerfectScrollbar>
             <div className="scroll-lead ">
               <div className="flex fdc aic jcc">
@@ -445,7 +454,8 @@ class CallTwilio extends React.Component {
               </div>
             </div>
           </PerfectScrollbar>
-        ) : (
+        )}{" "}
+        {!this.state.general && !this.props.call.callEnded && (
           <div className="emotions flex fdr aic jcc">
             <div className="emotion flex fdr aic jcfs">
               <img
@@ -489,51 +499,91 @@ class CallTwilio extends React.Component {
             </div>
           </div>
         )}
-        <div className="callSection flex fdr aic jcc">
-          <div className="callBloc flex fdc aic jcc ">
-            <div className="callIcon flex fdc aic jcc curs_pointer">
-              <img
-                className="float-right"
-                alt="empty-leads"
-                src={require("../../../assets/img/callRecord.svg")}
-              />
+        {this.props.call.callEnded && (
+          <div className="didWell flex fdc aic jcc margin-top25">
+            {" "}
+            <img
+              className="float-right"
+              alt="empty-leads"
+              src={require("../../../assets/img/hand_shake.svg")}
+            />
+            <h3>You did well</h3>
+            <div className="leadStatus flex fdc aifs jcc">
+              <h4>Lead status</h4>
             </div>
-            <p>Record</p>
-          </div>
-          <div className="callBloc flex fdc aic jcc">
-            <div className="callIcon flex fdc aic jcc curs_pointer">
-              <img
-                className="float-right"
-                alt="empty-leads"
-                src={require("../../../assets/img/bxs-microphone-off.svg")}
-              />
+            <div className="Status flex fdr aifs jcfs">
+              {leadStatus.map((status, i) => {
+                return (
+                  <div
+                    className={`StatusOne ${
+                      this.props.visibleLeadId.status === leadKey[i]
+                        ? "activeStatus"
+                        : ""
+                    } flex fdr aic jcc`}
+                  >
+                    {status}
+                  </div>
+                );
+              })}
             </div>
-            <p>Mute</p>
           </div>
-          <div className="callBloc flex fdc aic jcc">
-            <div className="callIcon flex fdc aic jcc curs_pointer">
-              <img
-                className="float-right"
-                alt="empty-leads"
-                src={require("../../../assets/img/bxs-time-five.svg")}
-              />
+        )}
+        {this.props.call.callEnded ? (
+          ""
+        ) : (
+          <div className="callSection flex fdr aic jcc">
+            <div className="callBloc flex fdc aic jcc ">
+              <div
+                className={`callIcon ${
+                  this.state.save_recording ? "callIconEnd" : ""
+                } flex fdc aic jcc curs_pointer`}
+                onClick={this.handlRecordCall.bind(this)}
+              >
+                <img
+                  className="float-right"
+                  alt="empty-leads"
+                  src={require(`../../../assets/img/${
+                    this.state.save_recording ? "record_on" : "record_off"
+                  }.svg`)}
+                />
+              </div>
+              <p>Record</p>
             </div>
-            <p>Later</p>
-          </div>
-          <div className="callBloc flex fdc aic jcc">
-            <div
-              className="callIcon callIconEnd flex fdc aic jcc curs_pointer"
-              onClick={this.handleEndCall.bind(this)}
-            >
-              <img
-                className="float-right"
-                alt="empty-leads"
-                src={require("../../../assets/img/bxs-phone-end.svg")}
-              />
+            <div className="callBloc flex fdc aic jcc">
+              <div className="callIcon flex fdc aic jcc curs_pointer">
+                <img
+                  className="float-right"
+                  alt="empty-leads"
+                  src={require("../../../assets/img/bxs-microphone-off.svg")}
+                />
+              </div>
+              <p>Mute</p>
             </div>
-            <p>End</p>
+            <div className="callBloc flex fdc aic jcc">
+              <div className="callIcon flex fdc aic jcc curs_pointer">
+                <img
+                  className="float-right"
+                  alt="empty-leads"
+                  src={require("../../../assets/img/bxs-time-five.svg")}
+                />
+              </div>
+              <p>Later</p>
+            </div>
+            <div className="callBloc flex fdc aic jcc">
+              <div
+                className="callIcon callIconEnd flex fdc aic jcc curs_pointer"
+                onClick={this.handleEndCall.bind(this)}
+              >
+                <img
+                  className="float-right"
+                  alt="empty-leads"
+                  src={require("../../../assets/img/bxs-phone-end.svg")}
+                />
+              </div>
+              <p>End</p>
+            </div>
           </div>
-        </div>
+        )}
       </div>
     );
   }
