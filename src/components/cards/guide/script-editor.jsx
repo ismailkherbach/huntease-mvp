@@ -274,7 +274,6 @@ class ScriptEditor extends React.Component {
                           className="prompt"
                           tag="pre"
                           //text={this.state.text}
-
                           /* These are the default options for anchor form,
                              if nothing is passed this is what it used */
                           placeholder
