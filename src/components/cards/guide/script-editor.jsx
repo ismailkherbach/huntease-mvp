@@ -40,7 +40,7 @@ class ScriptEditor extends React.Component {
       showStatus: false,
       searchField: "",
       displayGuide: [{ question: "" }],
-      title: "Give this guide a title",
+      title: "",
       text: "Write something",
       questionsGuide: { questions: [""] },
       updatedGuide: null,
@@ -144,11 +144,20 @@ class ScriptEditor extends React.Component {
       title: this.state.title,
       questions: this.state.questionsGuide.questions,
     });
-    this.props.addGuide({
-      title: this.state.title,
-      questions: this.state.questionsGuide.questions,
-      history: this.props.history,
-    });
+    if (this.state.title == "") {
+      let title = "GUIDE" + this.props.guide.guides.length + "_2020";
+      this.props.addGuide({
+        title: title,
+        questions: this.state.questionsGuide.questions,
+        history: this.props.history,
+      });
+    } else {
+      this.props.addGuide({
+        title: this.state.title,
+        questions: this.state.questionsGuide.questions,
+        history: this.props.history,
+      });
+    }
     await this.props.getGuide();
   };
 
@@ -163,16 +172,20 @@ class ScriptEditor extends React.Component {
   };
   removeItem(i) {
     let arr = this.state.questionsGuide.questions;
-    arr.splice(i, 1);
-    console.log(arr);
-    this.setState({ arr });
+    if (arr.length > 1) {
+      arr.splice(i, 1);
+      console.log(arr);
+      this.setState({ arr });
+    }
   }
 
   removeItemUpdate(i) {
     let arr = this.state.displayGuide.questions;
-    arr.splice(i, 1);
-    console.log(arr);
-    this.setState({ arr });
+    if (arr.length > 1) {
+      arr.splice(i, 1);
+      console.log(arr);
+      this.setState({ arr });
+    }
   }
   onDragEndNew(result) {
     console.log(this.state.questionsGuide.questions);
@@ -271,16 +284,21 @@ class ScriptEditor extends React.Component {
                             },
                           }}
                         />
-                        <img
-                          className="curs_pointer"
-                          src={require(`../../../assets/img/${
-                            this.state.deletePopupNew &&
-                            index === this.state.propmtIndex
-                              ? "deleteRed"
-                              : "delete"
-                          }.svg`)}
-                          onClick={this.toggleDeletePopupNew.bind(this, index)}
-                        />
+                        {this.state.questionsGuide.questions.length > 1 && (
+                          <img
+                            className="curs_pointer"
+                            src={require(`../../../assets/img/${
+                              this.state.deletePopupNew &&
+                              index === this.state.propmtIndex
+                                ? "deleteRed"
+                                : "delete"
+                            }.svg`)}
+                            onClick={this.toggleDeletePopupNew.bind(
+                              this,
+                              index
+                            )}
+                          />
+                        )}
                         <img
                           className="option"
                           src={require("../../../assets/img/drag.svg")}
@@ -395,16 +413,18 @@ class ScriptEditor extends React.Component {
                         }}
                       />
 
-                      <img
-                        className="optionDrag curs_pointer"
-                        src={require(`../../../assets/img/${
-                          this.state.deletePopup &&
-                          index === this.state.propmtIndex
-                            ? "deleteRed"
-                            : "delete"
-                        }.svg`)}
-                        onClick={this.toggleDeletePopup.bind(this, index)}
-                      />
+                      {this.state.displayGuide.questions.length > 1 && (
+                        <img
+                          className="optionDrag curs_pointer"
+                          src={require(`../../../assets/img/${
+                            this.state.deletePopup &&
+                            index === this.state.propmtIndex
+                              ? "deleteRed"
+                              : "delete"
+                          }.svg`)}
+                          onClick={this.toggleDeletePopup.bind(this, index)}
+                        />
+                      )}
                       <img
                         className="option"
                         src={require("../../../assets/img/drag.svg")}
