@@ -15,8 +15,12 @@ export default class Dashboard extends React.Component {
     return (
       <Fragment>
         <div className="Dashboard">
-          <div className="Dashboard-container flex fdc aic jcc">
-            <h2>Comming soon.!</h2>
+          <div className="Dashboard-container flex fdr aic jcc">
+            <Performance />
+            <Calls />
+            <Meetings />
+            <Engagement />
+            <TopSales />
           </div>
         </div>
         {/*  <div className="inlineBtn-center">

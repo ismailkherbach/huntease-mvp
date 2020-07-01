@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import IntlMessages from "../../../helpers/IntlMessages";
-import { UncontrolledCollapse } from "reactstrap";
+import { UncontrolledCollapse, Button } from "reactstrap";
 import { meetings } from "../../../constants/meetings";
 import PerfectScrollbar from "react-perfect-scrollbar";
 import {
@@ -14,20 +14,20 @@ import Btn from "./../../small.componenets/Btn";
 const Meetings = ({ children }) => {
   return (
     <Fragment>
-      <div id="meetings">
-        <h1 id="card-title-right" className="float-right">
-          Total: 20
-        </h1>
-
-        <h1 id="card-title">
-          {" "}
-          <IntlMessages id="meeting" />
-        </h1>
-        <div className="inlineBtn-center">
-          <Btn class={clickedDateLarge}>This week</Btn>
-          <Btn class={unclickedDateLarge}>This month</Btn>
+      <div className="PerMetBloc">
+        <div className="topBloc flex fdr aic jcfs">
+          <h2>Meetings</h2>
+          <h4>350</h4>
         </div>
-        <PerfectScrollbar>
+        <div className="toggleBloc flex fdr aic jcc">
+          <Button className="toggle toggleCalls flex fdc aic jcc">
+            This week
+          </Button>
+          <Button className="toggle toggleCalls toggleActive flex fdc aic jcc">
+            this month
+          </Button>
+        </div>
+        {/*  <PerfectScrollbar>
           {" "}
           <div className="scroll-meeting disable-select">
             <div className="meeting-list">
@@ -63,7 +63,7 @@ const Meetings = ({ children }) => {
               })}
             </div>
           </div>
-        </PerfectScrollbar>
+            </PerfectScrollbar>*/}
       </div>
     </Fragment>
   );

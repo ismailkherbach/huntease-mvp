@@ -21,14 +21,13 @@ class TopSales extends React.Component {
     const { topSales } = this.props.dashboard;
     return (
       <Fragment>
-        <div id="top-weekly-performers">
-          <h1 id="card-title">
-            {" "}
-            <IntlMessages id="topweeklyperformers" />
-          </h1>
-          <PerfectScrollbar>
+        <div className="TopPerBloc">
+          <div className="topBloc flex fdr aic jcfs">
+            <h2>Top Weekly Performers</h2>
+          </div>
+          {/*    <PerfectScrollbar>
             <div className="scroll-topweekly topsale">
-              {topSalers.map(topSaler => {
+              {topSalers.map((topSaler) => {
                 return (
                   <Row className="no-gutters mx-0">
                     <Col className="col-1 mx-4">
@@ -51,6 +50,7 @@ class TopSales extends React.Component {
               })}
             </div>
           </PerfectScrollbar>
+            */}{" "}
         </div>
       </Fragment>
     );
@@ -59,9 +59,9 @@ class TopSales extends React.Component {
 
 const mapStateToProps = ({ dashboard }) => {
   return {
-    dashboard
+    dashboard,
   };
 };
 export default connect(mapStateToProps, {
-  getTeam
+  getTeam,
 })(TopSales);

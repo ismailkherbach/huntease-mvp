@@ -3,7 +3,7 @@ import IntlMessages from "../../../helpers/IntlMessages";
 import CircleChart from "../../chart/Circle";
 import ButtonDate from "../../small.componenets/Btn";
 import { unclickedDate, clickedDate } from "../../../constants/buttonStatus";
-import { Row, Col } from "reactstrap";
+import { Row, Col, Button } from "reactstrap";
 import { connect } from "react-redux";
 import { getEngagement } from "../../../redux/actions";
 
@@ -19,63 +19,54 @@ class Engagement extends React.Component {
       answeredCalls,
       talkDuration,
       callsPastTwo,
-      conversionRate
+      conversionRate,
     } = this.props.dashboard;
     return (
-      <div id="engagement-rate">
+      <div className="EngBloc">
         {" "}
-        <Row>
-          <Col>
-            <h1 id="card-title">
-              {" "}
-              <IntlMessages id="engagementRate" />
-            </h1>
-          </Col>
-          <Col>
-            <div className="inlineBtn-right mt-2 mr-4">
-              <ButtonDate class={unclickedDate}>Daily</ButtonDate>
-              <ButtonDate class={clickedDate}>Weekly</ButtonDate>
-              <ButtonDate class={unclickedDate}>Monthly</ButtonDate>
-            </div>
-          </Col>
-        </Row>
-        <Row className="mt-4 ml-4">
-          <Col>
+        <div className="topBloc flex fdr aic jcc">
+          <h2>Engagement Rate</h2>
+          <div className="toggleBloc flex fdr aic jcc">
+            <Button className="toggle flex fdc aic jcc">Daily</Button>
+            <Button className="toggle flex fdc aic jcc">Weekly</Button>
+            <Button className="toggle toggleActive flex fdc aic jcc">
+              Monthly
+            </Button>
+          </div>
+        </div>
+        <div className="rightSection flex fdr aic jcc">
+          <div>
             <CircleChart />
-          </Col>
-          <Col className="no-gutters mx-0 col-3">
-            <div className="stats">
-              <div className="inlineBtn-left">
-                <img
-                  alt="pt"
-                  src={require("../../../assets/img/blue_pt.png")}
-                />
-                <p>Answered calls</p>
-              </div>
-              <h3>{answeredCalls}</h3>
+          </div>
+          <div className="section flex fdc aifs jcc">
+            <div className="flex fdr aic jcc">
+              <img alt="pt" src={require("../../../assets/img/blue_pt.png")} />
+              <h5>Answered calls</h5>
             </div>
-            <div className="stats pt-4">
-              <p>Talk duration</p>
-              <h3>{talkDuration}</h3>
+            <h2>{answeredCalls}</h2>
+
+            <div className="flex fdc aifs jcc">
+              <h5>Talk duration</h5>
+              <h2>{talkDuration}</h2>
             </div>
-          </Col>
-          <Col className="no-gutters mx-0">
-            <div className="stats">
-              <div className="inlineBtn-left">
-                <img
-                  alt="pt"
-                  src={require("../../../assets/img/orange_pt.png")}
-                />
-                <p>Calls past 2 minutes</p>
-              </div>
-              <h3>{callsPastTwo}</h3>
+          </div>
+
+          <div className="flex fdc aifs jcc">
+            <div className="flex fdr aic jcfs">
+              <img
+                alt="pt"
+                src={require("../../../assets/img/orange_pt.png")}
+              />
+              <h5>Calls past 2 minutes</h5>
             </div>
-            <div className="stats pt-4">
-              <p>Conversion Rate</p>
-              <h3>{conversionRate}</h3>
+            <h2>{callsPastTwo}</h2>
+
+            <div className="flex fdc aifs jcc">
+              <h5>Conversion Rate</h5>
+              <h2>{conversionRate}</h2>
             </div>
-          </Col>
-        </Row>
+          </div>
+        </div>
       </div>
     );
   }
@@ -83,9 +74,9 @@ class Engagement extends React.Component {
 
 const mapStateToProps = ({ dashboard }) => {
   return {
-    dashboard
+    dashboard,
   };
 };
 export default connect(mapStateToProps, {
-  getEngagement
+  getEngagement,
 })(Engagement);

@@ -305,9 +305,10 @@ class PerformanceGraph extends Component {
   render() {
     return (
       <div>
-        <div className="mx-0 mt-0">
+        <div className="graph">
           <Line
             height={220}
+            width={400}
             id="canvas"
             data={{
               labels: this.props.lineLabels,

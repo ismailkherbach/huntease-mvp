@@ -524,14 +524,137 @@ body {
   }
 }
 .Dashboard {
-  margin: 31px 0 0 60px;
+  margin: 32px 0 0 60px;
   .Dashboard-container {
     height: 38.9375em;
-    width: 71.4375em;
-    background-color: white;
-    border-radius: $border-radius-button;
-    box-shadow: $box-shadow;
+    width: 73.125rem;
+    flex-wrap: wrap;
+    //background-color: white;
+    //   border-radius: $border-radius-button;
+    //box-shadow: $box-shadow;
     position: relative;
+    .topBloc {
+      width: 100%;
+      padding: 20px 0 14px 24px;
+      & h2 {
+        color: $huntease-titles;
+        line-height: normal;
+        margin: 0;
+        font-size: 18px;
+        font-weight: $bold;
+        width: 85%;
+      }
+      & h4 {
+        color: $huntease-medium;
+        font-weight: $bold;
+        margin: 0;
+      }
+    }
+    .toggleBloc {
+      .toggle {
+        width: unset;
+        height: 1.625rem;
+        border-radius: 9px;
+        background-color: #c5d1ff;
+        color: $huntease-main;
+        font-size: 12px;
+        border: none;
+        margin: 0 6px 0 6px;
+        padding: 0 8px 0 8px;
+        -webkit-border-radius: 9px;
+        -moz-border-radius: 9px;
+        -ms-border-radius: 9px;
+        -o-border-radius: 9px;
+      }
+      & .toggleActive {
+        background-color: #e8edff;
+        color: #8ba3ff;
+      }
+      & .toggleCalls {
+        padding: 0 25px 0 25px;
+      }
+      & .compare {
+        margin: 0 0 0 7.6rem;
+        color: white;
+        background-color: #ffb58d;
+        padding: 0 13px 0 13px;
+      }
+      .graph {
+        width: 100%;
+        overflow-x: hidden;
+        overflow: hidden;
+      }
+    }
+    .PerMetBloc {
+      width: 23.4375rem;
+      height: 19.6875rem;
+      overflow-x: hidden;
+      overflow: hidden;
+      background-color: white;
+      border-radius: $border-radius-button;
+      box-shadow: $box-shadow;
+    }
+
+    .CallBloc {
+      height: 19.6875rem;
+      width: 22.5rem;
+      overflow-x: hidden;
+      overflow: hidden;
+      background-color: white;
+      border-radius: $border-radius-button;
+      box-shadow: $box-shadow;
+      margin: 0 30px 0 30px;
+    }
+
+    .EngBloc {
+      width: 42.875rem;
+      height: 17.5rem;
+      background-color: white;
+      border-radius: $border-radius-button;
+      box-shadow: $box-shadow;
+      margin: 34px 0px 0 0px;
+      .rightSection {
+        & h2 {
+          padding: 0px 0 30px 0;
+          color: $huntease-medium;
+          line-height: normal;
+          font-size: 28px;
+          font-weight: $light;
+          //margin: 0;
+          width: 100%;
+        }
+      }
+      & h2 {
+        color: $huntease-titles;
+        line-height: normal;
+        margin: 0;
+        font-size: 18px;
+        font-weight: $bold;
+        width: 70%;
+        //padding: 0px 0 40px 0;
+      }
+      & img {
+        margin: 15px 4px 0 4px;
+      }
+
+      & h5 {
+        color: $huntease-titles;
+        margin: 0;
+        padding: 15px 0 0 0;
+      }
+      .section {
+        margin: 0 4.375rem 0 4.375rem;
+      }
+    }
+
+    .TopPerBloc {
+      width: 28.5rem;
+      height: 17.5rem;
+      background-color: white;
+      border-radius: $border-radius-button;
+      box-shadow: $box-shadow;
+      margin: 34px 0px 0 25px;
+    }
     & h2 {
       font-weight: $bold;
       color: $huntease-main;

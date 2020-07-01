@@ -10,6 +10,7 @@ import {
 import IntlMessages from "../../../helpers/IntlMessages";
 import { connect } from "react-redux";
 import { getCalls } from "../../../redux/actions";
+import { Button } from "reactstrap";
 class Calls extends React.Component {
   constructor(props) {
     super(props);
@@ -24,18 +25,18 @@ class Calls extends React.Component {
     const { barData, barLabels } = this.props.dashboard;
     return (
       <Fragment>
-        <div id="calls">
-          {" "}
-          <h1 id="card-title-right" className="float-right">
-            Total: 605
-          </h1>{" "}
-          <h1 id="card-title">
-            {" "}
-            <IntlMessages id="calls" />
-          </h1>
-          <div className="inlineBtn-center">
-            <Btn class={clickedDateLarge}>This week</Btn>
-            <Btn class={unclickedDateLarge}>This month</Btn>
+        <div className="CallBloc">
+          <div className="topBloc flex fdr aic jcfs">
+            <h2>Calls</h2>
+            <h4>350</h4>
+          </div>
+          <div className="toggleBloc flex fdr aic jcc">
+            <Button className="toggle toggleCalls flex fdc aic jcc">
+              This week
+            </Button>
+            <Button className="toggle toggleCalls toggleActive flex fdc aic jcc">
+              this month
+            </Button>
           </div>
           {barData && barLabels && (
             <BarChart barData={barData} barLabels={barLabels} />

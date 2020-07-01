@@ -5,6 +5,7 @@ import ButtonDate from "../../small.componenets/Btn";
 import { unclickedDate, clickedDate } from "../../../constants/buttonStatus";
 import { connect } from "react-redux";
 import { getPerformance } from "../../../redux/actions";
+import { Button } from "reactstrap";
 class Performance extends React.Component {
   constructor(props) {
     super(props);
@@ -21,19 +22,17 @@ class Performance extends React.Component {
 
     return (
       <Fragment>
-        <div id="performance" className="no-gutters mx-0">
-          {" "}
-          <h1 id="card-title-performance" className="float-right">
-            44,5%
-          </h1>
-          <h1 id="card-title">
-            {" "}
-            <IntlMessages id="performance" />
-          </h1>
-          <div className="inlineBtn-left">
-            <ButtonDate class={unclickedDate}>Weekly</ButtonDate>
-            <ButtonDate class={unclickedDate}>Monthly</ButtonDate>
-            <ButtonDate class={"compare-performance"}>Compare</ButtonDate>
+        <div className="PerMetBloc flex fdc aic">
+          <div className="topBloc flex fdr aic jcfs">
+            <h2>Performance</h2>
+            <h4>22%</h4>
+          </div>
+          <div className="toggleBloc flex fdr aic jcc">
+            <Button className="toggle flex fdc aic jcc">Weekly</Button>
+            <Button className="toggle toggleActive flex fdc aic jcc">
+              Monthly
+            </Button>
+            <Button className="toggle compare flex aic jcc">Compare</Button>
           </div>
           <PerformanceGraph lineData={lineData} lineLabels={lineLabels} />
         </div>
