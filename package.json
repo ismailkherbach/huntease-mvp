@@ -45,7 +45,8 @@
     "styled-components": "^5.1.0",
     "twilio": "^3.42.2",
     "twilio-client": "^1.10.1",
-    "websocket": "^1.0.31"
+    "websocket": "^1.0.31",
+    "woke-dyno": "^0.0.4"
   },
   "scripts": {
     "start": "HTTPS=true react-scripts start",
