@@ -145,7 +145,11 @@ class ScriptEditor extends React.Component {
       questions: this.state.questionsGuide.questions,
     });
     if (this.state.title == "") {
-      let title = "GUIDE" + this.props.guide.guides.length + "_2020";
+      var moment = require("moment-timezone");
+
+      var CurrentDate = moment().format();
+
+      let title = "GUIDE" + this.props.guide.guides.length + CurrentDate;
       this.props.addGuide({
         title: title,
         questions: this.state.questionsGuide.questions,
