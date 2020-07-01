@@ -196,25 +196,29 @@ class ScriptCard extends React.Component {
               </h3>
 
               <h3>Choose Guide</h3>
-              <div className="popupInner flex fdc">
-                {this.props.guide.guides
-                  ? !this.props.guide.isGuideEmpty &&
-                    this.props.guide.guides.map((guide, x) => {
-                      return (
-                        <div
-                          className="guidList flex fdr aic curs_pointer"
-                          onClick={this.guideCallback.bind(this, guide)}
-                        >
-                          <img
-                            src={require("../../../assets/img/bx-notepad.svg")}
-                          />
+              <PerfectScrollbar>
+                <div className="scroll-pickGuide">
+                  <div className="popupInner flex fdc">
+                    {this.props.guide.guides
+                      ? !this.props.guide.isGuideEmpty &&
+                        this.props.guide.guides.map((guide, x) => {
+                          return (
+                            <div
+                              className="guidList flex fdr aic curs_pointer"
+                              onClick={this.guideCallback.bind(this, guide)}
+                            >
+                              <img
+                                src={require("../../../assets/img/bx-notepad.svg")}
+                              />
 
-                          <h5>{guide.title}</h5>
-                        </div>
-                      );
-                    })
-                  : ""}
-              </div>
+                              <h5>{guide.title}</h5>
+                            </div>
+                          );
+                        })
+                      : ""}
+                  </div>
+                </div>
+              </PerfectScrollbar>
             </div>
           </div>
         ) : null}
