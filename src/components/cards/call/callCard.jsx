@@ -173,6 +173,26 @@ class CallCard extends React.Component {
   componentDidMount() {
     this.props.getLeads();
     console.log(this.props.call.leads);
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+      console.log("getUserMedia supported");
+      // target
+      navigator.mediaDevices
+        .getUserMedia({ audio: true })
+        /***** success callback ******/
+        // create a media stream
+        .then(function(stream) {
+          //if callback succeed, the following code will run :
+          // create a new Media Recorder instance
+          // with MediaRecorder() constructor
+          // this instance is the entry point
+          // into using the MediaRecorder API
+        }) /***** error callback *****/
+        .catch(function(err) {
+          console.log("error : " + err);
+        });
+    } else {
+      console.log("getUserMedia : missing");
+    }
     Twilio.Device.setup(JSON.parse(localStorage.getItem("twilioToken")), {
       debug: true,
       audioConstraints: { optional: [{ googAutoGainControl: false }] },

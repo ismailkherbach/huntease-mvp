@@ -9,7 +9,14 @@ class SettingsNav extends React.Component {
     super();
     this.state = {
       settingsMenu,
+      x: null,
     };
+  }
+
+  handleClick(x) {
+    this.setState({
+      x: x,
+    });
   }
 
   componentDidMount() {
@@ -21,9 +28,14 @@ class SettingsNav extends React.Component {
         {this.props.profile ? (
           <div className="Settings-navigation flex fdr aic jcc">
             {this.props.profile.role === "user"
-              ? this.state.settingsMenu.slice(0, 2).map((item) => {
+              ? this.state.settingsMenu.slice(0, 2).map((item, i) => {
                   return (
-                    <div className="settings-item flex aic jcc fdc">
+                    <div
+                      onClick={this.handleClick.bind(this, i)}
+                      className={`settings-item flex aic jcc fdc ${
+                        this.state.x === i ? "active" : ""
+                      }`}
+                    >
                       <Link style={{ textDecoration: "none" }} to={item.to}>
                         <h5>
                           <IntlMessages id={item.id} />
@@ -32,9 +44,15 @@ class SettingsNav extends React.Component {
                     </div>
                   );
                 })
-              : this.state.settingsMenu.slice(0, 5).map((item) => {
+              : this.state.settingsMenu.slice(0, 5).map((item, i) => {
                   return (
-                    <div className="settings-item flex aic jcc fdc">
+                    <div
+                      onClick={this.handleClick.bind(this, i)}
+                      className={`settings-item flex aic jcc fdc ${
+                        this.state.x === i ? "active" : ""
+                      }`}
+                    >
+                      {" "}
                       <Link style={{ textDecoration: "none" }} to={item.to}>
                         <h5>
                           <IntlMessages id={item.id} />

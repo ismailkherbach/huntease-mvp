@@ -71,7 +71,7 @@ class ApplicationCard extends React.Component {
               </div>
             )}
           </div>
-          <div className="App-card flex aic fdc jcc blured">
+          <div className="App-card flex aic fdc jcc blured disable-select">
             <div className="flex fdc aifs jcfs">
               <div className="flex fdr aifs jcfs">
                 <img
@@ -97,14 +97,14 @@ class ApplicationCard extends React.Component {
               </div>
             ) : (
               <div
-                className="integrate-button flex fdc aic jcc"
+                className="integrate-button flex fdc aic jcc disable-select"
                 onClick={this.togglePopup.bind(this)}
               >
                 + Integrate
               </div>
             )}
           </div>
-          <div className="App-card flex aic fdc jcc blured">
+          <div className="App-card flex aic fdc jcc blured disable-select">
             <div className="flex fdc aifs jcfs">
               <div className="flex fdr aifs jcfs">
                 <img
@@ -137,7 +137,7 @@ class ApplicationCard extends React.Component {
               </div>
             )}
           </div>
-          <div className="App-card flex aic fdc jcc blured">
+          <div className="App-card flex aic fdc jcc blured disable-select">
             <div className="flex fdc aifs jcfs">
               <div className="flex fdr aifs jcfs">
                 <img
@@ -171,7 +171,7 @@ class ApplicationCard extends React.Component {
             )}
           </div>
         </div>
-        <div className="Applications flex fdr aic jcfs">
+        <div className="Applications flex fdr aic jcfs disable-select">
           <div className="App-card flex aic fdc jcc blured">
             <div className="flex fdc aifs jcfs">
               <div className="flex fdr aifs jcfs">

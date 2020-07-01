@@ -741,9 +741,17 @@ body {
       border-radius: 15px 15px 0 0;
       background-color: white;
       margin: 0 0 -15px 5px;
+
       & h5 {
         font-weight: $regular;
         color: $huntease-medium;
+      }
+    }
+    & .active {
+      margin: 0 0 -10px 5px;
+      & h5 {
+        font-weight: $regular;
+        color: $huntease-main;
       }
     }
   }
