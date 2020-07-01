@@ -195,11 +195,7 @@ class CallCard extends React.Component {
     }
     Twilio.Device.setup(JSON.parse(localStorage.getItem("twilioToken")), {
       debug: true,
-      audioConstraints: {
-        audioConstraints: true,
-        audioHelper: true,
-        pstream: true,
-      },
+      audioConstraints: true,
       audioHelper: true,
       pstream: true,
     });

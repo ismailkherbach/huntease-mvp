@@ -141,9 +141,9 @@ class CallTwilio extends React.Component {
     //console.log(localStorage.getItem("twilioToken"));
     Twilio.Device.setup(JSON.parse(localStorage.getItem("twilioToken")), {
       debug: true,
-      //  audioConstraints: true,
-      // audioHelper: true,
-      //pstream: true,
+      audioConstraints: true,
+      audioHelper: true,
+      pstream: true,
     });
 
     /*await axios
