@@ -115,16 +115,16 @@ function* addSchedules({ payload }) {
   }
 }
 
-const exportCallAsync = async ({
+const exportCallAsync = async (
   CallSid,
   leadId,
   notes,
   save_recording,
-  lead_status,
-}) =>
+  lead_status
+) =>
   await axios({
     method: "post",
-    url: API_URL + `integration/postCall`,
+    url: API_URL + "integration/postCall",
     data: {
       CallSid: CallSid,
       leadId: leadId,
@@ -138,6 +138,7 @@ const exportCallAsync = async ({
   });
 function* exportCall({ payload }) {
   const { CallSid, leadId, notes, save_recording, lead_status } = payload;
+  console.log(payload);
   try {
     const addResponse = yield call(
       exportCallAsync,
