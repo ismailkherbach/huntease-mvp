@@ -31,12 +31,15 @@ class SettingsNav extends React.Component {
               ? this.state.settingsMenu.slice(0, 2).map((item, i) => {
                   return (
                     <div
-                      onClick={this.handleClick.bind(this, i)}
                       className={`settings-item flex aic jcc fdc ${
                         this.state.x === i ? "active" : ""
                       }`}
                     >
-                      <Link style={{ textDecoration: "none" }} to={item.to}>
+                      <Link
+                        onClick={this.handleClick.bind(this, i)}
+                        style={{ textDecoration: "none" }}
+                        to={item.to}
+                      >
                         <h5>
                           <IntlMessages id={item.id} />
                         </h5>
@@ -47,13 +50,16 @@ class SettingsNav extends React.Component {
               : this.state.settingsMenu.slice(0, 5).map((item, i) => {
                   return (
                     <div
-                      onClick={this.handleClick.bind(this, i)}
                       className={`settings-item flex aic jcc fdc ${
                         this.state.x === i ? "active" : ""
                       }`}
                     >
                       {" "}
-                      <Link style={{ textDecoration: "none" }} to={item.to}>
+                      <Link
+                        onClick={this.handleClick.bind(this, i)}
+                        style={{ textDecoration: "none" }}
+                        to={item.to}
+                      >
                         <h5>
                           <IntlMessages id={item.id} />
                         </h5>
