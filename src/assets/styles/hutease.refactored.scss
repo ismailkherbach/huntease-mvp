@@ -327,22 +327,29 @@ body {
   //position: fixed;
   padding-top: 25px;
   // padding: 40px 0 0 60px;
-  & h3 {
-    font-size: 1.8125em;
-    font-weight: $light;
-    color: white;
-    margin: 0;
-    opacity: 0.3;
-    width: 71%;
+  .navcontainer {
+    width: 72rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    & h3 {
+      font-size: 1.8125em;
+      font-weight: $light;
+      color: white;
+      margin: 0;
+      opacity: 0.3;
+      width: 62.5rem;
+    }
+    & h5 {
+      color: white;
+      font-weight: $regular;
+    }
   }
   & img {
     width: 44px;
-    margin-right: 80px;
+    margin-right: 5rem;
   }
-  & h5 {
-    color: white;
-    font-weight: $regular;
-  }
+
   .avatar {
     width: 40px;
     height: 40px;

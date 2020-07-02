@@ -37,30 +37,32 @@ class Topnav extends React.Component {
           id="logo"
           src={require("../../assets/img/huntease_logo_icon_white.png")}
         />
-        <h3 className="d-inline-block greeting">
-          Good morning{" "}
-          {this.props.profile &&
-            this.props.profile.firstName.charAt(0).toUpperCase() +
-              this.props.profile.firstName.slice(1) +
-              " " +
-              this.props.profile.lastName}
-        </h3>
+        <div className="navcontainer flex fdr aic jcc">
+          <h3 className="d-inline-block greeting">
+            Good morning{" "}
+            {this.props.profile &&
+              this.props.profile.firstName.charAt(0).toUpperCase() +
+                this.props.profile.firstName.slice(1) +
+                " " +
+                this.props.profile.lastName}
+          </h3>
 
-        {this.props.profile ? (
-          <h5>
-            {this.props.profile.firstName.charAt(0).toUpperCase() +
-              this.props.profile.firstName.slice(1) +
-              " " +
-              this.props.profile.lastName}
-          </h5>
-        ) : (
-          ""
-        )}
-        <img
-          alt={"logo"}
-          className="avatar"
-          src={`https://huntease-mvp.herokuapp.com/v1/uploads/${this.props.profile.picture}`}
-        />
+          {this.props.profile ? (
+            <h5>
+              {this.props.profile.firstName.charAt(0).toUpperCase() +
+                this.props.profile.firstName.slice(1) +
+                " " +
+                this.props.profile.lastName}
+            </h5>
+          ) : (
+            ""
+          )}
+          <img
+            alt={"logo"}
+            className="avatar"
+            src={`https://huntease-mvp.herokuapp.com/v1/uploads/${this.props.profile.picture}`}
+          />
+        </div>
       </div>
     );
   }
