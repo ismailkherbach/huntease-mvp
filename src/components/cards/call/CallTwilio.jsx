@@ -6,6 +6,7 @@ import AudioAnalyser from "./AudioAnalyser";
 import { w3cwebsocket as W3CWebSocket } from "websocket";
 import { endCall, changeLeadStatus } from "../../../redux/actions";
 import { connect } from "react-redux";
+import Timer from "react-compound-timer";
 
 const Twilio = require("twilio-client");
 
@@ -50,6 +51,7 @@ class CallTwilio extends React.Component {
           "https://huntease-mvp.herokuapp.com/v1/uploads/5ecd0f9a2fb22200171d7011",
         status: "NEW",
         website: null,
+        callStatus: null,
       },
     };
     this.handleToggleCall = this.handleToggleCall.bind(this);
@@ -64,6 +66,25 @@ class CallTwilio extends React.Component {
     let lead_status = leadStatus;
     console.log(lead_status);
     this.props.changeLeadStatus({ lead_status });
+  }
+
+  handleCallStatus(status) {
+    if ((status = "call_ringing")) {
+      this.setState({
+        callStatus: "Ringing",
+      });
+    }
+
+    if ((status = "call_failed")) {
+      this.setState({
+        callStatus: "Failed",
+      });
+    }
+    if ((status = "Call_emotions")) {
+      this.setState({
+        callStatus: "Call_emotions",
+      });
+    }
   }
   handleEndCall() {
     this.setState({ onPhone: !this.state.onPhone });
@@ -280,12 +301,20 @@ class CallTwilio extends React.Component {
       console.log(emotionPacket);
       if (response.type == "call_emotions") {
         if (response.data != undefined) this.handleChangeEmotion(response.data);
+        let status = "Call_emotions";
+        this.handleCallStatus(status);
       }
       if (response.type === "recording_ready") {
         this.handleCallSsid(response.data.callSid);
       }
       if (response.type === "call_failed") {
+        let status = "call_faild";
+        this.handleCallStatus(status);
         this.handleCallSsid(response.data.callSid);
+      }
+      if (response.type === "call_ringing") {
+        let status = "call_ringing";
+        this.handleCallStatus(status);
       }
 
       //this.handleChangeEmotion(emotionPacket.data)
@@ -369,7 +398,19 @@ class CallTwilio extends React.Component {
               this.props.visibleLeadId.lastName.split("(")[0]}
           </h2>
           <h5>{this.props.visibleLeadId.jobtitle}</h5>
-          <h3>00:22</h3>
+          {this.state.callStatus === "Failed" && <h3>Ringing</h3>}
+          {this.state.callStatus === "Call_emotions" && (
+            <Timer initialTime={0}>
+              {() => (
+                <React.Fragment>
+                  <h3>
+                    <Timer.Minutes />:
+                    <Timer.Seconds />
+                  </h3>
+                </React.Fragment>
+              )}
+            </Timer>
+          )}
           <div className="toggleWindow flex fdr aic jcc">
             <h5 className="curs_pointer" onClick={this.handleToggleGeneral}>
               General info

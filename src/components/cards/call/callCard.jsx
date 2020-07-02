@@ -170,8 +170,8 @@ class CallCard extends React.Component {
   onSyncLeads() {
     this.props.syncLeads();
   }
-  componentDidMount() {
-    this.props.getLeads();
+  async componentDidMount() {
+    await this.props.getLeads();
     console.log(this.props.call.leads);
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
       console.log("getUserMedia supported");
