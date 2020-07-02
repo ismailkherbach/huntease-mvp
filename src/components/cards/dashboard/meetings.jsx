@@ -27,43 +27,54 @@ const Meetings = ({ children }) => {
             this month
           </Button>
         </div>
-        {/*  <PerfectScrollbar>
-          {" "}
-          <div className="scroll-meeting disable-select">
-            <div className="meeting-list">
-              {meetings.map((meetingList) => {
-                return (
-                  <ul>
-                    <div className="inlineBtn-left">
-                      <div className="inlineBtn-date">
-                        <h4 className="mr-3 pb-0"> Juin</h4>
-                        <p className="mr-3 pb-0"> 19</p>
+        {
+          <PerfectScrollbar>
+            {" "}
+            <div className="scroll-meeting disable-select">
+              <div className="meeting-list">
+                {meetings.map((meetingList) => {
+                  return (
+                    <div>
+                      <div
+                        className="flex fdr aic jcfs margin-top10 curs_pointer"
+                        id={"toggler" + meetingList.id}
+                      >
+                        <h4 className="mr-4 pb-0">
+                          <span className="Bold Cmain txtc flex fdr aic jcc fs11">
+                            JUIN
+                          </span>
+                          <span className="Bold Cmain txtc flex fdr aic jcc fs17">
+                            19
+                          </span>
+                        </h4>
+                        <h4>{meetingList.meetingsNumber + " Meetings"}</h4>
                       </div>
-                      <h4 id={"toggler" + meetingList.id}>
-                        {meetingList.meetingsNumber + " MEETINGS"}
-                      </h4>
-                    </div>
-                    <UncontrolledCollapse toggler={"toggler" + meetingList.id}>
-                      <li className="ml-5">
+                      <UncontrolledCollapse
+                        toggler={"toggler" + meetingList.id}
+                      >
                         {meetingList.meetingsInfo.map((info) => {
                           return (
-                            <li>
-                              <p className="mr-4">{info.time + " AM"}</p>
-                              <li>
-                                <li id="title">{info.name}</li>
-                                <li>{info.title}</li>
-                              </li>
-                            </li>
+                            <div className="mettingInfos flex fdr aifs jcfs">
+                              <h5>{info.time + " AM"}</h5>
+                              <div className="flex fdc aifs jcfs">
+                                <h5>
+                                  <span className="Bold Cmain">
+                                    {info.name}
+                                  </span>
+                                </h5>
+                                <h5>{info.title}</h5>
+                              </div>
+                            </div>
                           );
                         })}
-                      </li>
-                    </UncontrolledCollapse>
-                  </ul>
-                );
-              })}
+                      </UncontrolledCollapse>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
-          </div>
-            </PerfectScrollbar>*/}
+          </PerfectScrollbar>
+        }
       </div>
     </Fragment>
   );

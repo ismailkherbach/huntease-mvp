@@ -450,7 +450,8 @@ class ScriptEditor extends React.Component {
 
   onResetGuide() {
     this.setState({
-      questionsGuide: { questions: [""] },
+      questionsGuide: { questions: ["hhhh"] },
+      title: "",
     });
   }
   onNewGuide() {
@@ -558,7 +559,7 @@ class ScriptEditor extends React.Component {
                 <Editor
                   className="Title"
                   tag="pre"
-                  // text={this.state.title}
+                  text={this.state.displayGuide.title}
                   onChange={this.handleChangeTitle}
                   options={{
                     toolbar: { buttons: ["bold", "italic", "underline"] },

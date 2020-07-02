@@ -86,6 +86,15 @@ $height-auth-inputs: 43px;
   .forder#{$i} {
     order: #{$i};
   }
+  .fs#{$i} {
+    font-size: #{$i}px;
+  }
+}
+
+@for $i from 0 through 100 {
+  .forder#{$i} {
+    order: #{$i};
+  }
   .margin-top#{5 * $i} {
     margin-top: #{5 * $i}px;
   }
@@ -135,6 +144,10 @@ $height-auth-inputs: 43px;
 }
 .Bold {
   font-weight: $bold;
+}
+
+.txtc {
+  text-align: center;
 }
 
 .scroll-team {
@@ -189,6 +202,14 @@ $height-auth-inputs: 43px;
   overflow-y: scroll;
   overflow-x: hidden;
 }
+
+.scroll-meeting {
+  margin-right: unset;
+  height: 14.2rem;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
 .scroll-pickGuide {
   margin-right: unset;
   height: 25rem;
