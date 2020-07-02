@@ -41,6 +41,7 @@ class AccountCall extends React.Component {
       verifictionBloc: false,
       verifictionSuccess: false,
       timeZones: null,
+      changePhone: false,
     };
     this.handleImageChange = this.handleImageChange.bind(this);
     this.uploadPicture = this.uploadPicture.bind(this);
@@ -67,6 +68,11 @@ class AccountCall extends React.Component {
     //  this.state.image = null;
   }
 
+  toggleChange() {
+    this.setState({
+      changePhone: !this.state.changePhone,
+    });
+  }
   handleSubmit(e) {
     e.preventDefault();
     this.uploadPicture({
@@ -375,18 +381,35 @@ class AccountCall extends React.Component {
                   Huntease allows you to make cold-calls directly using your
                   phone number.
                 </p>
-                <div className="full-input flex fdr aic jcc">
-                  <input
-                    placeholder="054213798"
-                    onChange={this.handleChangePhone.bind(this)}
-                  />{" "}
-                  <Button
-                    className="Change-profile-btn"
-                    onClick={this.onAddPhoneNumber.bind(this)}
-                  >
-                    Change
-                  </Button>
-                </div>
+                {this.state.changePhone ? (
+                  <div className="full-input flex fdr aic jcc">
+                    <input
+                      placeholder="054213798"
+                      onChange={this.handleChangePhone.bind(this)}
+                    />
+                    <Button
+                      className="Change-profile-btn"
+                      onClick={this.onAddPhoneNumber.bind(this)}
+                    >
+                      Change
+                    </Button>
+                  </div>
+                ) : (
+                  <div className="full-input flex fdr aic jcc">
+                    <input
+                      placeholder="054213798"
+                      onChange={this.handleChangePhone.bind(this)}
+                      disabled
+                    />
+
+                    <Button
+                      className="Change-profile-btn"
+                      onClick={this.toggleChange.bind(this)}
+                    >
+                      Change
+                    </Button>
+                  </div>
+                )}
               </div>
             </div>
           </div>

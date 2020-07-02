@@ -544,7 +544,7 @@ class ScriptCard extends React.Component {
                                     // onClick={this.toggleAddSchedule.bind(this)}
                                     className=""
                                     alt="no-guide"
-                                    src={require("../../../assets/img/male.svg")}
+                                    src={require("../../../assets/img/anjali.svg")}
                                   />
                                   <a
                                     target="_blank"
