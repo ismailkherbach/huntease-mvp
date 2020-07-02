@@ -6,8 +6,8 @@ export const meetings = [
     meetingsInfo: [
       { time: "9:30", name: "Ismail kherbach", title: "CEO At Huntease" },
       { time: "9:30", name: "Nazim Zidi", title: "Software enginner" },
-      { time: "9:30", name: "Mustapha amine mansour", title: "Designer" }
-    ]
+      { time: "9:30", name: "Hafsa nefouci", title: "Designer" },
+    ],
   },
 
   {
@@ -17,8 +17,8 @@ export const meetings = [
     meetingsInfo: [
       { time: "9:30", name: "Ismail kherbach", title: "CEO At Huntease" },
       { time: "9:30", name: "Nazim Zidi", title: "Software enginner" },
-      { time: "9:30", name: "Mustapha amine mansour", title: "Designer" }
-    ]
+      { time: "9:30", name: "Hafsa nefouci", title: "Designer" },
+    ],
   },
 
   {
@@ -28,8 +28,8 @@ export const meetings = [
     meetingsInfo: [
       { time: "9:30", name: "Ismail kherbach", title: "CEO At Huntease" },
       { time: "9:30", name: "Nazim Zidi", title: "Software enginner" },
-      { time: "9:30", name: "Mustapha amine mansour", title: "Designer" }
-    ]
+      { time: "9:30", name: "Hafsa nefouci", title: "Designer" },
+    ],
   },
   {
     id: "4",
@@ -38,8 +38,8 @@ export const meetings = [
     meetingsInfo: [
       { time: "9:30", name: "Ismail kherbach", title: "CEO At Huntease" },
       { time: "9:30", name: "Nazim Zidi", title: "Software enginner" },
-      { time: "9:30", name: "Mustapha amine mansour", title: "Designer" }
-    ]
+      { time: "9:30", name: "Hafsa nefouci", title: "Designer" },
+    ],
   },
   {
     id: "5",
@@ -48,7 +48,7 @@ export const meetings = [
     meetingsInfo: [
       { time: "9:30", name: "Ismail kherbach", title: "CEO At Huntease" },
       { time: "9:30", name: "Nazim Zidi", title: "Software enginner" },
-      { time: "9:30", name: "Mustapha amine mansour", title: "Designer" }
-    ]
-  }
+      { time: "9:30", name: "Hafsa nefouci", title: "Designer" },
+    ],
+  },
 ];
