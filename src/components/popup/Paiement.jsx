@@ -14,10 +14,6 @@ import axios from "axios";
 import { connect } from "react-redux";
 import { pay } from "../../redux/actions";
 
-const stripePromise = loadStripe(
-  "pk_test_51GqdyRBXLsKUPQbHXGJsCSA9tJYHPpXDa8Y8dChs4dW20yeQh3HT55oiMNmysRhogzBHWKSHvfCWr5DF9KlkKyfk00CQF8DBeX"
-);
-
 class PaimentPopup extends React.Component {
   constructor(props) {
     super(props);
@@ -62,6 +58,12 @@ class PaimentPopup extends React.Component {
         address_country: e.target.value,
       },
     });
+  }
+
+  async loadStripe() {
+    const stripePromise = await loadStripe(
+      "pk_test_51GqdyRBXLsKUPQbHXGJsCSA9tJYHPpXDa8Y8dChs4dW20yeQh3HT55oiMNmysRhogzBHWKSHvfCWr5DF9KlkKyfk00CQF8DBeX"
+    );
   }
   handleCityChange(e) {
     this.setState({

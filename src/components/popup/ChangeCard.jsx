@@ -14,10 +14,6 @@ import axios from "axios";
 import { connect } from "react-redux";
 import { updateCard } from "../../redux/actions";
 
-const stripePromise = loadStripe(
-  "pk_test_51GqdyRBXLsKUPQbHXGJsCSA9tJYHPpXDa8Y8dChs4dW20yeQh3HT55oiMNmysRhogzBHWKSHvfCWr5DF9KlkKyfk00CQF8DBeX"
-);
-
 class ChangeCardPopup extends React.Component {
   constructor(props) {
     super(props);

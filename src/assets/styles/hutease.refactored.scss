@@ -685,6 +685,119 @@ body {
       border-radius: $border-radius-button;
       box-shadow: $box-shadow;
       margin: 34px 0px 0 25px;
+
+      .listing {
+        padding: 20px 0 0 40px;
+        width: 100%;
+        .ranking {
+          width: 19px;
+          height: 19px;
+          background-color: $huntease-light;
+          border-radius: 50%;
+          -webkit-border-radius: 50%;
+          -moz-border-radius: 50%;
+          -ms-border-radius: 50%;
+          -o-border-radius: 50%;
+        }
+        img {
+          width: 25px;
+          height: 25px;
+          border-radius: 50%;
+          -webkit-border-radius: 50%;
+          -moz-border-radius: 50%;
+          -ms-border-radius: 50%;
+          -o-border-radius: 50%;
+          margin: 0 10px 0 20px;
+        }
+        & p {
+          font-size: 11px;
+          font-weight: $bold;
+          color: $huntease-main;
+          margin: 0;
+          width: 55%;
+        }
+
+        & h4 {
+          font-size: 11px;
+          font-weight: $bold;
+          color: $huntease-main;
+          margin: 0;
+        }
+        & h5 {
+          font-size: 11px;
+          font-weight: $regular;
+          color: #ffb58d;
+          margin: 0;
+        }
+      }
+      .infosBloc {
+        width: 28%;
+        // margin: 0 10px 0 10px;
+        & p {
+          color: $huntease-main;
+          font-weight: $bold;
+          margin: 0;
+        }
+        & h5 {
+          color: #ffb58d;
+          margin: 0;
+          font-weight: $regular;
+        }
+      }
+      .salesList {
+        & .speceficMargin {
+          margin-top: 1.25rem;
+        }
+        width: 100%;
+        padding: 0 15px 0 0;
+
+        .topBloc {
+          width: 4.03125rem;
+          height: 4.4rem;
+          position: relative;
+          //margin: 0 35px 0 35px;
+          margin-left: 30px;
+          margin-right: 30px;
+
+          .crown {
+            position: absolute;
+            top: -9px;
+            left: -3px;
+          }
+          .picture {
+            border: 2px solid $huntease-medium;
+            border-radius: 50%;
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            -ms-border-radius: 50%;
+            -o-border-radius: 50%;
+            width: 50px;
+            height: 50px;
+          }
+          & .small {
+            border: 2px solid #a8bafc;
+            width: 41px;
+            height: 41px;
+          }
+          & .crownSmall {
+            top: 0px;
+            left: 5px;
+          }
+          .rank {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+          }
+
+          & .rankSmall {
+            position: absolute;
+            bottom: 7px;
+            left: 5px;
+            right: 0;
+          }
+        }
+      }
     }
     & h2 {
       font-weight: $bold;

@@ -25,6 +25,140 @@ class TopSales extends React.Component {
           <div className="topBloc flex fdr aic jcfs">
             <h2>Top Weekly Performers</h2>
           </div>
+          <PerfectScrollbar>
+            <div className="scroll-topsales">
+              <div className="salesList flex fdr aic jcc">
+                <div className="topBloc speceficMargin flex fdc aic jcc">
+                  <img
+                    className="crown crownSmall"
+                    src={require("../../../assets/img/awesome-crown2.svg")}
+                  />
+
+                  <img
+                    className="picture small"
+                    src={require("../../../assets/img/topsales.svg")}
+                  />
+
+                  <img
+                    className="rank rankSmall"
+                    src={require("../../../assets/img/2nd.svg")}
+                  />
+                </div>
+                <div className="topBloc flex fdc aic jcc">
+                  <img
+                    className="crown"
+                    src={require("../../../assets/img/awesome-crown.svg")}
+                  />
+
+                  <img
+                    className="picture"
+                    src={require("../../../assets/img/topsales.svg")}
+                  />
+
+                  <img
+                    className="rank"
+                    src={require("../../../assets/img/1st.svg")}
+                  />
+                </div>
+                <div className="topBloc speceficMargin flex fdc aic jcc">
+                  <img
+                    className="crown crownSmall"
+                    src={require("../../../assets/img/awesome-crown3.svg")}
+                  />
+
+                  <img
+                    className="picture small"
+                    src={require("../../../assets/img/topsales.svg")}
+                  />
+
+                  <img
+                    className="rank rankSmall"
+                    src={require("../../../assets/img/3rd.svg")}
+                  />
+                </div>
+              </div>
+              <div className=" flex fdr aic jcc">
+                <div className="infosBloc flex fdc aic jcc">
+                  <p>Ismail kherbach</p>
+                  <h5>5000 pts</h5>
+                </div>{" "}
+                <div className="infosBloc flex fdc aic jcc">
+                  <p>Ismail kherbach</p>
+                  <h5>5000 pts</h5>
+                </div>{" "}
+                <div className="infosBloc flex fdc aic jcc">
+                  <p>Ismail kherbach</p>
+                  <h5>5000 pts</h5>
+                </div>
+              </div>
+              <div className="flex fdc aifs jcfs">
+                <div className="listing flex fdr aifs jcfs">
+                  <div className="ranking flex fdc aic jcc">
+                    <h4>4</h4>
+                  </div>
+                  <img src={require("../../../assets/img/topsales.svg")} />
+                  <p>Ismail kherbach</p>
+                  <h5>2001 points</h5>
+                </div>
+                <div className="listing flex fdr aifs jcfs">
+                  <div className="ranking flex fdc aic jcc">
+                    <h4>4</h4>
+                  </div>
+                  <img src={require("../../../assets/img/topsales.svg")} />
+                  <p>Ismail kherbach</p>
+                  <h5>2001 points</h5>
+                </div>{" "}
+                <div className="listing flex fdr aifs jcfs">
+                  <div className="ranking flex fdc aic jcc">
+                    <h4>4</h4>
+                  </div>
+                  <img src={require("../../../assets/img/topsales.svg")} />
+                  <p>Ismail kherbach</p>
+                  <h5>2001 points</h5>
+                </div>
+                <div className="listing flex fdr aifs jcfs">
+                  <div className="ranking flex fdc aic jcc">
+                    <h4>4</h4>
+                  </div>
+                  <img src={require("../../../assets/img/topsales.svg")} />
+                  <p>Ismail kherbach</p>
+                  <h5>2001 points</h5>
+                </div>{" "}
+                <div className="listing flex fdr aifs jcfs">
+                  <div className="ranking flex fdc aic jcc">
+                    <h4>4</h4>
+                  </div>
+                  <img src={require("../../../assets/img/topsales.svg")} />
+                  <p>Ismail kherbach</p>
+                  <h5>2001 points</h5>
+                </div>
+                <div className="listing flex fdr aifs jcfs">
+                  <div className="ranking flex fdc aic jcc">
+                    <h4>4</h4>
+                  </div>
+                  <img src={require("../../../assets/img/topsales.svg")} />
+                  <p>Ismail kherbach</p>
+                  <h5>2001 points</h5>
+                </div>{" "}
+                <div className="listing flex fdr aifs jcfs">
+                  <div className="ranking flex fdc aic jcc">
+                    <h4>4</h4>
+                  </div>
+                  <img src={require("../../../assets/img/topsales.svg")} />
+                  <p>Ismail kherbach</p>
+                  <h5>2001 points</h5>
+                </div>
+                <div className="listing flex fdr aifs jcfs">
+                  <div className="ranking flex fdc aic jcc">
+                    <h4>4</h4>
+                  </div>
+                  <img src={require("../../../assets/img/topsales.svg")} />
+                  <p>Ismail kherbach</p>
+                  <h5>2001 points</h5>
+                </div>
+              </div>
+            </div>
+          </PerfectScrollbar>
           {/*    <PerfectScrollbar>
             <div className="scroll-topweekly topsale">
               {topSalers.map((topSaler) => {

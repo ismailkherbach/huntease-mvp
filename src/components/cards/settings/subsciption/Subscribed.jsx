@@ -13,9 +13,6 @@ import CancelSubscriptionPopup from "../../../popup/CancelSubscriptionPopup";
 import ChangeAddressPopup from "../../../popup/ChangeAddress";
 import ChangeCardPopup from "../../../popup/ChangeCard";
 
-const stripePromise = loadStripe(
-  "pk_test_51GqdyRBXLsKUPQbHXGJsCSA9tJYHPpXDa8Y8dChs4dW20yeQh3HT55oiMNmysRhogzBHWKSHvfCWr5DF9KlkKyfk00CQF8DBeX"
-);
 class Subscribed extends React.Component {
   constructor(props) {
     super(props);
@@ -80,6 +77,11 @@ class Subscribed extends React.Component {
     });
     this.props.shouldBlur();
   }
+  async loadStripe() {
+    const stripePromise = await loadStripe(
+      "pk_test_51GqdyRBXLsKUPQbHXGJsCSA9tJYHPpXDa8Y8dChs4dW20yeQh3HT55oiMNmysRhogzBHWKSHvfCWr5DF9KlkKyfk00CQF8DBeX"
+    );
+  }
   componentDidMount() {
     this.props.getPaimentHistory();
     this.props.getCardInfo();
@@ -95,7 +97,7 @@ class Subscribed extends React.Component {
               "pk_test_51GqdyRBXLsKUPQbHXGJsCSA9tJYHPpXDa8Y8dChs4dW20yeQh3HT55oiMNmysRhogzBHWKSHvfCWr5DF9KlkKyfk00CQF8DBeX"
             }
           >
-            <Elements id="cardElement" stripe={stripePromise}>
+            <Elements id="cardElement" stripe={this.loadStripe()}>
               <ChangeCardPopup
                 text='Click "Close Button" to hide popup'
                 closePopup={this.togglePopupCard.bind(this)}

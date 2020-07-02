@@ -8,10 +8,6 @@ import { connect } from "react-redux";
 import { applyDiscount, getPlans } from "../../../../redux/actions";
 import Switch from "react-switch";
 
-const stripePromise = loadStripe(
-  "pk_test_51GqdyRBXLsKUPQbHXGJsCSA9tJYHPpXDa8Y8dChs4dW20yeQh3HT55oiMNmysRhogzBHWKSHvfCWr5DF9KlkKyfk00CQF8DBeX"
-);
-
 class ChoosePlan extends React.Component {
   constructor(props) {
     super(props);
@@ -58,8 +54,14 @@ class ChoosePlan extends React.Component {
   SetChecked() {
     this.setState({ checked: !this.state.checked });
   }
+  async loadStripe() {
+    const stripePromise = await loadStripe(
+      "pk_test_51GqdyRBXLsKUPQbHXGJsCSA9tJYHPpXDa8Y8dChs4dW20yeQh3HT55oiMNmysRhogzBHWKSHvfCWr5DF9KlkKyfk00CQF8DBeX"
+    );
+  }
   componentDidMount() {
     this.props.getPlans();
+    this.loadStripe();
   }
 
   render() {
@@ -71,7 +73,7 @@ class ChoosePlan extends React.Component {
               "pk_test_51GqdyRBXLsKUPQbHXGJsCSA9tJYHPpXDa8Y8dChs4dW20yeQh3HT55oiMNmysRhogzBHWKSHvfCWr5DF9KlkKyfk00CQF8DBeX"
             }
           >
-            <Elements id="card" stripe={stripePromise}>
+            <Elements id="card" stripe={this.loadStripe()}>
               <PaimentPopup
                 text='Click "Close Button" to hide popup'
                 closePopup={this.togglePopup.bind(this)}
