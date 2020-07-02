@@ -38,9 +38,24 @@ class Topnav extends React.Component {
           src={require("../../assets/img/huntease_logo_icon_white.png")}
         />
         <h3 className="d-inline-block greeting">
-          <IntlMessages id="gretting" /> Ismail kherbach
+          Good morning{" "}
+          {this.props.profile &&
+            this.props.profile.firstName.charAt(0).toUpperCase() +
+              this.props.profile.firstName.slice(1) +
+              " " +
+              this.props.profile.lastName}
         </h3>
-        <h5>Ismail kherbach</h5>
+
+        {this.props.profile ? (
+          <h5>
+            {this.props.profile.firstName.charAt(0).toUpperCase() +
+              this.props.profile.firstName.slice(1) +
+              " " +
+              this.props.profile.lastName}
+          </h5>
+        ) : (
+          ""
+        )}
         <img
           alt={"logo"}
           className="avatar"
