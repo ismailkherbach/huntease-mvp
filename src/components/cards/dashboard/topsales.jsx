@@ -92,7 +92,7 @@ class TopSales extends React.Component {
                 </div>
               </div>
               <div className="flex fdc aifs jcfs">
-                <div className="listing flex fdr aifs jcfs">
+                <div className="listing flex fdr aic jcfs">
                   <div className="ranking flex fdc aic jcc">
                     <h4>4</h4>
                   </div>
@@ -115,7 +115,7 @@ class TopSales extends React.Component {
                   <img src={require("../../../assets/img/topsales.svg")} />
                   <p>Ismail kherbach</p>
                   <h5>2001 points</h5>
-                </div>
+                </div>{" "}
                 <div className="listing flex fdr aifs jcfs">
                   <div className="ranking flex fdc aic jcc">
                     <h4>4</h4>
@@ -131,31 +131,7 @@ class TopSales extends React.Component {
                   <img src={require("../../../assets/img/topsales.svg")} />
                   <p>Ismail kherbach</p>
                   <h5>2001 points</h5>
-                </div>
-                <div className="listing flex fdr aifs jcfs">
-                  <div className="ranking flex fdc aic jcc">
-                    <h4>4</h4>
-                  </div>
-                  <img src={require("../../../assets/img/topsales.svg")} />
-                  <p>Ismail kherbach</p>
-                  <h5>2001 points</h5>
                 </div>{" "}
-                <div className="listing flex fdr aifs jcfs">
-                  <div className="ranking flex fdc aic jcc">
-                    <h4>4</h4>
-                  </div>
-                  <img src={require("../../../assets/img/topsales.svg")} />
-                  <p>Ismail kherbach</p>
-                  <h5>2001 points</h5>
-                </div>
-                <div className="listing flex fdr aifs jcfs">
-                  <div className="ranking flex fdc aic jcc">
-                    <h4>4</h4>
-                  </div>
-                  <img src={require("../../../assets/img/topsales.svg")} />
-                  <p>Ismail kherbach</p>
-                  <h5>2001 points</h5>
-                </div>
               </div>
             </div>
           </PerfectScrollbar>
