@@ -120,7 +120,22 @@ class AccountCall extends React.Component {
     this.props.darkMode(color);
   };
   async onEditProfile() {
-    this.props.editProfile(this.state.userData);
+    let firstName = this.state.userData.firstName;
+    let lastName = this.state.userData.lastName;
+    if (firstName != "" && lastName != "") {
+      this.props.editProfile(this.state.userData);
+    }
+
+    if (firstName != "" && lastName == "") {
+      let lastName = this.props.profile.lastName;
+      this.props.editProfile({ firstName, lastName });
+    }
+
+    if (firstName == "" && lastName != "") {
+      let firstName = this.props.profile.firstName;
+      this.props.editProfile({ firstName, lastName });
+    }
+
     console.log(this.state.userData);
     await this.props.getProfile();
   }
@@ -375,15 +390,15 @@ class AccountCall extends React.Component {
               </div>
             </div>
           </div>
-          {this.state.userData.firstName != "" &&
-            this.state.userData.lastName != "" && (
-              <Button
-                className="Save-changes-btn"
-                onClick={this.onEditProfile.bind(this)}
-              >
-                Save changes
-              </Button>
-            )}
+          {(this.state.userData.firstName != "" ||
+            this.state.userData.lastName != "") && (
+            <Button
+              className="Save-changes-btn"
+              onClick={this.onEditProfile.bind(this)}
+            >
+              Save changes
+            </Button>
+          )}
         </div>
         {this.state.verifictionBloc && (
           <div className="popup-container flex fdc aic jcc">
