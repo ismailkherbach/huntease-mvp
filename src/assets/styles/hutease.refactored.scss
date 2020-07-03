@@ -505,18 +505,38 @@ body {
     border-radius: 15px;
     box-shadow: $box-shadow;
     margin: 20px 0 0 0;
-    padding: 25px;
+    padding: 25px 0 25px 25px;
+    ::-webkit-scrollbar {
+      background: $huntease-light;
+      border-radius: 2px;
+      height: 8px;
+      width: 7px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: $huntease-medium;
+      border-radius: 2px;
+      background-clip: content-box;
+      border: 5px solid transparent;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: $huntease-medium;
+    }
+    ::-webkit-scrollbar-button {
+      display: none;
+    }
+
     & h2 {
       font-size: 1.3125em;
       color: $huntease-titles;
       font-weight: $bold;
       line-height: 0;
-      padding: 0 0 25px 0;
+      padding: 10px 0 25px 0;
     }
     & h5 {
       color: $huntease-titles;
       margin: 0;
-      width: 80%;
+      width: 90%;
       padding: 0 0 0 15px;
     }
   }

@@ -642,66 +642,72 @@ class ScriptEditor extends React.Component {
           <Fragment>
             <div className="Guides">
               <h2>Your Guides</h2>
-              {this.props.guide.loading ? (
-                <div className="inlineBtn-center">
-                  <Spinner animation="border" />
-                </div>
-              ) : null}
-              {this.props.guide.guides != undefined ? (
-                this.props.guide.guides.length != 0 ? (
-                  this.props.guide.guides
-                    .filter((x) =>
-                      x.title.toLowerCase().includes(searchField.toLowerCase())
-                    )
-                    .map((guide, x) => {
-                      return (
-                        <div
-                          className="flex fdr aic jcc curs_pointer"
-                          onClick={
-                            this.showGuide.bind(this, guide)
-                            /*this.showGuide.bind(this, guide)*/
-                          }
-                        >
-                          <box-icon
-                            name="notepad"
-                            type="solid"
-                            color="#091ad4"
-                          ></box-icon>
-                          <h5 key={x}> {guide.title}</h5>
-                          <UncontrolledDropdown>
-                            <DropdownToggle
-                              color="empty"
-                              className="float-right"
+
+              <PerfectScrollbar>
+                <div className="guideWidth scroll-guides">
+                  {this.props.guide.loading ? (
+                    <div className="inlineBtn-center">
+                      <Spinner animation="border" />
+                    </div>
+                  ) : null}
+                  {this.props.guide.guides != undefined ? (
+                    this.props.guide.guides.length != 0 ? (
+                      this.props.guide.guides
+                        .filter((x) =>
+                          x.title
+                            .toLowerCase()
+                            .includes(searchField.toLowerCase())
+                        )
+                        .map((guide, x) => {
+                          return (
+                            <div
+                              className="flex fdr aic jcc curs_pointer"
+                              onClick={
+                                this.showGuide.bind(this, guide)
+                                /*this.showGuide.bind(this, guide)*/
+                              }
                             >
-                              <box-icon
-                                name="dots-vertical-rounded"
-                                color="#254ebe"
-                              ></box-icon>
-                            </DropdownToggle>
-                            <DropdownMenu className="btn mt-1" right>
-                              <DropdownItem>Edit</DropdownItem>
-                              <DropdownItem
-                                onClick={this.toggleDeletePopupGuide.bind(
-                                  this,
-                                  guide._id
-                                )}
-                              >
-                                Delete
-                              </DropdownItem>
-                            </DropdownMenu>
-                          </UncontrolledDropdown>
-                        </div>
-                      );
-                    })
-                ) : (
-                  <div className="flex fdc aic jcc">
-                    <img
-                      alt="no-guide"
-                      src={require("../../../assets/img/no_guide.png")}
-                    />
-                  </div>
-                )
-              ) : null}
+                              <img
+                                alt="no-guide"
+                                src={require("../../../assets/img/bxs-notepad-guide.svg")}
+                              />
+                              <h5 key={x}> {guide.title}</h5>
+                              <UncontrolledDropdown>
+                                <DropdownToggle
+                                  color="empty"
+                                  className="float-right"
+                                >
+                                  <box-icon
+                                    name="dots-vertical-rounded"
+                                    color="#8BA3FF"
+                                  ></box-icon>
+                                </DropdownToggle>
+                                <DropdownMenu className="btn mt-1" right>
+                                  <DropdownItem>Edit</DropdownItem>
+                                  <DropdownItem
+                                    onClick={this.toggleDeletePopupGuide.bind(
+                                      this,
+                                      guide._id
+                                    )}
+                                  >
+                                    Delete
+                                  </DropdownItem>
+                                </DropdownMenu>
+                              </UncontrolledDropdown>
+                            </div>
+                          );
+                        })
+                    ) : (
+                      <div className="flex fdc aic jcc">
+                        <img
+                          alt="no-guide"
+                          src={require("../../../assets/img/no_guide.png")}
+                        />
+                      </div>
+                    )
+                  ) : null}
+                </div>
+              </PerfectScrollbar>
             </div>
           </Fragment>
         </div>
