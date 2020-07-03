@@ -11,6 +11,7 @@ import {
   getLeads,
   selectedLeadsItemsChange,
   syncLeads,
+  getProfile,
 } from "../../../redux/actions";
 import {
   UncontrolledDropdown,
@@ -50,6 +51,7 @@ class CallCard extends React.Component {
       onPhone: false,
       number: "",
       search: false,
+      initialized: false,
     };
     this.handleHoverOn = this.handleHoverOn.bind(this);
     this.handleHoverOff = this.handleHoverOff.bind(this);
@@ -170,8 +172,25 @@ class CallCard extends React.Component {
   onSyncLeads() {
     this.props.syncLeads();
   }
+  componentDidUpdate() {
+    if (this.props.settings.profile && this.state.initialized != true) {
+      let twilioToken = this.props.settings.profile.twilioToken;
+      console.log(twilioToken);
+      Twilio.Device.setup(twilioToken, {
+        debug: true,
+        audioConstraints: true,
+        audioHelper: true,
+        pstream: true,
+      });
+      this.setState({
+        initialized: true,
+      });
+    }
+  }
   async componentDidMount() {
     await this.props.getLeads();
+    await this.props.getProfile();
+
     console.log(this.props.call.leads);
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
       console.log("getUserMedia supported");
@@ -193,12 +212,6 @@ class CallCard extends React.Component {
     } else {
       console.log("getUserMedia : missing");
     }
-    Twilio.Device.setup(JSON.parse(localStorage.getItem("twilioToken")), {
-      debug: true,
-      audioConstraints: true,
-      audioHelper: true,
-      pstream: true,
-    });
   }
   render() {
     const { searchField } = this.state;
@@ -885,9 +898,10 @@ class CallCard extends React.Component {
   }
 }
 
-const mapStateToProps = ({ call }) => {
+const mapStateToProps = ({ call, settings }) => {
   return {
     call,
+    settings,
   };
 };
 
@@ -895,6 +909,7 @@ export default connect(mapStateToProps, {
   getLeads,
   selectedLeadsItemsChange,
   syncLeads,
+  getProfile,
 })(CallCard);
 
 /*
