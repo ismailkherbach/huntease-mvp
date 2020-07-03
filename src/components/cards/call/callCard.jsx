@@ -369,8 +369,8 @@ class CallCard extends React.Component {
                                     key={i}
                                   >
                                     {this.state.delecteAction && (
-                                      <CustomInput
-                                        className="custom-checkbox mb-0 d-inline-block"
+                                      <input
+                                        className="flex fdc aic jcc"
                                         type="checkbox"
                                         key={i}
                                         id={lead.id}
@@ -384,7 +384,6 @@ class CallCard extends React.Component {
                                         onChange={(event) =>
                                           this.handleCheckChange(event, lead.id)
                                         }
-                                        label=""
                                       />
                                     )}
 

@@ -2075,6 +2075,45 @@ body {
           width: 40px;
           height: 40px;
           border-radius: $border-radius-button;
+          margin: 0 0 0 20px;
+        }
+
+        input[type="checkbox"] {
+          position: relative;
+          cursor: pointer;
+        }
+        input[type="checkbox"]:before {
+          content: "";
+          display: inline-block;
+          position: relative;
+          width: 20px;
+          height: 20px;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          border: none;
+          border-radius: 8px;
+          background-color: #a8c4ff;
+          -webkit-border-radius: 8px;
+          -moz-border-radius: 8px;
+          -ms-border-radius: 8px;
+          -o-border-radius: 8px;
+        }
+        input[type="checkbox"]:checked:after {
+          content: "";
+          display: flex;
+          width: 14px;
+          height: 14px;
+          border: none;
+          //border-width: 0 2px 2px 0;
+          border-radius: 5px;
+          position: absolute;
+          background-color: #0026bc;
+          -webkit-border-radius: 5px;
+          -moz-border-radius: 5px;
+          -ms-border-radius: 5px;
+          -o-border-radius: 5px;
         }
         .SubInfos {
           width: 85%;
