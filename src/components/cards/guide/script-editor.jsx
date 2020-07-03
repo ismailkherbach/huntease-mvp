@@ -562,7 +562,7 @@ class ScriptEditor extends React.Component {
                   text={this.state.displayGuide.title}
                   onChange={this.handleChangeTitle}
                   options={{
-                    toolbar: { buttons: ["bold", "italic", "underline"] },
+                    toolbar: false,
                   }}
                 />
 
@@ -581,7 +581,7 @@ class ScriptEditor extends React.Component {
                   // text={this.state.title}
                   onChange={this.handleChangeTitle}
                   options={{
-                    toolbar: { buttons: ["bold", "italic", "underline"] },
+                    toolbar: false,
                   }}
                 />
 
@@ -625,11 +625,13 @@ class ScriptEditor extends React.Component {
         <div className="flex fdc aic jcc">
           <Fragment>
             <div className="Search-guide">
-              {/*  <img
-                className="icon"
-                alt={"search"}
-                src={require("../../../assets/img/search.svg")}
-            />*/}
+              {
+                <img
+                  className="icon"
+                  alt={"search"}
+                  src={require("../../../assets/img/bx-search.svg")}
+                />
+              }
               <input
                 alt={"search"}
                 placeholder="Enter your search here"

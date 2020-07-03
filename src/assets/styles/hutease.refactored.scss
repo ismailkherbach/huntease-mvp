@@ -542,13 +542,25 @@ body {
   }
   .Search-guide {
     //padding: 25px;
-
+    width: 23.75rem;
+    height: 2.3125rem;
+    margin: 31px 0 0 0;
+    background-color: #1c3fca;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    padding-left: 10px;
     & input {
-      width: 23.75rem;
+      width: 22rem;
       height: 2.3125rem;
-      margin: 31px 0 0 0;
-      opacity: 0.5;
-      background-color: $huntease-dark;
+      opacity: 1;
+      background-color: #1c3fca;
+      color: #8ba3ff;
+    }
+    ::placeholder {
+      color: #8ba3ff;
     }
   }
 }
