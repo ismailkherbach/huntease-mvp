@@ -235,7 +235,7 @@ class CallCard extends React.Component {
                   {this.state.leadListing ? (
                     <div className="LeadListing flex fdc">
                       <div className="flex fdr aic jcfs">
-                        {this.props.call.leads && this.state.delecteAction ? (
+                        {/*this.props.call.leads && this.state.delecteAction ? (
                           <CustomInput
                             className="custom-checkbox"
                             type="checkbox"
@@ -248,7 +248,7 @@ class CallCard extends React.Component {
                             onChange={() => this.handleChangeSelectAll()}
                             label=""
                           />
-                        ) : null}
+                          ) : null*/}
                         {!this.state.search ? (
                           <div className="topLeft flex fdr aic ">
                             <h3>
@@ -274,24 +274,25 @@ class CallCard extends React.Component {
                                 className="dropdown-toggle-split"
                               >
                                 <div className="edit flex fdc aic jcc">
-                                  <box-icon
-                                    name="pencil"
-                                    color="#0026bc"
-                                  ></box-icon>
+                                  <img
+                                    className="float-right curs_pointer"
+                                    alt="empty-leads"
+                                    src={require("../../../assets/img/bx-dots-horizontal-rounded.svg")}
+                                  />
                                 </div>
                               </DropdownToggle>
                               <DropdownMenu className="btn" right>
                                 <DropdownItem
                                   onClick={this.deleteCheckBox.bind(this)}
                                 >
-                                  Edit
+                                  Edit contacts
                                 </DropdownItem>
                                 <DropdownItem
                                   onClick={this.onSyncLeads.bind(this)}
                                 >
                                   Sync leads
                                 </DropdownItem>
-                                <DropdownItem>Delete</DropdownItem>
+                                <DropdownItem>Delete current list</DropdownItem>
                               </DropdownMenu>
                             </UncontrolledDropdown>
                           </div>
