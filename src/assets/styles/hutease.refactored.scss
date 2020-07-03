@@ -450,7 +450,6 @@ body {
 
     .prompt-field {
       padding: 0 0 20px 0;
-
       .add-prompt {
         width: 40px;
         height: 40px;
@@ -470,6 +469,7 @@ body {
         height: 2.5em;
         padding: 5px 0 0 0;
         overflow-y: hidden;
+        cursor: text;
       }
       .optionDrag {
         margin: 0 0px 0 0px;
@@ -1056,6 +1056,7 @@ body {
     }
     & .active {
       margin: 0 0 -10px 5px;
+      z-index: 1000;
       & h5 {
         font-weight: $regular;
         color: $huntease-main;
