@@ -281,18 +281,23 @@ class CallCard extends React.Component {
                                   />
                                 </div>
                               </DropdownToggle>
-                              <DropdownMenu className="btn" right>
+                              <DropdownMenu className="dropDown" right>
+                                <div className="options">Options</div>
                                 <DropdownItem
+                                  className="dropItem"
                                   onClick={this.deleteCheckBox.bind(this)}
                                 >
                                   Edit contacts
                                 </DropdownItem>
                                 <DropdownItem
+                                  className="dropItem"
                                   onClick={this.onSyncLeads.bind(this)}
                                 >
                                   Sync leads
                                 </DropdownItem>
-                                <DropdownItem>Delete current list</DropdownItem>
+                                <DropdownItem className="dropItem">
+                                  Delete current list
+                                </DropdownItem>
                               </DropdownMenu>
                             </UncontrolledDropdown>
                           </div>

@@ -2012,6 +2012,31 @@ body {
           background-color: #e8edff;
           border-radius: 10px;
         }
+        .dropDown {
+          width: 9.625rem;
+          height: unset;
+          border-radius: 15px;
+          -webkit-border-radius: 15px;
+          -moz-border-radius: 15px;
+          -ms-border-radius: 15px;
+          -o-border-radius: 15px;
+          border: none;
+          box-shadow: $box-shadow;
+          margin: 0 10px 0 0;
+        }
+        .dropItem {
+          font-family: $font;
+          font-size: 14px;
+          font-weight: $regular;
+          color: $huntease-main;
+        }
+        .options {
+          font-family: $font;
+          font-size: 14px;
+          font-weight: $bold;
+          color: $huntease-medium;
+          padding: 0 0 0 25px;
+        }
       }
       .searchBar {
         & input {
