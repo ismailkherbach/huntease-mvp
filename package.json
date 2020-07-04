@@ -5,6 +5,7 @@
   "proxy": "http://localhost:5000/",
   "dependencies": {
     "@chargebee/chargebee-js-react-wrapper": "^0.2.1",
+    "@pathofdev/react-tag-input": "^1.0.7",
     "@sentisis/react-tags-input": "^1.0.6",
     "@sentry/browser": "^5.17.0",
     "@stripe/react-stripe-js": "^1.1.2",
@@ -41,6 +42,7 @@
     "react-switch": "^5.0.1",
     "react-toggle-switch": "^3.0.4",
     "react-transition-group": "^4.4.1",
+    "reactjs-tag-input": "^2.0.15",
     "reactstrap": "^8.2.0",
     "redux": "^4.0.5",
     "redux-saga": "^1.1.3",

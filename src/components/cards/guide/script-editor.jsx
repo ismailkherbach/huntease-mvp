@@ -21,6 +21,9 @@ import { Link, withRouter } from "react-router-dom";
 import PerfectScrollbar from "react-perfect-scrollbar";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { InstalledAddOnExtensionPage } from "twilio/lib/rest/preview/marketplace/installedAddOn/installedAddOnExtension";
+import ReactTagInput from "@pathofdev/react-tag-input";
+
+import "@pathofdev/react-tag-input/build/index.css";
 
 // load theme styles with webpack
 require("medium-editor/dist/css/medium-editor.css");
@@ -55,8 +58,12 @@ class ScriptEditor extends React.Component {
     this.handleChangeContenu = this.handleChangeContenu.bind(this);
     this.onDragEnd = this.onDragEnd.bind(this);
     this.onDragEndNew = this.onDragEndNew.bind(this);
+    this.onTagsChanged = this.onTagsChanged.bind(this);
   }
 
+  onTagsChanged(tags) {
+    this.setState({ tags });
+  }
   handleChangeTitle(title, medium) {
     this.setState({ title: title });
   }
@@ -626,10 +633,10 @@ class ScriptEditor extends React.Component {
           <div className="Tag-picker">
             <h5 id="card-title">Add your tags</h5>
             <div className="flex fdc aic jcc">
-              <input
-                className="tag-input-large"
-                placeholder="Write your tags here and hit enter to save them"
-                type="text"
+              <ReactTagInput
+                className="inputTag"
+                tags={this.state.tags}
+                onChange={this.onTagsChanged}
               />
               {this.state.showStatus ? (
                 <Button
