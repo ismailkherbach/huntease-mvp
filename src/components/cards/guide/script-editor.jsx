@@ -140,36 +140,45 @@ class ScriptEditor extends React.Component {
   }
 
   onAddGuide = async () => {
-    console.log({
-      title: this.state.title,
-      questions: this.state.questionsGuide.questions,
-    });
-    if (this.state.title == "") {
-      var moment = require("moment-timezone");
-
-      var CurrentDate = moment().format("DD-MM-YYYY");
-
-      let title = "GUIDE" + this.props.guide.guides.length + " " + CurrentDate;
-      this.props.addGuide({
-        title: title,
-        questions: this.state.questionsGuide.questions,
-        history: this.props.history,
-      });
+    let array = this.state.questionsGuide.questions;
+    let clearedArray = array.filter((v) => v != "");
+    if (clearedArray.length == 0) {
+      alert("Emtpy guide !");
     } else {
-      this.props.addGuide({
-        title: this.state.title,
-        questions: this.state.questionsGuide.questions,
-        history: this.props.history,
-      });
+      console.log(array);
+      if (this.state.title == "") {
+        var moment = require("moment-timezone");
+
+        var CurrentDate = moment().format("DD-MM-YYYY");
+
+        let title =
+          "GUIDE" + this.props.guide.guides.length + " " + CurrentDate;
+
+        this.props.addGuide({
+          title: title,
+          questions: clearedArray,
+          history: this.props.history,
+        });
+      } else {
+        this.props.addGuide({
+          title: this.state.title,
+          questions: clearedArray,
+          history: this.props.history,
+        });
+      }
     }
     await this.props.getGuide();
   };
 
   onUpdateGuide = async () => {
     console.log(this.state.displayGuide);
+
+    let array = this.state.displayGuide.questions;
+    let clearedArray = array.filter((v) => v != "");
+
     this.props.updateGuide({
       title: this.state.displayGuide.title,
-      questions: this.state.displayGuide.questions,
+      questions: clearedArray,
       id: this.state.displayGuide._id,
     });
     await this.props.getGuide();
@@ -276,7 +285,7 @@ class ScriptEditor extends React.Component {
                           //text={this.state.text}
                           /* These are the default options for anchor form,
                              if nothing is passed this is what it used */
-                          placeholder
+
                           value={item || ""}
                           name="question"
                           onChange={this.handleChange.bind(this, index)}
@@ -401,7 +410,7 @@ class ScriptEditor extends React.Component {
                         key={index}
                         className="prompt"
                         tag="pre"
-                        placeholder="write something"
+                        //  placeholder="write something"
                         text={
                           this.props.guide.guides
                             ? item
@@ -450,7 +459,7 @@ class ScriptEditor extends React.Component {
 
   onResetGuide() {
     this.setState({
-      questionsGuide: { questions: ["hhhh"] },
+      questionsGuide: { questions: [""] },
       title: "",
     });
   }
@@ -556,14 +565,10 @@ class ScriptEditor extends React.Component {
           <div className="Guide-editor">
             {this.state.showStatus ? (
               <div className="guideTitle flex fdr aic">
-                <Editor
+                <input
                   className="Title"
-                  tag="pre"
-                  text={this.state.displayGuide.title}
                   onChange={this.handleChangeTitle}
-                  options={{
-                    toolbar: false,
-                  }}
+                  placeholder="Type your title here"
                 />
 
                 <Button
@@ -575,14 +580,10 @@ class ScriptEditor extends React.Component {
               </div>
             ) : (
               <div className="guideTitle flex fdr aic">
-                <Editor
+                <input
                   className="Title"
-                  tag="pre"
-                  // text={this.state.title}
                   onChange={this.handleChangeTitle}
-                  options={{
-                    toolbar: false,
-                  }}
+                  placeholder="Type your title here"
                 />
 
                 <Button
@@ -595,7 +596,8 @@ class ScriptEditor extends React.Component {
             )}
             <PerfectScrollbar>
               <div className="scroll-guide">
-                {this.state.showStatus ? this.displayGuide() : this.createUI()}
+                {this.state.showStatus && this.displayGuide()}
+                {!this.state.showStatus && this.createUI()}
               </div>
             </PerfectScrollbar>{" "}
           </div>
