@@ -49,6 +49,7 @@ class ScriptEditor extends React.Component {
       propmtIndex: null,
       deletePopupNew: false,
       deletePopupGuide: false,
+      tags: [],
     };
     this.handleChangeTitle = this.handleChangeTitle.bind(this);
     this.handleChangeContenu = this.handleChangeContenu.bind(this);
