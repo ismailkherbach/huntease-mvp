@@ -121,11 +121,12 @@ class ScriptEditor extends React.Component {
     console.log(this.state.questions);
     console.log(this.state.displayGuide);
   }
-  handleKeyPressNew(target) {
+  handleKeyPressNew = (target, index) => {
     if (target.charCode == 13) {
       this.modifyClickNew();
+      //   this.refs[index + 1].current.focus();
     }
-  }
+  };
 
   handleKeyPress(target) {
     if (target.charCode == 13) {
@@ -278,24 +279,28 @@ class ScriptEditor extends React.Component {
                             src={require("../../../assets/img/bx-plus.svg")}
                           />
                         </div>
-                        <Editor
-                          key={index}
-                          className="prompt"
-                          tag="pre"
-                          //text={this.state.text}
-                          /* These are the default options for anchor form,
+                        <form className="prompt">
+                          <Editor
+                            key={index}
+                            className="prompt"
+                            tag="pre"
+                            //text={this.state.text}
+                            /* These are the default options for anchor form,
                              if nothing is passed this is what it used */
 
-                          value={item || ""}
-                          name="question"
-                          onChange={this.handleChange.bind(this, index)}
-                          onKeyPress={this.handleKeyPressNew.bind(this)}
-                          options={{
-                            toolbar: {
-                              buttons: ["bold", "italic", "underline"],
-                            },
-                          }}
-                        />
+                            value={item || ""}
+                            name="question"
+                            autoFocus={index + 1 > 2}
+                            onChange={this.handleChange.bind(this, index)}
+                            onKeyPress={(e) => this.handleKeyPressNew(e, index)}
+                            inputRef={this.refs[index]}
+                            options={{
+                              toolbar: {
+                                buttons: ["bold", "italic", "underline"],
+                              },
+                            }}
+                          />
+                        </form>
                         {this.state.questionsGuide.questions.length > 1 && (
                           <img
                             className="curs_pointer"
@@ -328,9 +333,6 @@ class ScriptEditor extends React.Component {
     );
   }
 
-  componentDidMount() {
-    console.log(this.props.guide.guides);
-  }
   showGuide(guide) {
     this.onResetGuide();
     this.setState({ showStatus: true, displayGuide: guide });
@@ -460,6 +462,8 @@ class ScriptEditor extends React.Component {
   onResetGuide() {
     this.setState({
       questionsGuide: { questions: [""] },
+      displayGuide: { questions: [""] },
+
       title: "",
     });
   }
@@ -467,6 +471,8 @@ class ScriptEditor extends React.Component {
     this.setState({
       displayGuide: { questions: [""] },
       showStatus: false,
+      questionsGuide: { questions: [""] },
+      title: "",
     });
   }
 
@@ -478,10 +484,11 @@ class ScriptEditor extends React.Component {
   }
   componentDidMount() {
     this.props.getGuide();
-    if (this.props.guide.guides) {
-    }
   }
 
+  componentWillMount() {
+    this.refs = [...Array(15)].map((r) => React.createRef());
+  }
   render() {
     const { searchField } = this.state;
     return (
@@ -568,7 +575,9 @@ class ScriptEditor extends React.Component {
                 <input
                   className="Title"
                   onChange={this.handleChangeTitle}
-                  placeholder="Type your title here"
+                  placeholder={this.state.displayGuide.title}
+
+                  // defaultValue={this.state.displayGuide.title}
                 />
 
                 <Button
@@ -584,6 +593,7 @@ class ScriptEditor extends React.Component {
                   className="Title"
                   onChange={this.handleChangeTitle}
                   placeholder="Type your title here"
+                  //   defaultValue={this.state.title}
                 />
 
                 <Button
