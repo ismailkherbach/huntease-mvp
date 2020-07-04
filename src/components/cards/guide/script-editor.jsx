@@ -501,7 +501,7 @@ class ScriptEditor extends React.Component {
   render() {
     const { searchField } = this.state;
     return (
-      <Fragment>
+      <Fragment id="droppable">
         {this.state.deletePopup && (
           <div className="popup-container flex fdc aic jcc">
             <div className="deleteGuidePopup flex fdc aic jcc">
