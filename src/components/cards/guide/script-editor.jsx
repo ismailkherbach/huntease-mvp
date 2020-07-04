@@ -279,28 +279,26 @@ class ScriptEditor extends React.Component {
                             src={require("../../../assets/img/bx-plus.svg")}
                           />
                         </div>
-                        <form className="prompt">
-                          <Editor
-                            key={index}
-                            className="prompt"
-                            tag="pre"
-                            //text={this.state.text}
-                            /* These are the default options for anchor form,
+                        <Editor
+                          key={index}
+                          className="prompt"
+                          tag="pre"
+                          //text={this.state.text}
+                          /* These are the default options for anchor form,
                              if nothing is passed this is what it used */
 
-                            value={item || ""}
-                            name="question"
-                            autoFocus={index + 1 > 2}
-                            onChange={this.handleChange.bind(this, index)}
-                            onKeyPress={(e) => this.handleKeyPressNew(e, index)}
-                            inputRef={this.refs[index]}
-                            options={{
-                              toolbar: {
-                                buttons: ["bold", "italic", "underline"],
-                              },
-                            }}
-                          />
-                        </form>
+                          value={item || ""}
+                          name="question"
+                          autoFocus={index + 1 > 2}
+                          onChange={this.handleChange.bind(this, index)}
+                          onKeyPress={(e) => this.handleKeyPressNew(e, index)}
+                          inputRef={this.refs[index]}
+                          options={{
+                            toolbar: {
+                              buttons: ["bold", "italic", "underline"],
+                            },
+                          }}
+                        />
                         {this.state.questionsGuide.questions.length > 1 && (
                           <img
                             className="curs_pointer"
@@ -461,9 +459,11 @@ class ScriptEditor extends React.Component {
 
   onResetGuide() {
     this.setState({
-      questionsGuide: { questions: [""] },
+      questionsGuide: {
+        ...this.state.questionsGuide,
+        questions: [""],
+      },
       displayGuide: { questions: [""] },
-
       title: "",
     });
   }
@@ -598,7 +598,7 @@ class ScriptEditor extends React.Component {
 
                 <Button
                   className="Change-profile-btn"
-                  onClick={this.onResetGuide.bind(this)}
+                  onClick={(e) => this.onResetGuide(e)}
                 >
                   Reset guide
                 </Button>
