@@ -113,8 +113,9 @@ export const syncLeadsError = (error) => ({
   payload: error,
 });
 
-export const deleteLeads = () => ({
+export const deleteLeads = (lead) => ({
   type: DELETE_LEADS,
+  payload: lead,
 });
 
 export const deleteLeadsSuccess = (leads) => ({

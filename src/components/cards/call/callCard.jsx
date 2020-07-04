@@ -12,6 +12,7 @@ import {
   selectedLeadsItemsChange,
   syncLeads,
   getProfile,
+  deleteLeads,
 } from "../../../redux/actions";
 import {
   UncontrolledDropdown,
@@ -169,6 +170,10 @@ class CallCard extends React.Component {
       number: e.target.value,
     });
   }
+  onDeleteLead() {
+    let lead = this.props.call.selectedItems[0];
+    this.props.deleteLeads({ lead });
+  }
   onSyncLeads() {
     this.props.syncLeads();
   }
@@ -308,7 +313,10 @@ class CallCard extends React.Component {
                                 >
                                   Sync leads
                                 </DropdownItem>
-                                <DropdownItem className="dropItem">
+                                <DropdownItem
+                                  className="dropItem"
+                                  onClick={this.onDeleteLead.bind(this)}
+                                >
                                   Delete current list
                                 </DropdownItem>
                               </DropdownMenu>
@@ -909,6 +917,7 @@ export default connect(mapStateToProps, {
   selectedLeadsItemsChange,
   syncLeads,
   getProfile,
+  deleteLeads,
 })(CallCard);
 
 /*
