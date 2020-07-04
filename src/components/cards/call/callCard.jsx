@@ -53,6 +53,7 @@ class CallCard extends React.Component {
       number: "",
       search: false,
       initialized: false,
+      deletePopup: false,
     };
     this.handleHoverOn = this.handleHoverOn.bind(this);
     this.handleHoverOff = this.handleHoverOff.bind(this);
@@ -60,6 +61,10 @@ class CallCard extends React.Component {
   }
   toggleSearch() {
     this.setState({ search: !this.state.search });
+  }
+
+  togglePopup() {
+    this.setState({ deletePopup: !this.state.deletePopup });
   }
   handleSearchChange(e) {
     this.setState({ searchField: e.target.value });
@@ -173,6 +178,7 @@ class CallCard extends React.Component {
   onDeleteLead() {
     let lead = this.props.call.selectedItems[0];
     this.props.deleteLeads({ lead });
+    this.togglePopup();
   }
   onSyncLeads() {
     this.props.syncLeads();
@@ -223,6 +229,30 @@ class CallCard extends React.Component {
 
     return (
       <Fragment>
+        {this.state.deletePopup && (
+          <div className="popup-container flex fdc aic jcc">
+            <div className="deleteLeadPopup flex fdc aic jcc">
+              <h4>
+                🚨 You're about to delete 2 contacts from your list of Leads.
+                Are you sure?
+              </h4>
+              <div className="flex fdr aic jcc">
+                <Button
+                  className="Change-profile-btn flex aic jcc"
+                  onClick={this.onDeleteLead.bind(this)}
+                >
+                  Confirm
+                </Button>
+                <Button
+                  className="Change-profile-btn decline flex aic jcc"
+                  onClick={this.togglePopup.bind(this)}
+                >
+                  Cancel
+                </Button>
+              </div>
+            </div>{" "}
+          </div>
+        )}
         <div className="CallLead">
           {this.props.call.isEmptyLeads ? (
             <div className="noLeads flex fdc">
@@ -315,7 +345,7 @@ class CallCard extends React.Component {
                                 </DropdownItem>
                                 <DropdownItem
                                   className="dropItem"
-                                  onClick={this.onDeleteLead.bind(this)}
+                                  onClick={this.togglePopup.bind(this)}
                                 >
                                   Delete current list
                                 </DropdownItem>

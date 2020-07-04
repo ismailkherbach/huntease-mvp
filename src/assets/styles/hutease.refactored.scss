@@ -2823,6 +2823,48 @@ body {
   }
 }
 
+.deleteLeadPopup {
+  max-width: 18.875em;
+  min-width: 18.875em;
+  height: 8.4375rem;
+  background-color: white;
+  box-shadow: $box-shadow;
+  border-radius: 15px;
+  position: relative;
+  padding: 30px;
+  z-index: 100;
+
+  & h4 {
+    color: $huntease-titles;
+    font-weight: $regular;
+    text-align: center;
+    font-size: 14px;
+  }
+  & p {
+    color: $huntease-medium;
+    font-weight: $regular;
+    text-align: center;
+  }
+
+  & .Change-profile-btn {
+    font-weight: $regular;
+    background-color: #ff5773;
+    width: 7.5rem;
+    height: 2.3125rem;
+    color: white;
+    margin: 5px 5px 5px 5px;
+    padding: 0 7px 0 7px;
+    font-size: 14px;
+    box-shadow: $box-shadow;
+    border: none;
+  }
+  & .decline {
+    color: $huntease-main;
+    background-color: #e8edff;
+    //border: 2px solid #d7e0fe;
+  }
+}
+
 .deleteGuidePopup {
   min-width: 18.875rem;
   height: 6.5625rem;
