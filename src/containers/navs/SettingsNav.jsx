@@ -9,7 +9,7 @@ class SettingsNav extends React.Component {
     super();
     this.state = {
       settingsMenu,
-      x: null,
+      x: 0,
     };
   }
 
@@ -22,7 +22,7 @@ class SettingsNav extends React.Component {
   componentDidMount() {
     this.props.getProfile();
     console.log(this.props.history.location.pathname);
-    if (this.props.history.location.pathname == "/app/settings/application") {
+    if (this.props.history.location.pathname == "/app/settings/account") {
       this.handleClick(0);
     }
     if (this.props.history.location.pathname == "/app/settings/application") {
