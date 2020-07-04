@@ -14,7 +14,7 @@ class Sidebar extends React.Component {
       menuItems,
       menuHover: false,
       menuOn: null,
-      x: null,
+      x: 0,
       link: null,
     };
   }
@@ -34,6 +34,21 @@ class Sidebar extends React.Component {
     this.setState({
       x: x,
     });
+  }
+
+  componentDidMount() {
+    if (this.props.history.location.pathname == "/app/dashboards") {
+      this.handleClick(0);
+    }
+    if (this.props.history.location.pathname == "/app/guide") {
+      this.handleClick(1);
+    }
+    if (this.props.history.location.pathname == "/app/call") {
+      this.handleClick(2);
+    }
+    if (this.props.history.location.pathname == "/app/settings") {
+      this.handleClick(3);
+    }
   }
 
   render() {
