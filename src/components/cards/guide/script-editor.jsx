@@ -25,6 +25,7 @@ import { InstalledAddOnExtensionPage } from "twilio/lib/rest/preview/marketplace
 // load theme styles with webpack
 require("medium-editor/dist/css/medium-editor.css");
 require("medium-editor/dist/css/themes/beagle.css");
+const MAX_LENGTH = 5;
 const reorder = (list, startIndex, endIndex) => {
   const result = Array.from(list);
   const [removed] = result.splice(startIndex, 1);
@@ -239,11 +240,17 @@ class ScriptEditor extends React.Component {
     });
   }
   handleChange(i, event) {
-    let questions = [...this.state.questionsGuide.questions];
-    questions[i] = event;
-    this.setState({
-      questionsGuide: { ...this.state.questionsGuide, questions: questions },
-    });
+    console.log(event.length);
+    if (event.length <= MAX_LENGTH) {
+      let questions = [...this.state.questionsGuide.questions];
+      questions[i] = event;
+
+      this.setState({
+        questionsGuide: { ...this.state.questionsGuide, questions: questions },
+      });
+    } else {
+      event = event.slice(0, MAX_LENGTH);
+    }
   }
 
   createUI() {
@@ -293,9 +300,11 @@ class ScriptEditor extends React.Component {
                           onChange={this.handleChange.bind(this, index)}
                           onKeyPress={(e) => this.handleKeyPressNew(e, index)}
                           inputRef={this.refs[index]}
+                          maxlength={5}
                           options={{
                             toolbar: {
                               buttons: ["bold", "italic", "underline"],
+                              maxLength: 5,
                             },
                           }}
                         />
@@ -593,6 +602,8 @@ class ScriptEditor extends React.Component {
                   className="Title"
                   onChange={this.handleChangeTitle}
                   placeholder="Type your title here"
+                  maxlength={75}
+
                   //   defaultValue={this.state.title}
                 />
 

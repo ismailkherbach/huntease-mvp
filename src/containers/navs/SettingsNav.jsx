@@ -1,6 +1,6 @@
 import React from "react";
 import settingsMenu from "../../constants/settings";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import IntlMessages from "../../helpers/IntlMessages";
 import { connect } from "react-redux";
 import { getProfile } from "../../redux/actions";
@@ -21,6 +21,19 @@ class SettingsNav extends React.Component {
 
   componentDidMount() {
     this.props.getProfile();
+    console.log(this.props.history.location.pathname);
+    if (this.props.history.location.pathname == "/app/settings/application") {
+      this.handleClick(0);
+    }
+    if (this.props.history.location.pathname == "/app/settings/application") {
+      this.handleClick(1);
+    }
+    if (this.props.history.location.pathname == "/app/settings/team") {
+      this.handleClick(2);
+    }
+    if (this.props.history.location.pathname == "/app/settings/subscription") {
+      this.handleClick(3);
+    }
   }
   render() {
     return (
@@ -76,6 +89,8 @@ const mapStateToProps = ({ settings }) => {
     profile,
   };
 };
-export default connect(mapStateToProps, {
-  getProfile,
-})(SettingsNav);
+export default withRouter(
+  connect(mapStateToProps, {
+    getProfile,
+  })(SettingsNav)
+);
