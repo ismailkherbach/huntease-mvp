@@ -348,6 +348,7 @@ body {
   & img {
     width: 44px;
     margin-right: 5rem;
+    object-fit: cover;
   }
 
   .avatar {
@@ -1044,6 +1045,7 @@ body {
             & .profile-img {
               width: 100px;
               height: 100px;
+              object-fit: cover;
             }
             & .mask {
               position: absolute;
