@@ -1171,10 +1171,15 @@ body {
         width: 138px;
         height: 55px;
         border-radius: 10px 0 0 10px;
+        border: none;
         -webkit-border-radius: 10px 0 0 10px;
         -moz-border-radius: 10px 0 0 10px;
         -ms-border-radius: 10px 0 0 10px;
         -o-border-radius: 10px 0 0 10px;
+      }
+      & .active {
+        background-color: $huntease-medium;
+        color: $huntease-main;
       }
 
       & .btnBorder {
