@@ -1168,8 +1168,22 @@ body {
         margin: 0;
       }
       & .Change-profile-btn {
-        width: 159px;
-        height: 49px;
+        width: 138px;
+        height: 55px;
+        border-radius: 10px 0 0 10px;
+        -webkit-border-radius: 10px 0 0 10px;
+        -moz-border-radius: 10px 0 0 10px;
+        -ms-border-radius: 10px 0 0 10px;
+        -o-border-radius: 10px 0 0 10px;
+      }
+
+      & .btnBorder {
+        border-radius: 0 10px 10px 0;
+        -webkit-border-radius: 0 10px 10px 0;
+        -moz-border-radius: 0 10px 10px 0;
+        -ms-border-radius: 0 10px 10px 0;
+        -o-border-radius: 0 10px 10px 0;
+        margin: 0 40px 0 0;
       }
       & .leftTop {
         width: 90%;
@@ -1188,6 +1202,7 @@ body {
         width: 187px;
         height: 40px;
         box-shadow: $box-shadow;
+        margin: 10px 0 0 0;
       }
       & h3 {
         color: $huntease-titles;
@@ -1204,6 +1219,11 @@ body {
       }
       & .rightBottom {
         width: 22%;
+        margin: 15px 20px 0 0px;
+        & p {
+          color: $huntease-medium;
+          padding: 10px 0 0 0;
+        }
       }
 
       .History-Table {

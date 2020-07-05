@@ -123,14 +123,9 @@ class Subscribed extends React.Component {
             <h5>Current plan</h5>
             <h2>Huntease Growth</h2>
           </div>
-          <div className="rightTop floatRight flex aic jcc fdc">
-            <Button className="Change-profile-btn">Change plan </Button>
-            <p
-              onClick={this.togglePopupCancel.bind(this)}
-              className="curs_pointer"
-            >
-              Cancel Subscription
-            </p>{" "}
+          <div className="rightTop floatRight flex aic jcc fdr">
+            <Button className="Change-profile-btn">Plan</Button>
+            <Button className="Change-profile-btn btnBorder">Usage</Button>
           </div>
         </div>
         <div className="Billing-History">
@@ -167,13 +162,19 @@ class Subscribed extends React.Component {
                 <img src={require("../../../../assets/img/bxs-lock.svg")} />
               </div>
             </div>
-            <div className="rightBottom ">
+            <div className="rightBottom flex fdc aic jcc">
               <Button
                 className="Change-profile-btn flex aic jcc"
                 onClick={this.togglePopupCard.bind(this)}
               >
                 Change payment
               </Button>
+              <p
+                onClick={this.togglePopupCancel.bind(this)}
+                className="curs_pointer"
+              >
+                Cancel Subscription
+              </p>{" "}
             </div>
           </div>
           <div className="scd-bloc fdr ">
