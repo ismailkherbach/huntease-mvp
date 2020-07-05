@@ -1757,8 +1757,8 @@ body {
               height: 50px;
               background-color: $huntease-light;
               border-radius: $border-radius-inputs;
-              margin: 3px 5px 3px 0;
-              padding: 0 5px 0 5px;
+              margin: 0px 5px 3px 0;
+              padding: 0 0px 0 3px;
               a {
                 color: $huntease-main;
                 font-weight: $bold;
@@ -1766,9 +1766,13 @@ body {
                 text-decoration: none;
                 text-align: left;
                 padding: 5px 0 5px 0;
+                width: 13.3rem;
               }
               & img {
                 margin: 0 10px 0 10px;
+                & .edit {
+                  margin: 0;
+                }
               }
             }
           }

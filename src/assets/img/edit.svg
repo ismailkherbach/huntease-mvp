@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" viewBox="0 0 45 45">
+  <g id="Groupe_1214" data-name="Groupe 1214" transform="translate(-907 -606)">
+    <rect id="Rectangle_121" data-name="Rectangle 121" width="45" height="45" rx="15" transform="translate(907 606)" fill="#8ba3ff" opacity="0.1"/>
+    <g id="bx-pencil" transform="translate(930.293 629.559)">
+      <g id="bx-pencil-2" data-name="bx-pencil" transform="translate(-9.293 -9.283)">
+        <path id="Tracé_4737" data-name="Tracé 4737" d="M15.215,8.806,13.823,7.414,5.841,15.4l-.464,1.855,1.855-.463Z" transform="translate(-3.294 -3.044)" fill="none"/>
+        <path id="Tracé_4738" data-name="Tracé 4738" d="M0,0H1.968V1.968H0Z" transform="matrix(-0.707, 0.707, -0.707, -0.707, 14.553, 3.13)" fill="none"/>
+        <path id="Tracé_4739" data-name="Tracé 4739" d="M3.88,18.724a.874.874,0,0,0,.212-.026L7.6,17.82a.879.879,0,0,0,.408-.231L18.8,6.8a1.754,1.754,0,0,0,0-2.481L17.4,2.93a1.8,1.8,0,0,0-2.481,0L4.137,13.717a.88.88,0,0,0-.231.407l-.877,3.51a.878.878,0,0,0,.851,1.091ZM16.164,4.171l1.392,1.392L16.164,6.954,14.773,5.563ZM5.55,14.785,13.532,6.8,14.924,8.2,6.941,16.177l-1.855.463Z" transform="translate(-3.003 -2.433)" fill="#0026bc"/>
+      </g>
+    </g>
+  </g>
+</svg>

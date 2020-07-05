@@ -526,8 +526,8 @@ class ScriptCard extends React.Component {
                   {!this.props.call.isEmptyschedules &&
                     !this.state.addSchedule && (
                       <div className="SchedulesList flex fdc aifs jcfs">
-                        <div className="blocList flex fdr aic margin-bottom25">
-                          <h4>Add a schedule</h4>
+                        <div className="blocList flex fdr aic margin-bottom15">
+                          <h4>Schedules</h4>
                           <img
                             onClick={this.toggleAddSchedule.bind(this)}
                             className=""
@@ -538,22 +538,29 @@ class ScriptCard extends React.Component {
                         <PerfectScrollbar>
                           <div className="scroll-schedule">
                             {this.props.call.schedules.map((schedule) => {
-                              return (
-                                <div className="blocListSchedule flex fdr aic jcfs">
-                                  <img
-                                    // onClick={this.toggleAddSchedule.bind(this)}
-                                    className=""
-                                    alt="no-guide"
-                                    src={require("../../../assets/img/anjali.svg")}
-                                  />
-                                  <a
-                                    target="_blank"
-                                    href={"https://" + schedule.link}
-                                  >
-                                    {schedule.name}
-                                  </a>
-                                </div>
-                              );
+                              if (schedule.name != "") {
+                                return (
+                                  <div className="blocListSchedule flex fdr aic jcfs">
+                                    <img
+                                      // onClick={this.toggleAddSchedule.bind(this)}
+                                      className=""
+                                      alt="no-guide"
+                                      src={require("../../../assets/img/anjali.svg")}
+                                    />
+                                    <a target="_blank" href={schedule.link}>
+                                      {schedule.name}
+                                    </a>
+                                    <img
+                                      // onClick={this.toggleAddSchedule.bind(this)}
+                                      className="curs_pointer edit"
+                                      alt="no-guide"
+                                      src={require("../../../assets/img/edit.svg")}
+                                    />
+                                  </div>
+                                );
+                              } else {
+                                return;
+                              }
                             })}
                           </div>
                         </PerfectScrollbar>
