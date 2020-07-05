@@ -1253,6 +1253,44 @@ body {
           }
         }
       }
+
+      .History-Table-Usage {
+        width: 74.375rem;
+        margin: 0 0 0 30px;
+        & table {
+          width: 74.375rem;
+          & tbody {
+            width: 74.375rem;
+            & tr {
+              width: 74.375rem;
+              color: $huntease-main;
+              font-size: 14px;
+              font-weight: $bold;
+              font-family: "Roboto";
+              padding: 15px 0 10px 0;
+              height: 60px;
+            }
+            & th {
+              width: 74.375rem;
+              color: $huntease-medium;
+              font-size: 14px;
+              font-weight: $bold;
+              font-family: "Roboto";
+              padding: 15px 0 10px 0;
+            }
+            & img {
+              width: 40px;
+              height: 40px;
+              margin: 0 10px 0 0;
+              border-radius: 10px;
+              -webkit-border-radius: 10px;
+              -moz-border-radius: 10px;
+              -ms-border-radius: 10px;
+              -o-border-radius: 10px;
+            }
+          }
+        }
+      }
     }
 
     .Plans-bloc {

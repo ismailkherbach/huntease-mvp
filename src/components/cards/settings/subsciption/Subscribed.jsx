@@ -12,6 +12,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import CancelSubscriptionPopup from "../../../popup/CancelSubscriptionPopup";
 import ChangeAddressPopup from "../../../popup/ChangeAddress";
 import ChangeCardPopup from "../../../popup/ChangeCard";
+import PerfectScrollbar from "react-perfect-scrollbar";
 
 class Subscribed extends React.Component {
   constructor(props) {
@@ -212,7 +213,107 @@ class Subscribed extends React.Component {
             </div>
           </div>
         ) : (
-          ""
+          <div className="Billing-History">
+            <div className="History-Table-Usage">
+              <PerfectScrollbar>
+                <div className="scroll-team">
+                  <table>
+                    <tbody>
+                      <tr>
+                        <th>MEMBER</th>
+                        <th>CONSUMPTION</th>
+                        <th>COST</th>
+                      </tr>
+                      <tr>
+                        <td>
+                          <img
+                            src={require("../../../../assets/img/usageavatar.svg")}
+                          />
+                          Ismail kherbach
+                        </td>
+                        <td>
+                          <td>
+                            {" "}
+                            3603 <span className="Clight">minutes</span>
+                          </td>
+                        </td>
+                        <td>1181€</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <img
+                            src={require("../../../../assets/img/usageavatar.svg")}
+                          />
+                          Ismail kherbach
+                        </td>
+                        <td>
+                          {" "}
+                          3603 <span className="Clight">minutes</span>
+                        </td>
+                        <td>1181€</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <img
+                            src={require("../../../../assets/img/usageavatar.svg")}
+                          />
+                          Ismail kherbach
+                        </td>
+                        <td>
+                          <td>
+                            {" "}
+                            3603 <span className="Clight">minutes</span>
+                          </td>
+                        </td>
+                        <td>1181€</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <img
+                            src={require("../../../../assets/img/usageavatar.svg")}
+                          />
+                          Ismail kherbach
+                        </td>
+                        <td>
+                          {" "}
+                          3603 <span className="Clight">minutes</span>
+                        </td>
+                        <td>1181€</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <img
+                            src={require("../../../../assets/img/usageavatar.svg")}
+                          />
+                          Ismail kherbach
+                        </td>
+                        <td>
+                          <td>
+                            {" "}
+                            3603 <span className="Clight">minutes</span>
+                          </td>
+                        </td>
+                        <td>1181€</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <img
+                            src={require("../../../../assets/img/usageavatar.svg")}
+                          />
+                          Ismail kherbach
+                        </td>
+                        <td>
+                          {" "}
+                          3603 <span className="Clight">minutes</span>
+                        </td>
+                        <td>1181€</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </PerfectScrollbar>{" "}
+            </div>
+          </div>
         )}{" "}
       </Fragment>
     );
