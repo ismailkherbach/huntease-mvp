@@ -2189,12 +2189,13 @@ body {
           width: 40px;
           height: 40px;
           border-radius: $border-radius-button;
-          margin: 0 0 0 20px;
+          // margin: 0 0 0 20px;
         }
 
         input[type="checkbox"] {
           position: relative;
           cursor: pointer;
+          margin: 0 20px 0 0;
         }
         input[type="checkbox"]:before {
           content: "";
