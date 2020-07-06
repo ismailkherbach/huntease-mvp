@@ -211,6 +211,7 @@ class AccountCall extends React.Component {
                   placeholder={firstName}
                   type="text"
                   onChange={this.handleChangeFirst.bind(this)}
+                  maxLength={20}
                 />
               </div>
               <div className="flex fdc">
@@ -221,6 +222,7 @@ class AccountCall extends React.Component {
                   placeholder={lastName}
                   type="text"
                   onChange={this.handleChangeLast.bind(this)}
+                  maxLength={20}
                 />
               </div>
             </div>

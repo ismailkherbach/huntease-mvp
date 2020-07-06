@@ -46,7 +46,7 @@ class Sidebar extends React.Component {
     if (this.props.history.location.pathname == "/app/call") {
       this.handleClick(2);
     }
-    if (this.props.history.location.pathname == "/app/settings") {
+    if (this.props.history.location.pathname == "/app/settings/account") {
       this.handleClick(3);
     }
   }

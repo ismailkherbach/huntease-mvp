@@ -30,19 +30,27 @@ class DeleteTeamMemberPopup extends React.Component {
   render() {
     return (
       <div className="popup-container flex aic jcc">
-        <div className="canceSubscriptionPopup flex fdc aic jcc">
+        <div className="deleteTeamMemberopup flex fdc aic jcc">
           <h4>Confirm delete member</h4>
           <p>Please enter your password</p>
           <input
             placeholder="Enter your password"
             onChange={this.handleChangePassword.bind(this)}
           />
-          <Button
-            className="Change-profile-btn decline flex aic jcc"
-            onClick={this.onDeleteTeamMember.bind(this)}
-          >
-            Delete team member{" "}
-          </Button>
+          <div className="flex fdc aic jcc">
+            <Button
+              className="Change-profile-btn decline flex aic jcc"
+              onClick={this.onDeleteTeamMember.bind(this)}
+            >
+              Delete team member
+            </Button>
+            <Button
+              className="Change-profile-btn flex aic jcc"
+              onClick={this.props.closePopup}
+            >
+              Cancel{" "}
+            </Button>
+          </div>
         </div>
       </div>
     );
