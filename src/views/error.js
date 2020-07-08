@@ -5,7 +5,7 @@ export default class Error extends React.Component {
     return (
       <React.Fragment>
         <div className="error flex fdc aic jcc">
-          <img src={require("../assets/home_assets/404.svg")} />
+          <img src={require("../assets/img/404.svg")} />
         </div>
       </React.Fragment>
     );

@@ -575,13 +575,20 @@ class ScriptCard extends React.Component {
           <div className="Bottom-bloc">
             <div className=" flex fdr aic jcc">
               {this.props.guide.isGuideEmpty && (
-                <Button
-                  onClick={this.toggleSchedule.bind(this)}
-                  className="integrate-button flex fdr aic jcc"
+                <Link
+                  to={"/app/guide"}
+                  style={{
+                    textDecoration: "none",
+                  }}
                 >
-                  <img src={require("../../../assets/img/bx-plus.svg")} />
-                  New Guide
-                </Button>
+                  <Button
+                    // onClick={this.toggleSchedule.bind(this)}
+                    className="integrate-button flex fdr aic jcc"
+                  >
+                    <img src={require("../../../assets/img/bx-plus.svg")} />
+                    New Guide
+                  </Button>
+                </Link>
               )}
               <Button
                 onClick={this.toggleSchedule.bind(this)}

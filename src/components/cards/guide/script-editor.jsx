@@ -298,10 +298,6 @@ class ScriptEditor extends React.Component {
                           key={index}
                           className="prompt"
                           tag="pre"
-                          //text={this.state.text}
-                          /* These are the default options for anchor form,
-                             if nothing is passed this is what it used */
-
                           value={item || ""}
                           name="question"
                           autoFocus={index + 1 > 2}
@@ -679,7 +675,7 @@ class ScriptEditor extends React.Component {
               <PerfectScrollbar>
                 <div className="guideWidth scroll-guides">
                   {this.props.guide.loading ? (
-                    <div className="inlineBtn-center">
+                    <div className="flex fdc aic jcc">
                       <Spinner animation="border" />
                     </div>
                   ) : null}
