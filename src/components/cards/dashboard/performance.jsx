@@ -25,16 +25,19 @@ class Performance extends React.Component {
         <div className="PerMetBloc flex fdc aic">
           <div className="topBloc flex fdr aic jcfs">
             <h2>Performance</h2>
-            <h4>22%</h4>
+            {/* <h4>22%</h4>*/}
           </div>
-          <div className="toggleBloc flex fdr aic jcc">
+          {/*    <div className="toggleBloc flex fdr aic jcc">
             <Button className="toggle flex fdc aic jcc">Weekly</Button>
             <Button className="toggle toggleActive flex fdc aic jcc">
               Monthly
             </Button>
             <Button className="toggle compare flex aic jcc">Compare</Button>
+    </div>*/}
+          <div className="flex fdc aic jcc">
+            <img src={require("../../../assets/img/emptyPer.svg")} />
           </div>
-          <PerformanceGraph lineData={lineData} lineLabels={lineLabels} />
+          {/*<PerformanceGraph lineData={lineData} lineLabels={lineLabels} />*/}
         </div>
       </Fragment>
     );

@@ -28,19 +28,23 @@ class Calls extends React.Component {
         <div className="CallBloc">
           <div className="topBloc flex fdr aic jcfs">
             <h2>Calls</h2>
-            <h4>350</h4>
+            {/*  <h4>350</h4>*/}
           </div>
-          <div className="toggleBloc flex fdr aic jcc">
+          {/*  <div className="toggleBloc flex fdr aic jcc">
             <Button className="toggle toggleCalls flex fdc aic jcc">
               This week
             </Button>
             <Button className="toggle toggleCalls toggleActive flex fdc aic jcc">
               this month
             </Button>
+    </div>*/}
+          <div className="flex fdc aic jcc">
+            <img src={require("../../../assets/img/emptyCal.svg")} />
           </div>
-          {barData && barLabels && (
+
+          {/*barData && barLabels && (
             <BarChart barData={barData} barLabels={barLabels} />
-          )}
+          )*/}
         </div>
       </Fragment>
     );

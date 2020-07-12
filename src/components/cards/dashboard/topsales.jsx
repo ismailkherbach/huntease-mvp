@@ -25,7 +25,10 @@ class TopSales extends React.Component {
           <div className="topBloc flex fdr aic jcfs">
             <h2>Top Weekly Performers</h2>
           </div>
-          <PerfectScrollbar>
+          <div className="flex fdc aic jcc">
+            <img src={require("../../../assets/img/emptyTop.svg")} />
+          </div>
+          {/*         <PerfectScrollbar>
             <div className="scroll-topsales">
               <div className="salesList flex fdr aic jcc">
                 <div className="topBloc speceficMargin flex fdc aic jcc">
@@ -135,6 +138,7 @@ class TopSales extends React.Component {
               </div>
             </div>
           </PerfectScrollbar>
+          */}{" "}
           {/*    <PerfectScrollbar>
             <div className="scroll-topweekly topsale">
               {topSalers.map((topSaler) => {

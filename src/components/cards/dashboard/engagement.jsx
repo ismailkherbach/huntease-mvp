@@ -26,6 +26,13 @@ class Engagement extends React.Component {
         {" "}
         <div className="topBloc flex fdr aic jcc">
           <h2>Engagement Rate</h2>
+        </div>
+        <div class="flex fdc aic jcc">
+          <img src={require("../../../assets/img/emptyEng.svg")} />
+        </div>
+        {/*
+        <div className="topBloc flex fdr aic jcc">
+          <h2>Engagement Rate</h2>
           <div className="toggleBloc flex fdr aic jcc">
             <Button className="toggle flex fdc aic jcc">Daily</Button>
             <Button className="toggle flex fdc aic jcc">Weekly</Button>
@@ -67,6 +74,7 @@ class Engagement extends React.Component {
             </div>
           </div>
         </div>
+*/}{" "}
       </div>
     );
   }
