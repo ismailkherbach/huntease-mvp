@@ -479,6 +479,7 @@ class ScriptEditor extends React.Component {
       displayGuide: { questions: [""] },
       title: "",
     });
+    this.props.history.go();
   }
   onNewGuide() {
     this.setState({
