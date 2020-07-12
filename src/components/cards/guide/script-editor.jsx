@@ -345,7 +345,7 @@ class ScriptEditor extends React.Component {
   }
 
   showGuide(guide) {
-    this.onResetGuide();
+    // this.onResetGuide();
     this.setState({ showStatus: true, displayGuide: guide });
     console.log(this.state.questionsGuide);
     console.log(this.state.displayGuide);
