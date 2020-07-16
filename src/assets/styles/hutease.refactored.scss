@@ -2119,6 +2119,28 @@ body {
     }
     .LeadListing {
       .topLeft {
+        & .Change-profile-btn {
+          font-weight: $regular;
+          background-color: white;
+          width: unset;
+          height: 2.3125rem;
+          color: $huntease-main;
+          margin: 5px;
+          font-size: 14px;
+          box-shadow: $box-shadow;
+          padding: 15px;
+        }
+        & .arrow {
+          margin: 0 10px 0 20px;
+        }
+        & .decline {
+          color: white;
+          width: unset;
+          background-color: #f64c6f;
+        }
+        & .h3 {
+          width: 45%;
+        }
         width: 100%;
         & h3 {
           font-size: 18px;

@@ -282,8 +282,39 @@ class CallCard extends React.Component {
                 <div>
                   {this.state.leadListing ? (
                     <div className="LeadListing flex fdc">
-                      <div className="flex fdr aic jcfs">
-                        {/*this.props.call.leads && this.state.delecteAction ? (
+                      {this.state.delecteAction ? (
+                        <div className="flex fdr aic jcfs">
+                          <div className="topLeft flex fdr aic ">
+                            <img
+                              onClick={this.deleteCheckBox.bind(this)}
+                              className="arrow"
+                              alt="no-guide"
+                              src={require("../../../assets/img/bx-left-arrow-alt.svg")}
+                            />
+                            <h3 className="h3">
+                              Your leads (
+                              {this.props.call.leads
+                                ? this.props.call.leads.length
+                                : "..."}
+                              )
+                            </h3>
+                            <Button
+                              className="Change-profile-btn flex fdc aic jcc"
+                              onClick={this.handleChangeSelectAll}
+                            >
+                              Select all
+                            </Button>
+                            <Button
+                              className="Change-profile-btn decline flex fdc aic jcc"
+                              onClick={this.togglePopup.bind(this)}
+                            >
+                              Delete
+                            </Button>
+                          </div>
+                        </div>
+                      ) : (
+                        <div className="flex fdr aic jcfs">
+                          {/*this.props.call.leads && this.state.delecteAction ? (
                           <CustomInput
                             className="custom-checkbox"
                             type="checkbox"
@@ -297,95 +328,97 @@ class CallCard extends React.Component {
                             label=""
                           />
                           ) : null*/}
-                        {!this.state.search ? (
-                          <div className="topLeft flex fdr aic ">
-                            <h3>
-                              Your leads (
-                              {this.props.call.leads
-                                ? this.props.call.leads.length
-                                : "..."}
-                              )
-                            </h3>
+                          {!this.state.search ? (
+                            <div className="topLeft flex fdr aic ">
+                              <h3>
+                                Your leads (
+                                {this.props.call.leads
+                                  ? this.props.call.leads.length
+                                  : "..."}
+                                )
+                              </h3>
 
-                            <div
-                              className="edit flex fdc aic jcc"
-                              onClick={this.toggleSearch.bind(this)}
-                            >
-                              <box-icon
-                                name="search"
-                                color="#0026bc"
-                              ></box-icon>
+                              <div
+                                className="edit flex fdc aic jcc"
+                                onClick={this.toggleSearch.bind(this)}
+                              >
+                                <box-icon
+                                  name="search"
+                                  color="#0026bc"
+                                ></box-icon>
+                              </div>
+                              <UncontrolledDropdown>
+                                <DropdownToggle
+                                  color="empty"
+                                  className="dropdown-toggle-split"
+                                >
+                                  <div className="edit flex fdc aic jcc">
+                                    <img
+                                      className="float-right curs_pointer"
+                                      alt="empty-leads"
+                                      src={require("../../../assets/img/bx-dots-horizontal-rounded.svg")}
+                                    />
+                                  </div>
+                                </DropdownToggle>
+                                <DropdownMenu className="dropDown" right>
+                                  <div className="options">Options</div>
+                                  <DropdownItem
+                                    className="dropItem"
+                                    onClick={this.deleteCheckBox.bind(this)}
+                                  >
+                                    Edit contacts
+                                  </DropdownItem>
+                                  <DropdownItem
+                                    className="dropItem"
+                                    onClick={this.onSyncLeads.bind(this)}
+                                  >
+                                    Sync leads
+                                  </DropdownItem>
+                                  <DropdownItem
+                                    className="dropItem"
+                                    onClick={this.togglePopup.bind(this)}
+                                  >
+                                    Delete current list
+                                  </DropdownItem>
+                                </DropdownMenu>
+                              </UncontrolledDropdown>
                             </div>
-                            <UncontrolledDropdown>
-                              <DropdownToggle
-                                color="empty"
-                                className="dropdown-toggle-split"
-                              >
-                                <div className="edit flex fdc aic jcc">
-                                  <img
-                                    className="float-right curs_pointer"
-                                    alt="empty-leads"
-                                    src={require("../../../assets/img/bx-dots-horizontal-rounded.svg")}
-                                  />
-                                </div>
-                              </DropdownToggle>
-                              <DropdownMenu className="dropDown" right>
-                                <div className="options">Options</div>
-                                <DropdownItem
-                                  className="dropItem"
-                                  onClick={this.deleteCheckBox.bind(this)}
+                          ) : (
+                            <div className="searchBar flex fdr aic">
+                              <input
+                                alt={"search"}
+                                placeholder="Enter your search here"
+                                type="text"
+                                src={require("../../../assets/img/search.svg")}
+                                onChange={this.handleSearchChange.bind(this)}
+                                onKeyPress={this.handleKeyPress.bind(this)}
+                              />
+                              <UncontrolledDropdown>
+                                <DropdownToggle
+                                  color="empty"
+                                  className="dropdown-toggle-split"
                                 >
-                                  Edit contacts
-                                </DropdownItem>
-                                <DropdownItem
-                                  className="dropItem"
-                                  onClick={this.onSyncLeads.bind(this)}
-                                >
-                                  Sync leads
-                                </DropdownItem>
-                                <DropdownItem
-                                  className="dropItem"
-                                  onClick={this.togglePopup.bind(this)}
-                                >
-                                  Delete current list
-                                </DropdownItem>
-                              </DropdownMenu>
-                            </UncontrolledDropdown>
-                          </div>
-                        ) : (
-                          <div className="searchBar flex fdr aic">
-                            <input
-                              alt={"search"}
-                              placeholder="Enter your search here"
-                              type="text"
-                              src={require("../../../assets/img/search.svg")}
-                              onChange={this.handleSearchChange.bind(this)}
-                              onKeyPress={this.handleKeyPress.bind(this)}
-                            />
-                            <UncontrolledDropdown>
-                              <DropdownToggle
-                                color="empty"
-                                className="dropdown-toggle-split"
-                              >
-                                <div className="edit flex fdc aic jcc">
-                                  <box-icon
-                                    name="pencil"
-                                    color="#0026bc"
-                                  ></box-icon>
-                                </div>
-                              </DropdownToggle>
-                              <DropdownMenu className="btn" right>
-                                <DropdownItem
-                                  onClick={this.deleteCheckBox.bind(this)}
-                                >
-                                  Edit
-                                </DropdownItem>
-                                <DropdownItem>Delete</DropdownItem>
-                              </DropdownMenu>
-                            </UncontrolledDropdown>
-                          </div>
-                        )}
-                      </div>
+                                  <div className="edit flex fdc aic jcc">
+                                    <box-icon
+                                      name="pencil"
+                                      color="#0026bc"
+                                    ></box-icon>
+                                  </div>
+                                </DropdownToggle>
+                                <DropdownMenu className="btn" right>
+                                  <DropdownItem
+                                    onClick={this.deleteCheckBox.bind(this)}
+                                  >
+                                    Edit
+                                  </DropdownItem>
+                                  <DropdownItem>Delete</DropdownItem>
+                                </DropdownMenu>
+                              </UncontrolledDropdown>
+                            </div>
+                          )}
+                        </div>
+                      )}
+
                       {this.props.call.leads ? (
                         <PerfectScrollbar>
                           <div className="scroll-leads">
