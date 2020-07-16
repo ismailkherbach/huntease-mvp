@@ -1432,10 +1432,10 @@ body {
     .AddMember {
       width: 100%;
       width: 68.875rem;
-      height: 9.5625rem;
+      height: 10.5625rem;
       background-color: $huntease-main;
       border-radius: $border-radius-button;
-      padding: 15px 20px 15px 20px;
+      padding: 1.25em;
       margin-bottom: 30px;
       & h5 {
         color: $huntease-medium;
@@ -1454,12 +1454,12 @@ body {
         margin-right: 5px;
       }
       & .email-input {
-        width: 144px;
+        width: 9rem;
         font-weight: $bold;
       }
       .SendInvite {
-        width: 189px;
-        height: 43px;
+        width: 11.8125rem;
+        height: 2.6875rem;
         color: $huntease-main;
         font-weight: $bold;
         font-size: 14px;
