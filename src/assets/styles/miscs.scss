@@ -162,7 +162,7 @@ $height-auth-inputs: 43px;
   height: 89%;
   overflow-y: scroll;
   overflow-x: hidden;
-  scrollbar-color: red green;
+  scrollbar-color: $huntease-light $huntease-medium;
   scrollbar-width: thin;
 }
 
@@ -171,43 +171,58 @@ $height-auth-inputs: 43px;
   height: 30rem;
   overflow-y: scroll;
   overflow-x: hidden;
+  scrollbar-color: $huntease-light $huntease-medium;
+  scrollbar-width: thin;
 }
 
 .scroll-callScriptRes {
   margin-right: unset;
   height: 30rem;
-
+  scrollbar-color: $huntease-light $huntease-medium;
+  scrollbar-width: thin;
   overflow-y: scroll;
   overflow-x: hidden;
 }
 
 .scroll-leads {
   margin-right: unset;
-  height: 34.375rem;
+  margin-right: 15px;
 
+  height: 34.375rem;
+  scrollbar-color: $huntease-light $huntease-medium;
+  scrollbar-width: thin;
   overflow-y: scroll;
   overflow-x: hidden;
 }
 
 .scroll-guides {
   margin-right: unset;
+  margin-right: 15px;
+
   height: 31.4rem;
   overflow-y: scroll;
   overflow-x: hidden;
+  scrollbar-color: $huntease-light $huntease-medium;
+  scrollbar-width: thin;
 }
 .scroll-lead {
   margin-right: unset;
-  height: 16.25rem;
 
+  height: 16.25rem;
+  scrollbar-color: $huntease-light $huntease-medium;
+  scrollbar-width: thin;
   overflow-y: scroll;
   overflow-x: hidden;
 }
 
 .scroll-schedule {
   margin-right: unset;
+
   height: 16.2rem;
   overflow-y: scroll;
   overflow-x: hidden;
+  scrollbar-color: $huntease-light $huntease-medium;
+  scrollbar-width: thin;
 }
 
 .scroll-topsales {
@@ -215,12 +230,16 @@ $height-auth-inputs: 43px;
   height: 14.2rem;
   overflow-y: scroll;
   overflow-x: hidden;
+  scrollbar-color: $huntease-light $huntease-medium;
+  scrollbar-width: thin;
 }
 
 .scroll-meeting {
   margin-right: unset;
   height: 14.2rem;
   overflow-y: scroll;
+  scrollbar-color: $huntease-light $huntease-medium;
+  scrollbar-width: thin;
   overflow-x: hidden;
 }
 
@@ -229,6 +248,8 @@ $height-auth-inputs: 43px;
   height: 25rem;
   overflow-y: scroll;
   overflow-x: hidden;
+  scrollbar-color: $huntease-light $huntease-medium;
+  scrollbar-width: thin;
 }
 
 .curs_pointer {

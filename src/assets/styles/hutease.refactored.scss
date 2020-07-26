@@ -300,8 +300,8 @@ body {
 }
 
 .main-bloc {
-  background-image: url("../img/mainback.svg");
-  background-size: cover;
+  background-image: url("../img/second_bg.svg");
+  background-size: 100vw;
   background-repeat: no-repeat;
   width: 100vw;
   height: 100vh;
@@ -2262,7 +2262,7 @@ body {
           -o-border-radius: 5px;
         }
         .SubInfos {
-          width: 85%;
+          width: 75%;
           text-overflow: ellipsis;
           overflow: hidden;
           white-space: nowrap;
