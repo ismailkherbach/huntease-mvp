@@ -385,6 +385,10 @@ body {
       line-height: 2;
       margin: 0;
     }
+    & .box-icon {
+      width: 1rem;
+      height: 1rem;
+    }
   }
   li:hover {
     color: $huntease-accent;
@@ -603,7 +607,7 @@ body {
     -o-border-radius: 10px;
     padding-left: 10px;
     & input {
-      width: 22rem;
+      width: 21rem;
       height: 2.3125rem;
       opacity: 1;
       background-color: #1c3fca;

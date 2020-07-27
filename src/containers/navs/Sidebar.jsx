@@ -74,6 +74,7 @@ class Sidebar extends React.Component {
                   <box-icon
                     name={item.icon}
                     type="solid"
+                    className="box-icon"
                     color={
                       (this.state.menuHover && this.state.menuOn == x) ||
                       this.state.x === x
